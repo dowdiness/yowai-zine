@@ -12,6 +12,20 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-root-import`,
+    {
+      resolve: 'gatsby-plugin-ts',
+      options: {
+        // Disable type checking in production
+        typeCheck: process.env.NODE_ENV !== 'production',
+      }
+    },
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        codegenConfig: { maybeValue: 'T | undefined' },
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -69,7 +83,25 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
-    `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-next-seo',
+      options: {
+        titleTemplate: '%s | 弱いZINE',
+        language: `ja`,
+        description: `弱いZINE`,
+        openGraph: {
+          type: 'website',
+          locale: 'en_IE',
+          url: 'https://www.url.ie/',
+          site_name: 'SiteName',
+        },
+        twitter: {
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
+        },
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

@@ -1,6 +1,12 @@
+import * as React from "react"
+
 import { Link } from "gatsby"
 
-const Layout = ({ location, title, children }) => {
+type LayoutProps = {
+  location: Location
+}
+
+const Layout: React.FC<LayoutProps> = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   let header
@@ -8,13 +14,13 @@ const Layout = ({ location, title, children }) => {
   if (isRootPath) {
     header = (
       <h1 className="main-heading">
-        <Link to="/">{title}</Link>
+        <Link to="/">弱いZINE</Link>
       </h1>
     )
   } else {
     header = (
       <Link className="header-link-home" to="/">
-        {title}
+        弱いZINE
       </Link>
     )
   }

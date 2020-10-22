@@ -1,19 +1,27 @@
+import * as React from "react"
+
+import { BlogPostBySlugQuery } from 'src/../graphql-types'
+
 import { Link, graphql } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-const BlogPostTemplate = ({ data, location }) => {
+type BlogPostBySlugQueryProps = {
+  data: BlogPostBySlugQuery
+  location: Location
+}
+
+const BlogPostTemplate: React.FC<BlogPostBySlugQueryProps> = ({ data, location }) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
+    <Layout location={location}>
+      <GatsbySeo
+        title={post?.frontmatter?.title || ``}
+        description={post?.frontmatter?.description || post?.excerpt || ``}
       />
       <article
         className="blog-post"
@@ -21,11 +29,11 @@ const BlogPostTemplate = ({ data, location }) => {
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 itemProp="headline">{post?.frontmatter?.title}</h1>
+          <p>{post?.frontmatter?.date}</p>
         </header>
         <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
+          dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
           itemProp="articleBody"
         />
         <hr />
@@ -45,15 +53,15 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
+              <Link to={previous.fields?.slug || `/`} rel="prev">
+                ← {previous.frontmatter?.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
+              <Link to={next.fields?.slug || `/`} rel="next">
+                {next.frontmatter?.title} →
               </Link>
             )}
           </li>
@@ -71,11 +79,6 @@ export const pageQuery = graphql`
     $previousPostId: String
     $nextPostId: String
   ) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)

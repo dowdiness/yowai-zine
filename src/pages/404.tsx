@@ -1,14 +1,20 @@
+import { ErrorPageQuery } from 'src/../graphql-types'
+import * as React from "react"
+
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-const NotFoundPage = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
+type ErrorPageProps = {
+  data: ErrorPageQuery
+  location: Location
+}
 
+const NotFoundPage: React.FC<ErrorPageProps> = ({ data, location }) => {
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title="404: Not Found" />
+    <Layout location={location}>
+      <GatsbySeo title="404: Not Found" />
       <h1>404: Not Found</h1>
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
     </Layout>
@@ -18,7 +24,7 @@ const NotFoundPage = ({ data, location }) => {
 export default NotFoundPage
 
 export const pageQuery = graphql`
-  query {
+  query ErrorPage {
     site {
       siteMetadata {
         title

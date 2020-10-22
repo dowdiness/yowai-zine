@@ -1,17 +1,24 @@
+import { IndexPageQuery } from 'src/../graphql-types'
+import * as React from "react"
+
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
+import Bio from "src/components/bio"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
+type IndexProps = {
+  data: IndexPageQuery
+  location: Location
+}
+
+const BlogIndex: React.FC<IndexProps> = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes
 
   if (posts.length === 0) {
     return (
-      <Layout location={location} title={siteTitle}>
-        <SEO title="All posts" />
+      <Layout location={location}>
+        <GatsbySeo title="All posts" />
         <Bio />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
@@ -23,15 +30,15 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+    <Layout location={location}>
+      <GatsbySeo title="All posts" />
       <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
+          const title = post.frontmatter?.title || post.fields?.slug
 
           return (
-            <li key={post.fields.slug}>
+            <li key={post.fields?.slug}>
               <article
                 className="post-list-item"
                 itemScope
@@ -39,17 +46,17 @@ const BlogIndex = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.fields.slug} itemProp="url">
+                    <Link to={post.fields?.slug || `/`} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
-                  <small>Vol {post.frontmatter.vol} </small>
-                  <small>{post.frontmatter.date}</small>
+                  <small>Vol {post.frontmatter?.vol} </small>
+                  <small>{post.frontmatter?.date}</small>
                 </header>
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
+                      __html: post.frontmatter?.description || post.excerpt || `見つかりません`,
                     }}
                     itemProp="description"
                   />
@@ -66,12 +73,7 @@ const BlogIndex = ({ data, location }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
+  query IndexPage {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt
