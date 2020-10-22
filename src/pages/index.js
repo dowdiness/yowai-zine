@@ -44,6 +44,7 @@ const BlogIndex = ({ data, location }) => {
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
+                  <small>Vol {post.frontmatter.vol} </small>
                   <small>{post.frontmatter.date}</small>
                 </header>
                 <section>
@@ -81,6 +82,7 @@ export const pageQuery = graphql`
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
           title
+          vol
           description
         }
       }
