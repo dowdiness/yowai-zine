@@ -1,4 +1,3 @@
-import React from "react"
 import { Link } from "gatsby"
 
 const Layout = ({ location, title, children }) => {
