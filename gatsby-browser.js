@@ -1,6 +1,7 @@
 // custom typefaces
 import "typeface-montserrat"
 import "typeface-merriweather"
+import "fontsource-poppins"
 // custom CSS styles
 import "./src/styles/style.css"
 

@@ -1,6 +1,8 @@
 import { Link, graphql } from "gatsby"
 import { PageProps } from "gatsby"
 
+import Image from "src/components/Image"
+
 import Bio from "src/components/bio"
 import Layout from "../components/layout"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
@@ -25,7 +27,6 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data, loca
   return (
     <Layout location={location}>
       <GatsbySeo title='弱いZINE' titleTemplate='%s'/>
-      <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter?.title || post.fields?.slug
