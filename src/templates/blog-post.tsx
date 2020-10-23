@@ -16,7 +16,7 @@ const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostBySlugQuery>> = (
         description={post?.frontmatter?.description || post?.excerpt || ``}
       />
       <article
-        className="blog-post"
+        className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl"
         itemScope
         itemType="http://schema.org/Article"
       >
