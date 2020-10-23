@@ -1,18 +1,11 @@
-import { IndexPageQuery } from 'src/../graphql-types'
-import * as React from "react"
-
 import { Link, graphql } from "gatsby"
+import { PageProps } from "gatsby"
 
 import Bio from "src/components/bio"
 import Layout from "../components/layout"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-type IndexProps = {
-  data: IndexPageQuery
-  location: Location
-}
-
-const BlogIndex: React.FC<IndexProps> = ({ data, location }) => {
+const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes
 
   if (posts.length === 0) {

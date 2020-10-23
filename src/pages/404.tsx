@@ -1,17 +1,9 @@
-import { ErrorPageQuery } from 'src/../graphql-types'
-import * as React from "react"
-
-import { graphql } from "gatsby"
+import { PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-type ErrorPageProps = {
-  data: ErrorPageQuery
-  location: Location
-}
-
-const NotFoundPage: React.FC<ErrorPageProps> = ({ data, location }) => {
+const NotFoundPage: React.FC<PageProps> = ({ location }) => {
   return (
     <Layout location={location}>
       <GatsbySeo title="404: Not Found" />
@@ -22,13 +14,3 @@ const NotFoundPage: React.FC<ErrorPageProps> = ({ data, location }) => {
 }
 
 export default NotFoundPage
-
-export const pageQuery = graphql`
-  query ErrorPage {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

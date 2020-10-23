@@ -1,19 +1,11 @@
-import * as React from "react"
-
-import { BlogPostBySlugQuery } from 'src/../graphql-types'
-
 import { Link, graphql } from "gatsby"
+import { PageProps } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
-type BlogPostBySlugQueryProps = {
-  data: BlogPostBySlugQuery
-  location: Location
-}
-
-const BlogPostTemplate: React.FC<BlogPostBySlugQueryProps> = ({ data, location }) => {
+const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostBySlugQuery>> = ({ data, location }) => {
   const post = data.markdownRemark
   const { previous, next } = data
 
