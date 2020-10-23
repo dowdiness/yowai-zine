@@ -57,8 +57,8 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
   return (
     <div className="" data-is-root-path={isRootPath}>
       <header className="w-screen mb-4 h-140">{header}</header>
-      <main className="p-8">{children}</main>
-      <footer className="p-8">
+      <main className="container p-8 mx-auto">{children}</main>
+      <footer className="container p-8 mx-auto">
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.com">Gatsby</a>
