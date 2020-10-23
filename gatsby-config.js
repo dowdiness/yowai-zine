@@ -69,7 +69,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#2a9df4`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/yowai-icon.png`,
       },
     },
     {
