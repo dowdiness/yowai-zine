@@ -5,9 +5,12 @@ import Image from "src/components/Image"
 
 import Bio from "src/components/bio"
 import Layout from "../components/layout"
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { GatsbySeo } from "gatsby-plugin-next-seo"
 
-const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data, location }) => {
+const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
+  data,
+  location,
+}) => {
   const posts = data.allMarkdownRemark.nodes
 
   if (posts.length === 0) {
@@ -26,7 +29,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data, loca
 
   return (
     <Layout location={location}>
-      <GatsbySeo title='弱いZINE' titleTemplate='%s'/>
+      <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter?.title || post.fields?.slug
@@ -50,7 +53,10 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data, loca
                 <section>
                   <p
                     dangerouslySetInnerHTML={{
-                      __html: post.frontmatter?.description || post.excerpt || `見つかりません`,
+                      __html:
+                        post.frontmatter?.description ||
+                        post.excerpt ||
+                        `見つかりません`,
                     }}
                     itemProp="description"
                   />

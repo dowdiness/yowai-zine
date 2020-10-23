@@ -1,7 +1,7 @@
 import { PageProps } from "gatsby"
 
 import Layout from "../components/layout"
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { GatsbySeo } from "gatsby-plugin-next-seo"
 
 const NotFoundPage: React.FC<PageProps> = ({ location }) => {
   return (

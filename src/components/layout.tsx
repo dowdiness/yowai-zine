@@ -19,13 +19,22 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
           className="w-64 h-64 mb-16"
         />
         <div className="flex flex-col items-center mb-6 space-y-3">
-          <h3 className="text-4xl italic font-extrabold text-yowai">Don't kill.</h3>
-          <h3 className="text-4xl italic font-extrabold text-yowai">Protect your</h3>
-          <h3 className="text-4xl italic font-extrabold text-yowai">weakness.</h3>
+          <h3 className="text-4xl italic font-extrabold text-yowai">
+            Don't kill.
+          </h3>
+          <h3 className="text-4xl italic font-extrabold text-yowai">
+            Protect your
+          </h3>
+          <h3 className="text-4xl italic font-extrabold text-yowai">
+            weakness.
+          </h3>
         </div>
         <h1
           className="flex justify-center text-6xl italic font-black text-white"
-          style={{textShadow:  '-4px -4px 8px rgba(255,255,255,0.5), 4px 4px 8px rgba(0,0,0,0.08)'}}
+          style={{
+            textShadow:
+              "-4px -4px 8px rgba(255,255,255,0.5), 4px 4px 8px rgba(0,0,0,0.08)",
+          }}
         >
           弱いzine
         </h1>
@@ -40,13 +49,22 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
           className="w-64 h-64 mb-16"
         />
         <div className="flex flex-col items-center mb-6 space-y-3">
-          <h3 className="text-4xl italic font-extrabold text-yowai">Don't kill.</h3>
-          <h3 className="text-4xl italic font-extrabold text-yowai">Protect your</h3>
-          <h3 className="text-4xl italic font-extrabold text-yowai">weakness.</h3>
+          <h3 className="text-4xl italic font-extrabold text-yowai">
+            Don't kill.
+          </h3>
+          <h3 className="text-4xl italic font-extrabold text-yowai">
+            Protect your
+          </h3>
+          <h3 className="text-4xl italic font-extrabold text-yowai">
+            weakness.
+          </h3>
         </div>
         <h1
           className="flex justify-center text-6xl italic font-black text-white"
-          style={{textShadow:  '-4px -4px 8px rgba(255,255,255,0.5), 4px 4px 8px rgba(0,0,0,0.08)'}}
+          style={{
+            textShadow:
+              "-4px -4px 8px rgba(255,255,255,0.5), 4px 4px 8px rgba(0,0,0,0.08)",
+          }}
         >
           弱いzine
         </h1>

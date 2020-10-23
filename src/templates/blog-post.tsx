@@ -3,9 +3,11 @@ import { PageProps } from "gatsby"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { GatsbySeo } from "gatsby-plugin-next-seo"
 
-const BlogPostTemplate: React.FC<PageProps<GatsbyTypes.BlogPostBySlugQuery>> = ({ data, location }) => {
+const BlogPostTemplate: React.FC<PageProps<
+  GatsbyTypes.BlogPostBySlugQuery
+>> = ({ data, location }) => {
   const post = data.markdownRemark
   const { previous, next } = data
 

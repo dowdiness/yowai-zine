@@ -1,8 +1,8 @@
-import React from 'react'
-import { graphql, StaticQuery } from 'gatsby'
+import React from "react"
+import { graphql, StaticQuery } from "gatsby"
 
 import Image from "gatsby-image"
-import BackgroundImage from 'gatsby-background-image'
+import BackgroundImage from "gatsby-background-image"
 
 type ImageProps = {
   filename: string
@@ -11,10 +11,16 @@ type ImageProps = {
   background?: boolean
 }
 
-const ImageSection: React.FCX<ImageProps> = ({children, filename, className, alt, background}) => (
+const ImageSection: React.FCX<ImageProps> = ({
+  children,
+  filename,
+  className,
+  alt,
+  background,
+}) => (
   <StaticQuery<GatsbyTypes.ImageQuery>
     query={graphql`
-      query Image{
+      query Image {
         images: allFile {
           edges {
             node {
@@ -35,18 +41,23 @@ const ImageSection: React.FCX<ImageProps> = ({children, filename, className, alt
       const image = data.images.edges.find(n => {
         return n.node.relativePath.includes(filename)
       })
-      if (!image?.node?.childImageSharp?.fluid) { return null }
+      if (!image?.node?.childImageSharp?.fluid) {
+        return null
+      }
 
-      return (
-        background ?
-          <BackgroundImage
-            fluid={image.node.childImageSharp.fluid}
-            className="w-full bg-center bg-repeat bg-cover"
-          >
-            {children}
-          </BackgroundImage>
-        :
-        <Image fluid={image.node.childImageSharp.fluid} className={className} alt={alt || `Image`} />
+      return background ? (
+        <BackgroundImage
+          fluid={image.node.childImageSharp.fluid}
+          className="w-full bg-center bg-repeat bg-cover"
+        >
+          {children}
+        </BackgroundImage>
+      ) : (
+        <Image
+          fluid={image.node.childImageSharp.fluid}
+          className={className}
+          alt={alt || `Image`}
+        />
       )
     }}
   />
