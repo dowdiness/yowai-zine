@@ -24,7 +24,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({ data, loca
 
   return (
     <Layout location={location}>
-      <GatsbySeo title="All posts" />
+      <GatsbySeo title='弱いZINE' titleTemplate='%s'/>
       <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {

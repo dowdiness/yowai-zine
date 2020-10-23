@@ -14,6 +14,7 @@ module.exports = {
   plugins: [
     `gatsby-plugin-root-import`,
     `gatsby-plugin-typegen`,
+    `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

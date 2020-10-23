@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { Link } from "gatsby"
 
 type LayoutProps = {
@@ -13,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
 
   if (isRootPath) {
     header = (
-      <h1 className="main-heading">
+      <h1 className="text-5xl">
         <Link to="/">弱いZINE</Link>
       </h1>
     )
