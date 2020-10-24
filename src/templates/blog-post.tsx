@@ -1,7 +1,6 @@
 import { Link, graphql } from "gatsby"
 import { PageProps } from "gatsby"
 
-import Bio from "src/components/bio"
 import Layout from "src/components/Layout"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
 
@@ -17,25 +16,26 @@ const BlogPostTemplate: React.FC<PageProps<
         title={post?.frontmatter?.title || ``}
         description={post?.frontmatter?.description || post?.excerpt || ``}
       />
-      <article
-        className="w-full mx-auto mt-12 prose-sm prose sm:prose lg:prose-lg xl:prose-xl"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{post?.frontmatter?.title}</h1>
-          <p>{post?.frontmatter?.date}</p>
-        </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
-          itemProp="articleBody"
-        />
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
-      </article>
-      <nav className="mb-12 blog-post-nav">
+      <div className="m-screen">
+        <article
+          className="mx-auto my-16"
+          itemScope
+          itemType="http://schema.org/Article"
+        >
+          <header className="flex flex-col items-center px-4 mb-6 sm:px-6 lg:px-8">
+            <h1 className="mb-4 text-3xl font-bold" itemProp="headline">{post?.frontmatter?.title}</h1>
+            <p className="text-xl italic">{post?.frontmatter?.date}</p>
+          </header>
+          <section
+            dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
+            itemProp="articleBody"
+            className="px-4 mx-auto prose-sm prose text-justify text-upright sm:prose lg:prose-lg xl:prose-xl sm:px-6 lg:px-8 text-character vertical-rl multicolumn"
+          />
+          <footer>
+          </footer>
+        </article>
+      </div>
+      {/* <nav className="mb-12 prose">
         <ul
           style={{
             display: `flex`,
@@ -60,7 +60,7 @@ const BlogPostTemplate: React.FC<PageProps<
             )}
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </Layout>
   )
 }

@@ -10,6 +10,17 @@ module.exports = {
   },
   purge: ["./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
+    typography: {
+      default: {
+        // css: {
+        //   color: '#333',
+        //   strong: {
+        //     fontWeight: '800',
+        //   },
+        //   // ...
+        // },
+      },
+    },
     fontFamily: {
       poppins: ["'Poppins'", "sans-serif"],
       sans: ["'Robot Mono", "Consolas", "'Courier New", ...defaultTheme.fontFamily.sans],
@@ -31,6 +42,9 @@ module.exports = {
         120: "30rem",
         140: "35rem",
         160: "40rem",
+      },
+      margin: {
+        screen: '0 calc(50% - 50vw)',
       },
       colors: {
         neumorphism: "#e0e5eb",
@@ -66,6 +80,12 @@ module.exports = {
         },
         '.vertical-lr': {
           writingMode: 'vertical-lr'
+        },
+        '.text-character': {
+          textJustify: 'inter-character'
+        },
+        '.text-upright': {
+          textOrientation: 'upright'
         }
       }
       addUtilities(newUtilities)
@@ -88,6 +108,15 @@ module.exports = {
         ".neumorphism": {
           textShadow:
             "-8px -8px 12px rgba(255,255,255,0.2), 8px 8px 12px rgba(0,0,0,0.12)",
+        },
+        ".multicolumn": {
+          columnCount: "2",
+          columnRule: "solid 1px #ccc",
+          width: "100vw",
+          "> p": {
+            marginLeft: "1rem",
+            textIndent: "1rem",
+          },
         },
       })
     }),
