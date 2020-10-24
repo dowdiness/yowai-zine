@@ -35,7 +35,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           return (
             <li key={post.fields?.slug}>
               <article
-                className="post-list-item"
+                className="mx-auto mt-12 prose-sm prose sm:prose lg:prose-lg xl:prose-xl"
                 itemScope
                 itemType="http://schema.org/Article"
               >

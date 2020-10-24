@@ -3046,13 +3046,6 @@ type IndexPageQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyAr
       & { readonly fields: Maybe<Pick<Fields, 'slug'>>, readonly frontmatter: Maybe<Pick<Frontmatter, 'date' | 'title' | 'vol' | 'description'>> }
     )> } };
 
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type BioQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BioQueryQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<Author, 'name' | 'summary'>>, readonly social: Maybe<Pick<Social, 'twitter'>> }> }> };
-
 type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 type ImageQueryVariables = Exact<{ [key: string]: never; }>;
@@ -3062,5 +3055,12 @@ type ImageQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly 
         Pick<File, 'relativePath' | 'name'>
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluid_withWebpFragment> }> }
       ) }> } };
+
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+
+type BioQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BioQueryQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<Author, 'name' | 'summary'>>, readonly social: Maybe<Pick<Social, 'twitter'>> }> }> };
 
 }

@@ -18,7 +18,7 @@ const BlogPostTemplate: React.FC<PageProps<
         description={post?.frontmatter?.description || post?.excerpt || ``}
       />
       <article
-        className="mx-auto mt-12 prose-sm prose sm:prose lg:prose-lg xl:prose-xl"
+        className="w-full mx-auto mt-12 prose-sm prose sm:prose lg:prose-lg xl:prose-xl"
         itemScope
         itemType="http://schema.org/Article"
       >
