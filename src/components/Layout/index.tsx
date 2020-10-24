@@ -11,13 +11,13 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
 
   return (
     <div className="flex flex-col min-h-screen" data-is-root-path={isRootPath}>
-      <Header />
+      <Header className="" />
       <main
-        className="container flex flex-col flex-1 px-6 mx-auto sm:px-8 md:px-10 lg:px-12"
+        className="container flex flex-col flex-1 px-4 mx-auto sm:px-6 lg:px-8"
       >
         {children}
       </main>
-      <Footer className="px-6 sm:px-8 md:px-10 lg:px-12" />
+      <Footer className="" />
     </div>
   )
 }

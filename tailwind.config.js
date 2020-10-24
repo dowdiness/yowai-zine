@@ -12,8 +12,8 @@ module.exports = {
   theme: {
     fontFamily: {
       poppins: ["'Poppins'", "sans-serif"],
-      sans: [...defaultTheme.fontFamily.sans],
-      serif: [...defaultTheme.fontFamily.serif],
+      sans: ["'Robot Mono", "Consolas", "'Courier New", ...defaultTheme.fontFamily.sans],
+      serif: ["YuMincho", ...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
     },
     screens: {
@@ -80,5 +80,6 @@ module.exports = {
       })
     }),
     require("@tailwindcss/typography"),
+    require('@tailwindcss/ui'),
   ],
 }

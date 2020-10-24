@@ -5,8 +5,8 @@ import Image from "src/components/Image"
 import useWindowScroll from "src/hooks/useWindowScroll"
 
 export type HeaderProps = {}
-export const Header: React.FC<HeaderProps> = () => {
-  const {y} = useWindowScroll()
+export const Header: React.FCX<HeaderProps> = ({className}) => {
+  const { y } = useWindowScroll()
 
   return (
     <>
@@ -40,17 +40,19 @@ export const Header: React.FC<HeaderProps> = () => {
         </Link>
       </section>
       <header
-        className={`fixed top-0 flex items-center justify-center w-full h-16 px-6 transition duration-300 ease-in-out transform bg-white shadow-sm sm:px-8 md:px-10 lg:px-12 ${y > 580 ? "translate-y-0 opacity-100" : "-translate-y-16 opacity-0"}`}
+        className={`fixed top-0 flex items-center justify-center w-full h-16 transition duration-300 ease-in-out transform bg-white shadow-sm ${y > 580 ? "translate-y-0 opacity-100" : "-translate-y-16 opacity-0"}`}
       >
-        <h1
-          className="flex justify-center text-4xl italic font-black text-white"
-          style={{
-            textShadow:
-              "-4px -4px 8px #161616, 4px 4px 8px rgba(0,0,0,0.08)",
-          }}
-        >
-          弱いzine
-      </h1>
+        <div className={className}>
+          <h1
+            className="flex justify-center text-4xl italic font-black text-white"
+            style={{
+              textShadow:
+                "-4px -4px 8px #161616, 4px 4px 8px rgba(0,0,0,0.08)",
+            }}
+          >
+            弱いzine
+          </h1>
+        </div>
       </header>
     </>
   )
