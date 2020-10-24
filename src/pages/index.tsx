@@ -1,8 +1,6 @@
 import { Link, graphql } from "gatsby"
 import { PageProps } from "gatsby"
 
-import Image from "src/components/Image"
-
 import Bio from "src/components/bio"
 import Layout from "../components/layout"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
