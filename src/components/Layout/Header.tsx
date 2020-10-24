@@ -10,7 +10,7 @@ export const Header: React.FCX<HeaderProps> = ({className}) => {
 
   return (
     <>
-      <section className="w-full mb-4 h-140">
+      <section className="w-full mb-4">
         <Link className="flex flex-col items-center" to="/">
           <Image
             filename="yowai-logo.png"
