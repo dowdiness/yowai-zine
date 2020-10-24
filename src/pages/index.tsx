@@ -2,7 +2,7 @@ import { Link, graphql } from "gatsby"
 import { PageProps } from "gatsby"
 
 import Bio from "src/components/bio"
-import Layout from "../components/layout"
+import Layout from "src/components/Layout"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({

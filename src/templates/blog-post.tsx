@@ -1,8 +1,8 @@
 import { Link, graphql } from "gatsby"
 import { PageProps } from "gatsby"
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
+import Bio from "src/components/bio"
+import Layout from "src/components/Layout"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
 
 const BlogPostTemplate: React.FC<PageProps<
@@ -18,7 +18,7 @@ const BlogPostTemplate: React.FC<PageProps<
         description={post?.frontmatter?.description || post?.excerpt || ``}
       />
       <article
-        className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl"
+        className="mx-auto mt-12 prose-sm prose sm:prose lg:prose-lg xl:prose-xl"
         itemScope
         itemType="http://schema.org/Article"
       >
@@ -35,7 +35,7 @@ const BlogPostTemplate: React.FC<PageProps<
           <Bio />
         </footer>
       </article>
-      <nav className="blog-post-nav">
+      <nav className="mb-12 blog-post-nav">
         <ul
           style={{
             display: `flex`,
