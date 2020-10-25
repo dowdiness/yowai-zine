@@ -22,7 +22,6 @@ module.exports = {
       },
     },
     fontFamily: {
-      poppins: ["'Poppins'", "sans-serif"],
       sans: ["'Robot Mono", "Consolas", "'Courier New", ...defaultTheme.fontFamily.sans],
       serif: ["YuMincho", ...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
@@ -110,6 +109,7 @@ module.exports = {
             "-8px -8px 12px rgba(255,255,255,0.2), 8px 8px 12px rgba(0,0,0,0.12)",
         },
         ".multicolumn": {
+          fontFeatureSettings: "palt",
           columnCount: "2",
           columnRule: "solid 1px #ccc",
           width: "100vw",

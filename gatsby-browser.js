@@ -1,7 +1,5 @@
 // custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
-import "fontsource-poppins"
+import "fontsource-noto-serif-jp" // Defaults to weight 400 with all styles included.
 // custom CSS styles
 import "./src/styles/style.css"
 

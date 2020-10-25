@@ -6791,10 +6791,10 @@ follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
 
-fontsource-poppins@^3.0.9:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/fontsource-poppins/-/fontsource-poppins-3.0.9.tgz#b8bc8733a0de2fdb2f4d4d10b66e95c0c40ed7c7"
-  integrity sha512-STZLxqY5ueeNMb2gDd4iZVKR9CzZ5qSCp3ztldzmrs4/XbOs8yJSjX6vKWMH8uS+/ehMHlAiCJoiV2ooJ8WwQQ==
+fontsource-noto-serif-jp@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/fontsource-noto-serif-jp/-/fontsource-noto-serif-jp-3.0.3.tgz#c662c0d3fe810657a4d4e0caf2a6f89c444d0852"
+  integrity sha512-J+2VtL9uOkDfwEtz85TD9UQd4UCunwAgg1Lc4Rh1eTKjUpSMLfryzsjpSvT0FnFcmO9FNloUDratkbmt35v4sQ==
 
 for-in@^1.0.2:
   version "1.0.2"
@@ -15498,16 +15498,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-merriweather@0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-merriweather/-/typeface-merriweather-0.0.72.tgz#2b990f5293252052d51d170c82d3892319ff0555"
-  integrity sha512-gO0+fcZ1fTyKUsYY1ltYOOTI6FmBGeEdyIfeQg9NL8aInndk0feiJJVJsKHm/DiyYrnQEezraAQhz/KQoqMGtw==
-
-typeface-montserrat@0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-montserrat/-/typeface-montserrat-0.0.75.tgz#b796d9c767ab8ed1343271985beb1e44b382b7b3"
-  integrity sha512-8ski20t3hdwu2T85pVfjK4jsDbwW8yWzd+LAKxYEmu+JVLVlB7G2yfmdKZz06pUwYCLVFvHvup+NYYulHDpE+w==
 
 typescript@^4.0.3:
   version "4.0.3"
