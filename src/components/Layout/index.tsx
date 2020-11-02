@@ -13,11 +13,11 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
     <div className="" data-is-root-path={isRootPath}>
       <Header className="" />
       <main
-        className="container px-4 mx-auto sm:px-6 lg:px-8"
+        className="container"
       >
         {children}
       </main>
-      {/* <Footer className="" /> */}
+      <Footer className="" />
     </div>
   )
 }
