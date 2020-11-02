@@ -46,7 +46,6 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                     </Link>
                   </h2>
                   <small>Vol {post.frontmatter?.vol} </small>
-                  <small>{post.frontmatter?.date}</small>
                 </header>
                 <section>
                   <p

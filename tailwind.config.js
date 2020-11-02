@@ -29,9 +29,24 @@ module.exports = {
     screens: {
       sm: "480px",
       md: "768px",
-      tb: "848px",
       lg: "992px",
       xl: "1280px",
+    },
+    container: {
+      center: true,
+      width: {
+        default: '100%',
+        sm: "480px",
+        md: "768px",
+        lg: "992px",
+        xl: "1280px",
+      },
+      padding: {
+        default: '1rem',
+        sm: '1.5rem',
+        lg: '2rem',
+        xl: '3rem',
+      },
     },
     extend: {
       spacing: {
@@ -41,6 +56,17 @@ module.exports = {
         120: "30rem",
         140: "35rem",
         160: "40rem",
+        320: "80rem",
+        480: "120rem",
+        520: "130rem",
+        640: "160rem",
+        800: "200rem",
+        960: "240rem",
+        1120: "280rem",
+        1280: "320rem",
+        1440: "360rem",
+        1600: "400rem",
+        1760: "440rem",
       },
       margin: {
         screen: '0 calc(50% - 50vw)',
@@ -85,7 +111,13 @@ module.exports = {
         },
         '.text-upright': {
           textOrientation: 'upright'
-        }
+        },
+        '.text-sideways': {
+          textOrientation: 'sideways'
+        },
+        '.text-tcy': {
+          textCombineUpright: 'all'
+        },
       }
       addUtilities(newUtilities)
       addComponents({
@@ -110,12 +142,11 @@ module.exports = {
         },
         ".multicolumn": {
           fontFeatureSettings: "palt",
-          columnCount: "2",
-          columnRule: "solid 1px #ccc",
-          width: "100vw",
           "> p": {
             marginLeft: "1rem",
             textIndent: "1rem",
+            lineHeight: "1.75",
+            letterSpacing: "0.06em",
           },
         },
       })

@@ -713,9 +713,9 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___title = 'childMarkdownRemark.frontmatter.title',
   childMarkdownRemark___frontmatter___description = 'childMarkdownRemark.frontmatter.description',
   childMarkdownRemark___frontmatter___date = 'childMarkdownRemark.frontmatter.date',
-  childMarkdownRemark___frontmatter___vol = 'childMarkdownRemark.frontmatter.vol',
   childMarkdownRemark___frontmatter___author = 'childMarkdownRemark.frontmatter.author',
   childMarkdownRemark___frontmatter___profile = 'childMarkdownRemark.frontmatter.profile',
+  childMarkdownRemark___frontmatter___vol = 'childMarkdownRemark.frontmatter.vol',
   childMarkdownRemark___fields___slug = 'childMarkdownRemark.fields.slug',
   childMarkdownRemark___excerpt = 'childMarkdownRemark.excerpt',
   childMarkdownRemark___rawMarkdownBody = 'childMarkdownRemark.rawMarkdownBody',
@@ -843,9 +843,9 @@ type Frontmatter = {
   readonly title: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly date: Maybe<Scalars['Date']>;
-  readonly vol: Maybe<Scalars['String']>;
   readonly author: Maybe<Scalars['String']>;
   readonly profile: Maybe<Scalars['String']>;
+  readonly vol: Maybe<Scalars['String']>;
 };
 
 
@@ -860,9 +860,9 @@ type FrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
   readonly date: Maybe<DateQueryOperatorInput>;
-  readonly vol: Maybe<StringQueryOperatorInput>;
   readonly author: Maybe<StringQueryOperatorInput>;
   readonly profile: Maybe<StringQueryOperatorInput>;
+  readonly vol: Maybe<StringQueryOperatorInput>;
 };
 
 enum ImageCropFocus {
@@ -1517,9 +1517,9 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___title = 'frontmatter.title',
   frontmatter___description = 'frontmatter.description',
   frontmatter___date = 'frontmatter.date',
-  frontmatter___vol = 'frontmatter.vol',
   frontmatter___author = 'frontmatter.author',
   frontmatter___profile = 'frontmatter.profile',
+  frontmatter___vol = 'frontmatter.vol',
   fields___slug = 'fields.slug',
   excerpt = 'excerpt',
   rawMarkdownBody = 'rawMarkdownBody',
@@ -3030,7 +3030,7 @@ type BlogPostBySlugQueryVariables = Exact<{
 
 type BlogPostBySlugQuery = { readonly markdownRemark: Maybe<(
     Pick<MarkdownRemark, 'id' | 'excerpt' | 'html'>
-    & { readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'date' | 'description'>> }
+    & { readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'author' | 'profile' | 'description'>> }
   )>, readonly previous: Maybe<{ readonly fields: Maybe<Pick<Fields, 'slug'>>, readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>> }>, readonly next: Maybe<{ readonly fields: Maybe<Pick<Fields, 'slug'>>, readonly frontmatter: Maybe<Pick<Frontmatter, 'title'>> }> };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;

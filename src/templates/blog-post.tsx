@@ -10,32 +10,50 @@ const BlogPostTemplate: React.FC<PageProps<
   const post = data.markdownRemark
   const { previous, next } = data
 
+  const countLength = (s?: string) => {
+    if (s!.length > 3000) {
+      return `column-count-18 sm:column-count-13 md:column-count-9 lg:column-count-6 xl:column-count-5 h-1760 sm:h-1280 md:h-800 lg:h-520 xl:h-480`
+    } else if (s!.length > 2400) {
+      return `column-count-15 sm:column-count-9 h-1600 sm:h-1120`
+    } else if (s!.length > 2200) {
+      return `column-count-8 h-800`
+    } else if (s!.length > 1800) {
+      return `column-count-11 sm:column-count-8 md:column-count-3 h-1280 sm:h-960 md:h-640`
+    } else {
+      return `column-count-4 h-480`
+    }
+  }
+
+  console.log(post?.html?.length)
+  console.log(post?.frontmatter?.profile)
+
   return (
     <Layout location={location}>
       <GatsbySeo
         title={post?.frontmatter?.title || ``}
         description={post?.frontmatter?.description || post?.excerpt || ``}
       />
-      <div className="m-screen">
+      <div className="">
         <article
-          className="mx-auto my-16"
+          className="mx-auto my-16 space-y-8 text-center"
           itemScope
           itemType="http://schema.org/Article"
         >
-          <header className="flex flex-col items-center px-4 mb-6 sm:px-6 lg:px-8">
-            <h1 className="mb-4 text-3xl font-bold" itemProp="headline">{post?.frontmatter?.title}</h1>
-            <p className="text-xl italic">{post?.frontmatter?.date}</p>
+          <header className="flex flex-col items-center">
+            <h1 className="mb-4 text-2xl font-bold" itemProp="headline">{post?.frontmatter?.title}</h1>
+            <p className="text-xl italic font-medium">{post?.frontmatter?.author}</p>
           </header>
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className="px-4 mx-auto prose-sm prose text-justify text-upright sm:prose lg:prose-lg xl:prose-xl sm:px-6 lg:px-8 text-character vertical-rl multicolumn"
+            className={`inline-block text-left break-all multicolumn column-gap-16 column-width-300 text-character text-upright vertical-rl ${countLength(post?.html)}`}
           />
           <footer>
+            {post?.frontmatter?.profile}
           </footer>
         </article>
       </div>
-      {/* <nav className="mb-12 prose">
+      <nav className="mb-12">
         <ul
           style={{
             display: `flex`,
@@ -60,7 +78,7 @@ const BlogPostTemplate: React.FC<PageProps<
             )}
           </li>
         </ul>
-      </nav> */}
+      </nav>
     </Layout>
   )
 }
@@ -79,7 +97,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        author
+        profile
+        # date(formatString: "MMMM DD, YYYY")
         description
       }
     }
