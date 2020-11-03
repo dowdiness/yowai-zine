@@ -1,5 +1,5 @@
 const config = {
-  frontendUrl: `https://yowai.art`,
+  siteUrl: `https://yowai.art`,
   themeColor: '#2a9df4',
   keys: {
     googleAnalyticsID: '',
@@ -74,6 +74,7 @@ module.exports = {
         }
     },
     `gatsby-plugin-feed`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

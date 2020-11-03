@@ -24,6 +24,7 @@
     "gatsby-plugin-offline": "^3.2.33",
     "gatsby-plugin-postcss": "^3.0.3",
     "gatsby-plugin-sharp": "^2.6.42",
+    "gatsby-plugin-sitemap": "^2.5.0",
     "gatsby-plugin-transition-link": "^1.20.5",
     "gatsby-plugin-typegen": "^2.2.1",
     "gatsby-remark-copy-linked-files": "^2.3.19",
