@@ -33,20 +33,20 @@ const BlogPostTemplate: React.FC<PageProps<
       />
       <div className="">
         <article
-          className="mx-auto my-16 space-y-8 text-center"
+          className="mx-auto my-16 space-y-12 text-center"
           itemScope
           itemType="http://schema.org/Article"
         >
-          <header className="flex flex-col items-center">
-            <h1 className="mb-4 text-2xl font-bold" itemProp="headline">{post?.frontmatter?.title}</h1>
+          <header className="flex flex-col items-center font-sans text-justify">
+            <h1 className="mb-4 text-2xl font-extrabold" itemProp="headline">{post?.frontmatter?.title}</h1>
             <p className="text-xl italic font-medium">{post?.frontmatter?.author}</p>
           </header>
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className={`inline-block text-left multicolumn column-gap-12 column-width-300 text-character vertical-rl ${countLength(post?.html)}`}
+            className={`inline-block text-justify multicolumn column-gap-12 column-width-300 text-character vertical-rl ${countLength(post?.html)}`}
           />
-          <footer>
+          <footer className="text-justify">
             {post?.frontmatter?.profile}
           </footer>
         </article>
