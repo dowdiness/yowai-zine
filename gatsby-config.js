@@ -1,3 +1,11 @@
+const config = {
+  frontendUrl: `https://yowai.art`,
+  themeColor: '#2a9df4',
+  keys: {
+    googleAnalyticsID: '',
+  },
+}
+
 module.exports = {
   siteMetadata: {
     title: `弱いZINE`,
@@ -74,7 +82,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#2a9df4`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `content/assets/yowai-icon.png`,
       },
     },
@@ -95,6 +103,12 @@ module.exports = {
           site: "@site",
           cardType: "summary_large_image",
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-nprogress',
+      options: {
+        color: config.themeColor,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

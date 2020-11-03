@@ -36,7 +36,7 @@ export const Header: React.FCX<HeaderProps> = ({className}) => {
         </AniLink>
       </section>
       <header
-        className={`fixed top-0 flex items-center justify-center w-full h-16 transition duration-300 ease-in-out transform bg-white shadow-sm ${y > 580 ? "translate-y-0 opacity-100" : "-translate-y-16 opacity-0"}`}
+        className={`fixed top-0 flex items-center justify-center w-full h-16 transition duration-300 ease-in-out transform bg-white shadow-sm z-20 ${y > 580 ? "translate-y-0 opacity-100" : "-translate-y-16 opacity-0"}`}
       >
         <div className={className}>
           <AniLink fade to="/">

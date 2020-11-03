@@ -2413,6 +2413,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
   pluginCreator___pluginOptions___maxWidth = 'pluginCreator.pluginOptions.maxWidth',
   pluginCreator___pluginOptions___wrapperStyle = 'pluginCreator.pluginOptions.wrapperStyle',
+  pluginCreator___pluginOptions___injectPageProps = 'pluginCreator.pluginOptions.injectPageProps',
   pluginCreator___pluginOptions___layout = 'pluginCreator.pluginOptions.layout',
   pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
   pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
@@ -2435,6 +2436,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___twitter___handle = 'pluginCreator.pluginOptions.twitter.handle',
   pluginCreator___pluginOptions___twitter___site = 'pluginCreator.pluginOptions.twitter.site',
   pluginCreator___pluginOptions___twitter___cardType = 'pluginCreator.pluginOptions.twitter.cardType',
+  pluginCreator___pluginOptions___color = 'pluginCreator.pluginOptions.color',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
@@ -2722,6 +2724,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___name = 'pluginOptions.name',
   pluginOptions___maxWidth = 'pluginOptions.maxWidth',
   pluginOptions___wrapperStyle = 'pluginOptions.wrapperStyle',
+  pluginOptions___injectPageProps = 'pluginOptions.injectPageProps',
   pluginOptions___layout = 'pluginOptions.layout',
   pluginOptions___short_name = 'pluginOptions.short_name',
   pluginOptions___start_url = 'pluginOptions.start_url',
@@ -2744,6 +2747,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___twitter___handle = 'pluginOptions.twitter.handle',
   pluginOptions___twitter___site = 'pluginOptions.twitter.site',
   pluginOptions___twitter___cardType = 'pluginOptions.twitter.cardType',
+  pluginOptions___color = 'pluginOptions.color',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -2863,6 +2867,7 @@ type SitePluginPluginOptions = {
   readonly name: Maybe<Scalars['String']>;
   readonly maxWidth: Maybe<Scalars['Int']>;
   readonly wrapperStyle: Maybe<Scalars['String']>;
+  readonly injectPageProps: Maybe<Scalars['Boolean']>;
   readonly layout: Maybe<Scalars['String']>;
   readonly short_name: Maybe<Scalars['String']>;
   readonly start_url: Maybe<Scalars['String']>;
@@ -2880,6 +2885,7 @@ type SitePluginPluginOptions = {
   readonly description: Maybe<Scalars['String']>;
   readonly openGraph: Maybe<SitePluginPluginOptionsOpenGraph>;
   readonly twitter: Maybe<SitePluginPluginOptionsTwitter>;
+  readonly color: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
@@ -2889,6 +2895,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
   readonly wrapperStyle: Maybe<StringQueryOperatorInput>;
+  readonly injectPageProps: Maybe<BooleanQueryOperatorInput>;
   readonly layout: Maybe<StringQueryOperatorInput>;
   readonly short_name: Maybe<StringQueryOperatorInput>;
   readonly start_url: Maybe<StringQueryOperatorInput>;
@@ -2906,6 +2913,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly description: Maybe<StringQueryOperatorInput>;
   readonly openGraph: Maybe<SitePluginPluginOptionsOpenGraphFilterInput>;
   readonly twitter: Maybe<SitePluginPluginOptionsTwitterFilterInput>;
+  readonly color: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
 
