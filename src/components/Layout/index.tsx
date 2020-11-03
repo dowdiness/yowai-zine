@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ location, children }) => {
     <div className="" data-is-root-path={isRootPath}>
       <Header className="" />
       <main
-        className="container"
+        className="container w-auto"
       >
         {children}
       </main>

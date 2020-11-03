@@ -7,11 +7,31 @@
 @import "tailwindcss/utilities";
 
 /* HTML elements */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: content-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Noto Serif JP', 'Roboto Mono' serif;
+  }
+
+}
 
 @layer utilities {
   @responsive {
-    .column-width-180 {
-      column-width: 180px;
+    .columns-56 {
+      columns: 16rem;
+    }
+    .column-width-88 {
+      column-width: 22rem;
     }
     .column-width-300 {
       column-width: 300px;
@@ -98,19 +118,4 @@
       column-gap: 4rem;
     }
   }
-}
-
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: 'Noto Serif JP', 'Roboto Mono' serif;
 }

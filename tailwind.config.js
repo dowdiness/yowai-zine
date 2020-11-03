@@ -23,7 +23,7 @@ module.exports = {
     },
     fontFamily: {
       sans: ["'Noto Sans JP'", "'Roboto Mono'", "Consolas", "'Courier New'", ...defaultTheme.fontFamily.sans],
-      serif: ["YuMincho", ...defaultTheme.fontFamily.serif],
+      serif: ["'Noto Serif JP'", "'Roboto Mono'", ...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
     },
     screens: {
@@ -35,7 +35,7 @@ module.exports = {
     container: {
       center: true,
       width: {
-        default: '100%',
+        default: '',
         sm: "480px",
         md: "768px",
         lg: "992px",
@@ -52,6 +52,7 @@ module.exports = {
       spacing: {
         72: "18rem",
         80: "20rem",
+        88: "22rem",
         96: "24rem",
         120: "30rem",
         140: "35rem",
@@ -147,9 +148,12 @@ module.exports = {
         },
         ".multicolumn": {
           fontFeatureSettings: "palt",
+          height: "22rem",
+          columnWidth: "22rem",
+          columnGap: "3rem",
           "> p": {
             marginLeft: "1rem",
-            lineHeight: "1.75",
+            textIndent: "1.15em",
             letterSpacing: "0.06em",
             whiteSpace: "pre-wrap",
           },
