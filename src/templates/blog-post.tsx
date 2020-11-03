@@ -12,13 +12,11 @@ const BlogPostTemplate: React.FC<PageProps<
 
   const countLength = (s?: string) => {
     if (s!.length > 3000) {
-      return `column-count-18 sm:column-count-13 md:column-count-9 lg:column-count-6 xl:column-count-5 h-1760 sm:h-1280 md:h-800 lg:h-520 xl:h-480`
+      return `column-count-19 sm:column-count-14 md:column-count-10 lg:column-count-6 xl:column-count-5 h-1760 sm:h-1280 md:h-960 lg:h-520 xl:h-480`
     } else if (s!.length > 2400) {
-      return `column-count-15 sm:column-count-9 h-1600 sm:h-1120`
-    } else if (s!.length > 2200) {
-      return `column-count-8 h-800`
+      return `column-count-17 sm:column-count-12 md:column-count-7 lg:column-count-5 h-1600 sm:h-1120 md:h-640 lg:h-480`
     } else if (s!.length > 1800) {
-      return `column-count-11 sm:column-count-8 md:column-count-3 h-1280 sm:h-960 md:h-640`
+      return `column-count-13 sm:column-count-11 md:column-count-6 lg:column-count-5 h-1120 sm:h-800 md:h-520 lg:h-440`
     } else {
       return `column-count-4 h-480`
     }
@@ -46,7 +44,7 @@ const BlogPostTemplate: React.FC<PageProps<
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className={`inline-block text-left break-all multicolumn column-gap-16 column-width-300 text-character text-upright vertical-rl ${countLength(post?.html)}`}
+            className={`inline-block text-left multicolumn column-gap-12 column-width-300 text-character vertical-rl ${countLength(post?.html)}`}
           />
           <footer>
             {post?.frontmatter?.profile}

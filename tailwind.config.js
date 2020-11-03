@@ -56,7 +56,10 @@ module.exports = {
         120: "30rem",
         140: "35rem",
         160: "40rem",
+        240: "60rem",
         320: "80rem",
+        400: "100rem",
+        440: "110rem",
         480: "120rem",
         520: "130rem",
         640: "160rem",
@@ -116,7 +119,9 @@ module.exports = {
           textOrientation: 'sideways'
         },
         '.text-tcy': {
-          textCombineUpright: 'all'
+          WebkitTextCombine: 'horizontal',
+          MsTextCombineHorizontal: 'all',
+          textCombineUpright: 'all',
         },
       }
       addUtilities(newUtilities)
