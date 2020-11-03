@@ -12,9 +12,9 @@ const BlogPostTemplate: React.FC<PageProps<
 
   const countLength = (s?: string) => {
     if (s!.length > 3000) {
-      return `column-count-19 sm:column-count-14 md:column-count-10 lg:column-count-6 xl:column-count-5 h-1760 sm:h-1280 md:h-960 lg:h-520 xl:h-480`
+      return `column-count-19 sm:column-count-14 md:column-count-10 lg:column-count-7 xl:column-count-5 h-1760 sm:h-1280 md:h-960 lg:h-640 xl:h-480`
     } else if (s!.length > 2400) {
-      return `column-count-17 sm:column-count-12 md:column-count-7 lg:column-count-5 h-1600 sm:h-1120 md:h-640 lg:h-480`
+      return `column-count-17 sm:column-count-12 md:column-count-7 lg:column-count-6 h-1600 sm:h-1120 md:h-640 lg:h-520`
     } else if (s!.length > 1800) {
       return `column-count-13 sm:column-count-11 md:column-count-6 lg:column-count-5 h-1120 sm:h-800 md:h-520 lg:h-440`
     } else {
@@ -44,7 +44,7 @@ const BlogPostTemplate: React.FC<PageProps<
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className={`inline-block text-justify multicolumn column-gap-12 column-width-300 text-character vertical-rl ${countLength(post?.html)}`}
+            className={`inline-block text-justify multicolumn column-gap-12 md:text-lg column-width-300 text-character vertical-rl ${countLength(post?.html)}`}
           />
           <footer className="text-justify">
             {post?.frontmatter?.profile}
