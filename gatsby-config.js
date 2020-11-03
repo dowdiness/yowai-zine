@@ -41,6 +41,7 @@ module.exports = {
       options: {
         plugins: [
           `gatsby-remark-check-links`,
+          `gatsby-remark-external-links`.
           {
             resolve: `gatsby-remark-images`,
             options: {
