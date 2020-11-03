@@ -40,6 +40,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          `gatsby-remark-check-links`,
           {
             resolve: `gatsby-remark-images`,
             options: {
