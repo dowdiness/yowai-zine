@@ -53,14 +53,21 @@ const BlogPostTemplate: React.FC<PageProps<
         >
           <li>
             {previous && (
-              <AniLink fade to={previous.fields?.slug || `/`} rel="prev">
+              <AniLink
+                fade
+                to={`/vol${previous.frontmatter?.vol}${previous.fields?.slug}` || `/`} rel="prev"
+              >
                 ← {previous.frontmatter?.title}
               </AniLink>
             )}
           </li>
           <li>
             {next && (
-              <AniLink fade to={next.fields?.slug || `/`} rel="next">
+              <AniLink
+                fade
+                to={`/vol${next.frontmatter?.vol}${next.fields?.slug}` || `/`}
+                rel="next"
+              >
                 {next.frontmatter?.title} →
               </AniLink>
             )}
@@ -97,6 +104,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        vol
       }
     }
     next: markdownRemark(id: { eq: $nextPostId }) {
@@ -105,6 +113,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        vol
       }
     }
   }

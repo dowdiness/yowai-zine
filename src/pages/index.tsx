@@ -42,7 +42,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                 <header>
                   <h2>
                     <AniLink
-                      to={post.fields?.slug || `/`}
+                      to={`/vol${post.frontmatter?.vol}${post.fields?.slug}` || `/`}
                       fade
                     >
                       <span itemProp="headline">{title}</span>
