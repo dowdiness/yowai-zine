@@ -22,7 +22,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["'Robot Mono", "Consolas", "'Courier New", ...defaultTheme.fontFamily.sans],
+      sans: ["'Noto Sans JP'", "'Roboto Mono'", "Consolas", "'Courier New'", ...defaultTheme.fontFamily.sans],
       serif: ["YuMincho", ...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
     },
@@ -143,15 +143,15 @@ module.exports = {
         },
         ".neumorphism": {
           textShadow:
-            "-8px -8px 12px rgba(255,255,255,0.2), 8px 8px 12px rgba(0,0,0,0.12)",
+            "-4px -4px 8px rgba(255,255,255,0.5), 4px 4px 8px rgba(0,0,0,0.08)",
         },
         ".multicolumn": {
           fontFeatureSettings: "palt",
           "> p": {
             marginLeft: "1rem",
-            textIndent: "1rem",
             lineHeight: "1.75",
             letterSpacing: "0.06em",
+            whiteSpace: "pre-wrap",
           },
         },
       })
