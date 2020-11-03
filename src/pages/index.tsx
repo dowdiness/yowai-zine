@@ -1,19 +1,19 @@
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { PageProps } from "gatsby"
 
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+
 import Bio from "src/components/bio"
-import Layout from "src/components/Layout"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
-  location,
 }) => {
   const posts = data.allMarkdownRemark.nodes
 
   if (posts.length === 0) {
     return (
-      <Layout location={location}>
+      <>
         <GatsbySeo title="All posts" />
         <Bio />
         <p>
@@ -21,12 +21,12 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           directory you specified for the "gatsby-source-filesystem" plugin in
           gatsby-config.js).
         </p>
-      </Layout>
+      </>
     )
   }
 
   return (
-    <Layout location={location}>
+    <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
@@ -41,9 +41,12 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               >
                 <header>
                   <h2>
-                    <Link to={post.fields?.slug || `/`} itemProp="url">
+                    <AniLink
+                      to={post.fields?.slug || `/`}
+                      fade
+                    >
                       <span itemProp="headline">{title}</span>
-                    </Link>
+                    </AniLink>
                   </h2>
                   <small>Vol {post.frontmatter?.vol} </small>
                 </header>
@@ -63,7 +66,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           )
         })}
       </ol>
-    </Layout>
+    </>
   )
 }
 

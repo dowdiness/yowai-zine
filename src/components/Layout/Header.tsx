@@ -1,4 +1,4 @@
-import { Link } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 import Image from "src/components/Image"
 
 // hooks
@@ -11,7 +11,7 @@ export const Header: React.FCX<HeaderProps> = ({className}) => {
   return (
     <>
       <section className="w-full mb-4">
-        <Link className="flex flex-col items-center" to="/">
+        <AniLink fade className="flex flex-col items-center" to="/">
           <Image
             filename="yowai-logo.png"
             alt="yowai-logo"
@@ -33,19 +33,19 @@ export const Header: React.FCX<HeaderProps> = ({className}) => {
           >
             弱いzine
         </h1>
-        </Link>
+        </AniLink>
       </section>
       <header
         className={`fixed top-0 flex items-center justify-center w-full h-16 transition duration-300 ease-in-out transform bg-white shadow-sm ${y > 580 ? "translate-y-0 opacity-100" : "-translate-y-16 opacity-0"}`}
       >
         <div className={className}>
-          <Link to="/">
+          <AniLink fade to="/">
             <h1
               className="flex justify-center text-4xl italic font-black text-white neumorphism"
             >
               弱いzine
             </h1>
-          </Link>
+          </AniLink>
         </div>
       </header>
     </>

@@ -1,21 +1,21 @@
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { PageProps } from "gatsby"
 
 import useTategaki from "src/hooks/useTategaki"
 
-import Layout from "src/components/Layout"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { GatsbySeo } from "gatsby-plugin-next-seo"
 
 const BlogPostTemplate: React.FC<PageProps<
   GatsbyTypes.BlogPostBySlugQuery
->> = ({ data, location }) => {
+>> = ({ data }) => {
   const post = data.markdownRemark
   const { previous, next } = data
 
   const { tategakiRef } = useTategaki()
 
   return (
-    <Layout location={location}>
+    <>
       <GatsbySeo
         title={post?.frontmatter?.title || ``}
         description={post?.frontmatter?.description || post?.excerpt || ``}
@@ -53,21 +53,21 @@ const BlogPostTemplate: React.FC<PageProps<
         >
           <li>
             {previous && (
-              <Link to={previous.fields?.slug || `/`} rel="prev">
+              <AniLink fade to={previous.fields?.slug || `/`} rel="prev">
                 ← {previous.frontmatter?.title}
-              </Link>
+              </AniLink>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields?.slug || `/`} rel="next">
+              <AniLink fade to={next.fields?.slug || `/`} rel="next">
                 {next.frontmatter?.title} →
-              </Link>
+              </AniLink>
             )}
           </li>
         </ul>
       </nav>
-    </Layout>
+    </>
   )
 }
 
