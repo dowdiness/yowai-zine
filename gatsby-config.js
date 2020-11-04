@@ -20,6 +20,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-preact`,
     `gatsby-plugin-root-import`,
     `gatsby-plugin-postcss`,
     {
