@@ -1,5 +1,6 @@
-declare module "gatsby-plugin-transition-link/AniLink" {
-  import { Component } from "react"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+declare module 'gatsby-plugin-transition-link/AniLink' {
+  import { Component } from 'react'
 
   interface AniLinkFade {
     fade: boolean
@@ -31,7 +32,7 @@ declare module "gatsby-plugin-transition-link/AniLink" {
     to: string
     direction?: string
     duration?: number
-    top?: "exit" | "entry"
+    top?: 'exit' | 'entry'
     entryOffset?: number
     className?: string
   }
@@ -39,10 +40,10 @@ declare module "gatsby-plugin-transition-link/AniLink" {
   export default AniLink
 }
 
-declare module "gatsby-plugin-transition-link" {
-  import { GatsbyLinkProps as GatsbyLinkPropsGeneric } from "gatsby"
-  import { NavigateOptions } from "@reach/router"
-  import { Component, RefObject, ReactNode } from "react"
+declare module 'gatsby-plugin-transition-link' {
+  import { GatsbyLinkProps as GatsbyLinkPropsGeneric } from 'gatsby'
+  import { NavigateOptions } from '@reach/router'
+  import { Component, RefObject, ReactNode } from 'react'
 
   type GatsbyLinkProps = GatsbyLinkPropsGeneric<any>
 
@@ -52,7 +53,7 @@ declare module "gatsby-plugin-transition-link" {
 
   class TransitionHandler extends Component<TransitionHandlerProps> {}
 
-  export type TransitionStatuses = "entering" | "entered" | "exiting" | "exited"
+  export type TransitionStatuses = 'entering' | 'entered' | 'exiting' | 'exited'
 
   interface TransitionStateProps {
     children: ({
@@ -66,7 +67,7 @@ declare module "gatsby-plugin-transition-link" {
 
   class TransitionState extends Component<TransitionStateProps> {}
 
-  type TransitionPortalLevels = "top" | "bottom" | "middle"
+  type TransitionPortalLevels = 'top' | 'bottom' | 'middle'
 
   interface TransitionPortalProps {
     level?: TransitionPortalLevels
@@ -133,8 +134,8 @@ declare module "gatsby-plugin-transition-link" {
     event?: Event
     to?: string
     disableAnimation?: boolean
-    replace?: NavigateOptions<LinkState>["replace"]
-    linkState?: NavigateOptions<LinkState>["state"]
+    replace?: NavigateOptions<LinkState>['replace']
+    linkState?: NavigateOptions<LinkState>['state']
     exit?: EntryExit<State>
     entry?: EntryExit<State>
     inTransition?: boolean
@@ -151,29 +152,29 @@ declare module "gatsby-plugin-transition-link" {
   ) => programmaticallyTriggerTransition<State, LinkState>
 
   interface TransitionLinkProps<State = any>
-    extends Omit<GatsbyLinkProps, "onClick" | "innerRef"> {
+    extends Omit<GatsbyLinkProps, 'onClick' | 'innerRef'> {
     exit?: EntryExit<State>
     entry?: EntryExit<State>
     state?: State
-    replace?: NavigateOptions<any>["replace"]
+    replace?: NavigateOptions<any>['replace']
     preventScrollJump?: boolean
     trigger?: (pages: TriggerPages<State>) => void
     exitLength?: number
     entryDelay?: number
     exitFn?: Function
     entryState?: object
-    to: GatsbyLinkProps["to"]
-    className?: GatsbyLinkProps["className"]
-    activeStyle?: GatsbyLinkProps["activeStyle"]
-    style?: GatsbyLinkProps["style"]
-    activeClassName?: GatsbyLinkProps["activeClassName"]
-    partiallyActive?: GatsbyLinkProps["partiallyActive"]
+    to: GatsbyLinkProps['to']
+    className?: GatsbyLinkProps['className']
+    activeStyle?: GatsbyLinkProps['activeStyle']
+    style?: GatsbyLinkProps['style']
+    activeClassName?: GatsbyLinkProps['activeClassName']
+    partiallyActive?: GatsbyLinkProps['partiallyActive']
     onClick?: (
-      event: Parameters<Exclude<GatsbyLinkProps["onClick"], undefined>>[0],
+      event: Parameters<Exclude<GatsbyLinkProps['onClick'], undefined>>[0],
       weShouldNavigate: boolean
     ) => void
-    innerRef?: GatsbyLinkProps["ref"]
-    ref?: GatsbyLinkProps["ref"]
+    innerRef?: GatsbyLinkProps['ref']
+    ref?: GatsbyLinkProps['ref']
   }
 
   class TransitionLink extends Component<TransitionLinkProps> {}
