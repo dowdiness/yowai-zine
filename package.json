@@ -44,7 +44,6 @@
     "postcss-preset-env": "^6.7.0",
     "preact": "^10.5.5",
     "preact-render-to-string": "^5.1.11",
-    "prismjs": "^1.22.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-helmet-async": "^1.0.7"
