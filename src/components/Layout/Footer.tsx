@@ -1,7 +1,8 @@
-import AniLink from "gatsby-plugin-transition-link/AniLink"
-import Image from "src/components/Image"
+import React from 'react'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import Image from 'src/components/Image'
 
-export type FooterProps = {}
+export type FooterProps = unknown
 
 export const Footer: React.FCX<FooterProps> = ({ className }) => {
   return (

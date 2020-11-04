@@ -1,10 +1,10 @@
-import { graphql } from "gatsby"
-import { PageProps } from "gatsby"
+import React from 'react'
+import { graphql, PageProps } from 'gatsby'
 
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
-import Bio from "src/components/bio"
-import { GatsbySeo } from "gatsby-plugin-next-seo"
+import Bio from 'src/components/bio'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
@@ -28,7 +28,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   return (
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
-      <ol style={{ listStyle: `none` }}>
+      <ol style={{ listStyle: 'none' }}>
         {posts.map(post => {
           const title = post.frontmatter?.title || post.fields?.slug
 
@@ -42,7 +42,10 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                 <header>
                   <h2>
                     <AniLink
-                      to={`/vol${post.frontmatter?.vol}${post.fields?.slug}` || `/`}
+                      to={
+                        `/vol${post.frontmatter?.vol}${post.fields?.slug}` ||
+                        '/'
+                      }
                       fade
                     >
                       <span itemProp="headline">{title}</span>
@@ -54,9 +57,9 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                   <p
                     dangerouslySetInnerHTML={{
                       __html:
-                        post.frontmatter?.description ||
-                        post.excerpt ||
-                        `見つかりません`,
+                        post.frontmatter?.description ??
+                        post.excerpt ??
+                        '見つかりません',
                     }}
                     itemProp="description"
                   />

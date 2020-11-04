@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef } from 'react'
 import useEffectOnce from './useEffectOnce'
 
@@ -8,6 +9,5 @@ const useUnmount = (fn: () => any): void => {
   fnRef.current = fn
 
   useEffectOnce(() => () => fnRef.current())
-};
-
+}
 export default useUnmount

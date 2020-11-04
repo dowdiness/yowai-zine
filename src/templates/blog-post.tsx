@@ -1,10 +1,10 @@
-import { graphql } from "gatsby"
-import { PageProps } from "gatsby"
+import React from 'react'
+import { graphql, PageProps } from 'gatsby'
 
-import useTategaki from "src/hooks/useTategaki"
+import useTategaki from 'src/hooks/useTategaki'
 
-import AniLink from "gatsby-plugin-transition-link/AniLink"
-import { GatsbySeo } from "gatsby-plugin-next-seo"
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 const BlogPostTemplate: React.FC<PageProps<
   GatsbyTypes.BlogPostBySlugQuery
@@ -27,8 +27,12 @@ const BlogPostTemplate: React.FC<PageProps<
           itemType="http://schema.org/Article"
         >
           <header className="flex flex-col items-center font-sans text-justify">
-            <h1 className="mb-4 text-2xl font-extrabold" itemProp="headline">{post?.frontmatter?.title}</h1>
-            <p className="text-xl italic font-medium">{post?.frontmatter?.author}</p>
+            <h1 className="mb-4 text-2xl font-extrabold" itemProp="headline">
+              {post?.frontmatter?.title}
+            </h1>
+            <p className="text-xl italic font-medium">
+              {post?.frontmatter?.author}
+            </p>
           </header>
           <section
             ref={tategakiRef}
@@ -55,7 +59,11 @@ const BlogPostTemplate: React.FC<PageProps<
             {previous && (
               <AniLink
                 fade
-                to={`/vol${previous.frontmatter?.vol}${previous.fields?.slug}` || `/`} rel="prev"
+                to={
+                  `/vol${previous.frontmatter?.vol}${previous.fields?.slug}` ||
+                  `/`
+                }
+                rel="prev"
               >
                 ← {previous.frontmatter?.title}
               </AniLink>

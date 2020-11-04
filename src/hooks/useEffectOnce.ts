@@ -1,6 +1,6 @@
 import { EffectCallback, useEffect } from 'react'
 
-const useEffectOnce = (effect: EffectCallback) => {
+const useEffectOnce = (effect: EffectCallback): void => {
   useEffect(effect, [])
 }
 

@@ -1,8 +1,8 @@
-import React from "react"
-import { graphql, StaticQuery } from "gatsby"
+import React from 'react'
+import { graphql, StaticQuery } from 'gatsby'
 
-import Image from "gatsby-image"
-import BackgroundImage from "gatsby-background-image"
+import Image from 'gatsby-image'
+import BackgroundImage from 'gatsby-background-image'
 
 type ImageProps = {
   filename: string

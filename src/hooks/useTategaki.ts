@@ -7,6 +7,7 @@ export interface Tategaki {
 }
 
 const useTategaki = (): Tategaki => {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const tategakiRef = useRef<HTMLElement>(null!)
 
   const adjustSize = () => {
@@ -23,8 +24,12 @@ const useTategaki = (): Tategaki => {
           tategakiRef.current.style.height = ''
           tategakiRef.current.style.paddingBottom = ''
           const fullHeight = tategakiRef.current.scrollHeight
-          const defaultHeight = Number(getComputedStyle(tategakiRef.current).height.replace('px', ''))
-          tategakiRef.current.style.paddingBottom = `${fullHeight - defaultHeight}px`
+          const defaultHeight = Number(
+            getComputedStyle(tategakiRef.current).height.replace('px', '')
+          )
+          tategakiRef.current.style.paddingBottom = `${
+            fullHeight - defaultHeight
+          }px`
         })
       })
       return
@@ -32,7 +37,9 @@ const useTategaki = (): Tategaki => {
 
     tategakiRef.current.style.paddingBottom = ''
     const fullHeight = tategakiRef.current.scrollHeight
-    const defaultHeight = Number(getComputedStyle(tategakiRef.current).height.replace('px', ''))
+    const defaultHeight = Number(
+      getComputedStyle(tategakiRef.current).height.replace('px', '')
+    )
     console.log(fullHeight, defaultHeight)
     tategakiRef.current.style.paddingBottom = `${fullHeight - defaultHeight}px`
   }

@@ -1,11 +1,12 @@
-import AniLink from "gatsby-plugin-transition-link/AniLink"
-import Image from "src/components/Image"
+import React from 'react'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import Image from 'src/components/Image'
 
 // hooks
-import useWindowScroll from "src/hooks/useWindowScroll"
+import useWindowScroll from 'src/hooks/useWindowScroll'
 
-export type HeaderProps = {}
-export const Header: React.FCX<HeaderProps> = ({className}) => {
+export type HeaderProps = unknown
+export const Header: React.FCX<HeaderProps> = ({ className }) => {
   const { y } = useWindowScroll()
 
   return (
@@ -28,21 +29,19 @@ export const Header: React.FCX<HeaderProps> = ({className}) => {
               weakness.
             </h3>
           </div>
-          <h1
-            className="flex justify-center text-6xl italic font-black text-white neumorphism"
-          >
+          <h1 className="flex justify-center text-6xl italic font-black text-white neumorphism">
             弱いzine
-        </h1>
+          </h1>
         </AniLink>
       </section>
       <header
-        className={`fixed top-0 flex items-center justify-center w-full h-16 transition duration-300 ease-in-out transform bg-white shadow-sm z-20 ${y > 580 ? "translate-y-0 opacity-100" : "-translate-y-16 opacity-0"}`}
+        className={`fixed top-0 flex items-center justify-center w-full h-16 transition duration-300 ease-in-out transform bg-white shadow-sm z-20 ${
+          y > 580 ? 'translate-y-0 opacity-100' : '-translate-y-16 opacity-0'
+        }`}
       >
         <div className={className}>
           <AniLink fade to="/">
-            <h1
-              className="flex justify-center text-4xl italic font-black text-white neumorphism"
-            >
+            <h1 className="flex justify-center text-4xl italic font-black text-white neumorphism">
               弱いzine
             </h1>
           </AniLink>

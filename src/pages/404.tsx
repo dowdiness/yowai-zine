@@ -1,6 +1,7 @@
-import { PageProps } from "gatsby"
+import React from 'react'
+import { PageProps } from 'gatsby'
 
-import { GatsbySeo } from "gatsby-plugin-next-seo"
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 const NotFoundPage: React.FC<PageProps> = ({}) => {
   return (
