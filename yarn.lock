@@ -1099,6 +1099,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@dowdiness/eslint-config@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@dowdiness/eslint-config/-/eslint-config-0.0.9.tgz#3d50f35558cb892764916cfb6bf6ae4a7f0b4a9d"
+  integrity sha512-QA89LlAVvWap7t5muQ3N6jZltmY2sgvWQXNHVToeFxwxAQ+o1LfQ1XG0pA2VRgnV/D5bc9AnfviRokCHNvrjag==
+
 "@emotion/cache@^10.0.27":
   version "10.0.29"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
