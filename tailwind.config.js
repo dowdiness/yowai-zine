@@ -49,6 +49,9 @@ module.exports = {
       },
     },
     extend: {
+      fontSize: {
+        xxs: ['0.5rem', '1rem'],
+      },
       spacing: {
         72: "18rem",
         80: "20rem",
@@ -123,6 +126,10 @@ module.exports = {
           WebkitTextCombine: 'horizontal',
           MsTextCombineHorizontal: 'all',
           textCombineUpright: 'all',
+        },
+        '.outline': {
+          WebkitTextStroke: '1px black',
+          WebkitTextFillColor: 'white',
         },
       }
       addUtilities(newUtilities)

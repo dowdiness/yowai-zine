@@ -10,6 +10,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.6.2",
+    "autoprefixer": "^10.0.1",
     "fontsource-noto-sans-jp": "^3.0.9",
     "fontsource-noto-serif-jp": "^3.0.3",
     "fontsource-roboto-mono": "^3.0.3",
@@ -41,7 +42,7 @@
     "lodash": "^4.17.20",
     "postcss": "^8.1.2",
     "postcss-import": "^13.0.0",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-nested": "^5.0.1",
     "preact": "^10.5.5",
     "preact-render-to-string": "^5.1.11",
     "react": "^16.14.0",
