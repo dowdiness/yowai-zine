@@ -8,15 +8,18 @@ import { gsap } from 'gsap'
 import CSSRulePlugin from 'gsap/CSSRulePlugin'
 import 'src/styles/reveal.css'
 
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(CSSRulePlugin)
+}
+
 const ImageRevealPage: React.FC<PageProps> = ({}) => {
   const image = useRef(null)
   const container = useRef(null)
-  const imageReveal = CSSRulePlugin.getRule('.img-container:after')
-  const imageBlack = CSSRulePlugin.getRule('.img-container:before')
 
   const tl = gsap.timeline({ repeat: -1, yoyo: true })
   useEffect(() => {
-    console.log(tl, container.current)
+    const imageReveal = CSSRulePlugin.getRule('.img-container:after')
+    const imageBlack = CSSRulePlugin.getRule('.img-container:before')
     tl.to(container.current, {
       duration: 0,
       delay: 1,
