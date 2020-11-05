@@ -2499,8 +2499,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
   pluginCreator___pluginOptions___maxWidth = 'pluginCreator.pluginOptions.maxWidth',
   pluginCreator___pluginOptions___wrapperStyle = 'pluginCreator.pluginOptions.wrapperStyle',
-  pluginCreator___pluginOptions___injectPageProps = 'pluginCreator.pluginOptions.injectPageProps',
-  pluginCreator___pluginOptions___layout = 'pluginCreator.pluginOptions.layout',
   pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
   pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
   pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
@@ -2724,8 +2722,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___name = 'pluginOptions.name',
   pluginOptions___maxWidth = 'pluginOptions.maxWidth',
   pluginOptions___wrapperStyle = 'pluginOptions.wrapperStyle',
-  pluginOptions___injectPageProps = 'pluginOptions.injectPageProps',
-  pluginOptions___layout = 'pluginOptions.layout',
   pluginOptions___short_name = 'pluginOptions.short_name',
   pluginOptions___start_url = 'pluginOptions.start_url',
   pluginOptions___background_color = 'pluginOptions.background_color',
@@ -2867,8 +2863,6 @@ type SitePluginPluginOptions = {
   readonly name: Maybe<Scalars['String']>;
   readonly maxWidth: Maybe<Scalars['Int']>;
   readonly wrapperStyle: Maybe<Scalars['String']>;
-  readonly injectPageProps: Maybe<Scalars['Boolean']>;
-  readonly layout: Maybe<Scalars['String']>;
   readonly short_name: Maybe<Scalars['String']>;
   readonly start_url: Maybe<Scalars['String']>;
   readonly background_color: Maybe<Scalars['String']>;
@@ -2895,8 +2889,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
   readonly wrapperStyle: Maybe<StringQueryOperatorInput>;
-  readonly injectPageProps: Maybe<BooleanQueryOperatorInput>;
-  readonly layout: Maybe<StringQueryOperatorInput>;
   readonly short_name: Maybe<StringQueryOperatorInput>;
   readonly start_url: Maybe<StringQueryOperatorInput>;
   readonly background_color: Maybe<StringQueryOperatorInput>;
@@ -3025,6 +3017,11 @@ type StringQueryOperatorInput = {
   readonly glob: Maybe<Scalars['String']>;
 };
 
+type BioQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BioQueryQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<Author, 'name' | 'summary'>>, readonly social: Maybe<Pick<Social, 'twitter'>> }> }> };
+
 type ImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3033,11 +3030,6 @@ type ImageQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly 
         & { readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluid_withWebpFragment> }> }
       ) }> } };
 
-type BioQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BioQueryQuery = { readonly avatar: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly site: Maybe<{ readonly siteMetadata: Maybe<{ readonly author: Maybe<Pick<Author, 'name' | 'summary'>>, readonly social: Maybe<Pick<Social, 'twitter'>> }> }> };
-
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3045,6 +3037,14 @@ type IndexPageQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyAr
       Pick<MarkdownRemark, 'excerpt'>
       & { readonly fields: Maybe<Pick<Fields, 'slug'>>, readonly frontmatter: Maybe<Pick<Frontmatter, 'date' | 'title' | 'vol' | 'description'>> }
     )> } };
+
+type SmoothSkewPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SmoothSkewPageQuery = { readonly images: { readonly edges: ReadonlyArray<{ readonly node: { readonly fluid: Maybe<(
+          Pick<ImageSharpFluid, 'originalName'>
+          & GatsbyImageSharpFluid_withWebpFragment
+        )> } }> }, readonly posts: { readonly nodes: ReadonlyArray<{ readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'author' | 'vol'>> }> } };
 
 type BlogPostBySlugQueryVariables = Exact<{
   id: Scalars['String'];
