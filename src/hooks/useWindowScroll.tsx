@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { isClient } from './util'
 import useRafState from './useRafState'
+import { throttle } from 'lodash'
 export interface State {
   x: number
   y: number
@@ -18,12 +19,13 @@ const useWindowScroll = (): State => {
         y: window.pageYOffset,
       })
     }
-    window.addEventListener('scroll', handler, {
+    const throttledHandler = throttle(handler, 100)
+    window.addEventListener('scroll', throttledHandler, {
       capture: false,
       passive: true,
     })
     return () => {
-      window.removeEventListener('scroll', handler)
+      window.removeEventListener('scroll', throttledHandler)
     }
   }, [])
   return state
