@@ -68,13 +68,6 @@ module.exports = {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    {
-      resolve: "gatsby-plugin-transition-link",
-      options: {
-          injectPageProps: false,
-          layout: require.resolve(`./src/components/Layout/index.tsx`)
-        }
-    },
     `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {
