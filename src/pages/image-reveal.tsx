@@ -3,7 +3,7 @@ import { PageProps } from 'gatsby'
 
 import Layout from 'src/components/Layout'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import Girl from '../../content/assets/richard-dunn/1.jpeg'
+import Girl from '../../content/assets/richard-dunn/2.jpeg'
 import { gsap } from 'gsap'
 import CSSRulePlugin from 'gsap/CSSRulePlugin'
 import 'src/styles/reveal.css'
@@ -14,17 +14,12 @@ if (typeof window !== 'undefined') {
 
 const ImageRevealPage: React.FC<PageProps> = ({}) => {
   const image = useRef(null)
-  const container = useRef(null)
+  const wrapper = useRef(null)
 
-  const tl = gsap.timeline({ repeat: -1, yoyo: true })
+  const tl = gsap.timeline({ repeat: -1, repeatDelay: 2 })
   useEffect(() => {
-    const imageReveal = CSSRulePlugin.getRule('.img-container:after')
-    const imageBlack = CSSRulePlugin.getRule('.img-container:before')
-    tl.to(container.current, {
-      duration: 0,
-      delay: 1,
-      css: { visibility: 'visible' },
-    })
+    const imageReveal = CSSRulePlugin.getRule('#image::after')
+    const imageBlack = CSSRulePlugin.getRule('#image::before')
     tl.to(imageReveal, { duration: 1.4, width: '0%', ease: 'Power2.easeInOut' })
     tl.to(imageBlack, { duration: 1.4, width: '0%', ease: 'Power2.easeInOut' })
     tl.from(image.current, {
@@ -36,12 +31,20 @@ const ImageRevealPage: React.FC<PageProps> = ({}) => {
   })
   return (
     <Layout>
-      <GatsbySeo title="404: Not Found" />
-      <section className="main">
-        <div className="container" ref={container}>
-          <div className="img-container">
-            <img ref={image} src={Girl} />
-          </div>
+      <GatsbySeo title="Image Reveal" />
+      <section
+        className="flex items-center justify-center invisible w-full h-screen mx-auto"
+        ref={wrapper}
+      >
+        <div
+          id="image"
+          className="relative w-10/12 h-auto overflow-hidden image md:w-3/5"
+        >
+          <img
+            className="object-cover w-full h-auto mx-auto"
+            ref={image}
+            src={Girl}
+          />
         </div>
       </section>
     </Layout>
