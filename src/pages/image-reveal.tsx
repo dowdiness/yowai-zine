@@ -20,6 +20,10 @@ const ImageRevealPage: React.FC<PageProps> = ({}) => {
   useEffect(() => {
     const imageReveal = CSSRulePlugin.getRule('#image::after')
     const imageBlack = CSSRulePlugin.getRule('#image::before')
+    tl.to(wrapper.current, {
+      duration: 0,
+      css: { visibility: 'visible' },
+    })
     tl.to(imageReveal, { duration: 1.4, width: '0%', ease: 'Power2.easeInOut' })
     tl.to(imageBlack, { duration: 1.4, width: '0%', ease: 'Power2.easeInOut' })
     tl.from(image.current, {
