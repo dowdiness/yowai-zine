@@ -2,8 +2,8 @@
 import React, { useEffect, useRef } from 'react'
 import { graphql, PageProps } from 'gatsby'
 
-import useWindowSize from 'src/hooks/useWindowSize'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Image from 'gatsby-image'
 
@@ -17,33 +17,38 @@ const SmoothSkewPage: React.FC<PageProps<
   gsap.utils.shuffle(images)
   gsap.utils.shuffle(posts)
   const scrollContainer = useRef<HTMLDivElement>(null!)
-  const size = useWindowSize()
-  const skewConfigs = {
-    ease: 0.2,
-    current: 0,
-    previous: 0,
-    rounded: 0,
-  }
 
-  const skewScrolling = () => {
-    skewConfigs.current = window.scrollY
-    skewConfigs.previous +=
-      (skewConfigs.current - skewConfigs.previous) * skewConfigs.ease
-    skewConfigs.rounded = Math.round(skewConfigs.previous * 100) / 100
+  const skewScroll = () => {
+    gsap.registerPlugin(ScrollTrigger)
 
-    const difference = skewConfigs.current - skewConfigs.rounded
-    const acceleration = difference / size.width
-    const velocity = +acceleration
-    const skew = velocity * 7.5
+    const proxy = { skew: 0 },
+      skewSetter = gsap.quickSetter('[data-skew]', 'skewY', 'deg'), // fast
+      clamp = gsap.utils.clamp(-30, 30) // don't let the skew go beyond 20 degrees.
 
-    //Assign skew and smooth scrolling to the scroll container
-    scrollContainer.current.style.transform = `translate3d(0, -${skewConfigs.rounded}px, 0) skewY(${skew}deg)`
-    requestAnimationFrame(() => skewScrolling())
+    ScrollTrigger.create({
+      onUpdate: self => {
+        const skew = clamp(self.getVelocity() / -200)
+        // only do something if the skew is MORE severe. Remember, we're always tweening back to 0, so if the user slows their scrolling quickly, it's more natural to just let the tween handle that smoothly rather than jumping to the smaller skew.
+        if (Math.abs(skew) > Math.abs(proxy.skew)) {
+          proxy.skew = skew
+          gsap.to(proxy, {
+            skew: 0,
+            duration: 0.8,
+            ease: 'power3',
+            overwrite: true,
+            onUpdate: () => skewSetter(proxy.skew),
+          })
+        }
+      },
+    })
+
+    // make the right edge "stick" to the scroll bar. force3D: true improves performance
+    gsap.set('[data-skew]', { transformOrigin: 'right center', force3D: true })
   }
 
   useEffect(() => {
-    requestAnimationFrame(() => skewScrolling())
-  }, [size.height])
+    skewScroll()
+  }, [])
 
   return (
     <div
@@ -52,7 +57,10 @@ const SmoothSkewPage: React.FC<PageProps<
     >
       {images.map((image, index) => (
         <>
-          <h2 className="flex flex-col items-center mx-auto space-y-16 text-center">
+          <h2
+            data-skew
+            className="flex flex-col items-center mx-auto space-y-16 text-center"
+          >
             <span className="text-6xl outline sm:text-7xl">
               {posts[index % posts.length].frontmatter?.title}
             </span>
@@ -61,6 +69,7 @@ const SmoothSkewPage: React.FC<PageProps<
             </span>
           </h2>
           <div
+            data-skew
             key={index}
             className="relative w-11/12 h-auto mx-auto overflow-hidden sm:w-1/2"
           >
