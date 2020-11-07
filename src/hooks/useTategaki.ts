@@ -40,7 +40,6 @@ const useTategaki = (): Tategaki => {
     const defaultHeight = Number(
       getComputedStyle(tategakiRef.current).height.replace('px', '')
     )
-    console.log(fullHeight, defaultHeight)
     tategakiRef.current.style.paddingBottom = `${fullHeight - defaultHeight}px`
   }
 
