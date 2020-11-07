@@ -2,7 +2,6 @@ import { gsap } from 'gsap'
 import { lerp, getMousePos, getSiblings } from 'src/utils'
 
 let mouse = { x: 0, y: 0 }
-window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
 
 export default class Cursor {
   Cursor: HTMLElement
@@ -20,6 +19,7 @@ export default class Cursor {
       x: { previous: 0, current: 0, amt: 0.2 },
       y: { previous: 0, current: 0, amt: 0.2 },
     }
+    window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
     this.onMouseMoveEv = () => {
       this.cursorConfigs.x.previous = this.cursorConfigs.x.current = mouse.x
       this.cursorConfigs.y.previous = this.cursorConfigs.y.current = mouse.y
