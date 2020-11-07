@@ -3,7 +3,6 @@ import { graphql, PageProps, Link } from 'gatsby'
 
 import Bio from 'src/components/bio'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import Layout from 'src/components/Layout'
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
@@ -12,7 +11,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 
   if (posts.length === 0) {
     return (
-      <Layout>
+      <>
         <GatsbySeo title="All posts" />
         <Bio />
         <p>
@@ -20,12 +19,12 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           directory you specified for the "gatsby-source-filesystem" plugin in
           gatsby-config.js).
         </p>
-      </Layout>
+      </>
     )
   }
 
   return (
-    <Layout>
+    <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <ol style={{ listStyle: 'none' }}>
         {posts.map(post => {
@@ -67,7 +66,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           )
         })}
       </ol>
-    </Layout>
+    </>
   )
 }
 
@@ -77,7 +76,7 @@ export const pageQuery = graphql`
   query IndexPage {
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
-        excerpt
+        excerpt(truncate: true)
         fields {
           slug
         }

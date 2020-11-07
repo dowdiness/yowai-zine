@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 
 import useTategaki from 'src/hooks/useTategaki'
-import Layout from 'src/components/Layout'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 const BlogPostTemplate: React.FC<PageProps<
@@ -14,7 +13,7 @@ const BlogPostTemplate: React.FC<PageProps<
   const { tategakiRef } = useTategaki()
 
   return (
-    <Layout>
+    <>
       <GatsbySeo
         title={post?.frontmatter?.title || ``}
         description={post?.frontmatter?.description || post?.excerpt || ``}
@@ -79,7 +78,7 @@ const BlogPostTemplate: React.FC<PageProps<
           </li>
         </ul>
       </nav>
-    </Layout>
+    </>
   )
 }
 

@@ -3,3 +3,4 @@ gatsby-node.js
 tailwind.config.js
 postcss.config.js
 gatsby-browser.js
+gatsby-ssr.js
