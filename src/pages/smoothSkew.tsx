@@ -4,8 +4,10 @@ import { graphql, PageProps } from 'gatsby'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Cursor from 'src/hooks/cursor'
+import 'src/styles/cursor.css'
 
-import Image from 'gatsby-image'
+// import Image from 'gatsby-image'
 
 type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> }
 
@@ -17,6 +19,7 @@ const SmoothSkewPage: React.FC<PageProps<
   gsap.utils.shuffle(images)
   gsap.utils.shuffle(posts)
   const scrollContainer = useRef<HTMLDivElement>(null!)
+  const cursorRef = useRef(null!)
 
   const skewScroll = () => {
     gsap.registerPlugin(ScrollTrigger)
@@ -48,40 +51,60 @@ const SmoothSkewPage: React.FC<PageProps<
 
   useEffect(() => {
     skewScroll()
+    const cursor = new Cursor(cursorRef.current)
   }, [])
 
   return (
-    <div
-      ref={scrollContainer}
-      className="sticky my-32 space-y-40 overflow-hidden"
-    >
-      {images.map((image, index) => (
-        <>
-          <h2
-            data-skew
-            className="flex flex-col items-center mx-auto space-y-16 text-center"
-          >
-            <span className="text-6xl outline sm:text-7xl">
-              {posts[index % posts.length].frontmatter?.title}
-            </span>
-            <span className="text-3xl sm:text-4xl">
-              {posts[index % posts.length].frontmatter?.author}
-            </span>
-          </h2>
-          <div
-            data-skew
-            key={index}
-            className="relative w-11/12 h-auto mx-auto overflow-hidden sm:w-1/2"
-          >
-            <Image
-              fluid={image?.node?.fluid}
-              alt={`art ${image?.node?.fluid?.originalName}`}
-              objectFit="contain"
-            />
-          </div>
-        </>
-      ))}
-    </div>
+    <>
+      <div ref={scrollContainer} className="sticky my-32 space-y-64">
+        {posts.map((post, index) => (
+          <>
+            <h2
+              data-skew
+              data-video-src={post.frontmatter?.title}
+              key={index}
+              className="flex flex-col items-center mx-auto space-y-16 text-center"
+            >
+              <span className="text-3xl sm:text-4xl">
+                {post.frontmatter?.author}
+              </span>
+              <span className="text-6xl outline sm:text-7xl">
+                {post.frontmatter?.title}
+              </span>
+            </h2>
+            {/* <div
+              data-skew
+              key={index}
+              className="relative w-11/12 h-auto mx-auto overflow-hidden sm:w-1/2"
+            >
+              <Image
+                fluid={image?.node?.fluid}
+                alt={`art ${image?.node?.fluid?.originalName}`}
+                objectFit="contain"
+              />
+            </div> */}
+          </>
+        ))}
+      </div>
+      {/* Cursor */}
+      <div
+        ref={cursorRef}
+        id="cursor"
+        className="fixed top-0 left-0 z-10 pointer-events-none"
+      >
+        <div className="relative block w-64 h-64 -mt-32 -mr-32 overflow-hidden rounded-full cursor-media">
+          {posts.map((post, index) => (
+            <p
+              key={index}
+              id={post.frontmatter?.title}
+              className="absolute inset-0 w-64 h-64 text-3xl -translate-x-12"
+            >
+              {post.excerpt}
+            </p>
+          ))}
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -101,6 +124,7 @@ export const pageQuery = graphql`
     }
     posts: allMarkdownRemark {
       nodes {
+        excerpt(truncate: true)
         frontmatter {
           title
           author
