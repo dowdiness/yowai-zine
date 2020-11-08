@@ -55,7 +55,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               transition={transition}
               src={data.allFile.nodes[0].publicURL}
               alt={data.allFile.nodes[0].name}
-              className="w-64 h-64 mb-4 -mt-12"
+              className="w-64 h-64 mb-4 -mt-24"
             />
             <div className="flex flex-col items-center mb-6 space-y-2 font-sans">
               <h3 className="text-4xl italic font-extrabold text-yowai">
