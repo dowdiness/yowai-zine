@@ -9,6 +9,8 @@ type LayoutProps = {
   location?: Location
 }
 
+const transition = { duration: 2, ease: [0.43, 0.13, 0.23, 0.96] }
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   // const rootPath = `${__PATH_PREFIX__}/`
   // const isRootPath = location.pathname === rootPath
@@ -30,21 +32,25 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   useEffect(() => {
     setTimeout(() => {
       setFinishLoading(false)
-    }, 3000)
+    }, 5000)
   }, [])
 
   return (
-    <AnimatePresence>
+    <AnimatePresence exitBeforeEnter>
       {finishLoading ? (
         <motion.section
           key="loading"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 3 }}
+          transition={transition}
           className="fixed flex flex-col items-center justify-center w-screen h-screen text-5xl"
         >
-          <img
+          <motion.img
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={transition}
             src={data.allFile.nodes[0].publicURL}
             alt={data.allFile.nodes[0].name}
             className="w-64 h-64 mb-16"
@@ -70,11 +76,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={transition}
         >
-          <Header className="" />
+          <Header className="z-40" />
           <main className="container w-auto mt-32">{children}</main>
-          <Footer className="" />
+          <Footer className="z-40" />
         </motion.div>
       )}
     </AnimatePresence>

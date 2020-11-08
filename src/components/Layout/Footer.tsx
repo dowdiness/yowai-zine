@@ -8,7 +8,7 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
   return (
     <footer className={`${className}`}>
       <div className="flex flex-col items-center max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
-        <Link fade to="/">
+        <Link to="/">
           <Image
             filename="yowai-logo.png"
             alt="yowai-logo"

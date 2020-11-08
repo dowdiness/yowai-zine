@@ -81,7 +81,7 @@ export default class Cursor {
     }
     const siblings = getSiblings(video)
     if (video.id === src) {
-      gsap.set(video, { zIndex: 40, opacity: 1 })
+      gsap.set(video, { zIndex: 50, opacity: 1 })
       siblings.forEach(i => {
         gsap.set(i, { zIndex: 1, opacity: 0 })
       })

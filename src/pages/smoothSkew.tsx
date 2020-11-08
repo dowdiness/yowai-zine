@@ -90,7 +90,7 @@ const SmoothSkewPage: React.FC<PageProps<
       <div
         ref={cursorRef}
         id="cursor"
-        className="fixed top-0 left-0 z-10 pointer-events-none"
+        className="fixed top-0 left-0 z-20 pointer-events-none"
       >
         <div className="relative block w-64 h-64 -mt-32 -mr-32 overflow-hidden rounded-full cursor-media">
           {posts.map((post, index) => (
