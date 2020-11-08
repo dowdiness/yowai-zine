@@ -41,7 +41,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                   <h2>
                     <Link
                       to={
-                        `/vol${post.frontmatter?.vol}${post.fields?.slug}` ||
+                        `/vol/${post.frontmatter?.vol}${post.fields?.slug}` ||
                         '/'
                       }
                     >

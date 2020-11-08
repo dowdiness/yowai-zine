@@ -57,7 +57,7 @@ const BlogPostTemplate: React.FC<PageProps<
             {previous && (
               <Link
                 to={
-                  `/vol${previous.frontmatter?.vol}${previous.fields?.slug}` ||
+                  `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` ||
                   `/`
                 }
                 rel="prev"
@@ -69,7 +69,7 @@ const BlogPostTemplate: React.FC<PageProps<
           <li>
             {next && (
               <Link
-                to={`/vol${next.frontmatter?.vol}${next.fields?.slug}` || `/`}
+                to={`/vol/${next.frontmatter?.vol}${next.fields?.slug}` || `/`}
                 rel="next"
               >
                 {next.frontmatter?.title} →

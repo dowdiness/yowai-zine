@@ -6,6 +6,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
+  const volTemplate = path.resolve(`./src/templates/vol.tsx`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -44,17 +45,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
+    const availableVols = []
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      availableVols.push(post.frontmatter.vol)
 
       createPage({
-        path: `/vol${post.frontmatter.vol}${post.fields.slug}`,
+        path: `/vol/${post.frontmatter.vol}${post.fields.slug}`,
         component: blogPost,
         context: {
           id: post.id,
           previousPostId,
           nextPostId,
+        },
+      })
+    })
+    const availableVolsSet = new Set(availableVols)
+    availableVolsSet.forEach((availableVol) => {
+      volTemplate
+      createPage({
+        path: `/vol/${availableVol}/`,
+        component: volTemplate,
+        context: {
+          vol: availableVol,
         },
       })
     })
