@@ -1,20 +1,24 @@
+import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { lerp, getMousePos, getSiblings } from 'src/utils'
 
 let mouse = { x: 0, y: 0 }
 
-export default class Cursor {
+class Cursor {
   Cursor: HTMLElement
   Item: NodeListOf<Element>
+  HoverElementSelectors: string
   cursorConfigs: {
     x: { previous: number; current: number; amt: number }
     y: { previous: number; current: number; amt: number }
   }
   onMouseMoveEv: (this: Window, ev: MouseEvent) => void
-  constructor(el: HTMLElement) {
+
+  constructor(el: HTMLElement, hoverElementSelectors: string) {
     this.Cursor = el
     this.Cursor.style.opacity = '0'
-    this.Item = document.querySelectorAll('[data-video-src]')
+    this.HoverElementSelectors = hoverElementSelectors
+    this.Item = document.querySelectorAll(this.HoverElementSelectors)
     this.cursorConfigs = {
       x: { previous: 0, current: 0, amt: 0.2 },
       y: { previous: 0, current: 0, amt: 0.2 },
@@ -43,11 +47,11 @@ export default class Cursor {
     this.Item.forEach(link => {
       // If I am hovering on the item for on page load I want to scale the cursor media
       if (link.matches(':hover')) {
-        this.setVideo(link)
+        this.setSource(link)
         this.scaleAnimation(this.Cursor.children[0], 0.8)
       }
       link.addEventListener('mouseenter', () => {
-        this.setVideo(link)
+        this.setSource(link)
         this.scaleAnimation(this.Cursor.children[0], 0.6)
       })
       link.addEventListener('mouseleave', () => {
@@ -72,16 +76,16 @@ export default class Cursor {
     })
   }
 
-  setVideo(el: Element) {
-    const src = el.getAttribute('data-video-src')
-    const video = document.querySelector(`#${src}`)
-    if (!video) {
-      console.warn('There is no videos')
+  setSource(el: Element) {
+    const src = el.getAttribute(this.HoverElementSelectors.replace(/[\[\]]/g, ''))
+    const source = document.querySelector(`#${src}`)
+    if (!source) {
+      console.warn('There is no source')
       return
     }
-    const siblings = getSiblings(video)
-    if (video.id === src) {
-      gsap.set(video, { zIndex: 50, opacity: 1 })
+    const siblings = getSiblings(source)
+    if (source.id === src) {
+      gsap.set(source, { zIndex: 50, opacity: 1 })
       siblings.forEach(i => {
         gsap.set(i, { zIndex: 1, opacity: 0 })
       })
@@ -110,3 +114,15 @@ export default class Cursor {
     requestAnimationFrame(() => this.render())
   }
 }
+
+const useCursor = <T extends HTMLElement>(hoverElementSelectors: string) => {
+  const cursorRef = useRef<T>(null!)
+
+  useEffect(() => {
+    const _cursor = new Cursor(cursorRef.current, hoverElementSelectors)
+  })
+
+  return { cursorRef }
+}
+
+export default useCursor
