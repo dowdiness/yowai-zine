@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
+//Hooks
 import { useInView } from 'react-intersection-observer'
 import useSkew from 'src/hooks/useSkew'
 import useCursor from 'src/hooks/useCursor'
@@ -8,6 +9,9 @@ import { motion } from 'framer-motion'
 import 'src/styles/cursor.css'
 
 // import Image from 'gatsby-image'
+
+//Components
+import ScrollArticle from 'src/components/ScrollArticle'
 
 //Ease
 const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
@@ -18,61 +22,15 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
   useSkew('[data-skew]')
   const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
 
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    rootMargin: '-30% 0px',
-  })
-
   return (
     <>
       <div className="sticky my-32 space-y-64">
         {posts.map((post, index) => (
-          <>
-            <h2
-              data-skew
-              data-cursor-src={post.frontmatter?.title}
-              key={index}
-              className="flex flex-col items-center mx-auto space-y-16 text-center"
-            >
-              <span className="text-3xl sm:text-4xl">
-                {post.frontmatter?.author}
-              </span>
-              <span className="text-6xl outline sm:text-7xl">
-                {post.frontmatter?.title}
-              </span>
-            </h2>
-            {/* <div
-              data-skew
-              key={index}
-              className="relative w-11/12 h-auto mx-auto overflow-hidden sm:w-1/2"
-            >
-              <Image
-                fluid={image?.node?.fluid}
-                alt={`art ${image?.node?.fluid?.originalName}`}
-                objectFit="contain"
-              />
-            </div> */}
-          </>
+          <ScrollArticle
+            index={index}
+            frontmatter={post.frontmatter}
+          />
         ))}
-        <div ref={ref} className="w-full h-32">
-          {inView && (
-            <motion.h4
-              key="scroll"
-              initial={{
-                y: 20,
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                transition,
-              }}
-              className="w-full h-32 text-4xl text-center"
-            >
-              <span aria-label="Wave">👋</span>
-            </motion.h4>
-          )}
-        </div>
       </div>
       {/* Cursor */}
       <div

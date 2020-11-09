@@ -1,4 +1,5 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
+import useIsomorphicLayoutEffect from 'src/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { lerp, getMousePos, getSiblings } from 'src/utils'
 
@@ -23,7 +24,7 @@ class Cursor {
       x: { previous: 0, current: 0, amt: 0.2 },
       y: { previous: 0, current: 0, amt: 0.2 },
     }
-    window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
+
     this.onMouseMoveEv = () => {
       this.cursorConfigs.x.previous = this.cursorConfigs.x.current = mouse.x
       this.cursorConfigs.y.previous = this.cursorConfigs.y.current = mouse.y
@@ -34,37 +35,34 @@ class Cursor {
         opacity: 1,
       })
 
-      this.onScaleMouse()
-
       requestAnimationFrame(() => this.render())
       window.removeEventListener('mousemove', this.onMouseMoveEv)
     }
-
+    window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
     window.addEventListener('mousemove', this.onMouseMoveEv)
+    window.addEventListener('in-view-event', ev => this.onScaleMouse(ev.detail))
   }
 
-  onScaleMouse() {
-    this.Item.forEach(link => {
-      // If I am hovering on the item for on page load I want to scale the cursor media
-      if (link.matches(':hover')) {
-        this.setSource(link)
-        this.scaleAnimation(this.Cursor.children[0], 0.8)
-      }
-      link.addEventListener('mouseenter', () => {
-        this.setSource(link)
-        this.scaleAnimation(this.Cursor.children[0], 0.6)
-      })
-      link.addEventListener('mouseleave', () => {
-        this.scaleAnimation(this.Cursor.children[0], 0)
-      })
-      link.children[1].addEventListener('mouseenter', () => {
-        this.Cursor.classList.add('media-blend')
-        this.scaleAnimation(this.Cursor.children[0], 1.4)
-      })
-      link.children[1].addEventListener('mouseleave', () => {
-        this.Cursor.classList.remove('media-blend')
-        this.scaleAnimation(this.Cursor.children[0], 0.8)
-      })
+  onScaleMouse(ref: React.MutableRefObject<HTMLHeadingElement>) {
+    // If I am hovering on the item for on page load I want to scale the cursor media
+    if (ref.current.matches(':hover')) {
+      this.setSource(ref.current)
+      this.scaleAnimation(this.Cursor.children[0], 0.8)
+    }
+    ref.current.addEventListener('mouseenter', () => {
+      this.setSource(ref.current)
+      this.scaleAnimation(this.Cursor.children[0], 0.6)
+    })
+    ref.current.addEventListener('mouseleave', () => {
+      this.scaleAnimation(this.Cursor.children[0], 0)
+    })
+    ref.current.children[1].addEventListener('mouseenter', () => {
+      this.Cursor.classList.add('media-blend')
+      this.scaleAnimation(this.Cursor.children[0], 1.4)
+    })
+    ref.current.children[1].addEventListener('mouseleave', () => {
+      this.Cursor.classList.remove('media-blend')
+      this.scaleAnimation(this.Cursor.children[0], 0.8)
     })
   }
 
@@ -77,7 +75,9 @@ class Cursor {
   }
 
   setSource(el: Element) {
-    const src = el.getAttribute(this.HoverElementSelectors.replace(/[\[\]]/g, ''))
+    const src = el.getAttribute(
+      this.HoverElementSelectors.replace(/[\[\]]/g, '')
+    )
     const source = document.querySelector(`#${src}`)
     if (!source) {
       console.warn('There is no source')
@@ -118,7 +118,7 @@ class Cursor {
 const useCursor = <T extends HTMLElement>(hoverElementSelectors: string) => {
   const cursorRef = useRef<T>(null!)
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const _cursor = new Cursor(cursorRef.current, hoverElementSelectors)
   })
 
