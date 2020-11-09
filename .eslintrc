@@ -1,6 +1,9 @@
 {
   "extends": "@dowdiness",
   "rules": {
-    "@typescript-eslint/member-delimiter-style": "off"
+    "@typescript-eslint/member-delimiter-style": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warning", { "vars": "all", "varsIgnorePattern": "^_", "argsIgnorePattern": "^_"}],
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }
