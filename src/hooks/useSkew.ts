@@ -10,7 +10,7 @@ const useSkew = (skewElementSelectors: string) => {
     gsap.registerPlugin(ScrollTrigger)
     const skewSetter = gsap.quickSetter(skewElementSelectors, 'skewY', 'deg') // fast
 
-    ScrollTrigger.create({
+    const ScrollTriggerInstance = ScrollTrigger.create({
       onUpdate: self => {
         const skew = clamp(self.getVelocity() / -200)
         // only do something if the skew is MORE severe. Remember, we're always tweening back to 0, so if the user slows their scrolling quickly, it's more natural to just let the tween handle that smoothly rather than jumping to the smaller skew.
@@ -30,6 +30,7 @@ const useSkew = (skewElementSelectors: string) => {
     // make the right edge "stick" to the scroll bar. force3D: true improves performance
     gsap.set(skewElementSelectors, { transformOrigin: 'right center', force3D: true })
 
+    return (() => ScrollTriggerInstance.kill())
   })
 }
 
