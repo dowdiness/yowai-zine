@@ -22,7 +22,7 @@
   }
 
   body {
-    font-family: 'Noto Serif JP', 'Roboto Mono' serif;
+    font-family: 'Noto Serif JP', 'Roboto Mono', serif;
   }
 
   body::before {
