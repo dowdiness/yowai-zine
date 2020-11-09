@@ -1,67 +1,36 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Cursor from 'src/hooks/cursor'
+import { useInView } from 'react-intersection-observer'
+import useSkew from 'src/hooks/useSkew'
+import useCursor from 'src/hooks/useCursor'
+import { motion } from 'framer-motion'
 import 'src/styles/cursor.css'
 
 // import Image from 'gatsby-image'
 
-type DeepWriteable<T> = { -readonly [P in keyof T]: DeepWriteable<T[P]> }
+//Ease
+const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 
-const VolPage: React.FC<PageProps<DeepWriteable<GatsbyTypes.VolPageQuery>>> = ({
-  data,
-}) => {
-  const images = data.images.edges
+const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
+  // const images = data.images.edges
   const posts = data.posts.nodes
-  gsap.utils.shuffle(images)
-  gsap.utils.shuffle(posts)
-  const scrollContainer = useRef<HTMLDivElement>(null!)
-  const cursorRef = useRef(null!)
+  useSkew('[data-skew]')
+  const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
 
-  const skewScroll = () => {
-    gsap.registerPlugin(ScrollTrigger)
-
-    const proxy = { skew: 0 },
-      skewSetter = gsap.quickSetter('[data-skew]', 'skewY', 'deg'), // fast
-      clamp = gsap.utils.clamp(-30, 30) // don't let the skew go beyond 20 degrees.
-
-    ScrollTrigger.create({
-      onUpdate: self => {
-        const skew = clamp(self.getVelocity() / -200)
-        // only do something if the skew is MORE severe. Remember, we're always tweening back to 0, so if the user slows their scrolling quickly, it's more natural to just let the tween handle that smoothly rather than jumping to the smaller skew.
-        if (Math.abs(skew) > Math.abs(proxy.skew)) {
-          proxy.skew = skew
-          gsap.to(proxy, {
-            skew: 0,
-            duration: 0.8,
-            ease: 'power3',
-            overwrite: true,
-            onUpdate: () => skewSetter(proxy.skew),
-          })
-        }
-      },
-    })
-
-    // make the right edge "stick" to the scroll bar. force3D: true improves performance
-    gsap.set('[data-skew]', { transformOrigin: 'right center', force3D: true })
-  }
-
-  useEffect(() => {
-    skewScroll()
-    const cursor = new Cursor(cursorRef.current)
-  }, [])
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: '-30% 0px',
+  })
 
   return (
     <>
-      <div ref={scrollContainer} className="sticky my-32 space-y-64">
+      <div className="sticky my-32 space-y-64">
         {posts.map((post, index) => (
           <>
             <h2
               data-skew
-              data-video-src={post.frontmatter?.title}
+              data-cursor-src={post.frontmatter?.title}
               key={index}
               className="flex flex-col items-center mx-auto space-y-16 text-center"
             >
@@ -85,6 +54,25 @@ const VolPage: React.FC<PageProps<DeepWriteable<GatsbyTypes.VolPageQuery>>> = ({
             </div> */}
           </>
         ))}
+        <div ref={ref} className="w-full h-32">
+          {inView && (
+            <motion.h4
+              key="scroll"
+              initial={{
+                y: 20,
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition,
+              }}
+              className="w-full h-32 text-4xl text-center"
+            >
+              <span aria-label="Wave">👋</span>
+            </motion.h4>
+          )}
+        </div>
       </div>
       {/* Cursor */}
       <div
