@@ -40,30 +40,33 @@ class Cursor {
     }
     window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
     window.addEventListener('mousemove', this.onMouseMoveEv)
-    window.addEventListener('in-view-event', ev => this.onScaleMouse(ev.detail))
+    // @ts-ignore
+    window.addEventListener('in-view-event', ev => this.onScaleMouse(ev.detail.ref))
   }
 
   onScaleMouse(ref: React.MutableRefObject<HTMLHeadingElement>) {
     // If I am hovering on the item for on page load I want to scale the cursor media
-    if (ref.current.matches(':hover')) {
-      this.setSource(ref.current)
-      this.scaleAnimation(this.Cursor.children[0], 0.8)
+    if (ref.current) {
+      if (ref.current.matches(':hover')) {
+        this.setSource(ref.current)
+        this.scaleAnimation(this.Cursor.children[0], 0.8)
+      }
+      ref.current.addEventListener('mouseenter', () => {
+        this.setSource(ref.current)
+        this.scaleAnimation(this.Cursor.children[0], 0.6)
+      })
+      ref.current.addEventListener('mouseleave', () => {
+        this.scaleAnimation(this.Cursor.children[0], 0)
+      })
+      ref.current.children[1].addEventListener('mouseenter', () => {
+        this.Cursor.classList.add('media-blend')
+        this.scaleAnimation(this.Cursor.children[0], 1.4)
+      })
+      ref.current.children[1].addEventListener('mouseleave', () => {
+        this.Cursor.classList.remove('media-blend')
+        this.scaleAnimation(this.Cursor.children[0], 0.8)
+      })
     }
-    ref.current.addEventListener('mouseenter', () => {
-      this.setSource(ref.current)
-      this.scaleAnimation(this.Cursor.children[0], 0.6)
-    })
-    ref.current.addEventListener('mouseleave', () => {
-      this.scaleAnimation(this.Cursor.children[0], 0)
-    })
-    ref.current.children[1].addEventListener('mouseenter', () => {
-      this.Cursor.classList.add('media-blend')
-      this.scaleAnimation(this.Cursor.children[0], 1.4)
-    })
-    ref.current.children[1].addEventListener('mouseleave', () => {
-      this.Cursor.classList.remove('media-blend')
-      this.scaleAnimation(this.Cursor.children[0], 0.8)
-    })
   }
 
   scaleAnimation(el: Element, amt: number) {

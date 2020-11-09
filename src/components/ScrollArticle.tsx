@@ -2,8 +2,7 @@ import React, { useRef, useEffect } from 'react'
 
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
-import InViewEvent from 'src/types/lib.dom'
-
+import { isClient } from 'src/utils'
 const transition = { duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }
 
 export type ScrollArticleProps<
@@ -20,10 +19,13 @@ const ScrollArticle: React.FCX<ScrollArticleProps<Pick<GatsbyTypes.Frontmatter, 
   })
 
   const zoomRef = useRef<HTMLHeadingElement>(null!)
-  const inViewEvent = new InViewEvent<HTMLHeadingElement>({ ref: zoomRef })
 
   useEffect(() => {
-    dispatchEvent(inViewEvent)
+    // not working in ssr https://github.com/gatsbyjs/gatsby/issues/15001
+    if (isClient) {
+      const inViewEvent = new CustomEvent('in-view-event', { detail: { ref: zoomRef } })
+      dispatchEvent(inViewEvent)
+    }
   }, [inView, zoomRef])
 
   return (

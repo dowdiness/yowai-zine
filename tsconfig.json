@@ -5,13 +5,16 @@
       "src": ["src/*"]
     },
     "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ES6", "DOM"],
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "preserve",
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "typeRoots": ["types", "./node_modules/@types"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "types"]
 }
