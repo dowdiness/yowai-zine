@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import { Link } from 'gatsby'
 
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
@@ -9,10 +10,11 @@ export type ScrollArticleProps<
   DataType = object,
   > = {
     index: number
+    to: string
     frontmatter: GatsbyTypes.Maybe<DataType>
   }
 
-const ScrollArticle: React.FCX<ScrollArticleProps<Pick<GatsbyTypes.Frontmatter, 'title' | 'author' | 'vol'>>> = ({ frontmatter, index, className }) => {
+const ScrollArticle: React.FCX<ScrollArticleProps<Pick<GatsbyTypes.Frontmatter, 'title' | 'author' | 'vol'>>> = ({ index, to, frontmatter, className }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-15% 0px',
@@ -53,9 +55,11 @@ const ScrollArticle: React.FCX<ScrollArticleProps<Pick<GatsbyTypes.Frontmatter, 
           <span className="text-3xl sm:text-4xl">
             {frontmatter?.author}
           </span>
-          <span className="text-5xl outline sm:text-6xl">
-            {frontmatter?.title}
-          </span>
+          <Link to={to}>
+            <span className="text-5xl outline sm:text-6xl">
+              {frontmatter?.title}
+            </span>
+          </Link>
         </motion.h2>
       )}
     </div>

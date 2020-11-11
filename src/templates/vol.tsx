@@ -28,6 +28,7 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
         {posts.map((post, index) => (
           <ScrollArticle
             index={index}
+            to={`/vol/${post.frontmatter?.vol}${post.fields?.slug}`}
             frontmatter={post.frontmatter}
           />
         ))}
@@ -71,6 +72,9 @@ export const pageQuery = graphql`
     posts: allMarkdownRemark(filter: { frontmatter: { vol: { eq: $vol } } }) {
       nodes {
         excerpt(truncate: true)
+        fields {
+          slug
+        }
         frontmatter {
           title
           author
