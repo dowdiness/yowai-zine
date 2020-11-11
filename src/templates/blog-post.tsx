@@ -1,22 +1,46 @@
 import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
-
-import useTategaki from 'src/hooks/useTategaki'
+//Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+//Hooks
+import useTategaki from 'src/hooks/useTategaki'
+import { useForm, usePlugin } from 'tinacms'
 
 const BlogPostTemplate: React.FC<PageProps<
   GatsbyTypes.BlogPostBySlugQuery
 >> = ({ data }) => {
-  const post = data.markdownRemark
   const { previous, next } = data
-
   const { tategakiRef } = useTategaki()
+
+  const formConfig = {
+    id: data.markdownRemark?.id,
+    label: "Blog Post",
+    initialValues: data.markdownRemark,
+    onSubmit: (values: { frontmatter: { title: string } }) => {
+      alert(`Submitting ${values.frontmatter.title}`)
+    },
+    fields: [
+      {
+        name: "frontmatter.title",
+        label: "Title",
+        component: "text",
+      },
+      {
+        name: "frontmatter.profile",
+        label: "Profile",
+        component: "textarea",
+      },
+    ],
+  }
+
+  const [post, form] = useForm(formConfig)
+  usePlugin(form)
 
   return (
     <>
       <GatsbySeo
         title={post?.frontmatter?.title || ``}
-        description={post?.frontmatter?.description || post?.excerpt || ``}
+        description={post?.excerpt || post?.frontmatter?.profile || ``}
       />
       <div className="">
         <article

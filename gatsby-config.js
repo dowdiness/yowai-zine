@@ -24,6 +24,17 @@ module.exports = {
     `gatsby-plugin-root-import`,
     `gatsby-plugin-postcss`,
     {
+      resolve: 'gatsby-plugin-tinacms',
+      options: {
+        // The CMS will be disabled on your production site
+        enabled: process.env.NODE_ENV !== 'production',
+        sidebar: true,
+        plugins: [
+          // We'll add some gatsby-tinacms plugins later
+        ],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
