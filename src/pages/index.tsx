@@ -1,31 +1,25 @@
 import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 
-import Bio from 'src/components/bio'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
 }) => {
   const posts = data.allMarkdownRemark.nodes
-
-  if (posts.length === 0) {
-    return (
-      <>
-        <GatsbySeo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </>
-    )
-  }
+  const home = data.home
 
   return (
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
+      <div className="flex flex-col items-center space-y-32">
+        <Link to="/vol/0/">
+          <img src={home?.image} width="364" height="514" />
+        </Link>
+        <p className="text-lg leading-loose tracking-widest text-center whitespace-pre-wrap md:xl-text">
+          { home?.introduction }
+        </p>
+      </div>
       <ol style={{ listStyle: 'none' }}>
         {posts.map(post => {
           const title = post.frontmatter?.title || post.fields?.slug
@@ -87,6 +81,10 @@ export const pageQuery = graphql`
           description
         }
       }
+    }
+    home: pagesJson(path: {eq: "/"}) {
+      image
+      introduction
     }
   }
 `
