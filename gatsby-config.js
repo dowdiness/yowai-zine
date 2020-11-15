@@ -6,6 +6,15 @@ const config = {
   },
 }
 
+const path = require('path')
+const REPO_ABSOLUTE_PATH = path.join(process.cwd(), '../..')
+
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+
+require("dotenv").config({
+  path: `.env.${activeEnv}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `弱いZINE`,
@@ -20,20 +29,10 @@ module.exports = {
     },
   },
   plugins: [
-    `gatsby-plugin-preact`,
+    // `gatsby-plugin-preact`,
     `gatsby-plugin-root-import`,
     `gatsby-plugin-postcss`,
-    {
-      resolve: 'gatsby-plugin-tinacms',
-      options: {
-        // The CMS will be disabled on your production site
-        enabled: process.env.NODE_ENV !== 'production',
-        sidebar: true,
-        plugins: [
-          // We'll add some gatsby-tinacms plugins later
-        ],
-      },
-    },
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -85,6 +84,30 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-tinacms',
+      options: {
+        // The CMS will be disabled on your production site
+        enabled: process.env.NODE_ENV !== 'production',
+        sidebar: true,
+        plugins: [
+          {
+            resolve: "gatsby-tinacms-git",
+            options: {
+              // sshKey: process.env.SSH_KEY
+              pathToRepo: REPO_ABSOLUTE_PATH,
+              pathToContent: '/',
+              defaultCommitMessage: 'Edited with TinaCMS',
+              defaultCommitName: 'dowdiness',
+              defaultCommitEmail: 'koji.ishimoto@gmail.com',
+              pushOnCommit: false,
+            },
+          },
+          `gatsby-tinacms-remark`,
+          `gatsby-tinacms-json`,
+        ],
       },
     },
     `gatsby-plugin-feed`,
