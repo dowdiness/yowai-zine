@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { PageProps } from 'gatsby'
 
-import Layout from 'src/components/Layout'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import Girl from '../../content/assets/richard-dunn/2.jpg'
 import { gsap } from 'gsap'
@@ -34,7 +33,7 @@ const ImageRevealPage: React.FC<PageProps> = ({}) => {
     })
   })
   return (
-    <Layout>
+    <>
       <GatsbySeo title="Image Reveal" />
       <section
         className="flex items-center justify-center invisible w-full h-screen mx-auto"
@@ -51,7 +50,7 @@ const ImageRevealPage: React.FC<PageProps> = ({}) => {
           />
         </div>
       </section>
-    </Layout>
+    </>
   )
 }
 
