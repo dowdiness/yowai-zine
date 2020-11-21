@@ -1,4 +1,5 @@
 import { useRef, useEffect, MutableRefObject } from 'react'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 import { isFirefox } from './util'
 import { debounce } from 'lodash'
 
@@ -10,24 +11,24 @@ const useTategaki = (): Tategaki => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const tategakiRef = useRef<HTMLElement>(null!)
 
-  const adjustSize = () => {
+  const adjustSize = (el: HTMLElement) => {
     // bug fix
     if (isFirefox) {
-      tategakiRef.current.style.height = 'auto'
+      el.style.height = 'auto'
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          if (!tategakiRef) {
+          if (!el) {
             return
           }
 
-          tategakiRef.current.style.height = ''
-          tategakiRef.current.style.paddingBottom = ''
-          const fullHeight = tategakiRef.current.scrollHeight
+          el.style.height = ''
+          el.style.paddingBottom = ''
+          const fullHeight = el.scrollHeight
           const defaultHeight = Number(
-            getComputedStyle(tategakiRef.current).height.replace('px', '')
+            getComputedStyle(el).height.replace('px', '')
           )
-          tategakiRef.current.style.paddingBottom = `${
+          el.style.paddingBottom = `${
             fullHeight - defaultHeight
           }px`
         })
@@ -35,26 +36,25 @@ const useTategaki = (): Tategaki => {
       return
     }
 
-    tategakiRef.current.style.paddingBottom = ''
-    const fullHeight = tategakiRef.current.scrollHeight
+    el.style.paddingBottom = ''
+    const fullHeight = el.scrollHeight
     const defaultHeight = Number(
-      getComputedStyle(tategakiRef.current).height.replace('px', '')
+      getComputedStyle(el).height.replace('px', '')
     )
-    tategakiRef.current.style.paddingBottom = `${fullHeight - defaultHeight}px`
+    el.style.paddingBottom = `${fullHeight - defaultHeight}px`
   }
 
-  const debouncedAdjustSize = debounce(adjustSize, 100)
 
-  useEffect(() => {
-    adjustSize()
-    window.addEventListener('load', adjustSize)
+  useIsomorphicLayoutEffect(() => {
+    adjustSize(tategakiRef.current)
+    const adjustSizeCallback = () => adjustSize(tategakiRef.current)
+    const debouncedAdjustSize = debounce(adjustSizeCallback, 100)
     window.addEventListener('resize', debouncedAdjustSize)
     return () => {
       debouncedAdjustSize.cancel()
-      window.removeEventListener('load', adjustSize)
       window.removeEventListener('resize', debouncedAdjustSize)
     }
-  }, [tategakiRef])
+  }, [tategakiRef.current])
 
   return { tategakiRef }
 }
