@@ -31,7 +31,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             </h1>
           </Div100vh>
         </section>
-        <section className="container flex items-center justify-center w-auto h-auto sm:h-screen scroll-snap-center">
+        <section className="container flex items-center justify-center w-auto h-auto my-24 sm:my-0 sm:h-screen scroll-snap-center">
           <div>
             <div className="relative mb-12 sm:float-left shape-outside sm:mb-0">
               <h3 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
