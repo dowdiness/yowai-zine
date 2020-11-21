@@ -13,8 +13,8 @@ type LayoutProps = {
 const transition = { duration: 1.6, ease: [0.43, 0.13, 0.23, 0.96] }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  // const rootPath = `${__PATH_PREFIX__}/`
-  // const isRootPath = location.pathname === rootPath
+  const rootPath = `${__PATH_PREFIX__}/`
+  const isRootPath = location.pathname === rootPath
   const [finishLoading, setFinishLoading] = useState(true)
   const data = useStaticQuery<GatsbyTypes.LogoQueryQuery>(
     graphql`
@@ -83,7 +83,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         >
           <Header className="z-40" />
           <main className="container w-auto mt-32">{children}</main>
-          <Footer className="z-40" />
+          {!isRootPath && <Footer className="z-40" />}
         </motion.div>
       )}
     </AnimatePresence>

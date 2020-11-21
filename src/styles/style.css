@@ -23,6 +23,7 @@
 
   body {
     font-family: 'Noto Serif JP', 'Roboto Mono', serif;
+    font-feature-settings: "palt";
   }
 
   body::before {
@@ -40,6 +41,11 @@
 }
 
 @layer utilities {
+  @variants hover {
+    .blur {
+      filter: blur(4px);
+    }
+  }
   @responsive {
     .xl-text {
       font-size: 1.25rem;
@@ -53,8 +59,20 @@
     .column-gap-12 {
       column-gap: 3rem;
     }
+    .leading-relaxed {
+      line-height: 1.625 !important;
+    }
     .leading-loosest {
       line-height: 2 !important;
+    }
+    .mandatory-scroll-snapping {
+      scroll-snap-type: y mandatory;
+    }
+    .scroll-snap-center {
+      scroll-snap-align: center;
+    }
+    .overflow-touch {
+      -webkit-overflow-scrolling: touch;
     }
   }
 }
