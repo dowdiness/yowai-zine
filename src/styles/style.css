@@ -53,5 +53,8 @@
     .column-gap-12 {
       column-gap: 3rem;
     }
+    .leading-loosest {
+      line-height: 2 !important;
+    }
   }
 }
