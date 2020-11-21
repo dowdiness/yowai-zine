@@ -11,7 +11,7 @@ module.exports = {
   purge: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
     typography: {
-      default: {
+      DEFAULT: {
         // css: {
         //   color: '#333',
         //   strong: {
@@ -35,14 +35,14 @@ module.exports = {
     container: {
       center: true,
       width: {
-        default: '',
+        DEFAULT: '',
         sm: "480px",
         md: "768px",
         lg: "992px",
         xl: "1280px",
       },
       padding: {
-        default: '1rem',
+        DEFAULT: '1rem',
         sm: '1.5rem',
         lg: '2rem',
         xl: '3rem',
@@ -84,20 +84,6 @@ module.exports = {
       },
       fontSize: {
         'xxs': ['0.5rem', '1rem'],
-        "7xl": [
-          "5rem",
-          {
-            letterSpacing: "0.1em",
-            lineHeight: "1",
-          },
-        ],
-        "8xl": [
-          "5rem",
-          {
-            letterSpacing: "0.1em",
-            lineHeight: "1",
-          },
-        ],
       },
     },
   },
@@ -172,6 +158,6 @@ module.exports = {
       })
     }),
     require("@tailwindcss/typography"),
-    require('@tailwindcss/ui'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 }

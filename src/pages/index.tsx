@@ -22,7 +22,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   return (
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
-      <Div100vh className="w-screen -mt-32 overflow-y-scroll m-screen overflow-touch sm:mandatory-scroll-snapping">
+      <Div100vh className="w-screen -mt-32 overflow-y-scroll scrolling-touch m-screen sm:mandatory-scroll-snapping">
         <section className="container w-auto scroll-snap-center">
           <Div100vh className="flex items-center justify-center">
             <h1 className="flex flex-col items-center space-y-8 font-sans text-center">

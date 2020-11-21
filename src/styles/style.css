@@ -71,7 +71,7 @@
     .scroll-snap-center {
       scroll-snap-align: center;
     }
-    .overflow-touch {
+    .scrolling-touch {
       -webkit-overflow-scrolling: touch;
     }
   }
