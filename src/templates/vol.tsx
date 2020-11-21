@@ -8,8 +8,6 @@ import useCursor from 'src/hooks/useCursor'
 import { motion } from 'framer-motion'
 import 'src/styles/cursor.css'
 
-// import Image from 'gatsby-image'
-
 //Components
 import ScrollArticle from 'src/components/ScrollArticle'
 

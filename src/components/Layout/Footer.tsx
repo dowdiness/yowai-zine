@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import Image from 'src/components/Image'
+
+import { StaticImage } from "gatsby-plugin-image"
 
 export type FooterProps = unknown
 
@@ -8,9 +9,11 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
   return (
     <footer className={`${className}`}>
       <div className="flex flex-col items-center max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
-        <Link to="/">
-          <Image
-            filename="yowai-logo.png"
+        <Link className="cursor-pointer" to="/">
+          <StaticImage
+            width={128}
+            height={128}
+            src="yowai-logo.png"
             alt="yowai-logo"
             className="w-32 h-32 text-center transition-opacity duration-300 ease-out hover:opacity-50"
           />

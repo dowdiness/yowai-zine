@@ -7,7 +7,8 @@
 import React from 'react'
 
 import { useStaticQuery, graphql } from 'gatsby'
-import Image from 'gatsby-image'
+// @ts-ignore
+import { GatsbyImage as Image } from "gatsby-plugin-image/compat"
 
 const Bio = () => {
   const data = useStaticQuery<GatsbyTypes.BioQueryQuery>(graphql`

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import Header from './Header'
 import Footer from './Footer'
 import Div100vh from 'react-div-100vh'
 
 import { motion, AnimatePresence } from 'framer-motion'
+import { StaticImage } from "gatsby-plugin-image"
 
 type LayoutProps = {
   location?: Location
@@ -16,19 +16,6 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location?.pathname === rootPath
   const [finishLoading, setFinishLoading] = useState(true)
-  const data = useStaticQuery<GatsbyTypes.LogoQueryQuery>(
-    graphql`
-      query LogoQuery {
-        allFile(filter: { name: { eq: "yowai-logo" } }) {
-          nodes {
-            id
-            name
-            publicURL
-          }
-        }
-      }
-    `
-  )
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,13 +35,11 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
             transition={transition}
             className="fixed flex flex-col items-center justify-center w-screen h-screen text-5xl"
           >
-            <motion.img
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={transition}
-              src={data.allFile.nodes[0].publicURL}
-              alt={data.allFile.nodes[0].name}
+            <StaticImage
+              width={256}
+              height={256}
+              src="yowai-logo.png"
+              alt="yowai-logo"
               className="w-64 h-64 mb-4 -mt-24"
             />
             <div className="flex flex-col items-center mb-6 space-y-2 font-sans">
