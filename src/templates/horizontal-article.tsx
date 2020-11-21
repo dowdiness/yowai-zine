@@ -3,14 +3,12 @@ import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 //Hooks
-import useTategaki from 'src/hooks/useTategaki'
 
-const BlogPostTemplate: React.FC<PageProps<
-  GatsbyTypes.BlogPostBySlugQuery
+const HorizontalArticleTemplate: React.FC<PageProps<
+  GatsbyTypes.HorizontalArticleBySlugQuery
 >> = ({ data }) => {
   const post = data.markdownRemark
   const { previous, next } = data
-  const { tategakiRef } = useTategaki()
 
   return (
     <>
@@ -33,10 +31,9 @@ const BlogPostTemplate: React.FC<PageProps<
             </p>
           </header>
           <section
-            ref={tategakiRef}
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className="w-full max-w-full font-serif text-lg text-justify md:text-xl multicolumn text-character vertical-rl"
+            className="w-full font-serif prose-sm prose text-justify sm:prose lg:prose-lg xl:prose-xl text-character"
           />
           <footer className="font-serif text-lg text-justify whitespace-pre-line md:text-xl">
             {post?.frontmatter?.profile}
@@ -82,10 +79,10 @@ const BlogPostTemplate: React.FC<PageProps<
   )
 }
 
-export default BlogPostTemplate
+export default HorizontalArticleTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query HorizontalArticleBySlug(
     $id: String!
     $previousPostId: String
     $nextPostId: String
