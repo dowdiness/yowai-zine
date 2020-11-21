@@ -33,9 +33,9 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className="w-full font-serif prose-sm prose text-justify sm:prose lg:prose-lg xl:prose-xl text-character"
+            className="w-full font-serif prose-sm prose text-center sm:prose lg:prose-lg xl:prose-xl 2xl:prose-2xl text-character"
           />
-          <footer className="font-serif text-lg text-justify whitespace-pre-line md:text-xl">
+          <footer className="font-serif prose-sm prose text-center whitespace-pre-line sm:prose lg:prose-lg xl:prose-xl 2xl:prose-2xl">
             {post?.frontmatter?.profile}
           </footer>
         </article>

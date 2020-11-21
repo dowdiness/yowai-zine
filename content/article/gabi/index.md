@@ -3,7 +3,18 @@ title: Untitles
 author: Gabi
 profile: gabi
 vol: "0"
+writing: "horizontal"
 ---
+
+![hand-writing-1](hand-writing-1.jpg)
+
+![hand-writing-2](hand-writing-2.jpg)
+
+![hand-writing-3](hand-writing-3.jpg)
+
+![hand-writing-4](hand-writing-4.jpg)
+
+![hand-writing-5](hand-writing-5.jpg)
 
 I’ve collected a few hundred chocolate wrappers. The gold paper / foil ones, from the individually wrapped chocolates.
 

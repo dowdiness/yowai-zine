@@ -3,6 +3,7 @@ title: 表示テスト
 author: 石本幸士
 profile: 無し
 vol: "1"
+writing: "horizontal"
 ---
 
 # 見出し1

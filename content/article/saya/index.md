@@ -8,6 +8,7 @@ profile: |
   本年5月、ストリーミングサイト「みんなきける」を立ち上げている。
   Minna Kikeru : https://minnakikeru.com/
 vol: "0"
+writing: "horizontal"
 ---
 
 ある日思い立ち、私の部屋の窓に絵を書いてもらいました。
@@ -46,6 +47,7 @@ vol: "0"
 さや
 Tenniscoats / majikick
 
+![Mado-no-Tensi](Mado-no-Tensi.jpg)
 
 「エンデ」
 詞  さや

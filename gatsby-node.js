@@ -21,6 +21,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id
             frontmatter {
               vol
+              writing
             }
             fields {
               slug
@@ -52,19 +53,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
       availableVols.push(post.frontmatter.vol)
 
-      createPage({
-        path: `/vol/${post.frontmatter.vol}${post.fields.slug}`,
-        component: verticalArticle,
-        context: {
-          id: post.id,
-          previousPostId,
-          nextPostId,
-        },
-      })
+      if (post.frontmatter.writing === "horizontal") {
+        createPage({
+          path: `/vol/${post.frontmatter.vol}${post.fields.slug}`,
+          component: horizontalArticle,
+          context: {
+            id: post.id,
+            previousPostId,
+            nextPostId,
+          },
+        })
+      } else if (post.frontmatter.writing === "vertical") {
+        createPage({
+          path: `/vol/${post.frontmatter.vol}${post.fields.slug}`,
+          component: verticalArticle,
+          context: {
+            id: post.id,
+            previousPostId,
+            nextPostId,
+          },
+        })
+      }
     })
     const availableVolsSet = new Set(availableVols)
     availableVolsSet.forEach((availableVol) => {
-      volTemplate
       createPage({
         path: `/vol/${availableVol}/`,
         component: volTemplate,

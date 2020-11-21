@@ -10,17 +10,17 @@ module.exports = {
   },
   purge: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
-    typography: {
-      DEFAULT: {
-        // css: {
-        //   color: '#333',
-        //   strong: {
-        //     fontWeight: '800',
-        //   },
-        //   // ...
-        // },
-      },
-    },
+    // typography: {
+    //   DEFAULT: {
+    //     // css: {
+    //     //   color: '#333',
+    //     //   strong: {
+    //     //     fontWeight: '800',
+    //     //   },
+    //     //   // ...
+    //     // },
+    //   },
+    // },
     fontFamily: {
       sans: ["'Noto Sans JP'", "'Roboto Mono'", "Consolas", "'Courier New'", ...defaultTheme.fontFamily.sans],
       serif: ["'Noto Serif JP'", "'Roboto Mono'", ...defaultTheme.fontFamily.serif],
@@ -157,7 +157,7 @@ module.exports = {
         },
       })
     }),
-    require("@tailwindcss/typography"),
     require('@tailwindcss/aspect-ratio'),
+    require("@tailwindcss/typography"),
   ],
 }
