@@ -9,9 +9,9 @@ import "./src/styles/style.css"
 import * as React from 'react'
 import Layout from 'src/components/Layout'
 
-const wrapPageElement = ({ element }) => {
+const wrapPageElement = ({ element, props }) => {
   return (
-    <Layout>{element}</Layout>
+    <Layout {...props}>{element}</Layout>
   )
 }
 

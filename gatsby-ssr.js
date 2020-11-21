@@ -9,9 +9,9 @@ import * as React from 'react'
 // import { Provider } from '~/store/global'
 import Layout from 'src/components/Layout'
 
-const wrapPageElement = ({ element }) => {
+const wrapPageElement = ({ element, props }) => {
   return (
-    <Layout>{element}</Layout>
+    <Layout {...props}>{element}</Layout>
   )
 }
 
