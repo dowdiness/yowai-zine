@@ -49,8 +49,8 @@ module.exports = {
       },
     },
     extend: {
-      fontSize: {
-        xxs: ['0.5rem', '1rem'],
+      animation: {
+        'spin-slow': 'spin 20s linear infinite',
       },
       spacing: {
         72: "18rem",
@@ -83,6 +83,7 @@ module.exports = {
         yowai: "#519fed",
       },
       fontSize: {
+        'xxs': ['0.5rem', '1rem'],
         "7xl": [
           "5rem",
           {
@@ -131,8 +132,11 @@ module.exports = {
           WebkitTextStroke: '1px black',
           WebkitTextFillColor: 'white',
         },
+        '.shape-outside': {
+          shapeOutside: 'circle(50%)'
+        }
       }
-      addUtilities(newUtilities)
+      addUtilities(newUtilities, ['responsive'])
       addComponents({
         ".aspect": {
           position: "relative",

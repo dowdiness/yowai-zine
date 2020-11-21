@@ -44,5 +44,14 @@
     .xl-text {
       font-size: 1.25rem;
     }
+    .column-count-none {
+      column-count: unset;
+    }
+    .column-count-2 {
+      column-count: 2;
+    }
+    .column-gap-12 {
+      column-gap: 3rem;
+    }
   }
 }

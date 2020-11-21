@@ -16,6 +16,7 @@ const useWindowSize = (initialWidth = Infinity, initialHeight = Infinity) => {
           height: window.innerHeight,
         })
       }
+      handler()
       const debouncedHandler = debounce(handler, 300)
       window.addEventListener('resize', debouncedHandler)
       return () => {
