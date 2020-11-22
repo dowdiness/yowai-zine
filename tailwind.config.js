@@ -1,5 +1,6 @@
 const defaultTheme = require("tailwindcss/defaultTheme")
 const plugin = require("tailwindcss/plugin")
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   future: {
@@ -10,17 +11,6 @@ module.exports = {
   },
   purge: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
-    // typography: {
-    //   DEFAULT: {
-    //     // css: {
-    //     //   color: '#333',
-    //     //   strong: {
-    //     //     fontWeight: '800',
-    //     //   },
-    //     //   // ...
-    //     // },
-    //   },
-    // },
     fontFamily: {
       sans: ["'Noto Sans JP'", "'Roboto Mono'", "Consolas", "'Courier New'", ...defaultTheme.fontFamily.sans],
       serif: ["'Noto Serif JP'", "'Roboto Mono'", ...defaultTheme.fontFamily.serif],
@@ -49,6 +39,13 @@ module.exports = {
       },
     },
     extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.gray.700'),
+          },
+        },
+      }),
       animation: {
         'spin-slow': 'spin 20s linear infinite',
       },
@@ -75,10 +72,14 @@ module.exports = {
         1600: "400rem",
         1760: "440rem",
       },
+      maxWidth: {
+        'screen-xl': "1280px",
+      },
       margin: {
         screen: '0 calc(50% - 50vw)',
       },
       colors: {
+        gray: colors.trueGray,
         neumorphism: "#e0e5eb",
         yowai: "#519fed",
       },
@@ -148,6 +149,57 @@ module.exports = {
           height: "22rem",
           columnWidth: "22rem",
           columnGap: "3rem",
+          a: {
+            color: colors.cyan[700],
+            textDecoration: 'underline',
+            fontWeight: '500',
+          },
+          strong: {
+            color: colors.blueGray[900],
+            fontWeight: '600',
+          },
+          div: {
+            width: "100%",
+            marginRight: "1280px",
+          },
+          "div > p": {
+            width: "100%",
+          },
+          "div > p > span": {
+            width: "100%",
+          },
+          "> h1": {
+            color: colors.trueGray[900],
+            fontSize: defaultTheme.fontSize["5xl"],
+            fontWeight: '800',
+            marginLeft: "2rem",
+            letterSpacing: "0.1em",
+            lineHeight: "1.1",
+          },
+          "> h2": {
+            color: colors.trueGray[900],
+            fontSize: defaultTheme.fontSize["4xl"],
+            fontWeight: '700',
+            marginLeft: "1.75rem",
+            letterSpacing: "0.09em",
+            lineHeight: "2.5rem",
+          },
+          "> h3": {
+            color: colors.trueGray[800],
+            fontSize: defaultTheme.fontSize["3xl"],
+            fontWeight: '600',
+            marginLeft: "1.5rem",
+            letterSpacing: "0.08em",
+            lineHeight: "2.25rem",
+          },
+          "> h4": {
+            color: colors.trueGray[800],
+            fontSize: defaultTheme.fontSize["2xl"],
+            fontWeight: '600',
+            marginLeft: "1.25rem",
+            letterSpacing: "0.07em",
+            lineHeight: "2rem",
+          },
           "> p": {
             marginLeft: "1rem",
             textIndent: "1.15em",

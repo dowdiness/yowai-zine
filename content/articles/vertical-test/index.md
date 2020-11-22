@@ -1,9 +1,9 @@
 ---
-title: 表示テスト
+title: 縦書き表示テスト
 author: 石本幸士
 profile: 無し
 vol: "1"
-writing: "horizontal"
+writing: "vertical"
 ---
 
 # 見出し1
@@ -143,4 +143,12 @@ puts 1 + 1
 
 ## 画像
 
-これは ![バナナ](https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/220px-Bananavarieties.jpg) 画像です。
+これは
+
+<div>
+
+![illbull](../../artworks/richard-dunn/1.jpg)
+
+</div>
+
+画像です。

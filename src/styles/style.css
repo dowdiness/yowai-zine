@@ -24,6 +24,7 @@
   body {
     font-family: 'Noto Serif JP', 'Roboto Mono', serif;
     font-feature-settings: "palt";
+    @apply text-gray-900;
   }
 
   body::before {
