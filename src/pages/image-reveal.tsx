@@ -3,7 +3,7 @@ import { PageProps } from 'gatsby'
 
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 // @ts-ignore
-import Girl from '../../content/artworks/richard-dunn/2.jpg'
+import Girl from '../../content/artworks/richard-dunn/richard-dunn-02.jpg'
 import { gsap } from 'gsap'
 import CSSRulePlugin from 'gsap/CSSRulePlugin'
 import 'src/styles/reveal.css'
