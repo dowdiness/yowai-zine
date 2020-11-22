@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { PageProps } from 'gatsby'
 
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import Girl from '../../content/assets/richard-dunn/2.jpg'
+import Girl from '../../content/artworks/richard-dunn/2.jpg'
 import { gsap } from 'gsap'
 import CSSRulePlugin from 'gsap/CSSRulePlugin'
 import 'src/styles/reveal.css'
