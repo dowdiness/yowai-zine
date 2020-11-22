@@ -15,21 +15,49 @@ import ScrollArticle from 'src/components/ScrollArticle'
 const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 
 const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
-  // const images = data.images.edges
   const posts = data.posts.nodes
+  const artworks = data.artworks.edges
   useSkew('[data-skew]')
   const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
 
   return (
     <>
-      <div className="sticky my-32 space-y-64">
-        {posts.map((post, index) => (
-          <ScrollArticle
-            index={index}
-            to={`/vol/${post.frontmatter?.vol}${post.fields?.slug}`}
-            frontmatter={post.frontmatter}
-          />
-        ))}
+      <div className="sticky my-64 space-y-80">
+        <section className="flex flex-col justify-center mx-auto space-y-32">
+          <div data-skew className="flex justify-center mx-auto">
+            <h2 className="text-6xl border-b-8 border-blue-700 outline sm:text-7xl md:text-8xl">
+              投稿記事
+            </h2>
+          </div>
+          <div className="flex flex-col justify-center mx-auto space-y-28">
+            {posts.map((post, index) => (
+              <ScrollArticle
+                index={index}
+                to={`/vol/${post.frontmatter?.vol}${post.fields?.slug}`}
+                text={post.frontmatter?.author}
+                linkText={post.frontmatter?.title!}
+                useCursor={true}
+              />
+            ))}
+          </div>
+        </section>
+        <section className="flex flex-col justify-center mx-auto space-y-32">
+          <div data-skew className="flex justify-center mx-auto">
+            <h2 className="text-6xl border-b-8 border-blue-700 outline sm:text-7xl md:text-8xl">
+              投稿画像
+            </h2>
+          </div>
+          <div className="flex flex-col justify-center mx-auto space-y-28">
+            {artworks.map((artwork, index) => (
+              <ScrollArticle
+                index={index}
+                to={`/vol/0/${artwork.node.name}`}
+                linkText={artwork.node.name}
+                useCursor={false}
+              />
+            ))}
+          </div>
+        </section>
       </div>
       {/* Cursor */}
       <div
@@ -57,16 +85,6 @@ export default VolPage
 
 export const pageQuery = graphql`
   query VolPage($vol: String!) {
-    images: allImageSharp {
-      edges {
-        node {
-          fluid(quality: 90, maxWidth: 1200) {
-            ...GatsbyImageSharpFluid_withWebp
-            originalName
-          }
-        }
-      }
-    }
     posts: allMarkdownRemark(filter: { frontmatter: { vol: { eq: $vol } } }) {
       nodes {
         excerpt(truncate: true)
@@ -77,6 +95,14 @@ export const pageQuery = graphql`
           title
           author
           vol
+        }
+      }
+    }
+    artworks: allDirectory(filter: {sourceInstanceName: {eq: "artworks"}}, skip: 1) {
+      edges {
+        node {
+          id
+          name
         }
       }
     }

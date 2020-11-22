@@ -8,9 +8,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const verticalArticle = path.resolve(`./src/templates/vertical-article.tsx`)
   const horizontalArticle = path.resolve(`./src/templates/horizontal-article.tsx`)
   const volTemplate = path.resolve(`./src/templates/vol.tsx`)
+  const ImageGallery = path.resolve(`./src/templates/image-gallery.tsx`)
 
   // Get all markdown article posts sorted by date
-  const result = await graphql(
+  const resultAllMarkdowns = await graphql(
     `
       {
         allMarkdownRemark(
@@ -32,15 +33,41 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     `
   )
 
-  if (result.errors) {
+  if (resultAllMarkdowns.errors) {
     reporter.panicOnBuild(
       `There was an error loading your article posts`,
-      result.errors
+      resultAllMarkdowns.errors
     )
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = resultAllMarkdowns.data.allMarkdownRemark.nodes
+
+  // Get all artworks folders posts sorted by date
+  const resultArtworks = await graphql(
+    `
+      {
+        allDirectory(filter: {sourceInstanceName: {eq: "artworks"}}, skip: 1) {
+          edges {
+            node {
+              id
+              name
+            }
+          }
+        }
+      }
+    `
+  )
+
+  if (resultArtworks.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your artworks directories`,
+      resultAllMarkdowns.errors
+    )
+    return
+  }
+
+  const artworks = resultArtworks.data.allDirectory.edges
 
   // Create article posts pages
   // But only if there's at least one markdown file found at "content/article" (defined in gatsby-config.js)
@@ -82,6 +109,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         component: volTemplate,
         context: {
           vol: availableVol,
+        },
+      })
+    })
+  }
+
+  if (artworks.length > 0) {
+    artworks.forEach((artwork, index) => {
+      const previousArtworkId = index === 0 ? null : artworks[index - 1].node.id
+      const nextArtworkId = index === artworks.length - 1 ? null : artworks[index + 1].node.id
+
+      createPage({
+        path: `/vol/0/${artwork.node.name}/`,
+        component: ImageGallery,
+        context: {
+          id: artwork.node.id,
+          artist: `${artwork.node.name}-*`,
+          previousArtworkId,
+          nextArtworkId,
         },
       })
     })
