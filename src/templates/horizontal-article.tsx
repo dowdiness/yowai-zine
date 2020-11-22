@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { ArticleHeader } from 'src/components/Article'
 //Hooks
 
 const HorizontalArticleTemplate: React.FC<PageProps<
@@ -22,25 +23,18 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           itemScope
           itemType="http://schema.org/Article"
         >
-          <header className="flex flex-col items-center font-sans text-justify">
-            <h1 className="mb-4 text-2xl font-extrabold" itemProp="headline">
-              {post?.frontmatter?.title}
-            </h1>
-            <p className="text-xl italic font-medium">
-              {post?.frontmatter?.author}
-            </p>
-          </header>
+          <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className="w-full font-serif prose-sm prose text-center sm:prose lg:prose-lg xl:prose-xl 2xl:prose-2xl text-character"
+            className="w-full font-serif prose text-center sm:prose-lg md:prose-xl xl:prose-2xl text-character"
           />
-          <footer className="font-serif prose-sm prose text-center whitespace-pre-line sm:prose lg:prose-lg xl:prose-xl 2xl:prose-2xl">
+          <footer className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">
             {post?.frontmatter?.profile}
           </footer>
         </article>
       </div>
-      <nav className="mb-12">
+      <nav className="mb-12 text-gray-700">
         <ul
           style={{
             display: `flex`,

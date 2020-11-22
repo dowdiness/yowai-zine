@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { ArticleHeader } from 'src/components/Article'
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -24,26 +25,19 @@ const VerticalArticleTemplate: React.FC<PageProps<
           itemScope
           itemType="http://schema.org/Article"
         >
-          <header className="flex flex-col items-center font-sans text-justify">
-            <h1 className="mb-4 text-2xl font-extrabold" itemProp="headline">
-              {post?.frontmatter?.title}
-            </h1>
-            <p className="text-xl italic font-medium">
-              {post?.frontmatter?.author}
-            </p>
-          </header>
+          <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
           <section
             ref={tategakiRef}
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className="w-full max-w-full font-serif text-lg text-justify md:text-xl multicolumn text-character vertical-rl"
+            className="w-full max-w-screen-xl font-serif text-lg text-justify text-gray-700 md:text-xl xl:text-2xl multicolumn text-character vertical-rl"
           />
-          <footer className="font-serif text-lg text-justify whitespace-pre-line md:text-xl">
+          <footer className="font-serif prose text-justify text-gray-700 whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">
             {post?.frontmatter?.profile}
           </footer>
         </article>
       </div>
-      <nav className="mb-12">
+      <nav className="mb-12 text-gray-700">
         <ul
           style={{
             display: `flex`,
