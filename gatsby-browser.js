@@ -8,6 +8,7 @@ import "./src/styles/style.css"
 
 import * as React from 'react'
 import Layout from 'src/components/Layout'
+import { RecoilRoot } from 'recoil'
 
 const wrapPageElement = ({ element, props }) => {
   return (
@@ -15,4 +16,12 @@ const wrapPageElement = ({ element, props }) => {
   )
 }
 
-export { wrapPageElement }
+const wrapRootElement = ({ element }) => {
+  return (
+    <RecoilRoot>
+      {element}
+    </RecoilRoot>
+  )
+}
+
+export { wrapPageElement, wrapRootElement }
