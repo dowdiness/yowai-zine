@@ -2,11 +2,8 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
 //Hooks
-import { useInView } from 'react-intersection-observer'
 import useSkew from 'src/hooks/useSkew'
 import useCursor from 'src/hooks/useCursor'
-import { motion } from 'framer-motion'
-import 'src/styles/cursor.css'
 
 //Components
 import ScrollArticle from 'src/components/ScrollArticle'
@@ -62,10 +59,9 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
       {/* Cursor */}
       <div
         ref={cursorRef}
-        id="cursor"
         className="fixed top-0 left-0 z-20 pointer-events-none"
       >
-        <div className="relative block w-64 h-64 -mt-32 -ml-32 overflow-hidden rounded-full cursor-media">
+        <div className="relative block w-64 h-64 -mt-32 -ml-32 overflow-hidden scale-0 rounded-full transform-gpu">
           {posts.map((post, index) => (
             <p
               key={index}
