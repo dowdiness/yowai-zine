@@ -22,39 +22,37 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   return (
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
-      <Div100vh className="w-screen -mt-32 overflow-y-scroll scrolling-touch m-screen sm:mandatory-scroll-snapping">
-        <section className="container w-auto scroll-snap-center">
-          <Div100vh className="flex items-center justify-center">
-            <h1 className="flex flex-col items-center space-y-8 font-sans text-center">
-              <span className="text-2xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
-              <span className="text-lg font-semibold sm:text-xl md:text-2xl">Here is the outside of your timeline.</span>
-            </h1>
-          </Div100vh>
-        </section>
-        <section className="container flex items-center justify-center w-auto h-auto my-24 sm:my-0 sm:h-screen scroll-snap-center">
-          <div>
-            <div className="relative mb-12 sm:float-left shape-outside sm:mb-0">
-              <h3 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
-              <h2 className="absolute w-full h-12 font-sans text-3xl text-center transform -translate-x-1/2 -translate-y-1/2 md:text-4xl xl:text-6xl inset-1/2">げんきですか？</h2>
-            </div>
-            <div className="text-center sm:text-left">
-              <p
-                className="inline-block text-lg leading-relaxed tracking-widest text-justify whitespace-pre-wrap sm:contents text-character h-160 column-count-2 column-gap-12 vertical-rl sm:text-xl sm:text-left sm:column-count-none sm:horizontal-tb sm:h-full md:leading-loosest"
-              >
-                {home?.introduction}
-              </p>
-            </div>
+      <section className="-mt-32">
+        <Div100vh className="flex items-center justify-center">
+          <h1 className="flex flex-col items-center space-y-8 font-sans text-center">
+            <span className="text-2xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
+            <span className="text-lg font-semibold sm:text-xl md:text-2xl">Here is the outside of your timeline.</span>
+          </h1>
+        </Div100vh>
+      </section>
+      <section className="flex items-center justify-center w-auto h-auto my-24 sm:my-0 sm:h-screen">
+        <div>
+          <div className="relative mb-12 sm:float-left shape-outside sm:mb-0">
+            <h3 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
+            <h2 className="absolute w-full h-12 font-sans text-3xl text-center transform -translate-x-1/2 -translate-y-1/2 md:text-4xl xl:text-6xl inset-1/2">げんきですか？</h2>
           </div>
-        </section>
-        <section className="container w-auto scroll-snap-center">
-          <Div100vh className="flex flex-col items-center justify-center space-y-24">
-            <h2 className="font-sans text-5xl font-bold">zineを読む</h2>
-            <Link className="overflow-hidden" to="/vol/0/">
-              <img className="transition-all duration-300 transform hover:scale-125 hover:blur" src={home?.image} width="300" height="450" />
-            </Link>
-          </Div100vh>
-        </section>
-      </Div100vh>
+          <div className="text-center sm:text-left">
+            <p
+              className="inline-block text-lg leading-relaxed tracking-widest text-justify whitespace-pre-wrap sm:contents text-character h-160 column-count-2 column-gap-12 vertical-rl sm:text-xl sm:text-left sm:column-count-none sm:horizontal-tb sm:h-full md:leading-loosest"
+            >
+              {home?.introduction}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="container w-auto">
+        <Div100vh className="flex flex-col items-center justify-center space-y-24">
+          <h2 className="font-sans text-5xl font-bold">zineを読む</h2>
+          <Link className="overflow-hidden" to="/vol/0/">
+            <img className="transition-all duration-300 transform hover:scale-125 hover:blur" src={home?.image} width="300" height="450" />
+          </Link>
+        </Div100vh>
+      </section>
       {/* <ol style={{ listStyle: 'none' }}>
         {posts.map(post => {
           const title = post.frontmatter?.title || post.fields?.slug
