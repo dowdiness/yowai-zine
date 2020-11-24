@@ -96,7 +96,7 @@ export const pageQuery = graphql`
           id
           childImageSharp {
             id
-            gatsbyImageData(maxWidth: 720, layout: FLUID)
+            gatsbyImageData(maxWidth: 768, layout: CONSTRAINED)
           }
         }
       }
