@@ -3,7 +3,7 @@ import Header from './Header'
 import Footer from './Footer'
 import Div100vh from 'react-div-100vh'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useViewportScroll, useTransform } from 'framer-motion'
 import { StaticImage } from "gatsby-plugin-image"
 import useMouse from 'src/hooks/useMouse'
 import 'src/styles/cursor.css'
@@ -15,11 +15,13 @@ type LayoutProps = {
 const transition = { duration: 1.6, ease: [0.43, 0.13, 0.23, 0.96] }
 
 const Layout: React.FC<LayoutProps> = ({ children, location }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  const isRootPath = location?.pathname === rootPath
+  // const rootPath = `${__PATH_PREFIX__}/`
+  // const isRootPath = location?.pathname === rootPath
   const [transitionStarted, setTransitionStarted] = useState(false)
   const [transitionFinished, setTransitionFinished] = useState(false)
   const mouse = useMouse<HTMLDivElement>()
+  const { scrollYProgress } = useViewportScroll()
+  const multipleScaleY = useTransform(scrollYProgress, value => value * 2)
 
   useEffect(() => {
     setTimeout(() => {
@@ -74,7 +76,11 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
             >
               <Header className="z-40" />
               <main className="container w-auto mt-32">{children}</main>
-              {!isRootPath && <Footer className="z-40" />}
+              <Footer className="z-40" />
+              <motion.div
+                className="fixed top-0 right-0 z-50 w-3 h-screen bg-blue-600"
+                style={{ scaleY: multipleScaleY, translateY: '-50%' }}
+              />
             </motion.div>
           )}
       </AnimatePresence>
