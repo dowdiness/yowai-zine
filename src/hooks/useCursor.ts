@@ -123,7 +123,7 @@ const useCursor = <T extends HTMLElement>(hoverElementSelectors: string) => {
 
   useIsomorphicLayoutEffect(() => {
     const _cursor = new Cursor(cursorRef.current, hoverElementSelectors)
-  })
+  }, [])
 
   return { cursorRef }
 }
