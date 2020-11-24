@@ -19,6 +19,13 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .html::-webkit-scrollbar {
+    display: none;
   }
 
   body {
@@ -42,6 +49,8 @@
 }
 
 @layer utilities {
+  .cursor-none { cursor: none; }
+
   @variants hover {
     .blur {
       filter: blur(4px);
