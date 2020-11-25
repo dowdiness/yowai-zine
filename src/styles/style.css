@@ -24,7 +24,7 @@
     scrollbar-width: none;
   }
 
-  .html::-webkit-scrollbar {
+  html::-webkit-scrollbar {
     display: none;
   }
 
