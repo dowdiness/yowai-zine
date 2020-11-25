@@ -24,9 +24,11 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   const multipleScaleY = useTransform(scrollYProgress, value => value * 2)
 
   useEffect(() => {
-    setTimeout(() => {
-      setTransitionStarted(true)
-    }, 2400)
+    if (!transitionStarted) {
+      setTimeout(() => {
+        setTransitionStarted(true)
+      }, 2400)
+    }
   }, [])
 
   return (
@@ -74,9 +76,9 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
               transition={transition}
               onAnimationComplete={useCallback(() => setTransitionFinished(true), [])}
             >
-              <Header className="z-40" />
-              <main className="container w-auto mt-32">{children}</main>
-              <Footer className="z-40" />
+              <Header className="fixed top-0 z-40 w-full" />
+              <main className="container w-auto">{children}</main>
+              <Footer className="container z-40 py-16" />
               <motion.div
                 className="fixed top-0 right-0 z-50 w-3 h-screen bg-blue-600"
                 style={{ scaleY: multipleScaleY, translateY: '-50%' }}
