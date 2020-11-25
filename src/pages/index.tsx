@@ -22,7 +22,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   return (
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
-      <section className="-mt-32">
+      <section>
         <Div100vh className="flex items-center justify-center">
           <h1 className="flex flex-col items-center space-y-8 font-sans text-center">
             <span className="text-2xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>

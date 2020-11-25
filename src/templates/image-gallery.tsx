@@ -19,7 +19,7 @@ const ImageGalleryTemplate: React.FC<PageProps<
         description={ artist?.name || ``}
       />
       <article
-        className="mx-auto my-16 space-y-16 text-center"
+        className="py-16 mx-auto space-y-16 text-center"
         itemScope
         itemType="http://schema.org/Article"
       >
@@ -33,6 +33,7 @@ const ImageGalleryTemplate: React.FC<PageProps<
           className="w-full max-w-screen-md mx-auto space-y-16"
         >
           { artworks && artworks.map((artwork, index) => {
+            // @ts-ignore
             const imageData = getImage(artwork.node)
             return <GatsbyImage image={imageData!} alt="Plant" />
           })}
@@ -41,7 +42,7 @@ const ImageGalleryTemplate: React.FC<PageProps<
           {artist?.name}
         </footer>
       </article>
-      <nav className="mb-12">
+      <nav className="pb-12">
         <ul
           style={{
             display: `flex`,

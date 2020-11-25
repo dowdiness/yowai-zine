@@ -17,24 +17,22 @@ const HorizontalArticleTemplate: React.FC<PageProps<
         title={post?.frontmatter?.title || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
       />
-      <div className="">
-        <article
-          className="mx-auto my-16 space-y-16 text-center"
-          itemScope
-          itemType="http://schema.org/Article"
-        >
-          <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
-          <section
-            dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
-            itemProp="articleBody"
-            className="w-full font-serif prose text-center sm:prose-lg md:prose-xl xl:prose-2xl text-character"
-          />
-          <footer className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">
-            {post?.frontmatter?.profile}
-          </footer>
-        </article>
-      </div>
-      <nav className="mb-12 text-gray-700">
+      <article
+        className="py-16 mx-auto space-y-16 text-center"
+        itemScope
+        itemType="http://schema.org/Article"
+      >
+        <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
+        <section
+          dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
+          itemProp="articleBody"
+          className="w-full font-serif prose text-center sm:prose-lg md:prose-xl xl:prose-2xl text-character"
+        />
+        <footer className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">
+          {post?.frontmatter?.profile}
+        </footer>
+      </article>
+      <nav className="pb-12 text-gray-700">
         <ul
           style={{
             display: `flex`,
