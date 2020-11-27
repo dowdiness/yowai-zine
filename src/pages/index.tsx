@@ -6,6 +6,7 @@ import useCircularText from 'src/hooks/useCircularText'
 import useWindowSize from 'src/hooks/useWindowSize'
 
 import Div100vh from 'react-div-100vh'
+import { StaticImage } from "gatsby-plugin-image"
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
@@ -49,7 +50,13 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
         <Div100vh className="flex flex-col items-center justify-center space-y-24">
           <h2 className="font-sans text-5xl font-bold">zineを読む</h2>
           <Link className="overflow-hidden" to="/vol/0/">
-            <img className="transition-all duration-300 transform hover:scale-125 hover:blur" src={home?.image} width="300" height="450" />
+            <StaticImage
+              width={300}
+              height={450}
+              src="zine-vol-0.jpeg"
+              alt="zine-vol-0"
+              className="transition-all duration-300 transform hover:scale-125 hover:blur"
+            />
           </Link>
         </Div100vh>
       </section>
