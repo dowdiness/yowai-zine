@@ -75,10 +75,11 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
               exit={{ opacity: 0 }}
               transition={transition}
               onAnimationComplete={useCallback(() => setTransitionFinished(true), [])}
+              className="container w-auto"
             >
               <Header className="fixed top-0 z-40 w-full" />
-              <main className="container w-auto">{children}</main>
-              <Footer className="container z-40 py-16" />
+              <main>{children}</main>
+              <Footer className="z-40 py-16" />
               <motion.div
                 className="fixed top-0 right-0 z-50 w-3 h-screen bg-blue-600"
                 style={{ scaleY: multipleScaleY, translateY: '-50%' }}
@@ -90,8 +91,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
         ref={mouse.cursorRef}
         id="cursor"
         className={`fixed top-0 left-0 z-20 pointer-events-none ${transitionFinished ? 'visible' : 'invisible'}`}
-      >
-      </div>
+      />
     </>
   )
 }
