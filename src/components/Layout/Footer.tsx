@@ -25,7 +25,7 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
             </a>
           </div>
         </nav> */}
-        <h4 className="mt-8 text-base italic leading-6 text-center text-gray-400">
+        <h4 className="mt-8 text-base italic leading-6 text-center text-gray-600">
           Don't kill. Protect your weakness.
         </h4>
       </div>
