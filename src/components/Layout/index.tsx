@@ -77,7 +77,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
               onAnimationComplete={useCallback(() => setTransitionFinished(true), [])}
               className="container w-auto"
             >
-              <Header className="fixed top-0 z-40 w-full" />
+              <Header className="fixed inset-x-0 top-0 z-40 w-full" />
               <main>{children}</main>
               <Footer className="z-40 py-16" />
               <motion.div
