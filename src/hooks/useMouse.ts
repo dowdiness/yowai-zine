@@ -71,11 +71,10 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
     cursorRef.current.style.opacity = '0'
   }, [transitionFinished])
 
+  // addEventListener to scale up cursor for new pages
   useEffect(() => {
-    document.addEventListener('mousemove', firstMoveHandler)
-    document.addEventListener('mousemove', moveHandler)
-
-    globalHistory.listen(({ action }) => {
+    // return HistoryUnsubscribe to unsubscribe HistoryListener
+    return globalHistory.listen(({ action }) => {
       if (action === 'PUSH') {
         leave()
         const waitTransitioningFinished = () => {
@@ -91,6 +90,11 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
         waitTransitioningFinished()
       }
     })
+  }, [])
+
+  useEffect(() => {
+    document.addEventListener('mousemove', firstMoveHandler)
+    document.addEventListener('mousemove', moveHandler)
 
     if(transitionFinished) {
       document.querySelectorAll('a, button, .gatsby-resp-image-image').forEach(link => {
