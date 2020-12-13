@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   // const isRootPath = location?.pathname === rootPath
   const [transitionStarted, setTransitionStarted] = useState(false)
   const [transitionFinished, setTransitionFinished] = useState(false)
-  const mouse = useMouse<HTMLDivElement>()
+  const mouse = useMouse<HTMLDivElement>(transitionFinished)
   const { scrollYProgress } = useViewportScroll()
   const multipleScaleY = useTransform(scrollYProgress, value => value * 2)
 
@@ -76,7 +76,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
               onAnimationComplete={useCallback(() => setTransitionFinished(true), [])}
               className="container"
             >
-              <Header className="container fixed inset-x-0 top-0 z-40" location={location} />
+              <Header className="container fixed inset-x-0 top-0 z-40" />
               <main>{children}</main>
               <Footer className="z-40 py-16" />
               <motion.div
