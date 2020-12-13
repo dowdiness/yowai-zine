@@ -3,7 +3,7 @@ import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { ArticleHeader, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
-
+import { FaArrowLeft } from "react-icons/fa"
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -13,6 +13,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
   const post = data.markdownRemark
   const { previous, next } = data
   const { tategakiRef } = useTategaki()
+  const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
 
   return (
     <>
@@ -20,6 +21,12 @@ const VerticalArticleTemplate: React.FC<PageProps<
         title={post?.frontmatter?.title || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
       />
+      <Link
+        to={`${zineIndexPath}/`}
+        className="fixed z-50 flex items-center px-2 py-1 font-bold top-3 justify-self-start"
+      >
+        <FaArrowLeft className="w-8 h-8 mr-2" /><span className="text-lg font-semibold">目次に戻る</span>
+      </Link>
       <div className="">
         <article
           className="max-w-screen-xl py-16 mx-auto text-center"
@@ -30,14 +37,14 @@ const VerticalArticleTemplate: React.FC<PageProps<
           <div className="flex py-6 pr-3 mx-1 border-black rounded-md border-3">
             <div className="w-screen m-screen">
               <ArticleShareButton
-                className="sticky max-h-screen top-12"
+                className="sticky max-h-screen top-16"
                 articleTitle={post?.frontmatter?.title!}
                 articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
                 articleDescription={post?.excerpt!}
               />
             </div>
             <ArticleSideHeader
-              className="sticky h-full top-12"
+              className="sticky h-full top-16"
               title={post?.frontmatter?.title}
               author={post?.frontmatter?.author}
             />
