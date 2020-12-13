@@ -15,6 +15,7 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
             height={128}
             src="yowai-logo.png"
             alt="yowai-logo"
+            placeholder="none"
             className="w-32 h-32 text-center transition-opacity duration-300 ease-out hover:opacity-50"
           />
         </Link>
