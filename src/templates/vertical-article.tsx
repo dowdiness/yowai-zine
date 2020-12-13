@@ -2,8 +2,8 @@ import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { ArticleHeader } from 'src/components/Article'
-import { ArticleSideHeader } from 'src/components/Article'
+import { ArticleHeader, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
+
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -27,8 +27,20 @@ const VerticalArticleTemplate: React.FC<PageProps<
           itemType="http://schema.org/Article"
         >
           <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
-          <div className="flex pt-3 pb-3 pr-3 border-black rounded-md border-3">
-            <ArticleSideHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
+          <div className="flex py-6 pr-3 mx-1 border-black rounded-md border-3">
+            <div className="w-screen m-screen">
+              <ArticleShareButton
+                className="sticky max-h-screen top-12"
+                articleTitle={post?.frontmatter?.title!}
+                articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
+                articleDescription={post?.excerpt!}
+              />
+            </div>
+            <ArticleSideHeader
+              className="sticky h-full top-12"
+              title={post?.frontmatter?.title}
+              author={post?.frontmatter?.author}
+            />
             <section
               ref={tategakiRef}
               dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
@@ -92,11 +104,14 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         author
         profile
-        description
+        vol
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
