@@ -1,0 +1,11 @@
+@layer utilities {
+  .invert {
+    filter: invert(1);
+  }
+
+  @variants hover {
+    .blur {
+      filter: blur(4px);
+    }
+  }
+}

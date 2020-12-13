@@ -1,0 +1,23 @@
+.blend-exclusion {
+  mix-blend-mode: exclusion;
+}
+
+.blend-overlay {
+  mix-blend-mode: overlay;
+}
+
+.blend-dodge {
+  mix-blend-mode: color-dodge;
+}
+
+.blend-screen {
+  mix-blend-mode: screen;
+}
+
+.blend-difference {
+  mix-blend-mode: difference;
+}
+
+.blend-multiply {
+  mix-blend-mode: multiply;
+}

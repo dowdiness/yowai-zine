@@ -4,7 +4,10 @@ import "fontsource-noto-sans-jp"
 import "fontsource-roboto-mono"
 
 // custom CSS styles
+// Separate up tailwindcss files for fast recompile https://github.com/brianlovin/brian-lovin-next/pull/1193
+import "./src/styles/tailwind.css"
 import "./src/styles/style.css"
+import "./src/styles/tailwind-utils.css"
 
 import * as React from 'react'
 import Layout from 'src/components/Layout'

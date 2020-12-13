@@ -1,12 +1,14 @@
 /* CSS Custom Properties Definitions */
 
-@import "tailwindcss/base";
-
-@import "tailwindcss/components";
-
-@import "tailwindcss/utilities";
+@import "./scrollbar.css";
 
 @import "./animation.css";
+
+@import "./mix-blend.css";
+
+@import "./filter.css";
+
+@import "./cursor.css";
 
 /* HTML elements */
 @layer base {
@@ -20,12 +22,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  html::-webkit-scrollbar {
-    display: none;
   }
 
   body {
@@ -51,11 +47,6 @@
 @layer utilities {
   .cursor-none { cursor: none; }
 
-  @variants hover {
-    .blur {
-      filter: blur(4px);
-    }
-  }
   @responsive {
     .xl-text {
       font-size: 1.25rem;
