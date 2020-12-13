@@ -48,7 +48,7 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
             {artworks.map((artwork, index) => (
               <ScrollArticle
                 index={index}
-                to={`/vol/0/${artwork.node.name}`}
+                to={`/vol/0/${artwork.node.name}/`}
                 linkText={artwork.node.name}
                 useCursor={false}
               />
