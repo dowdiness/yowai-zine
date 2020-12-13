@@ -35,7 +35,7 @@ const ImageGalleryTemplate: React.FC<PageProps<
           { artworks && artworks.map((artwork, index) => {
             // @ts-ignore
             const imageData = getImage(artwork.node)
-            return <GatsbyImage image={imageData!} alt="Plant" />
+            return <GatsbyImage image={imageData!} alt="Plant" className="blend-multiply" />
           })}
         </section>
         <footer className="font-serif prose-sm prose text-center whitespace-pre-line sm:prose lg:prose-lg xl:prose-xl 2xl:prose-2xl">
