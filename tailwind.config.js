@@ -3,6 +3,9 @@ const plugin = require("tailwindcss/plugin")
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+  corePlugins: {
+    container: false,
+  },
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
@@ -21,23 +24,6 @@ module.exports = {
       md: "768px",
       lg: "992px",
       xl: "1280px",
-    },
-    container: {
-      center: true,
-      width: {
-        DEFAULT: '',
-        sm: "480px",
-        md: "768px",
-        lg: "992px",
-        xl: "1280px",
-      },
-      padding: {
-        DEFAULT: '1rem',
-        sm: '1.5rem',
-        md: '2rem',
-        lg: '2.5rem',
-        xl: '3rem',
-      },
     },
     extend: {
       typography: (theme) => ({

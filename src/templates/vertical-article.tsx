@@ -3,6 +3,7 @@ import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { ArticleHeader } from 'src/components/Article'
+import { ArticleSideHeader } from 'src/components/Article'
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -19,57 +20,62 @@ const VerticalArticleTemplate: React.FC<PageProps<
         title={post?.frontmatter?.title || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
       />
-      <article
-        className="py-16 mx-auto space-y-16 text-center"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
-        <section
-          ref={tategakiRef}
-          dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
-          itemProp="articleBody"
-          className="w-full max-w-screen-xl font-serif text-lg text-justify text-gray-700 md:text-xl xl:text-2xl multicolumn text-character vertical-rl"
-        />
-        <footer className="font-serif prose text-justify text-gray-700 whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">
-          {post?.frontmatter?.profile}
-        </footer>
-      </article>
-      <nav className="pb-12 text-gray-700">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
+      <div className="">
+        <article
+          className="max-w-screen-xl py-16 mx-auto text-center"
+          itemScope
+          itemType="http://schema.org/Article"
         >
-          <li>
-            {previous && (
-              <Link
-                to={
-                  `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` ||
-                  `/`
-                }
-                rel="prev"
-              >
-                ← {previous.frontmatter?.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link
-                to={`/vol/${next.frontmatter?.vol}${next.fields?.slug}` || `/`}
-                rel="next"
-              >
-                {next.frontmatter?.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+          <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
+          <div className="flex pt-3 pb-3 pr-3 border-black rounded-md border-3">
+            <ArticleSideHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
+            <section
+              ref={tategakiRef}
+              dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
+              itemProp="articleBody"
+              className="font-serif text-lg text-justify text-gray-700 main-article-width md:text-xl xl:text-2xl multicolumn text-character vertical-rl"
+            />
+          </div>
+          <footer className="mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">
+              {post?.frontmatter?.profile}
+          </footer>
+        </article>
+        <nav className="pb-12 text-gray-700">
+          <ul
+            style={{
+              display: `flex`,
+              flexWrap: `wrap`,
+              justifyContent: `space-between`,
+              listStyle: `none`,
+              padding: 0,
+            }}
+          >
+            <li>
+              {previous && (
+                <Link
+                  to={
+                    `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` ||
+                    `/`
+                  }
+                  rel="prev"
+                >
+                  ← {previous.frontmatter?.title}
+                </Link>
+              )}
+            </li>
+            <li>
+              {next && (
+                <Link
+                  to={`/vol/${next.frontmatter?.vol}${next.fields?.slug}` || `/`}
+                  rel="next"
+                >
+                  {next.frontmatter?.title} →
+                </Link>
+              )}
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   )
 }

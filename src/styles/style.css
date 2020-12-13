@@ -44,8 +44,36 @@
   }
 }
 
+@layer components {
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    width: calc(100vw - 4rem);
+    @screen lg {
+      width: calc(100% - 8rem);
+    }
+  }
+
+  .main-article-width {
+    width: calc(100% - 3rem);
+    @screen sm {
+      width: calc(100% - 4rem);
+    }
+    @screen md {
+      width: calc(100% - 5rem);
+    }
+    @screen lg {
+      width: calc(100% - 6rem);
+    }
+  }
+}
+
 @layer utilities {
   .cursor-none { cursor: none; }
+
+  .border-3 {
+    border-width: 3px;
+  }
 
   @responsive {
     .xl-text {

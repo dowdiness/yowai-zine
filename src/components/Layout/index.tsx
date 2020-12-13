@@ -6,7 +6,6 @@ import Div100vh from 'react-div-100vh'
 import { motion, AnimatePresence, useViewportScroll, useTransform } from 'framer-motion'
 import { StaticImage } from "gatsby-plugin-image"
 import useMouse from 'src/hooks/useMouse'
-import 'src/styles/cursor.css'
 
 type LayoutProps = {
   location?: Location
@@ -75,9 +74,9 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
               exit={{ opacity: 0 }}
               transition={transition}
               onAnimationComplete={useCallback(() => setTransitionFinished(true), [])}
-              className="container w-auto"
+              className="container"
             >
-              <Header className="fixed inset-x-0 top-0 z-40 w-full" />
+              <Header className="container fixed inset-x-0 top-0 z-40" location={location} />
               <main>{children}</main>
               <Footer className="z-40 py-16" />
               <motion.div
