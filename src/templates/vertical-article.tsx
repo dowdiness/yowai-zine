@@ -21,12 +21,14 @@ const VerticalArticleTemplate: React.FC<PageProps<
         title={post?.frontmatter?.title || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
       />
-      <Link
-        to={`${zineIndexPath}/`}
-        className="fixed z-50 flex items-center px-2 py-1 font-bold top-3 justify-self-start"
-      >
-        <FaArrowLeft className="w-8 h-8 mr-2" /><span className="text-lg font-semibold">目次に戻る</span>
-      </Link>
+      <div className="w-screen m-screen">
+        <Link
+          to={`${zineIndexPath}/`}
+          className="fixed z-50 flex items-center px-2 py-1 font-bold top-3 justify-self-start"
+        >
+          <FaArrowLeft className="w-8 h-8 mr-2" /><span className="text-lg font-semibold">目次に戻る</span>
+        </Link>
+      </div>
       <div className="">
         <article
           className="max-w-screen-xl py-16 mx-auto text-center"
