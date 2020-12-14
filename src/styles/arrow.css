@@ -1,99 +1,96 @@
-@layer base {
-  :root {
-    --normal-color: theme('colors.gray.500');
-    --hovered-color: theme('colors.gray.900');
-    --text-arrow-space: 16px;
-    --shaft-width: 64px;
-    --arrow-head-width: 16px;
-    --shaft-thickness: 2px;
-    --arrow-head-thickness: var(--shaft-thickness);
-  }
+:root {
+  --normal-color: theme('colors.gray.500');
+  --hovered-color: theme('colors.gray.900');
+  --text-arrow-space: 16px;
+  --shaft-width: 64px;
+  --arrow-head-width: 16px;
+  --shaft-thickness: 2px;
+  --arrow-head-thickness: var(--shaft-thickness);
 }
 
 /* left Arrow */
-@layer components {
-  .left-arrow {
-    width: var(--shaft-width);
-    transition: all 0.2s;
+.left-arrow {
+  width: var(--shaft-width);
+  transition: all 0.2s;
 
-    &.-right {
-      position: absolute;
-      top: 50%;
-      right: 0;
-
-      > .shaft {
-        width: 0;
-        background-color: var(--normal-color);
-
-        &:before,
-        &:after {
-          width: 0;
-          background-color: var(--normal-color);
-        }
-
-        &:before {
-          transform: rotate(0);
-        }
-
-        &:after {
-          transform: rotate(0);
-        }
-      }
-    }
-
-    &.-left {
-      > .shaft {
-        width: var(--shaft-width);
-        transition-delay: 0.2s;
-
-        &:before,
-        &:after {
-          width: var(--arrow-head-width);
-          transition-delay: 0.3s;
-          transition: all 0.5s;
-        }
-
-        &:before {
-          transform: rotate(40deg);
-        }
-
-        &:after {
-          transform: rotate(-40deg);
-        }
-      }
-    }
+  &.-right {
+    position: absolute;
+    top: 50%;
+    right: 0;
 
     > .shaft {
+      width: 0;
       background-color: var(--normal-color);
-      display: block;
-      height: var(--shaft-thickness);
-      position: relative;
-      transition: all 0.2s;
-      transition-delay: 0;
-      will-change: transform;
 
       &:before,
       &:after {
+        width: 0;
         background-color: var(--normal-color);
-        content: '';
-        display: block;
-        height: var(--arrow-head-thickness);
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: all 0.2s;
-        transition-delay: 0;
       }
 
       &:before {
-        transform-origin: top left;
+        transform: rotate(0);
       }
 
       &:after {
-        transform-origin: bottom left;
+        transform: rotate(0);
       }
     }
   }
+
+  &.-left {
+    > .shaft {
+      width: var(--shaft-width);
+      transition-delay: 0.2s;
+
+      &:before,
+      &:after {
+        width: var(--arrow-head-width);
+        transition-delay: 0.3s;
+        transition: all 0.5s;
+      }
+
+      &:before {
+        transform: rotate(40deg);
+      }
+
+      &:after {
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  > .shaft {
+    background-color: var(--normal-color);
+    display: block;
+    height: var(--shaft-thickness);
+    position: relative;
+    transition: all 0.2s;
+    transition-delay: 0;
+    will-change: transform;
+
+    &:before,
+    &:after {
+      background-color: var(--normal-color);
+      content: '';
+      display: block;
+      height: var(--arrow-head-thickness);
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 0.2s;
+      transition-delay: 0;
+    }
+
+    &:before {
+      transform-origin: top left;
+    }
+
+    &:after {
+      transform-origin: bottom left;
+    }
+  }
+}
 
   /* Animated Arrow Button */
 
@@ -342,5 +339,4 @@
       position: relative;
     }
   }
-}
 }
