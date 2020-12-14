@@ -3,7 +3,6 @@ import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { ArticleHeader, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
-import { FaArrowLeft } from "react-icons/fa"
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -21,32 +20,40 @@ const VerticalArticleTemplate: React.FC<PageProps<
         title={post?.frontmatter?.title || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
       />
-      <div className="w-screen m-screen">
-        <Link
-          to={`${zineIndexPath}/`}
-          className="fixed z-50 flex items-center px-2 py-1 font-bold top-3 justify-self-start"
-        >
-          <FaArrowLeft className="w-8 h-8 mr-2" /><span className="text-lg font-semibold">目次に戻る</span>
-        </Link>
-      </div>
       <div className="">
         <article
-          className="max-w-screen-xl py-16 mx-auto text-center"
+          className="py-16 mx-auto"
           itemScope
           itemType="http://schema.org/Article"
         >
+          <Link
+            to={`${zineIndexPath}/`}
+            className="justify-start mt-12 text-left left-animated-arrow"
+          >
+            <span className='left-arrow-content'>
+              <span className='left-arrow -left'>
+                <span className='shaft'></span>
+              </span>
+              <span className='text'>
+                目次に戻る
+              </span>
+            </span>
+            <span className='left-arrow -right'>
+              <span className='shaft'></span>
+            </span>
+          </Link>
           <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
           <div className="flex py-6 pr-3 mx-1 border-black rounded-md border-3">
             <div className="w-screen m-screen">
               <ArticleShareButton
-                className="sticky max-h-screen top-16"
+                className="sticky max-h-screen top-16 sm:left-1 md:left-2 lg:left-0 xl:left-1"
                 articleTitle={post?.frontmatter?.title!}
                 articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
                 articleDescription={post?.excerpt!}
               />
             </div>
             <ArticleSideHeader
-              className="sticky h-full top-16"
+              className="sticky h-full ml-8 top-16"
               title={post?.frontmatter?.title}
               author={post?.frontmatter?.author}
             />
@@ -54,24 +61,18 @@ const VerticalArticleTemplate: React.FC<PageProps<
               ref={tategakiRef}
               dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
               itemProp="articleBody"
-              className="font-serif text-lg text-justify text-gray-700 main-article-width md:text-xl xl:text-2xl multicolumn text-character vertical-rl"
+              className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             />
           </div>
-          <footer className="mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">
+          <footer className="mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">
               {post?.frontmatter?.profile}
           </footer>
         </article>
         <nav className="pb-12 text-gray-700">
           <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
+            className="flex flex-col items-center justify-between space-y-8 list-none md:space-y-0 md:flex-row"
           >
-            <li>
+            <li className="w-full">
               {previous && (
                 <Link
                   to={
@@ -79,18 +80,40 @@ const VerticalArticleTemplate: React.FC<PageProps<
                     `/`
                   }
                   rel="prev"
+                  className="left-animated-arrow"
                 >
-                  ← {previous.frontmatter?.title}
+                  <span className='left-arrow-content'>
+                    <span className='left-arrow -left'>
+                      <span className='shaft'></span>
+                    </span>
+                    <span className='text'>
+                      {previous.frontmatter?.title}
+                    </span>
+                  </span>
+                  <span className='left-arrow -right'>
+                    <span className='shaft'></span>
+                  </span>
                 </Link>
               )}
             </li>
-            <li>
+            <li className="w-full text-right">
               {next && (
                 <Link
                   to={`/vol/${next.frontmatter?.vol}${next.fields?.slug}` || `/`}
                   rel="next"
+                  className='animated-arrow'
                 >
-                  {next.frontmatter?.title} →
+                  <span className='the-arrow -left'>
+                    <span className='shaft'></span>
+                  </span>
+                  <span className='main'>
+                    <span className='text'>
+                      {next.frontmatter?.title}
+                    </span>
+                    <span className='the-arrow -right'>
+                      <span className='shaft'></span>
+                    </span>
+                  </span>
                 </Link>
               )}
             </li>
