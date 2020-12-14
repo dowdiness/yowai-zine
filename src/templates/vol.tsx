@@ -19,7 +19,7 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
 
   return (
     <>
-      <div className="py-64 space-y-80">
+      <div className="py-48 space-y-64">
         <section className="flex flex-col justify-center mx-auto space-y-32">
           <div data-skew className="flex justify-center mx-auto">
             <h2 className="text-6xl border-b-8 border-blue-700 outline sm:text-7xl md:text-8xl">
