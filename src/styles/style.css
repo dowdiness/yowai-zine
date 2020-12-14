@@ -49,8 +49,17 @@
     margin-right: auto;
     margin-left: auto;
     width: calc(100vw - 4rem);
+    @screen sm {
+      width: calc(100vw - 6rem);
+    }
+    @screen md {
+      width: calc(100vw - 8rem);
+    }
     @screen lg {
-      width: calc(100% - 8rem);
+      width: calc(100vw - 10rem);
+    }
+    @screen xl {
+      width: calc(100vw - 12rem);
     }
   }
 
@@ -64,6 +73,9 @@
     }
     @screen lg {
       width: calc(100% - 6rem);
+    }
+    @screen xl {
+      width: calc(100% - 7rem);
     }
   }
 }
