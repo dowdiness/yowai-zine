@@ -29,6 +29,11 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             <span className="text-2xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
             <span className="text-lg font-semibold sm:text-xl md:text-2xl">Here is the outside of your timeline.</span>
           </h1>
+          <div className="scroll-down">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </Div100vh>
       </section>
       <section className="flex items-center justify-center w-auto h-auto my-24 sm:my-0 sm:h-screen">
