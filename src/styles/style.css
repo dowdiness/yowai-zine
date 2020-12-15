@@ -18,6 +18,7 @@
   ::before,
   ::after {
     box-sizing: content-box;
+    cursor: none !important;
   }
 
   html {
