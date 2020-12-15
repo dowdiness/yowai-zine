@@ -49,29 +49,29 @@ class Cursor {
     if (ref.current) {
       if (ref.current.matches(':hover')) {
         this.setSource(ref.current)
-        this.scaleAnimation(this.Cursor.children[0], 0.8)
+        this.scaleAnimation(this.Cursor.children[0], 0.4)
       }
       ref.current.addEventListener('mouseenter', () => {
         this.setSource(ref.current)
-        this.scaleAnimation(this.Cursor.children[0], 0.6)
+        this.scaleAnimation(this.Cursor.children[0], 0.4)
       })
       ref.current.addEventListener('mouseleave', () => {
         this.scaleAnimation(this.Cursor.children[0], 0)
       })
       ref.current.children[1].addEventListener('mouseenter', () => {
         this.Cursor.classList.add('media-blend')
-        this.scaleAnimation(this.Cursor.children[0], 1.4)
+        this.scaleAnimation(this.Cursor.children[0], 1)
       })
       ref.current.children[1].addEventListener('mouseleave', () => {
         this.Cursor.classList.remove('media-blend')
-        this.scaleAnimation(this.Cursor.children[0], 0.8)
+        this.scaleAnimation(this.Cursor.children[0], 0.4)
       })
     }
   }
 
   scaleAnimation(el: Element, amt: number) {
     gsap.to(el, {
-      duration: 0.6,
+      duration: 1.2,
       ease: 'Power3.easeOut',
       scale: amt,
     })
