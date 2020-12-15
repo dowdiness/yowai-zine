@@ -15,8 +15,8 @@ module.exports = {
   purge: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
     fontFamily: {
-      sans: ["'Noto Sans JP'", "'Roboto Mono'", "Consolas", "'Courier New'", ...defaultTheme.fontFamily.sans],
-      serif: ["'Noto Serif JP'", "'Roboto Mono'", ...defaultTheme.fontFamily.serif],
+      sans: ["'Noto Sans JP'", "Jost", ...defaultTheme.fontFamily.sans],
+      serif: ["'Noto Serif JP'", "Jost", ...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
     },
     screens: {

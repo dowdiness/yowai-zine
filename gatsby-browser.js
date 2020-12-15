@@ -1,7 +1,7 @@
 // custom fontsource
 import "fontsource-noto-serif-jp"
 import "fontsource-noto-sans-jp"
-import "fontsource-roboto-mono"
+import "fontsource-jost"
 
 // custom CSS styles
 // Separate up tailwindcss files for fast recompile https://github.com/brianlovin/brian-lovin-next/pull/1193
