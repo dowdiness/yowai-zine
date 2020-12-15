@@ -30,10 +30,10 @@
   body {
     font-family: 'Noto Serif JP', 'Roboto Mono', serif;
     font-feature-settings: "palt";
-    @apply text-gray-900;
+    @apply text-gray-900 bg-neumorphism;
   }
 
-  body::before {
+  /* body::before {
     animation: grain 8s steps(10) infinite;
     background-image: url("/paper-pattern.png");
     content: "";
@@ -44,7 +44,7 @@
     top: -100%;
     width: 300%;
     z-index: -10;
-  }
+  } */
 }
 
 @layer components {
@@ -125,6 +125,22 @@
   .border-3 {
     border-width: 3px;
   }
+
+  .neumorphism-deep {
+    box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6),
+      -9px -9px 16px rgba(255, 255, 255, 0.5),
+      inset 3px 3px 7px rgba(136, 165, 191, 0.48),
+      inset -3px -3px 7px #FFFFFF;
+    background: linear-gradient(318.32deg, rgba(163, 177, 198, 0.1) 0%, rgba(163, 177, 198, 0.1) 55%, rgba(163, 177, 198, 0.25) 100%);
+  }
+
+  .neumorphism-inset {
+    box-shadow: inset 3px 3px 7px rgba(136, 165, 191, 0.48), inset -3px -3px 7px #FFFFFF;
+  }
+
+  .neumorphism-normal {
+    box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+  },
 
   @responsive {
     .xl-text {

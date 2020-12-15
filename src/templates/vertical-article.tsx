@@ -43,7 +43,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
             </span>
           </Link>
           <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
-          <div className="flex py-6 pr-3 mx-1 border-black rounded-md border-3">
+          <div className="flex py-6 pr-3 mx-1 neumorphism-normal rounded-2xl">
             <div className="w-screen m-screen">
               <ArticleShareButton
                 className="sticky max-h-screen top-16 sm:left-1 md:left-2 lg:left-0 xl:left-1"
@@ -64,7 +64,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             />
           </div>
-          <footer className="mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">
+          <footer className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line max-w-none sm:prose-lg md:prose-xl neumorphism-inset rounded-2xl">
               {post?.frontmatter?.profile}
           </footer>
         </article>
