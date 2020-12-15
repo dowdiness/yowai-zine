@@ -5,15 +5,19 @@ import { Link } from 'gatsby'
 import useWindowScroll from 'src/hooks/useWindowScroll'
 import usePrevious from 'src/hooks/usePrevious'
 
-export type HeaderProps = unknown
-export const Header: React.FCX<HeaderProps> = ({ className }) => {
+export type HeaderProps = {
+  location: Location
+}
+export const Header: React.FCX<HeaderProps> = ({ className, location }) => {
+  const rootPath = `${__PATH_PREFIX__}/`
+  const isRootPath = location?.pathname === rootPath
   const { y } = useWindowScroll()
   const previousY = usePrevious(y)
   const [inView, setInView] = useState(false)
 
   useEffect(() => {
-    if(previousY) y < previousY ? setInView(true) : setInView(false)
-  }, [y])
+    if(previousY) !isRootPath && y < previousY ? setInView(true) : setInView(false)
+  }, [y, isRootPath])
 
   return (
     <header

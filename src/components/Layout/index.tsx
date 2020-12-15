@@ -7,15 +7,13 @@ import { motion, AnimatePresence, useViewportScroll, useTransform } from 'framer
 import { StaticImage } from "gatsby-plugin-image"
 import useMouse from 'src/hooks/useMouse'
 
-type LayoutProps = {
-  location?: Location
-}
-
 const transition = { duration: 1.6, ease: [0.43, 0.13, 0.23, 0.96] }
 
+type LayoutProps = {
+  location: Location
+}
+
 const Layout: React.FC<LayoutProps> = ({ children, location }) => {
-  // const rootPath = `${__PATH_PREFIX__}/`
-  // const isRootPath = location?.pathname === rootPath
   const [transitionStarted, setTransitionStarted] = useState(false)
   const [transitionFinished, setTransitionFinished] = useState(false)
   const mouse = useMouse<HTMLDivElement>(transitionFinished)
@@ -76,7 +74,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
               onAnimationComplete={useCallback(() => setTransitionFinished(true), [])}
               className="container"
             >
-              <Header className="container fixed inset-x-0 top-0 z-40" />
+              <Header className="container fixed inset-x-0 top-0 z-40" location={location} />
               <main>{children}</main>
               <Footer className="z-40 py-16" />
               <motion.div
