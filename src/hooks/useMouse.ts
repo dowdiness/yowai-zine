@@ -18,12 +18,12 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   const currentMouse = useRef<Mouse>({
     x: 0,
     y: 0,
-    scale: 4.5,
+    scale: 3.5,
   })
   const previousMouse = useRef<Mouse>({
     x: 0,
     y: 0,
-    scale: 4.5,
+    scale: 3.5,
   })
 
   const render = () => {
@@ -45,8 +45,8 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
 
   const firstMoveHandler = (event: MouseEvent) => {
     const newMouse = getMousePos(event)
-    currentMouse.current = {scale: 4.5, ...newMouse}
-    previousMouse.current = {scale: 4.5, ...newMouse}
+    currentMouse.current = {scale: 3.5, ...newMouse}
+    previousMouse.current = {scale: 3.5, ...newMouse}
 
     gsap.to(cursorRef.current, {
       duration: 2,
@@ -60,11 +60,11 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   }
 
   const enter = () => {
-    currentMouse.current.scale = 1.4
+    currentMouse.current.scale = 1.5
   }
 
   const leave = () => {
-    currentMouse.current.scale = 4.5
+    currentMouse.current.scale = 3.5
   }
 
   useLayoutEffect(() => {
