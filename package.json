@@ -12,6 +12,7 @@
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.0.2",
     "babel-plugin-styled-components": "^1.11.1",
+    "catchy-image": "^0.1.6",
     "fontsource-jost": "^3.1.6",
     "fontsource-noto-sans-jp": "^3.0.9",
     "fontsource-noto-serif-jp": "^3.0.3",

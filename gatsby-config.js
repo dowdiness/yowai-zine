@@ -67,6 +67,52 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-og-image`,
+            options: {
+              output: {
+                directory: '',
+                fileName: 'thumbnail.png'
+              },
+              image: {
+                width: 1200,
+                height: 630,
+                backgroundColor: '#e6e7ee',
+              },
+              style: {
+                title: {
+                  fontFamily: 'Noto Sans CJK JP',
+                  fontColor: '#519fed',
+                  fontWeight: 'bold',
+                  fontSize: 64,
+                  paddingTop: 100,
+                  paddingBottom: 200,
+                  paddingLeft: 150,
+                  paddingRight: 150,
+                },
+                author: {
+                  fontFamily: 'Noto Sans CJK JP',
+                  fontColor: '#171717',
+                  fontWeight: '400',
+                  fontSize: 42,
+                }
+              },
+              fontFile: [
+                {
+                  path: `${__dirname}/content/fonts/NotoSansCJKjp-Bold.otf`,
+                  family: 'Noto Sans CJK JP',
+                  weight: 'bold',
+                },
+                {
+                  path: `${__dirname}/content/fonts/NotoSansCJKjp-Regular.otf`,
+                  family: 'Noto Sans CJK JP',
+                  weight: '400',
+                },
+              ],
+              iconFile: require.resolve('./content/assets/yowai-logo.png'),
+              timeout: 10000,
+            },
+          },
           `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
           {
