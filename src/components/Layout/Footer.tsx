@@ -9,7 +9,7 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
   return (
     <footer className={`${className}`}>
       <div className="flex flex-col items-center space-y-8 overflow-hidden">
-        <Link className="cursor-pointer" to="/">
+        <Link className="" to="/">
           <StaticImage
             width={128}
             height={128}
