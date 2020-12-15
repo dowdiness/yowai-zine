@@ -6,12 +6,14 @@ import useCircularText from 'src/hooks/useCircularText'
 import useWindowSize from 'src/hooks/useWindowSize'
 
 import Div100vh from 'react-div-100vh'
-import { StaticImage } from "gatsby-plugin-image"
+import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
 }) => {
   const home = data.home
+  console.log(data)
+  const genkiData = getImage(data.genki)
   const { width } = useWindowSize()
   const circle = home?.catchphrase
   const ratio =
@@ -22,7 +24,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
     : (width > 480)
     ? width * 0.004
     : width * 0.004
-
   const radius =
     (width > 992)
     ? 240
@@ -88,7 +89,9 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           <div className="mb-12 md:mb-0 md:mr-12 md:sticky top-24">
             <div className="relative">
               <h3 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
-              <h2 className="absolute w-full h-12 font-sans text-3xl text-center transform -translate-x-1/2 -translate-y-1/2 md:text-4xl xl:text-6xl inset-1/2">げんきですか？</h2>
+              <div className="absolute inline-block w-full transform -translate-x-1/2 -translate-y-1/2 h-1/3 inset-1/2">
+                <GatsbyImage image={genkiData} alt="Genki" />
+              </div>
             </div>
           </div>
           <p
@@ -104,7 +107,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               <StaticImage
                 width={300}
                 height={450}
-                src="zine-vol-0.jpeg"
+                src="./../../content/assets/zine-vol-0.jpeg"
                 alt="zine-vol-0"
                 className="transition-all duration-300 transform hover:scale-125 hover:blur"
               />
@@ -124,6 +127,11 @@ export const pageQuery = graphql`
       image
       catchphrase
       introduction
+    }
+    genki: file(relativePath: { eq: "genki.png" }) {
+      childImageSharp {
+        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
+      }
     }
   }
 `
