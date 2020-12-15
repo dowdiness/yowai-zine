@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
     if (!transitionStarted) {
       setTimeout(() => {
         setTransitionStarted(true)
-      }, 2400)
+      }, 4000)
     }
   }, [])
 
