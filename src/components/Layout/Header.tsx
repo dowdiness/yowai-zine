@@ -9,6 +9,7 @@ export type HeaderProps = {
   location: Location
 }
 export const Header: React.FCX<HeaderProps> = ({ className, location }) => {
+  // @ts-ignore
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location?.pathname === rootPath
   const { y } = useWindowScroll()
@@ -24,7 +25,7 @@ export const Header: React.FCX<HeaderProps> = ({ className, location }) => {
       className={`h-16 flex items-center justify-center transform transition-transform duration-150 ${inView ? '' : '-translate-y-16' } ${className}`}
     >
       <Link to="/">
-        <h1 className="flex justify-center text-4xl italic font-black text-white neumorphism">
+        <h1 className="flex justify-center text-4xl italic font-black text-gray-100 neumorphism">
           弱いzine
         </h1>
       </Link>
