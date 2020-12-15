@@ -67,7 +67,7 @@ module.exports = {
       },
       colors: {
         gray: colors.trueGray,
-        neumorphism: "#e0e5eb",
+        neumorphism: "#e6e7ee",
         yowai: "#519fed",
       },
       fontSize: {
