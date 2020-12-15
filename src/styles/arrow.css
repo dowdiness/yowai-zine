@@ -1,6 +1,6 @@
 :root {
-  --normal-color: theme('colors.gray.500');
-  --hovered-color: theme('colors.gray.900');
+  --normal-color: theme('colors.gray.600');
+  --hovered-color: theme('colors.yowai');
   --text-arrow-space: 16px;
   --shaft-width: 64px;
   --arrow-head-width: 16px;
