@@ -143,4 +143,4 @@ puts 1 + 1
 
 ## 画像
 
-これは ![illbull](../../artworks/illbull/1.JPG) 画像です。
+これは ![illbull](../../artworks/illbull/illbull-01.jpg) 画像です。

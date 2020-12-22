@@ -147,7 +147,7 @@ puts 1 + 1
 
 <div>
 
-![illbull](../../artworks/richard-dunn/1.jpg)
+![illbull](../../artworks/illbull/illbull-01.jpg)
 
 </div>
 
