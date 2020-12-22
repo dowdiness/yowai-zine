@@ -1,7 +1,9 @@
 ---
 title: 秋と冬のあいだに
 author: 武田菜月
-profile: なっちゃん
+profile: |
+  風の又サニーというバンドの鍵盤担当です。
+  あとたまにダダ茶豆。
 vol: "0"
 writing: "vertical"
 ---

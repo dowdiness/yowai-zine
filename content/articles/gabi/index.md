@@ -1,7 +1,9 @@
 ---
 title: Untitles
 author: Gabi
-profile: gabi
+profile: |
+  豆が好きな日本に住んでるアメリカ人。
+  Believes anything can be poetry.
 vol: "0"
 writing: "horizontal"
 ---

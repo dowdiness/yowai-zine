@@ -1,7 +1,9 @@
 ---
 title: 男半チャーハン日記
 author: 半チャーハン
-profile: 男半チャーハン
+profile: |
+  野方在住31歳。
+  賢いユリシーズと海辺のニューゴリラ。
 vol: "0"
 writing: "vertical"
 ---
