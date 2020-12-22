@@ -1,8 +1,8 @@
 import React from 'react'
-import { graphql, PageProps, Link } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { ArticleHeader, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
+import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -26,25 +26,14 @@ const VerticalArticleTemplate: React.FC<PageProps<
           itemScope
           itemType="http://schema.org/Article"
         >
-          <Link
+          <ArticleLink
             to={`${zineIndexPath}/`}
-            className="justify-start mt-12 text-left left-animated-arrow"
-          >
-            <span className='left-arrow-content'>
-              <span className='left-arrow -left'>
-                <span className='shaft'></span>
-              </span>
-              <span className='text'>
-                目次に戻る
-              </span>
-            </span>
-            <span className='left-arrow -right'>
-              <span className='shaft'></span>
-            </span>
-          </Link>
+            title='目次に戻る'
+            className="mt-12"
+          />
           <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
           <div className="flex py-6 pr-3 ml-8 sm:pr-6 md:p-10 neumorphism-normal rounded-2xl sm:ml-0">
-            <div className="w-screen -mt-6 m-screen">
+            <div className="w-screen -mt-6 m-screen md:-mt-10">
               <ArticleShareButton
                 className="sticky max-h-screen py-2 top-16 sm:left-2 md:left-4 lg:left-4 xl:left-6 neumorphism-deep rounded-2xl"
                 articleTitle={post?.frontmatter?.title!}
@@ -68,57 +57,11 @@ const VerticalArticleTemplate: React.FC<PageProps<
               {post?.frontmatter?.profile}
           </footer>
         </article>
-        <nav className="pb-12 text-gray-700">
-          <ul
-            className="flex flex-col items-center justify-between space-y-8 list-none md:space-y-0 md:flex-row"
-          >
-            <li className="w-full">
-              {previous && (
-                <Link
-                  to={
-                    `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` ||
-                    `/`
-                  }
-                  rel="prev"
-                  className="left-animated-arrow"
-                >
-                  <span className='left-arrow-content'>
-                    <span className='left-arrow -left'>
-                      <span className='shaft'></span>
-                    </span>
-                    <span className='text'>
-                      {previous.frontmatter?.title}
-                    </span>
-                  </span>
-                  <span className='left-arrow -right'>
-                    <span className='shaft'></span>
-                  </span>
-                </Link>
-              )}
-            </li>
-            <li className="w-full text-right">
-              {next && (
-                <Link
-                  to={`/vol/${next.frontmatter?.vol}${next.fields?.slug}` || `/`}
-                  rel="next"
-                  className='animated-arrow'
-                >
-                  <span className='the-arrow -left'>
-                    <span className='shaft'></span>
-                  </span>
-                  <span className='main'>
-                    <span className='text'>
-                      {next.frontmatter?.title}
-                    </span>
-                    <span className='the-arrow -right'>
-                      <span className='shaft'></span>
-                    </span>
-                  </span>
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+        <ArticleNav
+          previous={previous}
+          next={next}
+          className="mb-12"
+        />
       </div>
     </>
   )
