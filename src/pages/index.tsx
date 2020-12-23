@@ -12,7 +12,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
 }) => {
   const home = data.home
-  console.log(data)
   const genkiData = getImage(data.genki)
   const { width } = useWindowSize()
   const circle = home?.catchphrase
