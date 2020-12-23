@@ -7,7 +7,7 @@ export type ArticleSideHeaderProps = {
 
 const ArticleSideHeader: React.FCX<ArticleSideHeaderProps> = ({ className, title, author }) => {
   return (
-    <header className={`w-full flex items-center space-y-4 vertical-rl ${className}`}>
+    <header className={`flex items-center space-y-4 vertical-rl ${className}`}>
       <h1 className="font-sans text-xl font-extrabold text-center text-gray-900 sm:text-2xl md:text-3xl" itemProp="headline">
         {title}
       </h1>

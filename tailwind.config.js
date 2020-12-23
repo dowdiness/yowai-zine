@@ -37,6 +37,9 @@ module.exports = {
         'spin-slow': 'spin 20s linear infinite',
       },
       spacing: {
+        21: "5.25rem",
+        30: "7.5rem",
+        34: "8.5rem",
         72: "18rem",
         80: "20rem",
         88: "22rem",
@@ -61,6 +64,9 @@ module.exports = {
       },
       maxWidth: {
         'screen-xl': "1280px",
+      },
+      height: {
+        'fit-content': "fit-content",
       },
       margin: {
         screen: '0 calc(50% - 50vw)',

@@ -33,16 +33,16 @@ const VerticalArticleTemplate: React.FC<PageProps<
           />
           <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
           <div className="flex py-6 pr-3 ml-8 sm:pr-6 md:p-10 neumorphism-normal rounded-2xl sm:ml-0">
-            <div className="w-screen -mt-6 m-screen md:-mt-10">
+            <div className="w-screen -my-6 m-screen md:-my-10">
               <ArticleShareButton
-                className="sticky max-h-screen py-2 top-16 sm:left-2 md:left-4 lg:left-4 xl:left-6 neumorphism-deep rounded-2xl"
+                className="sticky py-2 h-fit-content top-16 sm:left-2 md:left-4 lg:left-4 xl:left-6 neumorphism-deep rounded-2xl"
                 articleTitle={post?.frontmatter?.title!}
                 articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
                 articleDescription={post?.excerpt!}
               />
             </div>
             <ArticleSideHeader
-              className="sticky h-full ml-8 top-16"
+              className="sticky w-full ml-8 h-fit-content top-16"
               title={post?.frontmatter?.title}
               author={post?.frontmatter?.author}
             />
