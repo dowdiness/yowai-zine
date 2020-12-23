@@ -7,14 +7,12 @@ module.exports = () => {
   const loader = document.getElementById("___loader")
   // Stop body scrolling
   html.style.overflow = "hidden"
-  html.ontouchstart = (e) => {
+  const preventScroll = (e) => {
     e.preventDefault()
     e.stopPropagation()
   }
-  html.ontouchend = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-  }
+  html.addEventListener("ontouchstart", preventScroll)
+  html.addEventListener("ontouchend", preventScroll)
   transition.style.opacity = "1"
   transition.style.visibility = "visible"
   setTimeout(function() {
@@ -24,9 +22,9 @@ module.exports = () => {
     transition.style.visibility = "hidden"
     // Restart body scrolling
     html.style.overflow = "auto"
-    html.ontouchstart = null
-    html.ontouchmove = null
-    setTimeout(function() {
+    html.removeEventListener("ontouchstart", preventScroll)
+    html.removeEventListener("ontouchend", preventScroll)
+      setTimeout(function() {
       loader.style.display = "none"
     }, 1600)
   }, 4000)
