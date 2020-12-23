@@ -16,7 +16,6 @@ export type ArticleShareButtonProps = {
 
 const ArticleShareButton: React.FCX<ArticleShareButtonProps> = ({ className, articleTitle, articleUrl, articleDescription }) => {
   const [iconSize, setIconSize] = useState(24)
-  const mql = matchMedia("(min-width: 992px)")
   const changeIconSize = (e: MediaQueryListEvent) => {
     if (e.matches) {
       setIconSize(48)
@@ -26,6 +25,7 @@ const ArticleShareButton: React.FCX<ArticleShareButtonProps> = ({ className, art
   }
 
   useEffect(() => {
+    const mql = matchMedia("(min-width: 992px)")
     if (mql.matches) {
       setIconSize(48)
     } else {
