@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
-import { graphql, PageProps, Link } from 'gatsby'
+import React from 'react'
+import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { ArticleLink, ArticleNav } from 'src/components/Article'
 //Hooks
 
 const ImageGalleryTemplate: React.FC<PageProps<
@@ -11,6 +12,7 @@ const ImageGalleryTemplate: React.FC<PageProps<
   const { artist } = data
   const artworks = data.artworks.edges
   const { previous, next } = data
+  const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
 
   return (
     <>
@@ -19,10 +21,15 @@ const ImageGalleryTemplate: React.FC<PageProps<
         description={ artist?.name || ``}
       />
       <article
-        className="py-16 mx-auto space-y-16 text-center"
+        className="py-16 space-y-16"
         itemScope
         itemType="http://schema.org/Article"
       >
+        <ArticleLink
+          to={`${zineIndexPath}/`}
+          title='目次に戻る'
+          className="mt-12 text-left"
+        />
         <header className="flex flex-col items-center my-24 space-y-12">
           <h1 className="text-3xl font-extrabold text-left text-gray-900 font-selif sm:text-4xl md:text-5xl lg:text-6xl" itemProp="headline">
             {artist?.name}
@@ -42,41 +49,13 @@ const ImageGalleryTemplate: React.FC<PageProps<
           {artist?.name}
         </footer>
       </article>
-      <nav className="pb-12">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
-          <li>
-            {previous && (
-              <Link
-                to={
-                  `/vol/0/${previous.name}` ||
-                  `/`
-                }
-                rel="prev"
-              >
-                ← {previous.name}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link
-                to={`/vol/0/${next.name}` || `/`}
-                rel="next"
-              >
-                {next.name} →
-              </Link>
-            )}
-          </li>
-        </ul>
-      </nav>
+      <ArticleNav
+        previousLink={previous ? `/vol/0/${previous.name}` : undefined}
+        previousTitle={previous ? previous.name : undefined}
+        nextLink={next ? `/vol/0/${next.name}` : undefined}
+        nextTitle={next ? next.name : undefined}
+        className="mb-12"
+      />
     </>
   )
 }
