@@ -8,7 +8,7 @@ import { ArticleLink, ArticleNav } from 'src/components/Article'
 
 const ImageGalleryTemplate: React.FC<PageProps<
   GatsbyTypes.ImageGalleryBySlugQuery
->> = ({ data }) => {
+>> = ({ data, location }) => {
   const { artist } = data
   const artworks = data.artworks.edges
   const { previous, next, lastPost } = data

@@ -7,7 +7,7 @@ import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShare
 
 const HorizontalArticleTemplate: React.FC<PageProps<
   GatsbyTypes.HorizontalArticleBySlugQuery
->> = ({ data }) => {
+>> = ({ data, location }) => {
   const post = data.markdownRemark
   const { previous, next, firstArtwork } = data
   const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")

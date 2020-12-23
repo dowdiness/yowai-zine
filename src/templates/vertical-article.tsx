@@ -8,7 +8,7 @@ import useTategaki from 'src/hooks/useTategaki'
 
 const VerticalArticleTemplate: React.FC<PageProps<
   GatsbyTypes.VerticalArticleBySlugQuery
->> = ({ data }) => {
+>> = ({ data, location }) => {
   const post = data.markdownRemark
   const { previous, next, firstArtwork } = data
   const { tategakiRef } = useTategaki()
@@ -54,7 +54,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
             />
           </div>
           <footer className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset rounded-2xl">
-              {post?.frontmatter?.profile}
+            {post?.frontmatter?.profile}
           </footer>
         </article>
         <ArticleNav
