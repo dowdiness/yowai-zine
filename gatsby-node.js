@@ -78,6 +78,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const firstArtworkId = artworks[0].node.id
       availableVols.push(post.frontmatter.vol)
 
       if (post.frontmatter.writing === "horizontal") {
@@ -88,6 +89,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id: post.id,
             previousPostId,
             nextPostId,
+            firstArtworkId,
           },
         })
       } else if (post.frontmatter.writing === "vertical") {
@@ -98,6 +100,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id: post.id,
             previousPostId,
             nextPostId,
+            firstArtworkId,
           },
         })
       }
@@ -118,6 +121,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     artworks.forEach((artwork, index) => {
       const previousArtworkId = index === 0 ? null : artworks[index - 1].node.id
       const nextArtworkId = index === artworks.length - 1 ? null : artworks[index + 1].node.id
+      const lastPostId = posts[posts.length - 1].id
 
       createPage({
         path: `/vol/0/${artwork.node.name}/`,
@@ -127,6 +131,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           artist: `${artwork.node.name}-*`,
           previousArtworkId,
           nextArtworkId,
+          lastPostId,
         },
       })
     })

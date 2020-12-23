@@ -10,7 +10,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
   GatsbyTypes.VerticalArticleBySlugQuery
 >> = ({ data }) => {
   const post = data.markdownRemark
-  const { previous, next } = data
+  const { previous, next, firstArtwork } = data
   const { tategakiRef } = useTategaki()
   const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
 
@@ -60,8 +60,8 @@ const VerticalArticleTemplate: React.FC<PageProps<
         <ArticleNav
           previousLink={previous ? `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` : undefined}
           previousTitle={previous ? previous.frontmatter?.title : undefined}
-          nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : undefined}
-          nextTitle={next ? next.frontmatter?.title : undefined}
+          nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : `/vol/0/${firstArtwork.name}`}
+          nextTitle={next ? next.frontmatter?.title : firstArtwork.name}
           className="mb-12"
         />
       </div>
@@ -76,6 +76,7 @@ export const pageQuery = graphql`
     $id: String!
     $previousPostId: String
     $nextPostId: String
+    $firstArtworkId: String
   ) {
     markdownRemark(id: { eq: $id }) {
       id
@@ -108,6 +109,10 @@ export const pageQuery = graphql`
         title
         vol
       }
+    }
+    firstArtwork: directory(id: {eq: $firstArtworkId }) {
+      id
+      name
     }
   }
 `

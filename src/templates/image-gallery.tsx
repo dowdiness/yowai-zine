@@ -11,7 +11,7 @@ const ImageGalleryTemplate: React.FC<PageProps<
 >> = ({ data }) => {
   const { artist } = data
   const artworks = data.artworks.edges
-  const { previous, next } = data
+  const { previous, next, lastPost } = data
   const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
 
   return (
@@ -50,8 +50,8 @@ const ImageGalleryTemplate: React.FC<PageProps<
         </footer>
       </article>
       <ArticleNav
-        previousLink={previous ? `/vol/0/${previous.name}` : undefined}
-        previousTitle={previous ? previous.name : undefined}
+        previousLink={previous ? `/vol/0/${previous.name}` : `/vol/${lastPost.frontmatter?.vol}${lastPost.fields?.slug}`}
+        previousTitle={previous ? previous.name : lastPost.frontmatter?.title}
         nextLink={next ? `/vol/0/${next.name}` : undefined}
         nextTitle={next ? next.name : undefined}
         className="mb-12"
@@ -68,6 +68,7 @@ export const pageQuery = graphql`
     $artist: String!
     $previousArtworkId: String
     $nextArtworkId: String
+    $lastPostId: String
   ) {
     artworks: allFile(filter: {sourceInstanceName: {eq: "artworks"}, name: {glob: $artist }}) {
       edges {
@@ -88,6 +89,15 @@ export const pageQuery = graphql`
     next: directory(id: {eq: $nextArtworkId }) {
       id
       name
+    }
+    lastPost: markdownRemark(id: { eq: $lastPostId }) {
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+        vol
+      }
     }
     artist: directory(id: {eq: $id }) {
       id
