@@ -54,8 +54,10 @@ const HorizontalArticleTemplate: React.FC<PageProps<
         </footer>
       </article>
       <ArticleNav
-        previous={previous}
-        next={next}
+        previousLink={previous ? `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` : undefined}
+        previousTitle={previous ? previous.frontmatter?.title : undefined}
+        nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : undefined}
+        nextTitle={next ? next.frontmatter?.title : undefined}
         className="mb-12"
       />
     </>

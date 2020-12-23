@@ -2,37 +2,33 @@ import React from 'react'
 import { ArticleLink } from 'src/components/Article'
 
 export type ArticleNavProps = {
-  previous: any
-  next: any
+  previousLink?: string
+  previousTitle?: string
+  nextLink?: string
+  nextTitle?: string
 }
 
-const ArticleNav: React.FCX<ArticleNavProps> = ({ className, previous, next }) => {
+const ArticleNav: React.FCX<ArticleNavProps> = ({ className, previousLink, previousTitle, nextLink, nextTitle }) => {
   return (
     <nav className={`text-gray-700 ${className}`}>
       <ul
         className="flex flex-col items-center justify-between space-y-8 list-none md:space-y-0 md:flex-row"
       >
         <li className="w-full">
-          {previous && (
+          {previousLink && previousTitle && (
             <ArticleLink
-              to={
-                `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` ||
-                `/`
-              }
+              to={previousLink}
               rel="prev"
-              title={previous.frontmatter?.title!}
+              title={previousTitle}
             />
           )}
         </li>
         <li className="w-full text-right">
-          {next && (
+          {nextLink && nextTitle && (
             <ArticleLink
-              to={
-                `/vol/${next.frontmatter?.vol}${next.fields?.slug}` ||
-                `/`
-              }
+              to={nextLink}
               rel="next"
-              title={next.frontmatter?.title!}
+              title={nextTitle}
               isRight={true}
             />
           )}
