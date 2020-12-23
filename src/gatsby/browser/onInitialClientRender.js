@@ -22,12 +22,12 @@ module.exports = () => {
     loader.style.visibility = "hidden"
     transition.style.opacity = "0"
     transition.style.visibility = "hidden"
+    // Restart body scrolling
+    html.style.overflow = "auto"
+    html.ontouchstart = null
+    html.ontouchmove = null
     setTimeout(function() {
       loader.style.display = "none"
-      // Restart body scrolling
-      html.style.overflow = "auto"
-      html.ontouchstart = null
-      html.ontouchmove = null
     }, 1600)
   }, 4000)
 }
