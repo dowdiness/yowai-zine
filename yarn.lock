@@ -1206,10 +1206,10 @@
   dependencies:
     core-js "^3.6.4"
 
-"@dowdiness/eslint-config@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@dowdiness/eslint-config/-/eslint-config-0.1.3.tgz#cccc41d9302ecb7b633f348b0321ccf5ee834ea3"
-  integrity sha512-7cHxlzyglqXhJm6mEM9YqaGL7pnQhk8GccTjVJv21JcXlsbSop/25RE8F0g22uqej0alsJXVu/lePril0fF9Dw==
+"@dowdiness/eslint-config@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@dowdiness/eslint-config/-/eslint-config-0.1.5.tgz#7fc226925d28e1c97a5ccd8d0eb7cf54247d6470"
+  integrity sha512-LHSGWVCdyBK+MjxwO1C5E6UHVHmdUA+hjrNm4pE+fuiETrJ17MXGuxnS5rVKyTJx3Eey4CPWvA1azDkn7rWk6g==
 
 "@emotion/is-prop-valid@^0.8.2", "@emotion/is-prop-valid@^0.8.8":
   version "0.8.8"
