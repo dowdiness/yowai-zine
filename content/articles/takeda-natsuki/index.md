@@ -6,6 +6,7 @@ profile: |
   あとたまにダダ茶豆。
 vol: "0"
 writing: "vertical"
+twitter: "https://twitter.com/natsouki"
 ---
 
 たとえば、忘れているようでずっと記憶されているさりげない瞬間のことを考えてみる。
