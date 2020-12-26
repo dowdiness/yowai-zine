@@ -39,8 +39,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 
   const text = `小さいチームで
     弱いzineという名前の
-    web zine(インター
-    ネットで読む雑誌)
+    web zine(インターネットで読む雑誌)
     を制作しています。
 
     コロナ以降、
