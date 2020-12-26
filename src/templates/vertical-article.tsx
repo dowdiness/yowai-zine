@@ -3,6 +3,7 @@ import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
+import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -53,7 +54,19 @@ const VerticalArticleTemplate: React.FC<PageProps<
               articleDescription={post?.excerpt!}
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
-              {post?.frontmatter?.profile}
+              <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">{post?.frontmatter?.profile}</p>
+              <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
+              {post?.frontmatter?.instagram && (
+                <a href={post?.frontmatter?.instagram} target="_blank" rel="noreferrer noopener">
+                  <TiSocialInstagram className="w-12 h-12" />
+                </a>
+              )}
+              {post?.frontmatter?.twitter && (
+                <a href={post?.frontmatter?.twitter} target="_blank" rel="noreferrer noopener">
+                  <TiSocialTwitter className="w-12 h-12" />
+                </a>
+              )}
+            </div>
             </div>
           </footer>
         </article>
@@ -90,6 +103,8 @@ export const pageQuery = graphql`
         author
         profile
         vol
+        twitter
+        instagram
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
