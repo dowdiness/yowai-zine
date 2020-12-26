@@ -6,6 +6,8 @@ profile: |
   10代から放浪。一時期ホームレス。北海道、沖縄、尾道、逗子へ移住。日本全国、ヨーロッパ、タイへのツアー後、ベルリンへ移住。その後近年は東アジアが主な拠点。韓国、台湾でも活動中。
 vol: "0"
 writing: "vertical"
+twitter: "https://twitter.com/masumoto_kota"
+instagram: "https://instagram.com/masumotokota?igshid=a3kri2mi4dnn"
 ---
 
 人類がネット上に簡単に文をアップできる前の時代、zineは思いのたけをブチ込み、人に伝えられる貴重な場所の一つだった。
