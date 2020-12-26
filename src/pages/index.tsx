@@ -13,24 +13,25 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 }) => {
   const home = data.home
   const genkiData = getImage(data.genki)
+  const zineDate = getImage(data.zine)
   const { width } = useWindowSize()
   const circle = home?.catchphrase
   const ratio =
     (width > 992)
-    ? 3
-    : (width > 768 && width <= 991)
-    ? 2.5
-    : (width > 480)
-    ? width * 0.004
-    : width * 0.004
+      ? 3
+      : (width > 768 && width <= 991)
+        ? 2.5
+        : (width > 480)
+          ? width * 0.004
+          : width * 0.004
   const radius =
     (width > 992)
-    ? 240
-    :　(width > 768 && width <= 991)
-    ? width * 0.2
-    : (width > 480)
-    ? width * 0.3
-    : width * 0.35
+      ? 240
+      : (width > 768 && width <= 991)
+        ? width * 0.2
+        : (width > 480)
+          ? width * 0.3
+          : width * 0.35
 
   const catchphrase = circle?.repeat(Math.ceil(ratio)).slice(0, circle?.length * ratio)
 
@@ -38,8 +39,9 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 
   const text = `小さいチームで
     弱いzineという名前の
-    web zineを制作
-    しています。
+    web zine(インター
+    ネットで読む雑誌)
+    を制作しています。
 
     コロナ以降、
     様々な職業や活動が
@@ -70,11 +72,11 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   return (
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
-      <div className="space-y-32">
+      <div className="-mx-8 space-y-32">
         <section>
           <Div100vh className="flex items-center justify-center">
             <h1 className="flex flex-col items-center space-y-8 font-sans text-center">
-              <span className="text-2xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
+              <span className="text-xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
               <span className="text-lg font-semibold sm:text-xl md:text-2xl">Here is the outside of your timeline.</span>
             </h1>
             <div className="scroll-down">
@@ -101,15 +103,14 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
         </section>
         <section className="container w-auto">
           <Div100vh className="flex flex-col items-center justify-center space-y-24">
-            <h2 className="font-sans text-5xl font-bold">zineを読む</h2>
             <Link className="overflow-hidden" to="/vol/0/">
-              <StaticImage
-                width={300}
-                height={450}
-                src="./../../content/assets/zine-vol-0.jpeg"
-                alt="zine-vol-0"
-                className="transition-all duration-300 transform hover:scale-125 hover:blur"
-              />
+              <h2 className="font-sans text-5xl font-bold">
+                <GatsbyImage
+                  image={zineDate}
+                  alt="Zine"
+                  className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+                />
+              </h2>
             </Link>
           </Div100vh>
         </section>
@@ -128,6 +129,11 @@ export const pageQuery = graphql`
       introduction
     }
     genki: file(relativePath: { eq: "genki.png" }) {
+      childImageSharp {
+        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
+      }
+    }
+    zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
         gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
       }
