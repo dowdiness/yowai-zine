@@ -4,6 +4,7 @@ author: 星空そとば
 profile: 地下室で燃え続ける詩集
 vol: "0"
 writing: "horizontal"
+twitter:"https://twitter.com/torchfish_story"
 ---
 
 始まっている、すでに　片足ずつの、ここには　歩いた跡があって　それは、始まったときのように不意に途切れた
