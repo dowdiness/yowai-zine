@@ -47,12 +47,12 @@ const VerticalArticleTemplate: React.FC<PageProps<
           </div>
           <footer className="">
             <ArticleShareButton
-              className="w-full py-4 mt-16 sm:py-6 md:py-10 neumorphism-inset rounded-2xl"
+              className="w-full py-4 mt-16 sm:py-6 md:py-10"
               articleTitle={post?.frontmatter?.title!}
               articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
               articleDescription={post?.excerpt!}
             />
-            <div className="p-4 mt-4 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
+            <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
               {post?.frontmatter?.profile}
             </div>
           </footer>

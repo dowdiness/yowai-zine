@@ -40,8 +40,8 @@ const ArticleShareButton: React.FCX<ArticleShareButtonProps> = ({ className, art
 
   return (
     <div className={`flex flex-col items-center space-y-8 ${className}`}>
-      <h3 className="font-sans text-xl font-medium uppercase md:text-2xl">この記事をシェアする</h3>
-      <div className={`flex justify-around items-center space-x-4 w-full`}>
+      <h3 className="font-sans text-xl font-black uppercase md:text-2xl">この記事をシェアする</h3>
+      <div className={`w-1/2 flex justify-around items-center space-x-4`}>
         <div className="w-12 h-12 lg:w-18 lg:h-18">
           <TwitterShareButton url={articleUrl} title={articleTitle}>
             <TwitterIcon round size={iconSize} />

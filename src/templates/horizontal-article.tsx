@@ -43,7 +43,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
         </div>
         <footer>
           <ArticleShareButton
-            className="w-full py-4 mt-16 sm:py-6 md:py-10 neumorphism-inset rounded-2xl"
+            className="w-full py-4 mt-16 sm:py-6 md:py-10"
             articleTitle={post?.frontmatter?.title!}
             articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
             articleDescription={post?.excerpt!}
