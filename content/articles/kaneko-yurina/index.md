@@ -6,6 +6,8 @@ profile: |
   チェンマイのヤンキーで歌を歌う。
 vol: "0"
 writing: "horizontal"
+twitter: "https://twitter.com/okomebroccoli"
+instagram: "https://instagram.com/okomebroccoli?igshid=18o4s3jvq4t0j"
 ---
 
 昨日までの　遠い昔を　かき集め　真っ黒になった　手が柔らかい
