@@ -5,6 +5,7 @@ profile: |
   鬼頭光司
 vol: "0"
 writing: "horizontal"
+twitter: "https://twitter.com/Ichinomachi"
 ---
 
 ![※小林健太郎「阿佐ヶ谷の釣り堀」](※小林健太郎「阿佐ヶ谷の釣り堀」.jpg)
