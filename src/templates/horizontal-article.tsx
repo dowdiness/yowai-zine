@@ -29,17 +29,9 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           className="mt-12 text-left"
         />
         <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
-        <div className="flex py-6 pr-3 ml-8 md:py-10 sm:pr-6 md:pr-10 neumorphism-normal rounded-2xl sm:ml-0">
-          <div className="-my-6 m-screen md:-my-10">
-            <ArticleShareButton
-              className="sticky py-2 h-fit-content top-16 sm:ml-5 md:ml-8 xl:ml-11 neumorphism-deep rounded-2xl"
-              articleTitle={post?.frontmatter?.title!}
-              articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
-              articleDescription={post?.excerpt!}
-            />
-          </div>
+        <div className="flex p-4 pl-0 sm:p-6 sm:pl-0 md:pl-0 md:p-10 neumorphism-normal rounded-2xl">
           <ArticleSideHeader
-            className="sticky w-12 ml-16 h-fit-content sm:w-16 md:w-20 lg:w-24 sm:ml-21 md:ml-30 lg:ml-34 xl:ml-40 top-16"
+            className="sticky w-12 h-fit-content sm:w-16 md:w-20 lg:w-24 top-16"
             title={post?.frontmatter?.title}
             author={post?.frontmatter?.author}
           />
@@ -49,8 +41,16 @@ const HorizontalArticleTemplate: React.FC<PageProps<
             className="font-serif prose text-center main-article-width sm:prose-lg md:prose-xl xl:prose-2xl text-character"
           />
         </div>
-        <footer className="p-4 mt-16 font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl neumorphism-inset rounded-2xl sm:p-6 md:p-10">
-          {post?.frontmatter?.profile}
+        <footer>
+          <ArticleShareButton
+            className="w-full py-4 mt-16 sm:py-6 md:py-10 neumorphism-inset rounded-2xl"
+            articleTitle={post?.frontmatter?.title!}
+            articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
+            articleDescription={post?.excerpt!}
+          />
+          <div className="p-4 mt-16 font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl neumorphism-inset rounded-2xl sm:p-6 md:p-10">
+            {post?.frontmatter?.profile}
+          </div>
         </footer>
       </article>
       <ArticleNav
