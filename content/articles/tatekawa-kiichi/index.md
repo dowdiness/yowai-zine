@@ -11,6 +11,7 @@ profile: |
   また、写真家・舞台作家の三野新作品や、カゲヤマ気象台作品、シンガーソングライター・グルパリのレコ発ライブへの出演など俳優としても活動している。
 vol: "0"
 writing: "vertical"
+instagram: "https://instagram.com/bombnekobonya?igshid=m6rlpfnr9g8c"
 ---
 
 ある日、私はとある閉鎖病棟に入った。
