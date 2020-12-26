@@ -12,6 +12,7 @@ profile: |
   Minna Kikeru : https://minnakikeru.com/
 vol: "0"
 writing: "horizontal"
+twitter: "https://twitter.com/majikickn"
 ---
 
 ある日思い立ち、私の部屋の窓に絵を書いてもらいました。
