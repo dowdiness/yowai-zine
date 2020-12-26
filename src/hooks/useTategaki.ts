@@ -46,6 +46,7 @@ const useTategaki = (): Tategaki => {
 
 
   useIsomorphicLayoutEffect(() => {
+    adjustSize(tategakiRef.current)
     const adjustSizeCallback = () => adjustSize(tategakiRef.current)
     const debouncedAdjustSize = debounce(adjustSizeCallback, 100)
     window.addEventListener("load", debouncedAdjustSize)
