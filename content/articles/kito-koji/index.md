@@ -2,7 +2,11 @@
 title: だらだらと日記のように
 author: 鬼頭光司
 profile: |
-  鬼頭光司
+  1991年生まれ。
+  フリーター。
+  京都精華大学人文学部中退。
+  仕事としては本屋、出版取次、印刷工場、ピッキング、介護を転々と。
+  読書が好きで最近はジェンダー、反緊縮財政、社会主義の本を読んでいる。
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/Ichinomachi"
