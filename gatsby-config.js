@@ -1,8 +1,8 @@
 const config = {
-  siteUrl: `https://yowai.art`,
+  siteUrl: `https://yowai.band`,
   themeColor: '#2a9df4',
   keys: {
-    googleAnalyticsID: '',
+    googleAnalyticsID: 'G-M9N1PKWPN1',
   },
 }
 
@@ -23,7 +23,7 @@ module.exports = {
       summary: `who lives and works in San Francisco building useful things.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://yowai.netlify.app/`,
+    siteUrl: config.siteUrl,
     social: {
       twitter: `kylemathews`,
     },
@@ -93,7 +93,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: config.keys.googleAnalyticsID,
       },
     },
     `gatsby-plugin-feed`,
@@ -105,7 +105,7 @@ module.exports = {
         short_name: `弱いZINE`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#2a9df4`,
+        theme_color: config.themeColor,
         display: `standalone`,
         icon: `content/assets/yowai-icon.png`,
       },

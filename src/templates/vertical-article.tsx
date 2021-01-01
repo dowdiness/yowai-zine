@@ -11,6 +11,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
   GatsbyTypes.VerticalArticleBySlugQuery
 >> = ({ data, location }) => {
   const post = data.markdownRemark
+  const siteUrl = data.site?.siteMetadata?.siteUrl
   const { previous, next, firstArtwork } = data
   const { tategakiRef } = useTategaki()
   const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
@@ -50,7 +51,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
             <ArticleShareButton
               className="w-full py-4 mt-16 sm:py-6 md:py-10"
               articleTitle={post?.frontmatter?.title!}
-              articleUrl={`http://localhost:8000/vol/${post.frontmatter?.vol!}${post.fields?.slug!}` || `http://localhost:8000`}
+              articleUrl={`${siteUrl}/vol/${post?.frontmatter?.vol}${post?.fields?.slug}` || siteUrl!}
               articleDescription={post?.excerpt!}
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
@@ -73,8 +74,8 @@ const VerticalArticleTemplate: React.FC<PageProps<
         <ArticleNav
           previousLink={previous ? `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` : undefined}
           previousTitle={previous ? previous.frontmatter?.title : undefined}
-          nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : `/vol/0/${firstArtwork.name}`}
-          nextTitle={next ? next.frontmatter?.title : firstArtwork.name}
+          nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : `/vol/0/${firstArtwork?.name}`}
+          nextTitle={next ? next.frontmatter?.title : firstArtwork?.name}
           className="mb-12"
         />
       </div>
@@ -91,6 +92,11 @@ export const pageQuery = graphql`
     $nextPostId: String
     $firstArtworkId: String
   ) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
@@ -102,6 +108,7 @@ export const pageQuery = graphql`
         title
         author
         profile
+        description
         vol
         twitter
         instagram
