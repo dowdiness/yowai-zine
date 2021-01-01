@@ -191,6 +191,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       profile: String
       twitter: String
       instagram: String
+      minnakikeru: String
       date: Date @dateformat
     }
 

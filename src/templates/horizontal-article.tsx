@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { StaticImage } from "gatsby-plugin-image"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
@@ -53,6 +54,17 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">{post?.frontmatter?.profile}</p>
             <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
+              {post?.frontmatter?.minnakikeru && (
+                <a href={post?.frontmatter?.minnakikeru} target="_blank" rel="noreferrer noopener">
+                  <StaticImage
+                    width={48}
+                    height={48}
+                    src="../../content/assets/minnakikeru.png"
+                    alt="minnakikeru"
+                    className="blend-multiply"
+                  />
+                </a>
+              )}
               {post?.frontmatter?.instagram && (
                 <a href={post?.frontmatter?.instagram} target="_blank" rel="noreferrer noopener">
                   <TiSocialInstagram className="w-12 h-12" />
@@ -107,6 +119,7 @@ export const pageQuery = graphql`
         vol
         twitter
         instagram
+        minnakikeru
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

@@ -9,10 +9,10 @@ profile: |
   管楽団ざやえんどうがある。
   日本のインディコンピ「みんなみてる」を編纂、リリースされた。
   2020年5月、ストリーミングサイト「みんなきける」を立ち上げている。
-  Minna Kikeru : https://minnakikeru.com/
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/majikickn"
+minnakikeru: "https://minnakikeru.com"
 ---
 
 ある日思い立ち、私の部屋の窓に絵を書いてもらいました。
