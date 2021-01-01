@@ -185,6 +185,12 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Frontmatter {
       title: String
       description: String
+      author: String
+      vol: String
+      writing: String
+      profile: String
+      twitter: String
+      instagram: String
       date: Date @dateformat
     }
 
