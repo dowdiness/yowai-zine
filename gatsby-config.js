@@ -79,6 +79,7 @@ module.exports = {
             },
           },
           `gatsby-remark-images-medium-zoom`,
+          `gatsby-remark-embedder`,
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
