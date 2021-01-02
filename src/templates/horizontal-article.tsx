@@ -2,7 +2,8 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { StaticImage } from "gatsby-plugin-image"
+// @ts-ignore
+import minnakikeru from "../../content/assets/minnakikeru.png"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
@@ -56,10 +57,10 @@ const HorizontalArticleTemplate: React.FC<PageProps<
             <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
               {post?.frontmatter?.minnakikeru && (
                 <a href={post?.frontmatter?.minnakikeru} target="_blank" rel="noreferrer noopener">
-                  <StaticImage
+                  <img
                     width={48}
                     height={48}
-                    src="../../content/assets/minnakikeru.png"
+                    src={minnakikeru}
                     alt="minnakikeru"
                     className="blend-multiply"
                   />
