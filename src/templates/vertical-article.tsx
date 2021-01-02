@@ -12,7 +12,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
 >> = ({ data, location }) => {
   const post = data.markdownRemark
   const siteUrl = data.site?.siteMetadata?.siteUrl
-  const { previous, next, firstArtwork } = data
+  const { previous, next } = data
   const { tategakiRef } = useTategaki()
   const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
 
@@ -74,8 +74,8 @@ const VerticalArticleTemplate: React.FC<PageProps<
         <ArticleNav
           previousLink={previous ? `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` : undefined}
           previousTitle={previous ? previous.frontmatter?.title : undefined}
-          nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : `/vol/0/${firstArtwork?.name}`}
-          nextTitle={next ? next.frontmatter?.title : firstArtwork?.name}
+          nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : undefined}
+          nextTitle={next ? next.frontmatter?.title : undefined}
           className="mb-12"
         />
       </div>
@@ -90,7 +90,7 @@ export const pageQuery = graphql`
     $id: String!
     $previousPostId: String
     $nextPostId: String
-    $firstArtworkId: String
+    # $firstArtworkId: String
   ) {
     site {
       siteMetadata {
@@ -132,9 +132,9 @@ export const pageQuery = graphql`
         vol
       }
     }
-    firstArtwork: directory(id: {eq: $firstArtworkId }) {
-      id
-      name
-    }
+    # firstArtwork: directory(id: {eq: $firstArtworkId }) {
+    #   id
+    #   name
+    # }
   }
 `

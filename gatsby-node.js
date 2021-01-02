@@ -8,7 +8,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const verticalArticle = path.resolve(`./src/templates/vertical-article.tsx`)
   const horizontalArticle = path.resolve(`./src/templates/horizontal-article.tsx`)
   const volTemplate = path.resolve(`./src/templates/vol.tsx`)
-  const ImageGallery = path.resolve(`./src/templates/image-gallery.tsx`)
+  // const ImageGallery = path.resolve(`./src/templates/image-gallery.tsx`)
 
   // Get all markdown article posts sorted by date
   const resultAllMarkdowns = await graphql(
@@ -67,7 +67,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const artworks = resultArtworks.data.allDirectory.edges
+  // const artworks = resultArtworks.data.allDirectory.edges
 
   // Create article posts pages
   // But only if there's at least one markdown file found at "content/article" (defined in gatsby-config.js)
@@ -78,7 +78,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-      const firstArtworkId = artworks[0].node.id
+      // const firstArtworkId = artworks[0].node.id
       availableVols.push(post.frontmatter.vol)
 
       if (post.frontmatter.writing === "horizontal") {
@@ -89,7 +89,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id: post.id,
             previousPostId,
             nextPostId,
-            firstArtworkId,
+            // firstArtworkId,
           },
         })
       } else if (post.frontmatter.writing === "vertical") {
@@ -100,7 +100,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id: post.id,
             previousPostId,
             nextPostId,
-            firstArtworkId,
+            // firstArtworkId,
           },
         })
       }
@@ -117,25 +117,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   }
 
-  if (artworks.length > 0) {
-    artworks.forEach((artwork, index) => {
-      const previousArtworkId = index === 0 ? null : artworks[index - 1].node.id
-      const nextArtworkId = index === artworks.length - 1 ? null : artworks[index + 1].node.id
-      const lastPostId = posts[posts.length - 1].id
+  // if (artworks.length > 0) {
+  //   artworks.forEach((artwork, index) => {
+  //     const previousArtworkId = index === 0 ? null : artworks[index - 1].node.id
+  //     const nextArtworkId = index === artworks.length - 1 ? null : artworks[index + 1].node.id
+  //     const lastPostId = posts[posts.length - 1].id
 
-      createPage({
-        path: `/vol/0/${artwork.node.name}/`,
-        component: ImageGallery,
-        context: {
-          id: artwork.node.id,
-          artist: `${artwork.node.name}-*`,
-          previousArtworkId,
-          nextArtworkId,
-          lastPostId,
-        },
-      })
-    })
-  }
+  //     createPage({
+  //       path: `/vol/0/${artwork.node.name}/`,
+  //       component: ImageGallery,
+  //       context: {
+  //         id: artwork.node.id,
+  //         artist: `${artwork.node.name}-*`,
+  //         previousArtworkId,
+  //         nextArtworkId,
+  //         lastPostId,
+  //       },
+  //     })
+  //   })
+  // }
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

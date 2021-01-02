@@ -38,23 +38,6 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
             ))}
           </div>
         </section>
-        <section className="flex flex-col justify-center mx-auto space-y-32">
-          <div data-skew className="flex justify-center mx-auto">
-            <h2 className="text-6xl border-b-8 border-blue-700 outline sm:text-7xl md:text-8xl">
-              投稿画像
-            </h2>
-          </div>
-          <div className="flex flex-col justify-center mx-auto space-y-28">
-            {artworks.map((artwork, index) => (
-              <ScrollArticle
-                index={index}
-                to={`/vol/0/${artwork.node.name}/`}
-                linkText={artwork.node.name}
-                useCursor={false}
-              />
-            ))}
-          </div>
-        </section>
       </div>
       {/* Cursor */}
       <div
