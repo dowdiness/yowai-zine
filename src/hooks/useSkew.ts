@@ -31,7 +31,7 @@ const useSkew = (skewElementSelectors: string) => {
     gsap.set(skewElementSelectors, { transformOrigin: 'right center', force3D: true })
 
     return (() => ScrollTriggerInstance.kill())
-  })
+  }, [])
 }
 
 export default useSkew

@@ -54,12 +54,12 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
             className="flex flex-col items-center text-center"
           >
             {text &&
-              <span className="text-3xl sm:text-4xl">
+              <span className="text-2xl sm:text-3xl md:text-4xl">
               { text}
               </span>
             }
             <Link to={to}>
-              <span className="text-5xl outline sm:text-6xl">
+              <span className="text-4xl outline sm:text-5xl md:text-6xl">
                 {linkText}
               </span>
             </Link>
