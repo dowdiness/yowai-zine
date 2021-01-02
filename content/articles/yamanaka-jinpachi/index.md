@@ -4,6 +4,7 @@ author: 山中甚八
 profile: 1990年生　SON OF A BITCH ⇄ MOM OF A GEEK
 vol: "0"
 writing: "vertical"
+instagram: "https://instagram.com/beaverpatrooool?igshid=co3i7z6d1bx9"
 ---
 
 人間も含めてすべての生物は、ATPという物質を分子レベルの燃料に活動している。ATPという物質が少し崩れて、ADPという物質に変化する時に発生するエネルギーが生体内で起こるあらゆる反応のエネルギーとして使われている。イソギンチャクもゴキブリもゴリラもバナナもこのATPを使って生体活動を行っている。生物という存在が発生した太古の昔から、ATPはエネルギー源に用いられているという。
