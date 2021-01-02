@@ -1,5 +1,5 @@
 ---
-title: illbull
+title: untitled
 author: illbull
 profile: 絵描き　京都在住
 vol: "0"

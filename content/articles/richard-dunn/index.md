@@ -1,5 +1,5 @@
 ---
-title: Richard dunn
+title: untitled
 author: Richard dunn
 profile: |
   1992年イギリス生まれ、ニュージーランド育ち。 2015年より大阪在住。
