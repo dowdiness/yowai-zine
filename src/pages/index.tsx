@@ -99,7 +99,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             <div className="relative">
               <h3 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
               <div className="absolute inline-block w-full transform -translate-x-1/2 -translate-y-1/2 h-1/3 inset-1/2">
-                <GatsbyImage image={genkiData!} alt="Genki" />
+                <GatsbyImage className="cursor-none" image={genkiData!} alt="Genki" />
               </div>
             </div>
           </div>
@@ -115,7 +115,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           <section className="flex flex-col justify-center mx-auto space-y-32">
             <div data-skew className="flex justify-center mx-auto">
               <h2 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">
-                投稿記事
+                集まった作品
               </h2>
             </div>
             <div className="flex flex-col justify-center mx-auto space-y-28">

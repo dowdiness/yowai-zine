@@ -108,10 +108,6 @@ module.exports = {
           MsTextCombineHorizontal: 'all',
           textCombineUpright: 'all',
         },
-        '.outline': {
-          WebkitTextStroke: '1px black',
-          WebkitTextFillColor: 'white',
-        },
         '.shape-outside': {
           shapeOutside: 'circle(50%)'
         }

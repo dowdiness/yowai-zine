@@ -1,0 +1,51 @@
+:root {
+  --def: white;
+	--inv: black;
+}
+
+.back-home {
+	position: relative;
+	padding: 1.4rem 4.2rem;
+	color: var(--inv);
+	transition: all 500ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.back-home:before {
+  right: 0;
+	border: 1px solid var(--inv);
+	border-left: 0;
+	border-right: 0;
+}
+
+.back-home:after {
+	left: 0;
+}
+
+.back-home:before, .back-home:after {
+  top: 0;
+	width: 0;
+	height: 100%;
+	content: '';
+	position: absolute;
+	transition: inherit;
+	z-index: -1;
+}
+
+.back-home:hover {
+	color: var(--def);
+	transition-delay: .5s;
+}
+
+.back-home:hover:before {
+	transition-delay: 0s;
+}
+
+.back-home:hover:after {
+	background: var(--inv);
+	transition-delay: .35s;
+}
+
+.back-home:hover:before,
+.back-home:hover:after {
+	width: 100%;
+}

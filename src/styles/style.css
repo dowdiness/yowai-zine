@@ -18,7 +18,7 @@
   ::before,
   ::after {
     box-sizing: content-box;
-    cursor: none !important;
+    cursor: none;
   }
 
   html {
@@ -120,10 +120,15 @@
 }
 
 @layer utilities {
-  .cursor-none { cursor: none; }
+  .cursor-none { cursor: none !important; }
 
   .border-3 {
     border-width: 3px;
+  }
+
+  .outline {
+    -webkit-text-stroke: 1px black;
+    -webkit-text-fill-color: white;
   }
 
   .neumorphism-deep {
@@ -142,7 +147,7 @@
     box-shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
   },
 
-  @responsive {
+  @variants responsive {
     .xl-text {
       font-size: 1.25rem;
     }
