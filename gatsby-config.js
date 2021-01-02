@@ -1,6 +1,8 @@
 const config = {
+  title: `弱いZINE`,
   siteUrl: `https://yowai.band`,
   themeColor: '#2a9df4',
+  description: `こころおきなく居られるweb zineです。`,
   keys: {
     googleAnalyticsID: 'G-M9N1PKWPN1',
   },
@@ -17,15 +19,15 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `弱いZINE`,
+    title: config.title,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `ｏｓａｍｕｏｓａｎａｉ`,
+      summary: `おともだちロボット`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    description: config.description,
     siteUrl: config.siteUrl,
     social: {
-      twitter: `kylemathews`,
+      twitter: `coffee_ippku`,
     },
   },
   plugins: [
@@ -101,8 +103,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `弱いZINE`,
-        short_name: `弱いZINE`,
+        name: config.title,
+        short_name: config.title,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: config.themeColor,
@@ -113,20 +115,33 @@ module.exports = {
     {
       resolve: "gatsby-plugin-next-seo",
       options: {
-        titleTemplate: "%s | 弱いZINE",
+        titleTemplate: `%s | ${config.title}`,
         language: `ja`,
-        description: `弱いZINE`,
+        description: config.description,
         openGraph: {
+          title: config.title,
+          description: config.description,
           type: "website",
-          locale: "en_IE",
-          url: "https://www.url.ie/",
-          site_name: "SiteName",
+          locale: "ja_JP",
+          url: config.siteUrl,
+          site_name: config.title,
+          images: [
+            {
+              url: `${config.siteUrl}/yowai-ogp.png`,
+              width: 1200,
+              height: 840,
+              alt: 'Yowai zine',
+            }
+          ],
         },
         twitter: {
-          handle: "@handle",
-          site: "@site",
+          handle: "@antisatori",
+          site: "@coffee_ippku",
           cardType: "summary_large_image",
         },
+        facebook: {
+          appId: 361318330627253,
+        }
       },
     },
     {
