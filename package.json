@@ -19,7 +19,7 @@
     "gatsby": "^2.30.0-next.7",
     "gatsby-plugin-feed": "^2.5.14",
     "gatsby-plugin-google-analytics": "^2.3.18",
-    "gatsby-plugin-image": "^0.3.0-next.1",
+    "gatsby-plugin-image": "^0.6.0-next.0",
     "gatsby-plugin-manifest": "^2.7.0",
     "gatsby-plugin-next-seo": "^1.6.1",
     "gatsby-plugin-nprogress": "^2.3.13",
