@@ -8,6 +8,7 @@ import useCursor from 'src/hooks/useCursor'
 //Components
 import ScrollArticle from 'src/components/ScrollArticle'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 
 //Ease
 const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
@@ -15,6 +16,7 @@ const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data }) => {
   const posts = data.posts.nodes
   const artworks = data.artworks.edges
+
   useSkew('[data-skew]')
   const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
 
@@ -25,6 +27,16 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
         openGraph={{
           title: "集まった作品 | 弱いZINE",
         }}
+      />
+      <LogoLd />
+      <BreadcrumbLd
+        itemListElements={[
+          {
+            position: 2,
+            name: '集まった作品',
+            item: `articles`,
+          },
+        ]}
       />
       <div className="py-48 space-y-64">
         <section className="flex flex-col justify-center mx-auto space-y-32">

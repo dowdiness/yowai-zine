@@ -10,7 +10,7 @@ import ScrollArticle from 'src/components/ScrollArticle'
 import Div100vh from 'react-div-100vh'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { LogoLd } from "src/components/JsonLd"
+import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 
 const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
@@ -78,6 +78,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <LogoLd />
+      <BreadcrumbLd />
       <div className="-mx-8 space-y-32">
         <section>
           <Div100vh className="flex items-center justify-center">

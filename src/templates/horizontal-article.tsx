@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
+import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 // @ts-ignore
 import minnakikeru from "../../content/assets/minnakikeru.png"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
@@ -25,6 +26,21 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           title: `${post?.frontmatter?.title} ${post?.frontmatter?.author} 弱いZINE`,
           description: post?.excerpt || post?.frontmatter?.profile || ``,
         }}
+      />
+      <LogoLd />
+      <BreadcrumbLd
+        itemListElements={[
+          {
+            position: 2,
+            name: '集まった作品',
+            item: `articles`,
+          },
+          {
+            position: 3,
+            name: post?.frontmatter?.title || post?.frontmatter?.author || '',
+            item: `articles${post?.fields?.slug}`,
+          },
+        ]}
       />
       <article
         className="py-16"
