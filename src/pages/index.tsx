@@ -43,6 +43,21 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   useSkew('[data-skew]')
   const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
 
+  const smoothScroll = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    const targetElement = document.querySelector('[data-scroll]')!
+    const rectTop = targetElement.getBoundingClientRect().top
+    // 現在のスクロール距離
+    const offsetTop = window.pageYOffset
+    // スクロール位置に持たせるバッファ
+    const buffer = 50
+    const top = rectTop + offsetTop - buffer
+
+    window.scrollTo({
+      top,
+      behavior: "smooth"
+    })
+  }
   const text = `小さいチームで
     弱いzineという名前の
     web zine(インターネットで読む雑誌)
@@ -86,14 +101,14 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               <span className="text-xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
               <span className="text-lg font-semibold sm:text-xl md:text-2xl">Here is the outside of your timeline.</span>
             </h1>
-            <div data-skew className="scroll-down">
+            <a onClick={e => smoothScroll(e)} data-skew className="scroll-down">
               <span></span>
               <span></span>
               <span></span>
-            </div>
+            </a>
           </Div100vh>
         </section>
-        <section className="flex flex-col items-center justify-center md:flex-row md:justify-around md:items-start">
+        <section data-scroll className="flex flex-col items-center justify-center md:flex-row md:justify-around md:items-start">
           <div className="mb-12 md:mb-0 md:mr-12 md:sticky top-24">
             <div className="relative">
               <h2 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
