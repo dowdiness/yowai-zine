@@ -8,6 +8,10 @@
 import * as React from 'react'
 import Layout from 'src/components/Layout'
 import { RecoilRoot } from 'recoil'
+import {
+  MotionConfig,
+  AnimationFeature,
+} from "framer-motion"
 
 const wrapPageElement = ({ element, props }) => {
   return (
@@ -18,7 +22,9 @@ const wrapPageElement = ({ element, props }) => {
 const wrapRootElement = ({ element }) => {
   return (
     <RecoilRoot>
-      {element}
+      <MotionConfig features={[AnimationFeature]}>
+        {element}
+      </MotionConfig>
     </RecoilRoot>
   )
 }

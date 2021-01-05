@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { Link } from 'gatsby'
 
 import { useInView } from 'react-intersection-observer'
-import { motion } from 'framer-motion'
+import { m as motion } from 'framer-motion'
 import { isClient } from 'src/utils'
 const transition = { duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }
 

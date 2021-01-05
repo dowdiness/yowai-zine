@@ -12,6 +12,10 @@ import "src/styles/tailwind-utils.css"
 import * as React from 'react'
 import Layout from 'src/components/Layout'
 import { RecoilRoot } from 'recoil'
+import {
+  MotionConfig,
+  AnimationFeature,
+} from "framer-motion"
 
 import onInitialClientRender from 'src/gatsby/browser/onInitialClientRender'
 import onRouteUpdate from 'src/gatsby/browser/onRouteUpdate'
@@ -26,7 +30,9 @@ const wrapPageElement = ({ element, props }) => {
 const wrapRootElement = ({ element }) => {
   return (
     <RecoilRoot>
-      {element}
+      <MotionConfig features={[AnimationFeature]}>
+        {element}
+      </MotionConfig>
     </RecoilRoot>
   )
 }

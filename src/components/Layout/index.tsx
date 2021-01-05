@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 
-import { motion, useViewportScroll, useTransform } from 'framer-motion'
+import { m as motion, useViewportScroll, useTransform } from 'framer-motion'
 import useMouse from 'src/hooks/useMouse'
 
 type LayoutProps = {
