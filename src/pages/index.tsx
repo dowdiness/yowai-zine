@@ -17,9 +17,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 }) => {
   const home = data.home
   const posts = data.posts.nodes
-  const artworks = data.artworks.edges
   const genkiData = getImage(data.genki)
-  const zineDate = getImage(data.zine)
   const { width } = useWindowSize()
   const circle = home?.catchphrase
   const ratio =
@@ -99,7 +97,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             <div className="relative">
               <h2 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
               <div className="absolute inline-block w-full transform -translate-x-1/2 -translate-y-1/2 h-1/3 inset-1/2">
-                <GatsbyImage className="cursor-none" image={genkiData!} alt="Genki" />
+                <GatsbyImage loading="eager" height="247" width="798" className="cursor-none" image={genkiData!} alt="Genki" />
               </div>
             </div>
           </div>
@@ -181,11 +179,6 @@ export const pageQuery = graphql`
         gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
       }
     }
-    zine: file(relativePath: { eq: "yowaizine.png" }) {
-      childImageSharp {
-        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
-      }
-    }
     posts: allMarkdownRemark(filter: { frontmatter: { vol: { eq: "0" } } }) {
       nodes {
         excerpt(truncate: true)
@@ -196,14 +189,6 @@ export const pageQuery = graphql`
           title
           author
           vol
-        }
-      }
-    }
-    artworks: allDirectory(filter: {sourceInstanceName: {eq: "artworks"}}, skip: 1) {
-      edges {
-        node {
-          id
-          name
         }
       }
     }
