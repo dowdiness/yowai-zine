@@ -97,7 +97,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
         <section className="flex flex-col items-center justify-center md:flex-row md:justify-around md:items-start">
           <div className="mb-12 md:mb-0 md:mr-12 md:sticky top-24">
             <div className="relative">
-              <h3 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
+              <h2 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
               <div className="absolute inline-block w-full transform -translate-x-1/2 -translate-y-1/2 h-1/3 inset-1/2">
                 <GatsbyImage className="cursor-none" image={genkiData!} alt="Genki" />
               </div>
@@ -114,9 +114,9 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
         <div className="pb-32 space-y-48">
           <section className="flex flex-col justify-center mx-auto space-y-32">
             <div data-skew className="flex justify-center mx-auto">
-              <h2 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">
+              <h3 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">
                 集まった作品
-              </h2>
+              </h3>
             </div>
             <div className="flex flex-col justify-center mx-auto space-y-28">
               {posts.map((post, index) => (
