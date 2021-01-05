@@ -11,7 +11,7 @@ import ScrollArticle from 'src/components/ScrollArticle'
 //Ease
 const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 
-const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
+const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data }) => {
   const posts = data.posts.nodes
   const artworks = data.artworks.edges
   useSkew('[data-skew]')
@@ -30,7 +30,7 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
             {posts.map((post, index) => (
               <ScrollArticle
                 index={index}
-                to={`/vol/${post.frontmatter?.vol}${post.fields?.slug}`}
+                to={`/articles${post.fields?.slug}`}
                 text={post.frontmatter?.author}
                 linkText={post.frontmatter?.title!}
                 useCursor={true}
@@ -60,11 +60,11 @@ const VolPage: React.FC<PageProps<GatsbyTypes.VolPageQuery>> = ({ data }) => {
   )
 }
 
-export default VolPage
+export default ArticlesPage
 
 export const pageQuery = graphql`
-  query VolPage($vol: String!) {
-    posts: allMarkdownRemark(filter: { frontmatter: { vol: { eq: $vol } } }) {
+  query ArticlesPage {
+    posts: allMarkdownRemark {
       nodes {
         excerpt(truncate: true)
         fields {

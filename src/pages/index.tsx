@@ -122,7 +122,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               {posts.map((post, index) => (
                 <ScrollArticle
                   index={index}
-                  to={`/vol/${post.frontmatter?.vol}${post.fields?.slug}`}
+                  to={`/articles${post.fields?.slug}`}
                   text={post.frontmatter?.author}
                   linkText={post.frontmatter?.title!}
                   useCursor={true}

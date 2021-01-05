@@ -7,7 +7,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Define a template for article post
   const verticalArticle = path.resolve(`./src/templates/vertical-article.tsx`)
   const horizontalArticle = path.resolve(`./src/templates/horizontal-article.tsx`)
-  const volTemplate = path.resolve(`./src/templates/vol.tsx`)
   // const ImageGallery = path.resolve(`./src/templates/image-gallery.tsx`)
 
   // Get all markdown article posts sorted by date
@@ -83,7 +82,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       if (post.frontmatter.writing === "horizontal") {
         createPage({
-          path: `/vol/${post.frontmatter.vol}${post.fields.slug}`,
+          path: `/articles${post.fields.slug}`,
           component: horizontalArticle,
           context: {
             id: post.id,
@@ -94,7 +93,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         })
       } else if (post.frontmatter.writing === "vertical") {
         createPage({
-          path: `/vol/${post.frontmatter.vol}${post.fields.slug}`,
+          path: `/articles${post.fields.slug}`,
           component: verticalArticle,
           context: {
             id: post.id,
@@ -106,15 +105,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     })
     const availableVolsSet = new Set(availableVols)
-    availableVolsSet.forEach((availableVol) => {
-      createPage({
-        path: `/vol/${availableVol}/`,
-        component: volTemplate,
-        context: {
-          vol: availableVol,
-        },
-      })
-    })
   }
 
   // if (artworks.length > 0) {

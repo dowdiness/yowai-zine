@@ -14,7 +14,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
   const siteUrl = data.site?.siteMetadata?.siteUrl
   const { previous, next } = data
   const { tategakiRef } = useTategaki()
-  const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
+  const articlesIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
   return (
     <>
@@ -29,7 +29,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
           itemType="http://schema.org/Article"
         >
           <ArticleLink
-            to={`${zineIndexPath}/`}
+            to={`${articlesIndexPath}/`}
             title='目次に戻る'
             className="mt-12"
           />
@@ -51,7 +51,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
             <ArticleShareButton
               className="w-full py-4 mt-16 sm:py-6 md:py-10"
               articleTitle={post?.frontmatter?.title!}
-              articleUrl={`${siteUrl}/vol/${post?.frontmatter?.vol}${post?.fields?.slug}` || siteUrl!}
+              articleUrl={`${siteUrl}/articles${post?.fields?.slug}` || siteUrl!}
               articleDescription={post?.excerpt!}
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
@@ -72,9 +72,9 @@ const VerticalArticleTemplate: React.FC<PageProps<
           </footer>
         </article>
         <ArticleNav
-          previousLink={previous ? `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` : undefined}
+          previousLink={previous ? `/articles${previous.fields?.slug}` : undefined}
           previousTitle={previous ? previous.frontmatter?.title : undefined}
-          nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : undefined}
+          nextLink={next ? `/articles${next.fields?.slug}` : undefined}
           nextTitle={next ? next.frontmatter?.title : undefined}
           className="mb-12"
         />

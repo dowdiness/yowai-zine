@@ -14,7 +14,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
   const post = data.markdownRemark
   const siteUrl = data.site?.siteMetadata?.siteUrl
   const { previous, next } = data
-  const zineIndexPath = location?.pathname.split("/").slice(0, 3).join("/")
+  const articlesIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
   return (
     <>
@@ -28,7 +28,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
         itemType="http://schema.org/Article"
       >
         <ArticleLink
-          to={`${zineIndexPath}/`}
+          to={`${articlesIndexPath}/`}
           title='目次に戻る'
           className="mt-12 text-left"
         />
@@ -49,7 +49,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <ArticleShareButton
             className="w-full py-4 mt-16 sm:py-6 md:py-10"
             articleTitle={post?.frontmatter?.title!}
-            articleUrl={`${siteUrl}/vol/${post?.frontmatter?.vol}${post?.fields?.slug}` || siteUrl!}
+            articleUrl={`${siteUrl}/articles${post?.fields?.slug}` || siteUrl!}
             articleDescription={post?.excerpt!}
           />
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
@@ -81,9 +81,9 @@ const HorizontalArticleTemplate: React.FC<PageProps<
         </footer>
       </article>
       <ArticleNav
-        previousLink={previous ? `/vol/${previous.frontmatter?.vol}${previous.fields?.slug}` : undefined}
+        previousLink={previous ? `/articles${previous.fields?.slug}` : undefined}
         previousTitle={previous ? previous.frontmatter?.title : undefined}
-        nextLink={next ? `/vol/${next.frontmatter?.vol}${next.fields?.slug}` : undefined}
+        nextLink={next ? `/articles${next.fields?.slug}` : undefined}
         nextTitle={next ? next.frontmatter?.title : undefined}
         className="mb-12"
       />
