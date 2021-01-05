@@ -21,6 +21,10 @@ const VerticalArticleTemplate: React.FC<PageProps<
       <GatsbySeo
         title={post?.frontmatter?.title || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
+        openGraph={{
+          title: `${post?.frontmatter?.title} ${post?.frontmatter?.author} 弱いZINE`,
+          description: post?.excerpt || post?.frontmatter?.profile || ``,
+        }}
       />
       <div className="">
         <article
@@ -99,7 +103,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 160)
+      excerpt(pruneLength: 60, truncate: true)
       html
       fields {
         slug

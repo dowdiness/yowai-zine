@@ -20,7 +20,12 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
 
   return (
     <>
-      <GatsbySeo title="集まった作品" />
+      <GatsbySeo
+        title="集まった作品"
+        openGraph={{
+          title: "集まった作品 | 弱いZINE",
+        }}
+      />
       <div className="py-48 space-y-64">
         <section className="flex flex-col justify-center mx-auto space-y-32">
           <div data-skew className="flex justify-center mx-auto">

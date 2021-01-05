@@ -21,6 +21,10 @@ const HorizontalArticleTemplate: React.FC<PageProps<
       <GatsbySeo
         title={post?.frontmatter?.title || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
+        openGraph={{
+          title: `${post?.frontmatter?.title} ${post?.frontmatter?.author} 弱いZINE`,
+          description: post?.excerpt || post?.frontmatter?.profile || ``,
+        }}
       />
       <article
         className="py-16"
@@ -56,7 +60,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">{post?.frontmatter?.profile}</p>
             <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
               {post?.frontmatter?.minnakikeru && (
-                <a href={post?.frontmatter?.minnakikeru} target="_blank" rel="noreferrer noopener">
+                <a aria-label="minnakikeru" href={post?.frontmatter?.minnakikeru} target="_blank" rel="noreferrer noopener">
                   <img
                     width={48}
                     height={48}
@@ -67,12 +71,12 @@ const HorizontalArticleTemplate: React.FC<PageProps<
                 </a>
               )}
               {post?.frontmatter?.instagram && (
-                <a href={post?.frontmatter?.instagram} target="_blank" rel="noreferrer noopener">
+                <a aria-label="instagram" href={post?.frontmatter?.instagram} target="_blank" rel="noreferrer noopener">
                   <TiSocialInstagram className="w-12 h-12" />
                 </a>
               )}
               {post?.frontmatter?.twitter && (
-                <a href={post?.frontmatter?.twitter} target="_blank" rel="noreferrer noopener">
+                <a aria-label="twitter" href={post?.frontmatter?.twitter} target="_blank" rel="noreferrer noopener">
                   <TiSocialTwitter className="w-12 h-12" />
                 </a>
               )}
@@ -107,7 +111,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 160)
+      excerpt(pruneLength: 60, truncate: true)
       html
       fields {
         slug
