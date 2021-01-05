@@ -7,6 +7,7 @@ import useCursor from 'src/hooks/useCursor'
 
 //Components
 import ScrollArticle from 'src/components/ScrollArticle'
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 //Ease
 const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
@@ -19,11 +20,12 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
 
   return (
     <>
+      <GatsbySeo title="集まった作品" />
       <div className="py-48 space-y-64">
         <section className="flex flex-col justify-center mx-auto space-y-32">
           <div data-skew className="flex justify-center mx-auto">
-            <h2 className="text-6xl border-b-8 border-blue-700 outline sm:text-7xl md:text-8xl">
-              投稿記事
+            <h2 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">
+              集まった作品
             </h2>
           </div>
           <div className="flex flex-col justify-center mx-auto space-y-28">
