@@ -81,7 +81,8 @@ class Cursor {
     const src = el.getAttribute(
       this.HoverElementSelectors.replace(/[\[\]]/g, '')
     )
-    const source = document.querySelector(`#${src}`)
+    //idが数字で始まるとCSS.escapeが必要になる
+    const source = document.querySelector(`#${CSS.escape(src!)}`)
     if (!source) {
       console.warn('There is no source')
       return
