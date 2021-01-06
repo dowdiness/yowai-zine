@@ -56,7 +56,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
           <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
           <div className="flex p-4 pl-2 sm:p-6 sm:pl-4 md:pl-6 md:p-10 neumorphism-normal rounded-2xl">
             <ArticleSideHeader
-              className="sticky w-full h-fit-content top-16"
+              className="sticky w-full h-fit-content top-6"
               title={post?.frontmatter?.title}
               author={post?.frontmatter?.author}
             />
