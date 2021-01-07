@@ -3,9 +3,6 @@ const config = {
   siteUrl: `https://yowai.band`,
   themeColor: '#2a9df4',
   description: `こころおきなく居られるweb zineです。`,
-  keys: {
-    googleAnalyticsID: 'G-M9N1PKWPN1',
-  },
 }
 
 const path = require('path')
@@ -100,12 +97,6 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: config.keys.googleAnalyticsID,
-      },
-    },
     `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {
