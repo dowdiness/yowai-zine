@@ -11,5 +11,4 @@ instagram: "https://www.instagram.com/richard_james_dunn/"
 ---
 
 ![](../../artworks/richard-dunn/richard-dunn-01.jpg)
-
 ![](../../artworks/richard-dunn/richard-dunn-02.jpg)
