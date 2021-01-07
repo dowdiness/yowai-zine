@@ -64,7 +64,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className="font-serif prose text-center main-article-width sm:prose-lg md:prose-xl xl:prose-2xl text-character"
+            className="font-serif prose text-center main-article-width sm:prose-lg md:prose-xl text-character"
           />
         </div>
         <footer>
@@ -75,7 +75,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
             articleDescription={post?.excerpt!}
           />
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
-            <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">{post?.frontmatter?.profile}</p>
+            <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
             <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
               {post?.frontmatter?.bandcamp && (
                 <a aria-label="bandcamp" href={post?.frontmatter?.bandcamp} target="_blank" rel="noreferrer noopener">

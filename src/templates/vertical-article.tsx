@@ -75,7 +75,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
               articleDescription={post?.excerpt!}
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
-              <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">{post?.frontmatter?.profile}</p>
+              <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
               <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
               {post?.frontmatter?.instagram && (
                 <a href={post?.frontmatter?.instagram} target="_blank" rel="noreferrer noopener">
