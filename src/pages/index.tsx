@@ -94,7 +94,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <LogoLd />
       <BreadcrumbLd />
-      <div className="-mx-8 space-y-32">
+      <div className="space-y-32">
         <section>
           <Div100vh className="flex items-center justify-center">
             <h1 data-skew className="flex flex-col items-center space-y-8 font-sans text-center">
