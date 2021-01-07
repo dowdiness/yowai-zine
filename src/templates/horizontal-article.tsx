@@ -5,6 +5,8 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 // @ts-ignore
 import minnakikeru from "../../content/assets/minnakikeru.png"
+// @ts-ignore
+import bandcamp from "../../content/assets/bandcamp.png"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
@@ -75,6 +77,17 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl xl:prose-2xl">{post?.frontmatter?.profile}</p>
             <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
+              {post?.frontmatter?.bandcamp && (
+                <a aria-label="bandcamp" href={post?.frontmatter?.bandcamp} target="_blank" rel="noreferrer noopener">
+                  <img
+                    width={48}
+                    height={48}
+                    src={bandcamp}
+                    alt="bandcamp"
+                    className="blend-multiply"
+                  />
+                </a>
+              )}
               {post?.frontmatter?.minnakikeru && (
                 <a aria-label="minnakikeru" href={post?.frontmatter?.minnakikeru} target="_blank" rel="noreferrer noopener">
                   <img
@@ -141,6 +154,7 @@ export const pageQuery = graphql`
         twitter
         instagram
         minnakikeru
+        bandcamp
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

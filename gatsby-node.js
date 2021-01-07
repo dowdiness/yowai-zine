@@ -182,6 +182,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       twitter: String
       instagram: String
       minnakikeru: String
+      bandcamp: String
       date: Date @dateformat
     }
 
