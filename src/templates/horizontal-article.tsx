@@ -64,7 +64,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
-            className="font-serif prose text-center main-article-width sm:prose-lg md:prose-xl text-character"
+            className="font-serif prose text-center whitespace-pre-line main-article-width sm:prose-lg md:prose-xl text-character"
           />
         </div>
         <footer>
