@@ -11,7 +11,6 @@ import "src/styles/tailwind-utils.css"
 
 import * as React from 'react'
 import Layout from 'src/components/Layout'
-import { RecoilRoot } from 'recoil'
 import {
   MotionConfig,
   AnimationFeature,
@@ -29,11 +28,9 @@ const wrapPageElement = ({ element, props }) => {
 
 const wrapRootElement = ({ element }) => {
   return (
-    <RecoilRoot>
-      <MotionConfig features={[AnimationFeature]}>
-        {element}
-      </MotionConfig>
-    </RecoilRoot>
+    <MotionConfig features={[AnimationFeature]}>
+      {element}
+    </MotionConfig>
   )
 }
 

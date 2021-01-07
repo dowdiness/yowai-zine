@@ -7,7 +7,6 @@
 // You can delete this file if you're not using it
 import * as React from 'react'
 import Layout from 'src/components/Layout'
-import { RecoilRoot } from 'recoil'
 import {
   MotionConfig,
   AnimationFeature,
@@ -21,11 +20,9 @@ const wrapPageElement = ({ element, props }) => {
 
 const wrapRootElement = ({ element }) => {
   return (
-    <RecoilRoot>
-      <MotionConfig features={[AnimationFeature]}>
-        {element}
-      </MotionConfig>
-    </RecoilRoot>
+    <MotionConfig features={[AnimationFeature]}>
+      {element}
+    </MotionConfig>
   )
 }
 
