@@ -10,17 +10,12 @@ instagram: "https://instagram.com/gereed"
 ---
 
 ![](hand-writing-1.jpg)
-
 ![](hand-writing-2.jpg)
-
 ![](hand-writing-3.jpg)
-
 ![](hand-writing-4.jpg)
-
 ![](hand-writing-5.jpg)
 
 ### ※ 下に日本語訳があります
-
 I’ve collected a few hundred chocolate wrappers. The gold paper / foil ones, from the individually wrapped chocolates.
 
 I keep them in a large blue plastic bag. I think it came from a second hand store, where I bought a sweater.
@@ -103,5 +98,4 @@ I tied up the bag again, double knot, and headed back down.
 私は再び袋を二重結びにして、下に向かった。
 
 ![](chocolate-1.jpg)
-
 ![](chocolate-2.jpg)
