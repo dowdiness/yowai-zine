@@ -81,7 +81,6 @@ module.exports = {
               maxWidth: 768,
               linkImagesToOriginal: false,
               backgroundColor: "transparent",
-              disableBgImageOnAlpha: true,
               withWebp: true,
               showCaptions: ['alt'],
             },
