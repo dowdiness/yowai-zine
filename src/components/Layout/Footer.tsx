@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 
 // @ts-ignore
-import logo from "./yowai-logo.png"
+import logo from "../../../content/assets/yowai-logo.png"
 
 export type FooterProps = unknown
 
