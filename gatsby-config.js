@@ -78,8 +78,12 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1280,
+              maxWidth: 768,
               linkImagesToOriginal: false,
+              backgroundColor: "transparent",
+              disableBgImageOnAlpha: true,
+              withWebp: true,
+              showCaptions: ['alt'],
             },
           },
           `gatsby-remark-images-medium-zoom`,

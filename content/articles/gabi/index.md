@@ -9,15 +9,15 @@ writing: "horizontal"
 instagram: "https://instagram.com/gereed"
 ---
 
-![hand-writing-1](hand-writing-1.jpg)
+![](hand-writing-1.jpg)
 
-![hand-writing-2](hand-writing-2.jpg)
+![](hand-writing-2.jpg)
 
-![hand-writing-3](hand-writing-3.jpg)
+![](hand-writing-3.jpg)
 
-![hand-writing-4](hand-writing-4.jpg)
+![](hand-writing-4.jpg)
 
-![hand-writing-5](hand-writing-5.jpg)
+![](hand-writing-5.jpg)
 
 ### ※ 下に日本語訳があります
 
@@ -102,6 +102,6 @@ I tied up the bag again, double knot, and headed back down.
 
 私は再び袋を二重結びにして、下に向かった。
 
-![chocolate-1](chocolate-1.jpg)
+![](chocolate-1.jpg)
 
-![chocolate-2](chocolate-2.jpg)
+![](chocolate-2.jpg)

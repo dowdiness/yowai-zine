@@ -48,4 +48,4 @@ instagram: "https://instagram.com/osamuosanai"
 https://www.youtube.com/watch?v=OB0TQRL9phk
 
 
-![ギターの演奏](playing-guitar.jpeg)
+![](playing-guitar.jpeg)

@@ -10,6 +10,6 @@ writing: "horizontal"
 instagram: "https://www.instagram.com/richard_james_dunn/"
 ---
 
-![richard-dunn-01](../../artworks/richard-dunn/richard-dunn-01.jpg)
+![](../../artworks/richard-dunn/richard-dunn-01.jpg)
 
-![richard-dunn-02](../../artworks/richard-dunn/richard-dunn-02.jpg)
+![](../../artworks/richard-dunn/richard-dunn-02.jpg)
