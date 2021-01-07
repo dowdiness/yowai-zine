@@ -10,6 +10,7 @@ import ScrollArticle from 'src/components/ScrollArticle'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 import { ArticleLink } from 'src/components/Article'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 //Ease
 const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
@@ -17,6 +18,7 @@ const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data }) => {
   const posts = data.posts.nodes
   const artworks = data.artworks.edges
+  const zineDate = getImage(data.zine)
 
   useSkew('[data-skew]')
   const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
@@ -46,10 +48,12 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
           className="mt-12 text-left"
         />
         <section className="flex flex-col justify-center mx-auto space-y-32">
-          <div data-skew className="flex justify-center mx-auto">
-            <h2 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">
-              集まった作品
-            </h2>
+          <div data-skew className="flex justify-center mx-auto -mb-12">
+            <GatsbyImage
+              image={zineDate}
+              alt="Zine"
+              className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+            />
           </div>
           <div className="flex flex-col justify-center mx-auto space-y-28">
             {posts.map((post, index) => (
@@ -108,6 +112,11 @@ export const pageQuery = graphql`
           id
           name
         }
+      }
+    }
+    zine: file(relativePath: { eq: "yowaizine.png" }) {
+      childImageSharp {
+        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
       }
     }
   }
