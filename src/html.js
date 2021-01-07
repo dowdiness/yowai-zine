@@ -14,7 +14,6 @@ export default function HTML(props) {
         />
         {props.headComponents}
         <script src="https://cdn.jsdelivr.net/npm/ie-buster@1.1.0/dist/ie-buster.min.js"></script>
-        <script async src="https://cdn.splitbee.io/sb.js"></script>
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
