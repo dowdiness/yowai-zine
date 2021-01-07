@@ -18,6 +18,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   const home = data.home
   const posts = data.posts.nodes
   const genkiData = getImage(data.genki)
+  const zineDate = getImage(data.zine)
   const { width } = useWindowSize()
   const circle = home?.catchphrase
   const ratio =
@@ -127,10 +128,12 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
         {/* 記事 */}
         <div className="py-16 space-y-48">
           <section className="flex flex-col justify-center mx-auto space-y-32">
-            <div data-skew className="flex justify-center mx-auto">
-              <h3 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">
-                集まった作品
-              </h3>
+            <div data-skew className="flex justify-center mx-auto -mb-12">
+              <GatsbyImage
+                image={zineDate}
+                alt="Zine"
+                className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+              />
             </div>
             <div className="flex flex-col justify-center mx-auto space-y-28">
               {posts.map((post, index) => (
@@ -191,6 +194,11 @@ export const pageQuery = graphql`
       introduction
     }
     genki: file(relativePath: { eq: "genki.png" }) {
+      childImageSharp {
+        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
+      }
+    }
+    zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
         gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
       }
