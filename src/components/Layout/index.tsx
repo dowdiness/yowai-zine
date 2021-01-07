@@ -19,7 +19,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
       <div
         className="container"
       >
-        <Header className="container fixed inset-x-0 top-0 z-40" location={location} />
+        {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
         <main>{children}</main>
         <Footer className="z-40 py-16" />
         <motion.div

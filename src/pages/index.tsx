@@ -125,7 +125,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           </p>
         </section>
         {/* 記事 */}
-        <div className="pb-32 space-y-48">
+        <div className="py-16 space-y-48">
           <section className="flex flex-col justify-center mx-auto space-y-32">
             <div data-skew className="flex justify-center mx-auto">
               <h3 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">

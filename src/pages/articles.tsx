@@ -9,6 +9,7 @@ import useCursor from 'src/hooks/useCursor'
 import ScrollArticle from 'src/components/ScrollArticle'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
+import { ArticleLink } from 'src/components/Article'
 
 //Ease
 const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
@@ -38,7 +39,12 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
           },
         ]}
       />
-      <div className="py-48 space-y-64">
+      <div className="py-16 space-y-16">
+        <ArticleLink
+          to={`/`}
+          title='トップページに戻る'
+          className="mt-12 text-left"
+        />
         <section className="flex flex-col justify-center mx-auto space-y-32">
           <div data-skew className="flex justify-center mx-auto">
             <h2 className="text-5xl border-b-8 border-blue-700 outline sm:text-6xl md:text-7xl">
