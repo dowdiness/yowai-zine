@@ -74,10 +74,14 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   // addEventListener to scale up cursor for new pages
   useEffect(() => {
     window.addEventListener('in-view-event', (ev) => {
+      // prevent error when changing route url
       // @ts-ignore
-      ev.detail.ref.current.addEventListener('mouseenter', enter)
-      // @ts-ignore
-      ev.detail.ref.current.addEventListener('mouseleave', leave)
+      if (ev.detail.ref.current) {
+        // @ts-ignore
+        ev.detail.ref.current.addEventListener('mouseenter', enter)
+        // @ts-ignore
+        ev.detail.ref.current.addEventListener('mouseleave', leave)
+      }
     })
     // return HistoryUnsubscribe to unsubscribe HistoryListener
     return globalHistory.listen(({ action }) => {
