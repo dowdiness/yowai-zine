@@ -1,6 +1,6 @@
 ---
 title: 10円玉/ATP
-author: 山中甚八
+author: 竹下甚八
 profile: 1990年生　SON OF A BITCH ⇄ MOM OF A GEEK
 vol: "0"
 writing: "vertical"

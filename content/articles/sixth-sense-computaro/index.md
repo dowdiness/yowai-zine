@@ -1,6 +1,6 @@
 ---
-title: 第六感コンピュー太郎
-author: 宿谷直史
+title: untitled
+author: 第六感コンピュー太郎
 profile: |
   宿谷直史 nosh shuktani
   sixsensecomputer | PRODUCTION CENTER | TOPGEAR | OL | 賢いULYSSES(裏方)

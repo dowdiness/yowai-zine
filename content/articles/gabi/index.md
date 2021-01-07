@@ -1,5 +1,5 @@
 ---
-title: Untitles
+title: untitled
 author: Gabi
 profile: |
   豆が好きな日本に住んでるアメリカ人。
