@@ -32,7 +32,6 @@
   body {
     font-family: Jost, 'Noto Serif JP', serif;
     font-feature-settings: "palt";
-    overflow: hidden;
     @apply text-gray-900 bg-neumorphism;
   }
 
