@@ -30,7 +30,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
       <div
         ref={mouse.cursorRef}
         id="cursor"
-        className={`fixed top-0 left-0 z-20 pointer-events-none`}
+        className={`fixed top-0 left-0 z-20 pointer-events-none hidden sm:block`}
       />
     </>
   )

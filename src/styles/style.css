@@ -18,7 +18,9 @@
   ::before,
   ::after {
     box-sizing: content-box;
-    cursor: none;
+    @screen sm {
+      cursor: none;
+    }
   }
 
   html {
@@ -120,8 +122,6 @@
 }
 
 @layer utilities {
-  .cursor-none { cursor: none !important; }
-
   .border-3 {
     border-width: 3px;
   }
@@ -148,6 +148,8 @@
   },
 
   @variants responsive {
+    .cursor-none { cursor: none !important; }
+
     .xl-text {
       font-size: 1.25rem;
     }

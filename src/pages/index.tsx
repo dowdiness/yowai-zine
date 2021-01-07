@@ -101,7 +101,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               <span className="text-xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
               <span className="text-lg font-semibold sm:text-xl md:text-2xl">Here is the outside of your timeline.</span>
             </h1>
-            <a onClick={e => smoothScroll(e)} data-skew className="scroll-down">
+            <a onClick={e => smoothScroll(e)} data-skew className="cursor-pointer scroll-down sm:cursor-none">
               <span></span>
               <span></span>
               <span></span>
