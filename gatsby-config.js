@@ -113,6 +113,9 @@ module.exports = {
         theme_color: config.themeColor,
         display: `standalone`,
         icon: `content/assets/yowai-icon.png`,
+        icon_options: {
+          purpose: `any maskable`,
+        },
       },
     },
     {
