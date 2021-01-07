@@ -85,7 +85,12 @@ module.exports = {
               showCaptions: ['alt'],
             },
           },
-          `gatsby-remark-images-medium-zoom`,
+          {
+            resolve: `gatsby-remark-images-medium-zoom`,
+            options: {
+              background: "#e6e7ee"
+            }
+          },
           `gatsby-remark-embedder`,
           {
             resolve: `gatsby-remark-responsive-iframe`,
