@@ -15,7 +15,7 @@ instagram: "https://instagram.com/osamuosanai"
 
 ![](coffee.jpeg)
 
-### 現実の
+### （現実の）
 
 もうどこにも行けない。<br class="sm:hidden"/>僕は弱い。
 諦めて敗走している。<br class="md:hidden"/>全てが敵のように感じる。<br class="xl:hidden"/>それでも敵対心など<br class="md:hidden"/>持てる力さえ<br class="md:hidden"/>残されてはいない。
@@ -46,7 +46,7 @@ instagram: "https://instagram.com/osamuosanai"
 形を持たないで<br class="sm:hidden"/>いようとするなら<br class="lg:hidden"/>(抵抗する気も無いが)
 急に踊るのをやめて、<br class="md:hidden"/>ボトルに入った水を<br class="xl:hidden"/>一口飲み、振り返り、<br class="md:hidden"/>部屋に飾ってある草の長さを<br class="lg:hidden"/>昨日と比べてみる。
 
-### 降ってきた歌
+### （降ってきた歌）
 
 https://www.youtube.com/watch?v=OB0TQRL9phk
 
