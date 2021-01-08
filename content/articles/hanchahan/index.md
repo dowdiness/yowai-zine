@@ -5,7 +5,7 @@ profile: |
   野方在住31歳。
   賢いユリシーズと海辺のニューゴリラ。
 vol: "0"
-writing: "vertical"
+writing: ""
 twitter: "https://twitter.com/masupuru"
 ---
 
