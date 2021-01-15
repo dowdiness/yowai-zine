@@ -5,6 +5,7 @@ profile: |
   豆が好きな日本に住んでるアメリカ人。
   Believes anything can be poetry.
 vol: "0"
+align: "left"
 writing: "horizontal"
 instagram: "https://instagram.com/gereed"
 ---

@@ -177,6 +177,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       description: String
       author: String
       vol: String
+      align: String
       writing: String
       profile: String
       twitter: String
