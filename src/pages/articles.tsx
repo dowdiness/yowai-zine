@@ -17,7 +17,6 @@ const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 
 const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data }) => {
   const posts = data.posts.nodes
-  const artworks = data.artworks.edges
   const zineDate = getImage(data.zine)
 
   useSkew('[data-skew]')
@@ -93,7 +92,10 @@ export default ArticlesPage
 
 export const pageQuery = graphql`
   query ArticlesPage {
-    posts: allMarkdownRemark {
+    posts: allMarkdownRemark(
+      filter: { frontmatter: { vol: { eq: "0" } } }
+      sort: { fields: [frontmatter___createdAt], order: DESC }
+    ) {
       nodes {
         excerpt(truncate: true)
         fields {
@@ -103,14 +105,6 @@ export const pageQuery = graphql`
           title
           author
           vol
-        }
-      }
-    }
-    artworks: allDirectory(filter: {sourceInstanceName: {eq: "artworks"}}, skip: 1) {
-      edges {
-        node {
-          id
-          name
         }
       }
     }

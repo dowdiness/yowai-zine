@@ -203,7 +203,10 @@ export const pageQuery = graphql`
         gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
       }
     }
-    posts: allMarkdownRemark(filter: { frontmatter: { vol: { eq: "0" } } }) {
+    posts: allMarkdownRemark(
+        filter: { frontmatter: { vol: { eq: "0" } } }
+        sort: { fields: [frontmatter___createdAt], order: DESC }
+      ) {
       nodes {
         excerpt(truncate: true)
         fields {

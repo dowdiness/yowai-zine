@@ -2,6 +2,8 @@
 title: 湖畔
 author: 星空そとば
 profile: 地下室で燃え続ける詩集
+createdAt: 2020-12-26T23:01
+updatedAt: 2021-01-15T22:15
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/torchfish_story"

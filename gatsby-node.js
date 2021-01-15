@@ -14,7 +14,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     `
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: ASC }
+          sort: { fields: [frontmatter___createdAt], order: DESC }
           limit: 1000
         ) {
           nodes {
@@ -184,7 +184,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       instagram: String
       minnakikeru: String
       bandcamp: String
-      date: Date @dateformat
+      createdAt: Date @dateformat
+      updatedAt: Date @dateformat
     }
 
     type Fields {

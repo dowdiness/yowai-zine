@@ -4,6 +4,8 @@ author: Gabi
 profile: |
   豆が好きな日本に住んでるアメリカ人。
   Believes anything can be poetry.
+createdAt: 2021-01-07T16:07
+updatedAt: 2021-01-15T22:15
 vol: "0"
 align: "left"
 writing: "horizontal"

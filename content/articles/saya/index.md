@@ -9,6 +9,8 @@ profile: |
   管楽団ざやえんどうがある。
   日本のインディコンピ「みんなみてる」を編纂、リリースされた。
   2020年5月、ストリーミングサイト「みんなきける」を立ち上げている。
+createdAt: 2021-01-02T22:58
+updatedAt: 2021-01-15T22:16
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/majikickn"

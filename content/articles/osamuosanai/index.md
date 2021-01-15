@@ -6,6 +6,8 @@ profile: |
   おともだちロボットである気がする。
   別名ガソリン・スタンド。
   ロックバンド「賢いULYSSES」のシンガー。
+createdAt: 2021-01-12T12:56
+updatedAt: 2021-01-15T22:16
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/coffee_ippku"

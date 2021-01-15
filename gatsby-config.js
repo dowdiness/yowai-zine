@@ -106,7 +106,7 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-feed`,
+    // `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -167,11 +167,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-typegen`,
-    {
-      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
-      options: {
-        devMode: true,
-      },
-    },
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 }

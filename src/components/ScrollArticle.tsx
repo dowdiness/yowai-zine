@@ -15,7 +15,7 @@ export type ScrollArticleProps = {
   }
 
 const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkText, className, useCursor }) => {
-  const [ref, inView] = useInView({
+  const [viewRef, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-15% 0px',
   })
@@ -24,7 +24,7 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
 
   useEffect(() => {
     // not working in ssr https://github.com/gatsbyjs/gatsby/issues/15001
-    if (isClient && useCursor) {
+    if (isClient && useCursor && zoomRef) {
       const inViewEvent = new CustomEvent('in-view-event', { detail: { ref: zoomRef } })
       dispatchEvent(inViewEvent)
     }
@@ -33,7 +33,7 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
   if (useCursor) {
     return (
       <div
-        ref={ref}
+        ref={viewRef}
         data-skew
         className={`flex flex-col items-center mx-auto h-full space-y-16 text-center ${className}`}
       >
@@ -70,7 +70,7 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
   } else {
     return (
       <div
-        ref={ref}
+        ref={viewRef}
         data-skew
         className={`flex flex-col items-center mx-auto h-full space-y-16 text-center ${className}`}
       >

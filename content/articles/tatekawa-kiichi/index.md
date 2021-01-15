@@ -9,6 +9,8 @@ profile: |
   近作では、同ユニットに音楽家・批評家の大谷能生を加えた、「サマースプリング(愛知芸術劇場版)」。
   他ジャンルとの横断的なコラボレーションも多く、ju sei、滝沢朋恵、賢いユリシーズをはじめ、石塚俊との共作などがある。
   また、写真家・舞台作家の三野新作品や、カゲヤマ気象台作品、シンガーソングライター・グルパリのレコ発ライブへの出演など俳優としても活動している。
+createdAt: 2020-12-26T23:01
+updatedAt: 2021-01-15T22:18
 vol: "0"
 writing: "vertical"
 instagram: "https://instagram.com/bombnekobonya?igshid=m6rlpfnr9g8c"

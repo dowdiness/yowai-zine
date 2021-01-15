@@ -5,6 +5,8 @@ profile: |
   宿谷直史 nosh shuktani
   sixsensecomputer | PRODUCTION CENTER | TOPGEAR | OL | 賢いULYSSES(裏方)
   おしゃれのことを考えながらすごすことが多い
+createdAt: 2021-01-07T16:07
+updatedAt: 2021-01-15T22:16
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/qidipidibiqibip"
