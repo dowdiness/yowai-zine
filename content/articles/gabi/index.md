@@ -48,9 +48,7 @@ I could see a small opening into the bag and
 the rustling started to collect near the top.
 I felt a light pressure on my hands, lifting them upwards.
 
-やさしく
-
-I opened it further and the wrappers fell out of the bag,
+やさしくI opened it further and the wrappers fell out of the bag,
 if falling were dancing.
 Clumsy, but light in the air,
 catching the sun on their creases, they went their way.
@@ -93,7 +91,7 @@ I tied up the bag again, double knot, and headed back down.
 それを青い大きなビニール袋に入れて保管していた。
 リサイクルショップでセーターを買った時にもらった袋。
 
-以前、大文字山の山頂までそれ持って行ったことがあった。
+以前、大文字山の山頂までそれを持って行ったことがあった。
 頂上に近づけば近づくほど、袋がしわくちゃになって膨らんでいった。
 プラスチックと紙が当たってバタバタする音が聞こえていた。
 
