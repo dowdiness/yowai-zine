@@ -114,7 +114,14 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             <div className="relative">
               <h2 className="mx-auto overflow-hidden text-xxs animate-spin-slow" ref={circleTextRef} />
               <div className="absolute inline-block w-full transform -translate-x-1/2 -translate-y-1/2 h-1/3 inset-1/2">
-                <GatsbyImage loading="eager" height="247" width="798" className="cursor-none" image={genkiData!} alt="Genki" />
+                <GatsbyImage
+                  loading="eager"
+                  width="798"
+                  height="247"
+                  className="cursor-none"
+                  image={genkiData!}
+                  alt="Genki"
+                />
               </div>
             </div>
           </div>
@@ -130,7 +137,10 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           <section className="flex flex-col justify-center mx-auto space-y-32">
             <div data-skew className="flex justify-center mx-auto -mb-12">
               <GatsbyImage
-                image={zineDate}
+                image={zineDate!}
+                loading="eager"
+                width="768"
+                height="359"
                 alt="Zine"
                 className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
               />
