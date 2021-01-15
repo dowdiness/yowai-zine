@@ -24,7 +24,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   const ratio =
     (width > 992)
       ? 3
-      : (width > 768 && width <= 991)
+      : (width >= 768 && width <= 991)
         ? 2.5
         : (width > 480)
           ? width * 0.004
@@ -32,7 +32,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   const radius =
     (width > 992)
       ? 240
-      : (width > 768 && width <= 991)
+      : (width >= 768 && width <= 991)
         ? width * 0.2
         : (width > 480)
           ? width * 0.3
