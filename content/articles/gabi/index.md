@@ -48,7 +48,9 @@ I could see a small opening into the bag and
 the rustling started to collect near the top.
 I felt a light pressure on my hands, lifting them upwards.
 
-やさしくI opened it further and the wrappers fell out of the bag,
+やさしく
+
+I opened it further and the wrappers fell out of the bag,
 if falling were dancing.
 Clumsy, but light in the air,
 catching the sun on their creases, they went their way.
