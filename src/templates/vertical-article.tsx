@@ -64,7 +64,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
               ref={tategakiRef}
               dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
               itemProp="articleBody"
-              className="font-serif text-justify text-gray-700 whitespace-pre-line main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
+              className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             />
           </div>
           <footer className="">
