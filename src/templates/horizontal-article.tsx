@@ -9,6 +9,8 @@ import minnakikeru from "../../content/assets/minnakikeru.png"
 import bandcamp from "../../content/assets/bandcamp.png"
 // @ts-ignore
 import linktree from "../../content/assets/linktree.jpg"
+// @ts-ignore
+import hatena from "../../content/assets/hatenablog-logo.svg"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
@@ -78,7 +80,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           />
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
-            <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
+            <div className="flex items-center justify-around mx-auto mt-4 md:w-1/2">
               {post?.frontmatter?.linktree && (
                 <a aria-label="linktree" href={`https://linktr.ee/${post?.frontmatter?.linktree}`} target="_blank" rel="noreferrer noopener">
                   <img
@@ -90,6 +92,17 @@ const HorizontalArticleTemplate: React.FC<PageProps<
                   />
                 </a>
               )}
+              {post?.frontmatter?.hatena && (
+                <a className="flex items-center justify-center w-12 h-12" aria-label="hatena" href={`https://${post?.frontmatter?.hatena}.hatenablog.com`} target="_blank" rel="noreferrer noopener">
+                  <img
+                    width={48}
+                    height={48}
+                    src={hatena}
+                    alt="hatena"
+                    className="w-16 h-16 max-w-none blend-multiply"
+                  />
+                </a>
+              )}
               {post?.frontmatter?.bandcamp && (
                 <a aria-label="bandcamp" href={post?.frontmatter?.bandcamp} target="_blank" rel="noreferrer noopener">
                   <img
@@ -97,7 +110,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
                     height={48}
                     src={bandcamp}
                     alt="bandcamp"
-                    className="blend-multiply"
+                    className="w-10 h-10 blend-multiply"
                   />
                 </a>
               )}
@@ -170,6 +183,7 @@ export const pageQuery = graphql`
         minnakikeru
         bandcamp
         linktree
+        hatena
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

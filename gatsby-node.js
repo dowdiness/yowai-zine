@@ -185,6 +185,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       minnakikeru: String
       bandcamp: String
       linktree: String
+      hatena: String
       createdAt: Date @dateformat
       updatedAt: Date @dateformat
     }
