@@ -184,6 +184,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       instagram: String
       minnakikeru: String
       bandcamp: String
+      hatena: String
       createdAt: Date @dateformat
       updatedAt: Date @dateformat
     }

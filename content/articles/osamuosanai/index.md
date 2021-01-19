@@ -7,12 +7,13 @@ profile: |
   別名ガソリン・スタンド。
   ロックバンド「賢いULYSSES」のシンガー。
 createdAt: 2021-01-12T12:56
-updatedAt: 2021-01-15T22:16
+updatedAt: 2021-01-19T16:46
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/coffee_ippku"
 bandcamp: "https://osamuosanai.bandcamp.com/"
 instagram: "https://instagram.com/osamuosanai"
+hatena: "osamuosanai"
 ---
 
 ![](coffee.jpeg)
