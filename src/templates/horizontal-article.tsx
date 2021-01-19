@@ -7,6 +7,8 @@ import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 import minnakikeru from "../../content/assets/minnakikeru.png"
 // @ts-ignore
 import bandcamp from "../../content/assets/bandcamp.png"
+// @ts-ignore
+import linktree from "../../content/assets/linktree.jpg"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
@@ -77,6 +79,17 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
             <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
+              {post?.frontmatter?.linktree && (
+                <a aria-label="linktree" href={`https://linktr.ee/${post?.frontmatter?.linktree}`} target="_blank" rel="noreferrer noopener">
+                  <img
+                    width={48}
+                    height={48}
+                    src={linktree}
+                    alt="linktree"
+                    className="rounded-full"
+                  />
+                </a>
+              )}
               {post?.frontmatter?.bandcamp && (
                 <a aria-label="bandcamp" href={post?.frontmatter?.bandcamp} target="_blank" rel="noreferrer noopener">
                   <img
@@ -156,6 +169,7 @@ export const pageQuery = graphql`
         instagram
         minnakikeru
         bandcamp
+        linktree
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
