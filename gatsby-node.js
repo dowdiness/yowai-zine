@@ -188,6 +188,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       hatena: String
       createdAt: Date @dateformat
       updatedAt: Date @dateformat
+      disableSideHeader: Boolean
     }
 
     type Fields {

@@ -59,12 +59,14 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           className="mt-12 text-left"
         />
         <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
-        <div className="flex p-4 pl-0 sm:p-6 sm:pl-0 md:pl-0 md:p-10 neumorphism-normal rounded-2xl">
-          <ArticleSideHeader
-            className="sticky w-12 h-fit-content sm:w-16 md:w-20 lg:w-24 top-6"
-            title={post?.frontmatter?.title}
-            author={post?.frontmatter?.author}
-          />
+        <div className={`${post?.frontmatter?.disableSideHeader ? 'justify-center py-6 sm:py-8 md:py-10' : 'p-4 sm:p-6 md:p-10 pl-0 sm:pl-0 md:pl-0'} flex neumorphism-normal rounded-2xl`}>
+          {!post?.frontmatter?.disableSideHeader && (
+            <ArticleSideHeader
+              className="sticky w-12 h-fit-content sm:w-16 md:w-20 lg:w-24 top-6"
+              title={post?.frontmatter?.title}
+              author={post?.frontmatter?.author}
+            />
+          )}
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
@@ -184,6 +186,7 @@ export const pageQuery = graphql`
         bandcamp
         linktree
         hatena
+        disableSideHeader
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
