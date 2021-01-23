@@ -1,5 +1,8 @@
 import React from 'react'
-import { graphql, PageProps, Link } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
+import { parseISO, differenceInDays } from 'date-fns'
+import { isNewArticle } from 'src/utils'
+
 //Hooks
 import useSkew from 'src/hooks/useSkew'
 import useCursor from 'src/hooks/useCursor'
@@ -146,15 +149,18 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               />
             </div>
             <div className="flex flex-col justify-center mx-auto space-y-28">
-              {posts.map((post, index) => (
-                <ScrollArticle
-                  index={index}
-                  to={`/articles${post.fields?.slug}`}
-                  text={post.frontmatter?.author}
-                  linkText={post.frontmatter?.title!}
-                  useCursor={true}
-                />
-              ))}
+              {posts.map((post, index) => {
+                return (
+                  <ScrollArticle
+                    index={index}
+                    to={`/articles${post.fields?.slug}`}
+                    text={post.frontmatter?.author}
+                    linkText={post.frontmatter?.title!}
+                    useCursor={true}
+                    isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.updatedAt!), Date.now()))}
+                  />
+                )
+              })}
             </div>
           </section>
         </div>
@@ -175,20 +181,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             ))}
           </div>
         </div>
-
-        {/* <section className="container w-auto">
-          <Div100vh className="flex flex-col items-center justify-center space-y-24">
-            <Link className="overflow-hidden" to="/vol/0/">
-              <h2 className="font-sans text-5xl font-bold">
-                <GatsbyImage
-                  image={zineDate!}
-                  alt="Zine"
-                  className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
-                />
-              </h2>
-            </Link>
-          </Div100vh>
-        </section> */}
       </div>
     </>
   )
@@ -226,6 +218,7 @@ export const pageQuery = graphql`
           title
           author
           vol
+          updatedAt
         }
       }
     }

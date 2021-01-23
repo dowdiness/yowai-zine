@@ -12,6 +12,7 @@
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.1.0",
     "babel-plugin-styled-components": "^1.11.1",
+    "date-fns": "^2.16.1",
     "fontsource-jost": "^3.1.6",
     "fontsource-noto-sans-jp": "^3.0.9",
     "fontsource-noto-serif-jp": "^3.0.3",

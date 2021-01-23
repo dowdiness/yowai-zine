@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 import { useInView } from 'react-intersection-observer'
 import { m as motion } from 'framer-motion'
 import { isClient } from 'src/utils'
+import Div100vh from 'react-div-100vh'
 const transition = { duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }
 
 export type ScrollArticleProps = {
@@ -12,9 +13,10 @@ export type ScrollArticleProps = {
     text?: string
     linkText: string
     useCursor: boolean
+    isNew: boolean
   }
 
-const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkText, className, useCursor }) => {
+const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkText, className, useCursor, isNew }) => {
   const [viewRef, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-15% 0px',
@@ -53,6 +55,11 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
             }}
             className="flex flex-col items-center text-center"
           >
+            {isNew &&
+              <span className="absolute text-2xl transform left-2 -top-10 sm:text-3xl md:text-4xl">
+              New!
+              </span>
+            }
             {text &&
               <span className="text-2xl sm:text-3xl md:text-4xl">
               { text}
@@ -89,6 +96,11 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
             }}
             className="flex flex-col items-center text-center"
           >
+            {isNew &&
+              <span className="absolute text-2xl transform left-2 -top-10 sm:text-3xl md:text-4xl">
+              New!
+              </span>
+            }
             {text &&
               <span className="text-2xl sm:text-3xl md:text-4xl">
               { text}
