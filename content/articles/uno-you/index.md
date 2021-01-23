@@ -7,22 +7,19 @@ profile: |
   セラミック作品を中心とした制作活動を行っている
   ・色味 白と銀
 createdAt: 2021-01-19T07:58
-updatedAt: 2021-01-19T22:56
+updatedAt: 2021-01-23T16:04
 vol: "0"
 writing: "horizontal"
 linktree: "unoyou"
 disableSideHeader: true
 ---
 
-「わたしたちはあなたたちの<br class="md:hidden"/>ことを知らないけれど、<br class="xl:hidden"/>あなたたちのことを<br class="sm:hidden"/>感じている」
 住み慣れたシェアハウスを<br class="md:hidden"/>はなれ、家をかえた。
 いまの僕の家に<br class="sm:hidden"/>日照りはないが、<br class="lg:hidden"/>少しばかり陽が差し込む。
 越してきた当初、<br class="sm:hidden"/>家は僕を見、<br class="md:hidden"/>インストールした。
 昼はうすぐらく、<br class="sm:hidden"/>夜になると黒くなる。<br class="xl:hidden"/>裏手は墓地で、<br class="sm:hidden"/>かれらも僕をみていた。
 それからしばらくたって、<br class="md:hidden"/>僕が家をみる番になった。
 家の近くに、<br class="md:hidden"/>二人の天使像があることに、<br class="lg:hidden"/>気がついた。
-
-![二人の天使像](uno-01.JPG)
 
 弱さとは、群れること<br class="lg:hidden"/>ではなく、また逆に、<br class="sm:hidden"/>なにものかを<br class="xl:hidden"/>拒むことでもない。
 弱さとは、弱さを感じること<br/>feel our weaknesses<br/>だと思う。
@@ -43,3 +40,5 @@ SNSでも手紙でも<br class="md:hidden"/>なんでもいい。もはや、<br
 知らない人や見えない人を<br class="md:hidden"/>引き連れながら、<br class="xl:hidden"/>いろんなできごとに<br class="sm:hidden"/>出会いたい。
 
 わたしたちはあなたたちの<br class="md:hidden"/>ことを知らないけれど、<br class="xl:hidden"/>あなたたちのことを<br class="sm:hidden"/>感じている。
+
+![](uno-01.JPG)
