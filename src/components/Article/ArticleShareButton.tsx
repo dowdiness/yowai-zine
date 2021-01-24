@@ -41,7 +41,7 @@ const ArticleShareButton: React.FCX<ArticleShareButtonProps> = ({ className, art
 
   const shareData: Required<ShareData> = {
     title: articleTitle,
-    text: articleDescription,
+    text: articleTitle,
     url: articleUrl,
   }
 
