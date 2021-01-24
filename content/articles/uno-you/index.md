@@ -7,7 +7,7 @@ profile: |
   セラミック作品を中心とした制作活動を行っている
   ・色味 白と銀
 createdAt: 2021-01-19T07:58
-updatedAt: 2021-01-23T16:04
+updatedAt: 2021-01-24T20:31
 vol: "0"
 writing: "horizontal"
 linktree: "unoyou"

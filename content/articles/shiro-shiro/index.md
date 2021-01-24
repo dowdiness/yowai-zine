@@ -7,7 +7,7 @@ profile: |
   まだTinderで消耗している。
   「母恵夢」というライブを企画しています。
 createdAt: 2021-01-19T07:56
-updatedAt: 2021-01-19T19:45
+updatedAt: 2021-01-24T20:30
 vol: "0"
 align: "left"
 writing: "horizontal"
