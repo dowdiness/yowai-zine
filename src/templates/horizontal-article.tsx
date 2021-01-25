@@ -8,6 +8,8 @@ import minnakikeru from "../../content/assets/minnakikeru.png"
 // @ts-ignore
 import bandcamp from "../../content/assets/bandcamp.png"
 // @ts-ignore
+import linktree from "../../content/assets/linktree.jpg"
+// @ts-ignore
 import hatena from "../../content/assets/hatenablog-logo.svg"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
@@ -57,12 +59,14 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           className="mt-12 text-left"
         />
         <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
-        <div className="flex p-4 pl-0 sm:p-6 sm:pl-0 md:pl-0 md:p-10 neumorphism-normal rounded-2xl">
-          <ArticleSideHeader
-            className="sticky w-12 h-fit-content sm:w-16 md:w-20 lg:w-24 top-6"
-            title={post?.frontmatter?.title}
-            author={post?.frontmatter?.author}
-          />
+        <div className={`${post?.frontmatter?.disableSideHeader ? 'justify-center py-6 sm:py-8 md:py-10' : 'p-4 sm:p-6 md:p-10 pl-0 sm:pl-0 md:pl-0'} flex neumorphism-normal rounded-2xl`}>
+          {!post?.frontmatter?.disableSideHeader && (
+            <ArticleSideHeader
+              className="sticky w-12 h-fit-content sm:w-16 md:w-20 lg:w-24 top-6"
+              title={post?.frontmatter?.title}
+              author={post?.frontmatter?.author}
+            />
+          )}
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
             itemProp="articleBody"
@@ -79,6 +83,17 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
             <div className="flex items-center justify-around mx-auto mt-4 md:w-1/2">
+              {post?.frontmatter?.linktree && (
+                <a aria-label="linktree" href={`https://linktr.ee/${post?.frontmatter?.linktree}`} target="_blank" rel="noreferrer noopener">
+                  <img
+                    width={48}
+                    height={48}
+                    src={linktree}
+                    alt="linktree"
+                    className="rounded-full"
+                  />
+                </a>
+              )}
               {post?.frontmatter?.hatena && (
                 <a className="flex items-center justify-center w-12 h-12" aria-label="hatena" href={`https://${post?.frontmatter?.hatena}.hatenablog.com`} target="_blank" rel="noreferrer noopener">
                   <img
@@ -169,7 +184,9 @@ export const pageQuery = graphql`
         instagram
         minnakikeru
         bandcamp
+        linktree
         hatena
+        disableSideHeader
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

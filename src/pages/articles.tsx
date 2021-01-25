@@ -1,5 +1,7 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
+import { parseISO, differenceInDays } from 'date-fns'
+import { isNewArticle } from 'src/utils'
 
 //Hooks
 import useSkew from 'src/hooks/useSkew'
@@ -62,6 +64,7 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
                 text={post.frontmatter?.author}
                 linkText={post.frontmatter?.title!}
                 useCursor={true}
+                isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.updatedAt!), Date.now()))}
               />
             ))}
           </div>
@@ -105,6 +108,7 @@ export const pageQuery = graphql`
           title
           author
           vol
+          updatedAt
         }
       }
     }

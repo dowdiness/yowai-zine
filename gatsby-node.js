@@ -184,9 +184,11 @@ exports.createSchemaCustomization = ({ actions }) => {
       instagram: String
       minnakikeru: String
       bandcamp: String
+      linktree: String
       hatena: String
       createdAt: Date @dateformat
       updatedAt: Date @dateformat
+      disableSideHeader: Boolean
     }
 
     type Fields {
