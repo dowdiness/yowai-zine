@@ -16,6 +16,7 @@ import {
   AnimationFeature,
 } from "framer-motion"
 
+import onClientEntry from 'src/gatsby/browser/onClientEntry'
 import onInitialClientRender from 'src/gatsby/browser/onInitialClientRender'
 import onRouteUpdate from 'src/gatsby/browser/onRouteUpdate'
 import shouldUpdateScroll from 'src/gatsby/browser/shouldUpdateScroll'
@@ -34,4 +35,4 @@ const wrapRootElement = ({ element }) => {
   )
 }
 
-export { onInitialClientRender, onRouteUpdate, shouldUpdateScroll, wrapPageElement, wrapRootElement }
+export { onClientEntry, onInitialClientRender, onRouteUpdate, shouldUpdateScroll, wrapPageElement, wrapRootElement }
