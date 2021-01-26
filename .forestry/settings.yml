@@ -3,7 +3,16 @@ new_page_extension: md
 auto_deploy: false
 admin_path: "/admin"
 webhook_url: 
-sections: 
+sections:
+- type: document
+  path: content/articles/osamuosanai
+  label: 長内納
+  match: "**/*"
+- type: directory
+  path: content/articles
+  label: Articles
+  create: all
+  match: "**/*"
 upload_dir: uploads
 public_path: "/uploads"
 front_matter_path: ''
