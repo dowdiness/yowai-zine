@@ -5,7 +5,10 @@ profile: |
   今成哲夫
   埼玉県出身。京都での生活を経て、歌やギターやピアノ。
 createdAt: 2021-01-24T23:31
-updatedAt: 2021-01-24T23:54
+updatedAt: 2021-01-26T17:06
+publishedAt: 2021-01-24T23:54
+images:
+  - "今成哲夫zine用写真.jpg"
 vol: "0"
 writing: "horizontal"
 align: "left"

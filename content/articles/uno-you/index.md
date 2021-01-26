@@ -6,8 +6,11 @@ profile: |
   器やオブジェなどを用いて、
   セラミック作品を中心とした制作活動を行っている
 createdAt: 2021-01-19T07:58
-updatedAt: 2021-01-24T20:31
+updatedAt: 2021-01-26T17:12
+publishedAt: 2021-01-24T20:31
 vol: "0"
+images:
+  - "uno-01.JPG"
 writing: "horizontal"
 linktree: "unoyou"
 disableSideHeader: true

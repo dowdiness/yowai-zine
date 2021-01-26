@@ -7,9 +7,13 @@ profile: |
   京都精華大学人文学部中退。
   仕事としては本屋、出版取次、印刷工場、ピッキング、介護を転々と。
   読書が好きで最近はジェンダー、反緊縮財政、社会主義の本を読んでいる。
-createdAt: 2021-01-12T12:56
-updatedAt: 2021-01-15T22:15
+createdAt: 2021-01-12T12:58
+updatedAt: 2021-01-26T18:03
+publishedAt: 2021-01-15T22:15
 vol: "0"
+images:
+  - "※小林健太郎「阿佐ヶ谷の釣り堀」.jpg"
+  - "※小林健太郎「学生時代によく散歩した哲学の道」.jpg"
 align: "left"
 writing: "horizontal"
 twitter: "https://twitter.com/Ichinomachi"

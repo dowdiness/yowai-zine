@@ -67,7 +67,7 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
                 text={post.frontmatter?.author}
                 linkText={post.frontmatter?.title!}
                 useCursor={true}
-                isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.updatedAt!), Date.now()))}
+                isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.publishedAt!), Date.now()))}
               />
             ))}
           </div>
@@ -111,7 +111,7 @@ export const pageQuery = graphql`
           title
           author
           vol
-          updatedAt
+          publishedAt
         }
       }
     }

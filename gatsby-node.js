@@ -188,7 +188,11 @@ exports.createSchemaCustomization = ({ actions }) => {
       hatena: String
       createdAt: Date @dateformat
       updatedAt: Date @dateformat
+      publishedAt: Date @dateformat
       disableSideHeader: Boolean
+      featuredImage: File
+      images: File[]
+      keywords: String[]
     }
 
     type Fields {

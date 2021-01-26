@@ -4,8 +4,18 @@ author: Gabi
 profile: |
   豆が好きな日本に住んでるアメリカ人。
   Believes anything can be poetry.
-createdAt: 2021-01-07T16:07
-updatedAt: 2021-01-15T23:32
+createdAt: 2021-01-07T16:15
+updatedAt: 2021-01-26T18:02
+publishedAt: 2021-01-15T23:32
+featuredImage: "../../artworks/illbull/illbull-01.jpg"
+images:
+  - "hand-writing-1.jpg"
+  - "hand-writing-2.jpg"
+  - "hand-writing-3.jpg"
+  - "hand-writing-4.jpg"
+  - "hand-writing-5.jpg"
+  - "chocolate-1.jpg"
+  - "chocolate-2.jpg"
 vol: "0"
 align: "left"
 writing: "horizontal"

@@ -4,8 +4,9 @@ author: 金子由里奈
 profile: |
   東京生まれ、京都在住。映画や映像を作る。最新作『眠る虫』
   チェンマイのヤンキーで歌を歌う。
-createdAt: 2021-01-12T12:56
-updatedAt: 2021-01-15T22:20
+createdAt: 2021-01-12T13:00
+updatedAt: 2021-01-26T18:03
+publishedAt: 2021-01-15T22:20
 vol: "0"
 writing: "horizontal"
 twitter: "https://twitter.com/okomebroccoli"

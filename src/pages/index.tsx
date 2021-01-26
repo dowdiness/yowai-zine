@@ -13,7 +13,7 @@ import ScrollArticle from 'src/components/ScrollArticle'
 import Div100vh from 'react-div-100vh'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
+import { LogoLd } from "src/components/JsonLd"
 
 const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
@@ -97,7 +97,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <LogoLd />
-      <BreadcrumbLd />
       <div className="space-y-32">
         <section>
           <Div100vh className="flex items-center justify-center">
@@ -157,7 +156,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                     text={post.frontmatter?.author}
                     linkText={post.frontmatter?.title!}
                     useCursor={true}
-                    isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.updatedAt!), Date.now()))}
+                    isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.publishedAt!), Date.now()))}
                   />
                 )
               })}
@@ -218,7 +217,7 @@ export const pageQuery = graphql`
           title
           author
           vol
-          updatedAt
+          publishedAt
         }
       }
     }
