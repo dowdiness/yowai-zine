@@ -32,7 +32,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
         itemListElements={[
           {
             position: 2,
-            name: '集まった作品',
+            name: '作品一覧',
             item: `articles`,
           },
           {
@@ -119,7 +119,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 60, truncate: true)
+      excerpt(pruneLength: 120, truncate: true)
       html
       fields {
         slug

@@ -121,7 +121,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                   loading="eager"
                   width="798"
                   height="247"
-                  className="cursor-none"
+                  className="cursor-none hover:animate-huruhuru"
                   image={genkiData!}
                   alt="Genki"
                 />
@@ -145,7 +145,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                 width="768"
                 height="359"
                 alt="Zine"
-                className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+                className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
               />
             </div>
             <div className="flex flex-col justify-center mx-auto space-y-28">
