@@ -62,8 +62,6 @@ const HorizontalArticleTemplate: React.FC<PageProps<
       />
       <article
         className="py-16"
-        itemScope
-        itemType="http://schema.org/Article"
       >
         <ArticleLink
           to={`${articlesIndexPath}/`}
@@ -81,7 +79,6 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           )}
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
-            itemProp="articleBody"
             className={`${post?.frontmatter?.align === "left" ? "text-left" : "text-center"} font-serif prose whitespace-pre-line main-article-width sm:prose-lg md:prose-xl text-character`}
           />
         </div>
@@ -181,6 +178,7 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 120, truncate: true)
       html
+      rawMarkdownBody
       fields {
         slug
       }

@@ -57,8 +57,6 @@ const VerticalArticleTemplate: React.FC<PageProps<
       <div className="">
         <article
           className="py-16 mx-auto"
-          itemScope
-          itemType="http://schema.org/Article"
         >
           <ArticleLink
             to={`${articlesIndexPath}/`}
@@ -75,7 +73,6 @@ const VerticalArticleTemplate: React.FC<PageProps<
             <section
               ref={tategakiRef}
               dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
-              itemProp="articleBody"
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             />
           </div>
