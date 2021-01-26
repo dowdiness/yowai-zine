@@ -7,7 +7,6 @@ sections:
 - type: document
   path: content/articles/osamuosanai
   label: 長内納
-  match: "**/*"
 - type: directory
   path: content/articles
   label: Articles
