@@ -83,7 +83,7 @@ module.exports = {
               backgroundColor: "transparent",
               withWebp: true,
               showCaptions: ['alt'],
-              wrapperStyle: `white-space: normal;`,
+              wrapperStyle: `white-space: normal; text-align: center;`,
             },
           },
           {
