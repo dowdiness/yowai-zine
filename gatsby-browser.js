@@ -35,4 +35,11 @@ const wrapRootElement = ({ element }) => {
   )
 }
 
-export { onClientEntry, onInitialClientRender, onRouteUpdate, shouldUpdateScroll, wrapPageElement, wrapRootElement }
+export {
+  onClientEntry,
+  onInitialClientRender,
+  onRouteUpdate,
+  shouldUpdateScroll,
+  wrapPageElement,
+  wrapRootElement
+}

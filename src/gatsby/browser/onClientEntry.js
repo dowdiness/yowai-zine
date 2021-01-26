@@ -1,5 +1,14 @@
-var smoothscroll = require('smoothscroll-polyfill')
+import smoothscroll from 'smoothscroll-polyfill';
 
-module.exports = () => {
-  smoothscroll.polyfill()
+async function loadPolyfills() {
+  if (typeof window.IntersectionObserver === 'undefined') {
+    await import('intersection-observer');
+  }
 }
+
+const onClientEntry = () => {
+  smoothscroll.polyfill()
+  loadPolyfills()
+}
+
+export default onClientEntry
