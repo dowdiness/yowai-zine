@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
+import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
@@ -17,13 +17,15 @@ const VerticalArticleTemplate: React.FC<PageProps<
   const { tategakiRef } = useTategaki()
   const articlesIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
+  const images = post?.frontmatter?.images?.map(image => image?.publicURL!)
+
   return (
     <>
       <GatsbySeo
-        title={post?.frontmatter?.title || ``}
+        title={`${post?.frontmatter?.title} | ${post?.frontmatter?.author}`}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
         openGraph={{
-          title: `${post?.frontmatter?.title} ${post?.frontmatter?.author} 弱いZINE`,
+          title: `${post?.frontmatter?.title} | ${post?.frontmatter?.author} | 弱いZINE`,
           description: post?.excerpt || post?.frontmatter?.profile || ``,
         }}
       />
@@ -32,21 +34,29 @@ const VerticalArticleTemplate: React.FC<PageProps<
         itemListElements={[
           {
             position: 2,
-            name: '集まった作品',
+            name: '作品一覧',
             item: `articles`,
           },
           {
             position: 3,
-            name: post?.frontmatter?.title || post?.frontmatter?.author || '',
+            name: `${post?.frontmatter?.title} | ${post?.frontmatter?.author}`,
             item: `articles${post?.fields?.slug}`,
           },
         ]}
       />
+      <ArticleLd
+        url={post?.fields?.slug!}
+        headline={`${post?.frontmatter?.title} | ${post?.frontmatter?.author} | 弱いZINE`}
+        keywords={post?.frontmatter?.keywords as string | string[] | undefined}
+        images={images!}
+        datePublished={post?.frontmatter?.publishedAt!}
+        dateModified={post?.frontmatter?.updatedAt!}
+        authorName={post?.frontmatter?.author!}
+        description={post?.excerpt || post?.frontmatter?.profile || ``}
+      />
       <div className="">
         <article
           className="py-16 mx-auto"
-          itemScope
-          itemType="http://schema.org/Article"
         >
           <ArticleLink
             to={`${articlesIndexPath}/`}
@@ -63,7 +73,6 @@ const VerticalArticleTemplate: React.FC<PageProps<
             <section
               ref={tategakiRef}
               dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
-              itemProp="articleBody"
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             />
           </div>
@@ -119,7 +128,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 60, truncate: true)
+      excerpt(pruneLength: 120, truncate: true)
       html
       fields {
         slug
@@ -132,6 +141,12 @@ export const pageQuery = graphql`
         vol
         twitter
         instagram
+        images {
+          publicURL
+        }
+        updatedAt
+        publishedAt
+        keywords
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
@@ -152,9 +167,5 @@ export const pageQuery = graphql`
         vol
       }
     }
-    # firstArtwork: directory(id: {eq: $firstArtworkId }) {
-    #   id
-    #   name
-    # }
   }
 `

@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
+import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
 // @ts-ignore
 import minnakikeru from "../../content/assets/minnakikeru.png"
 // @ts-ignore
@@ -23,13 +23,15 @@ const HorizontalArticleTemplate: React.FC<PageProps<
   const { previous, next } = data
   const articlesIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
+  const images = post?.frontmatter?.images?.map(image => image?.publicURL!)
+
   return (
     <>
       <GatsbySeo
-        title={post?.frontmatter?.title || ``}
+        title={`${post?.frontmatter?.title} | ${post?.frontmatter?.author}` || ``}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
         openGraph={{
-          title: `${post?.frontmatter?.title} ${post?.frontmatter?.author} 弱いZINE`,
+          title: `${post?.frontmatter?.title} | ${post?.frontmatter?.author} | 弱いZINE`,
           description: post?.excerpt || post?.frontmatter?.profile || ``,
         }}
       />
@@ -38,20 +40,28 @@ const HorizontalArticleTemplate: React.FC<PageProps<
         itemListElements={[
           {
             position: 2,
-            name: '集まった作品',
+            name: '作品一覧',
             item: `articles`,
           },
           {
             position: 3,
-            name: post?.frontmatter?.title || post?.frontmatter?.author || '',
+            name: `${post?.frontmatter?.title} | ${post?.frontmatter?.author}`,
             item: `articles${post?.fields?.slug}`,
           },
         ]}
       />
+      <ArticleLd
+        url={post?.fields?.slug!}
+        headline={`${post?.frontmatter?.title} | ${post?.frontmatter?.author} | 弱いZINE`}
+        keywords={post?.frontmatter?.keywords as string | string[] | undefined}
+        images={images!}
+        datePublished={post?.frontmatter?.publishedAt!}
+        dateModified={post?.frontmatter?.updatedAt!}
+        authorName={post?.frontmatter?.author!}
+        description={post?.excerpt || post?.frontmatter?.profile || ``}
+      />
       <article
         className="py-16"
-        itemScope
-        itemType="http://schema.org/Article"
       >
         <ArticleLink
           to={`${articlesIndexPath}/`}
@@ -69,7 +79,6 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           )}
           <section
             dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
-            itemProp="articleBody"
             className={`${post?.frontmatter?.align === "left" ? "text-left" : "text-center"} font-serif prose whitespace-pre-line main-article-width sm:prose-lg md:prose-xl text-character`}
           />
         </div>
@@ -159,7 +168,6 @@ export const pageQuery = graphql`
     $id: String!
     $previousPostId: String
     $nextPostId: String
-    # $firstArtworkId: String
   ) {
     site {
       siteMetadata {
@@ -168,8 +176,9 @@ export const pageQuery = graphql`
     }
     markdownRemark(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 60, truncate: true)
+      excerpt(pruneLength: 120, truncate: true)
       html
+      rawMarkdownBody
       fields {
         slug
       }
@@ -187,6 +196,12 @@ export const pageQuery = graphql`
         linktree
         hatena
         disableSideHeader
+        images {
+          publicURL
+        }
+        updatedAt
+        publishedAt
+        keywords
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
@@ -207,9 +222,5 @@ export const pageQuery = graphql`
         vol
       }
     }
-    # firstArtwork: directory(id: {eq: $firstArtworkId }) {
-    #   id
-    #   name
-    # }
   }
 `

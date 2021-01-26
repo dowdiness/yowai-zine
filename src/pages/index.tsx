@@ -13,7 +13,7 @@ import ScrollArticle from 'src/components/ScrollArticle'
 import Div100vh from 'react-div-100vh'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
-import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
+import { LogoLd } from "src/components/JsonLd"
 
 const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   data,
@@ -97,7 +97,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <LogoLd />
-      <BreadcrumbLd />
       <div className="space-y-32">
         <section>
           <Div100vh className="flex items-center justify-center">
@@ -121,7 +120,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                   loading="eager"
                   width="798"
                   height="247"
-                  className="cursor-none"
+                  className="cursor-none hover:animate-huruhuru"
                   image={genkiData!}
                   alt="Genki"
                 />
@@ -145,7 +144,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                 width="768"
                 height="359"
                 alt="Zine"
-                className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+                className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
               />
             </div>
             <div className="flex flex-col justify-center mx-auto space-y-28">
@@ -157,7 +156,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                     text={post.frontmatter?.author}
                     linkText={post.frontmatter?.title!}
                     useCursor={true}
-                    isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.updatedAt!), Date.now()))}
+                    isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.publishedAt!), Date.now()))}
                   />
                 )
               })}
@@ -218,7 +217,7 @@ export const pageQuery = graphql`
           title
           author
           vol
-          updatedAt
+          publishedAt
         }
       }
     }

@@ -167,12 +167,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       twitter: String
     }
 
-    type MarkdownRemark implements Node {
+    type MarkdownRemark implements Node @infer {
       frontmatter: Frontmatter
       fields: Fields
     }
 
-    type Frontmatter {
+    type Frontmatter @infer {
       title: String
       description: String
       author: String
@@ -188,7 +188,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       hatena: String
       createdAt: Date @dateformat
       updatedAt: Date @dateformat
+      publishedAt: Date @dateformat
       disableSideHeader: Boolean
+      featuredImage: File
     }
 
     type Fields {

@@ -1,27 +1,48 @@
 import React from 'react'
-import { ArticleJsonLd } from 'gatsby-plugin-next-seo'
+import { useStaticQuery, graphql } from 'gatsby'
+import { ArticleJsonLd, ArticleJsonLdProps } from 'gatsby-plugin-next-seo'
 
-const ArticleLd = () => {
+const ArticleLd: React.FC<Omit<ArticleJsonLdProps, "publisherName" | "publisherLogo">> = ({
+    url,
+    headline,
+    keywords,
+    images,
+    datePublished,
+    dateModified,
+    authorName,
+    description,
+  }) => {
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            siteUrl
+          }
+        }
+      }
+    `
+  )
+
+  if (images) {
+    images = images.map(publicURL => `${site.siteMetadata.siteUrl}${publicURL}`)
+  } else {
+    images = [`${site.siteMetadata.siteUrl}/yowai-ogp.png`]
+  }
+
   return (
     <>
-      <h1>Article JSON-LD</h1>
       <ArticleJsonLd
-        url='https://example.com/article'
-        headline='Article headline'
-        images={[
-          'https://example.com/photos/1x1/photo.jpg',
-          'https://example.com/photos/4x3/photo.jpg',
-          'https://example.com/photos/16x9/photo.jpg',
-        ]}
-        datePublished='2015-02-05T08:00:00+08:00'
-        dateModified='2015-02-05T09:00:00+08:00'
-        authorName='Jane Blogs'
-        publisherName='Ifiok Jr.'
-        publisherLogo='https://www.example.com/photos/logo.jpg'
-        description='This is a mighty good description of this article.'
-        overrides={{
-          '@type': 'BlogPosting', // set's this as a blog post.
-        }}
+        url={`${site.siteMetadata.siteUrl}/articles${url}`}
+        headline={headline}
+        keywords={keywords || undefined}
+        images={images}
+        datePublished={datePublished}
+        dateModified={dateModified}
+        authorName={authorName}
+        publisherName='ｏｓａｍｕｏｓａｎａｉ'
+        publisherLogo={`${site.siteMetadata.siteUrl}/yowai-logo.png`}
+        description={description}
       />
     </>
   )

@@ -1,16 +1,8 @@
 import React from 'react'
 import  { useStaticQuery, graphql } from 'gatsby'
-import { BreadcrumbJsonLd } from 'gatsby-plugin-next-seo'
+import { BreadcrumbJsonLd, BreadcrumbJsonLdProps } from 'gatsby-plugin-next-seo'
 
-type BreadcrumbProps = {
-  itemListElements?: {
-    position: number,
-    name: string,
-    item: string,
-  }[]
-}
-
-const BreadcrumbLd: React.FCX<BreadcrumbProps> = ({ itemListElements }) => {
+const BreadcrumbLd: React.FCX<BreadcrumbJsonLdProps> = ({ itemListElements }) => {
   const { site } = useStaticQuery(
     graphql`
       query {

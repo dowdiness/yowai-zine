@@ -5,7 +5,8 @@ profile: |
   日本や世界各地で演奏を続けるミュージシャン。シンガーソングライター、ギタリストであり、ダンスミュージックのプロデューサーBLOWBOHEMIAとしても活動。
   10代から放浪。一時期ホームレス。北海道、沖縄、尾道、逗子へ移住。日本全国、ヨーロッパ、タイへのツアー後、ベルリンへ移住。その後近年は東アジアが主な拠点。韓国、台湾でも活動中。
 createdAt: 2020-12-26T23:01
-updatedAt: 2021-01-15T22:20
+updatedAt: 2021-01-26T18:01
+publishedAt: 2021-01-15T22:20
 vol: "0"
 writing: "vertical"
 twitter: "https://twitter.com/masumoto_kota"

@@ -35,6 +35,20 @@ module.exports = {
       }),
       animation: {
         'spin-slow': 'spin 20s linear infinite',
+        'huruhuru': 'hurueru .1s  infinite'
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        hurueru: {
+          '0%': {transform: 'translate(0px, 0px) rotateZ(0deg)'},
+          '25%': {transform: 'translate(2px, 2px) rotateZ(1deg)'},
+          '50%': {transform: 'translate(0px, 2px) rotateZ(0deg)'},
+          '75%': {transform: 'translate(2px, 0px) rotateZ(-1deg)'},
+          '100%': {transform: 'translate(0px, 0px) rotateZ(0deg)'},
+        }
       },
       spacing: {
         21: "5.25rem",
@@ -81,7 +95,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      animation: ['hover', 'focus'],
+    }
+  },
   plugins: [
     plugin(function ({ addUtilities, addComponents }) {
       const newUtilities = {

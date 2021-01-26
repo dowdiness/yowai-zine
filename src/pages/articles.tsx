@@ -27,9 +27,9 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
   return (
     <>
       <GatsbySeo
-        title="集まった作品"
+        title="作品一覧"
         openGraph={{
-          title: "集まった作品 | 弱いZINE",
+          title: "作品一覧 | 弱いZINE",
         }}
       />
       <LogoLd />
@@ -37,7 +37,7 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
         itemListElements={[
           {
             position: 2,
-            name: '集まった作品',
+            name: '作品一覧',
             item: `articles`,
           },
         ]}
@@ -52,8 +52,11 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
           <div data-skew className="flex justify-center mx-auto -mb-12">
             <GatsbyImage
               image={zineDate}
+              loading="eager"
+              width="768"
+              height="359"
               alt="Zine"
-              className="object-scale-down h-32 w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+              className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
             />
           </div>
           <div className="flex flex-col justify-center mx-auto space-y-28">
@@ -64,7 +67,7 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
                 text={post.frontmatter?.author}
                 linkText={post.frontmatter?.title!}
                 useCursor={true}
-                isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.updatedAt!), Date.now()))}
+                isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.publishedAt!), Date.now()))}
               />
             ))}
           </div>
@@ -108,7 +111,7 @@ export const pageQuery = graphql`
           title
           author
           vol
-          updatedAt
+          publishedAt
         }
       }
     }

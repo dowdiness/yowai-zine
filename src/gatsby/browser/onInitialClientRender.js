@@ -27,5 +27,5 @@ module.exports = () => {
       setTimeout(function() {
       loader.style.display = "none"
     }, 1600)
-  }, 3000)
+  }, 2500)
 }
