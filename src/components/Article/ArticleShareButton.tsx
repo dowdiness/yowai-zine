@@ -33,9 +33,20 @@ const ArticleShareButton: React.FCX<ArticleShareButtonProps> = ({ className, art
       setIconSize(48)
     }
 
-    mql.addEventListener("change", changeIconSize)
-    return() => {
-      mql.removeEventListener("change" , changeIconSize)
+    // Safari 14 以前ではEventTargetを元にしていた為にメソッドの名前が違う
+    if (typeof mql.addEventListener === 'undefined') {
+      // Safari 14 以前への対応
+      // @ts-ignore
+      mql.addListener(changeIconSize)
+      return() => {
+        // @ts-ignore
+        mql.removeListener(changeIconSize)
+      }
+    } else {
+      mql.addEventListener("change", changeIconSize)
+      return() => {
+        mql.removeEventListener("change" , changeIconSize)
+      }
     }
   }, [])
 
