@@ -20,7 +20,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
   const images = post?.frontmatter?.images?.map(image => image?.publicURL!)
 
   return (
-    <>
+    <div className="max-w-3xl mx-auto">
       <GatsbySeo
         title={`${post?.frontmatter?.title} | ${post?.frontmatter?.author}`}
         description={post?.excerpt || post?.frontmatter?.profile || ``}
@@ -108,7 +108,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
           className="mb-12"
         />
       </div>
-    </>
+    </div>
   )
 }
 
