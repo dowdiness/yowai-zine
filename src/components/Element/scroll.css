@@ -1,0 +1,69 @@
+#scroll {
+  position: absolute;
+  height: 71px;
+  width: 2px;
+  background-color: #000;
+  left: min(max(24px, calc(1.5rem + ((1vw - 4.2px) * 3.2558))), 52px);
+  bottom: 31px;
+  writing-mode: vertical-rl;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#scroll::before {
+  position: absolute;
+  content: "scroll";
+  text-transform: uppercase;
+  font-size: min(max(14px, calc(0.875rem + ((1vw - 4.2px) * 1.1628))), 24px);
+  letter-spacing: 0.05em;
+  bottom: 118%;
+  left: 78%;
+  transform: translate(-60%,0);
+}
+
+#scroll::after {
+  content: "";
+  position: absolute;
+  bottom: 118%;
+  left: -12px;
+  width: 3px;
+  height: 47px;
+  z-index: -1;
+  background-color: #c3df5f;
+  transform: scale(1, 0);
+  transform-origin: left bottom;
+  /* transition: transform 0.4s cubic-bezier(0.08, 0.92, 0.35, 1); */
+}
+
+#line {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#line::after {
+  content: '';
+  width: 4px;
+  height: 100%;
+  background-color: #fff;
+  position: absolute;
+  top: -100%;
+  left: 0;
+  animation: arrow 1.4s ease 0s infinite normal;
+}
+
+@keyframes arrow {
+  0% {
+    top: -100%;
+  }
+
+  40% {
+    top: 100%;
+  }
+
+  100% {
+    top: 100%;
+  }
+}

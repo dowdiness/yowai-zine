@@ -1,5 +1,7 @@
+import { emitter, LoadingFinishedEvent } from 'src/utils/emitter'
+
 /* eslint-disable */
-module.exports = () => {
+export default () => {
   localStorage.removeItem('previousPath')
   // Initial loading animation on html.js
   const html = document.querySelector("html")
@@ -26,6 +28,7 @@ module.exports = () => {
     html.removeEventListener("ontouchend", preventScroll)
       setTimeout(function() {
       loader.style.display = "none"
-    }, 1600)
-  }, 2500)
+      emitter.emit(LoadingFinishedEvent)
+    }, 1200)
+  }, 2000)
 }

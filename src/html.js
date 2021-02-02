@@ -32,7 +32,7 @@ export default function HTML(props) {
             fontSize: "3rem",
             lineHeight: 1,
             backgroundColor: "#e6e7ee",
-            transition: "opacity 1.6s, visibility 1.6s",
+            transition: "opacity 1.2s, visibility 1.2s",
             opacity: 1,
             visibility: "visible",
           }}
@@ -40,7 +40,7 @@ export default function HTML(props) {
           <div
             id="___transition"
             style={{
-              transition: "opacity 1.6s, visibility 1.6s",
+              transition: "opacity 1.2s, visibility 1.2s",
               opacity: 0,
               visibility: "hidden",
             }}

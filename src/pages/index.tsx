@@ -8,8 +8,10 @@ import useSkew from 'src/hooks/useSkew'
 import useCursor from 'src/hooks/useCursor'
 import useCircularText from 'src/hooks/useCircularText'
 import useWindowSize from 'src/hooks/useWindowSize'
+
 //Components
 import ScrollArticle from 'src/components/ScrollArticle'
+import { SplitTextWrap } from 'src/components/SplitText/SplitTextWrap'
 import Div100vh from 'react-div-100vh'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
@@ -47,21 +49,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   useSkew('[data-skew]')
   const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
 
-  const smoothScroll = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    const targetElement = document.querySelector('[data-scroll]')!
-    const rectTop = targetElement.getBoundingClientRect().top
-    // 現在のスクロール距離
-    const offsetTop = window.pageYOffset
-    // スクロール位置に持たせるバッファ
-    const buffer = 50
-    const top = rectTop + offsetTop - buffer
-
-    window.scrollTo({
-      top,
-      behavior: "smooth"
-    })
-  }
   const text = `小さいチームで
     弱いzineという名前の
     web zine(インターネットで読む雑誌)
@@ -98,17 +85,9 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <LogoLd />
       <div className="space-y-32">
-        <section>
+        <section className="w-screen m-screen md:mx-auto md:w-full">
           <Div100vh className="flex items-center justify-center">
-            <h1 data-skew className="flex flex-col items-center space-y-8 font-sans text-center">
-              <span className="text-xl font-bold sm:text-4xl md:text-5xl">ここは君のタイムラインの外側</span>
-              <span className="text-lg font-semibold sm:text-xl md:text-2xl">Here is the outside of your timeline.</span>
-            </h1>
-            <a onClick={e => smoothScroll(e)} data-skew className="cursor-pointer scroll-down sm:cursor-none">
-              <span></span>
-              <span></span>
-              <span></span>
-            </a>
+            <SplitTextWrap jp="ここは君のタイムラインの外側。" en="Here is the outside of your timeline." />
           </Div100vh>
         </section>
         <section data-scroll className="flex flex-col items-center justify-center md:flex-row md:justify-around md:items-start">

@@ -2,7 +2,7 @@ import { useRef, useLayoutEffect, useEffect, MutableRefObject } from 'react'
 import { gsap } from 'gsap'
 import { lerp, getMousePos } from 'src/utils'
 import { globalHistory } from '@reach/router'
-import { emitter, InViewPayload, InViewEvent } from 'src/utils/emitter'
+import { emitter, InViewPayload, CursorPayload, InViewEvent, CursorEvent } from 'src/utils/emitter'
 
 export interface Mouse {
   x: number
@@ -74,12 +74,20 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
 
   // addEventListener to scale up cursor for new pages
   useEffect(() => {
+    emitter.on<CursorPayload>(CursorEvent, (ev) => {
+      if (ev && ev.ref.current) {
+        ev.ref.current.addEventListener('mouseenter', enter)
+        ev.ref.current.addEventListener('mouseleave', leave)
+      }
+    })
+
     emitter.on<InViewPayload>(InViewEvent, (ev) => {
       if (ev && ev.ref.current) {
         ev.ref.current.addEventListener('mouseenter', enter)
         ev.ref.current.addEventListener('mouseleave', leave)
       }
     })
+
     // return HistoryUnsubscribe to unsubscribe HistoryListener
     return globalHistory.listen(({ action }) => {
       if (action === 'PUSH') {
