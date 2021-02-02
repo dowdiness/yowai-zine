@@ -28,7 +28,7 @@ export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => 
   const [isStarted, setIsStarted] = useState(false)
   const [isScrollVisible, setIsScrollVisible] = useState(false)
 
-  const { width } = useWindowSize()
+  const { width } = useWindowSize(320, 500)
 
   useEffect(() => {
     emitter.on(LoadingFinishedEvent, () => {
