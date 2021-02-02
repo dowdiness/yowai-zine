@@ -36,12 +36,16 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
   const length = text.length + offset
 
   const [delay, setDelay] = useState(0.025);
-
+  const [fontSize, setFontSize] = useState(calcFontSize(length, width))
   const delayOffset = 0.2;
 
   useEffect(() => {
     if (delayOrder) return setDelay(delayOrder * delayOffset);
   }, [delayOrder, delayOffset])
+
+  useEffect(() => {
+    setFontSize(calcFontSize(length, width))
+  }, [length, width])
 
   const transition = useMemo(
     () => ({
@@ -70,7 +74,7 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
     <span
       aria-label={text}
       className={className}
-      style={{ fontSize: `${calcFontSize(length, width)}px`}}
+      style={{ fontSize: `${fontSize}px`}}
     >
       {chars.map((char, i) => {
         return (
