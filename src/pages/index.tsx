@@ -87,7 +87,11 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
       <div className="space-y-32">
         <section className="w-screen m-screen md:mx-auto md:w-full">
           <Div100vh className="flex items-center justify-center">
-            <SplitTextWrap jp="ここは君のタイムラインの外側。" en="Here is the outside of your timeline." />
+            <SplitTextWrap
+              jp="ここは君のタイムラインの外側。"
+              en="Here is the outside of your timeline."
+              width={width}
+            />
           </Div100vh>
         </section>
         <section data-scroll className="flex flex-col items-center justify-center md:flex-row md:justify-around md:items-start">

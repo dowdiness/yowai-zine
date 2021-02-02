@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import useWindowSize from 'src/hooks/useWindowSize'
 import { m as motion } from 'framer-motion'
 import { emitter, LoadingFinishedEvent } from 'src/utils/emitter'
 
@@ -9,6 +8,7 @@ import Scroll from 'src/components/Element/Scroll'
 type SplitTextProps = {
   jp: string
   en: string
+  width: number
 }
 
 const variants = {
@@ -24,11 +24,10 @@ const variants = {
   }
 }
 
-export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => {
+export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en,　width, ...rest }) => {
   const [isStarted, setIsStarted] = useState(false)
   const [isScrollVisible, setIsScrollVisible] = useState(false)
 
-  const { width } = useWindowSize(320, 500)
 
   useEffect(() => {
     emitter.on(LoadingFinishedEvent, () => {
