@@ -32,8 +32,15 @@ export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => 
 
   useEffect(() => {
     emitter.on(LoadingFinishedEvent, () => {
+      setIsScrollVisible(false)
       setIsStarted(true)
     })
+    return (
+      emitter.off('LoadingFinishedEvent', () => {
+        setIsScrollVisible(false)
+        setIsStarted(true)
+      })
+    )
   }, [])
 
   return (
