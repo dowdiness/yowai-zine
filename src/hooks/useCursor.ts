@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import useIsomorphicLayoutEffect from 'src/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { lerp, getMousePos, getSiblings } from 'src/utils'
+import { emitter, InViewPayload, InViewEvent } from 'src/utils/emitter'
 
 let mouse = { x: 0, y: 0 }
 
@@ -40,8 +41,7 @@ class Cursor {
     }
     window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
     window.addEventListener('mousemove', this.onMouseMoveEv)
-    // @ts-ignore
-    window.addEventListener('in-view-event', ev => this.onScaleMouse(ev.detail.ref))
+    emitter.on<InViewPayload>(InViewEvent, ev => this.onScaleMouse(ev!.ref))
   }
 
   onScaleMouse(ref: React.MutableRefObject<HTMLHeadingElement>) {

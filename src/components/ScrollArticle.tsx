@@ -6,6 +6,7 @@ import { m as motion } from 'framer-motion'
 import { isClient } from 'src/utils'
 import Div100vh from 'react-div-100vh'
 const transition = { duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }
+import { emitter, InViewPayload, InViewEvent } from 'src/utils/emitter'
 
 export type ScrollArticleProps = {
     index: number
@@ -27,8 +28,7 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
   useEffect(() => {
     // not working in ssr https://github.com/gatsbyjs/gatsby/issues/15001
     if (isClient && useCursor && zoomRef) {
-      const inViewEvent = new CustomEvent('in-view-event', { detail: { ref: zoomRef } })
-      dispatchEvent(inViewEvent)
+      emitter.emit<InViewPayload>(InViewEvent, {ref: zoomRef })
     }
   }, [inView, zoomRef])
 
