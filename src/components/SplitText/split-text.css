@@ -1,0 +1,18 @@
+/* 20px @ 320px increasing to 74px @ 1280px */
+#split-text-jp {
+  font-size: min(max(20px, calc(1.25rem + ((1vw - 3.2px) * 5.625))), 74px);
+  /* Note: The calc base value (1.25rem) MUST be stated in REM to maintain accessibility */
+  /* Where: 5.625 = 100 * font-size_difference / viewport_width_difference */
+
+  /* Safari resize fix */
+  min-height: 0vw;
+}
+/* 13px @ 320px increasing to 52px @ 1280px */
+#split-text-en {
+  font-size: min(max(13px, calc(0.8125rem + ((1vw - 3.2px) * 4.0625))), 52px);
+  /* Note: The calc base value (0.8125rem) MUST be stated in REM to maintain accessibility */
+  /* Where: 4.0625 = 100 * font-size_difference / viewport_width_difference */
+
+  /* Safari resize fix */
+  min-height: 0vw;
+}

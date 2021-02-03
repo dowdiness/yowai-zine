@@ -3,13 +3,13 @@ import { debounce } from 'lodash'
 import { atom } from "jotai"
 
 export type windowSize = {
-  width: number | null
-  height: number | null
+  width: number
+  height: number
 }
 
 export const windowSizeAtom = atom<windowSize>({
-  width: isClient ? window.innerWidth : null,
-  height: isClient ? window.innerHeight : null,
+  width: isClient ? window.innerWidth : 320,
+  height: isClient ? window.innerHeight : 640,
 })
 
 windowSizeAtom.onMount = (setWindowSizeAtom) => {

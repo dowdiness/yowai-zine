@@ -4,6 +4,7 @@ import { emitter, LoadingFinishedEvent } from 'src/utils/emitter'
 
 import { SplitTextLine } from './SplitTextLine'
 import Scroll from 'src/components/Element/Scroll'
+import './split-text.css'
 
 type SplitTextProps = {
   jp: string
@@ -58,14 +59,15 @@ export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => 
         }}
       >
         <SplitTextLine
-          className="text-xl font-black sm:text-2xl md:text-4xl lg:text-5xl"
+          id="split-text-jp"
+          className="font-black"
           text={jp}
-          offset={1.4}
           delayOrder={1}
         />
         <SplitTextLine
-          className="font-medium sm:text-lg md:text-3xl lg:text-4xl"
-          text={en} offset={-13}
+          id="split-text-en"
+          className="font-medium"
+          text={en}
           delayOrder={2}
         />
       </motion.h1>
