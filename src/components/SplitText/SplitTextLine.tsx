@@ -39,7 +39,9 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
   const delayOffset = 0.2;
 
   useEffect(() => {
-    if (delayOrder) return setDelay(delayOrder * delayOffset);
+    if (delayOrder) {
+      setDelay(delayOrder * delayOffset)
+    }
   }, [delayOrder, delayOffset])
 
   const transition = useMemo(

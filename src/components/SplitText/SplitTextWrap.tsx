@@ -58,13 +58,13 @@ export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => 
         }}
       >
         <SplitTextLine
-          className="font-black"
+          className="text-xl font-black sm:text-2xl md:text-4xl lg:text-5xl"
           text={jp}
           offset={1.4}
           delayOrder={1}
         />
         <SplitTextLine
-          className="font-medium"
+          className="font-medium sm:text-lg md:text-3xl lg:text-4xl"
           text={en} offset={-13}
           delayOrder={2}
         />
