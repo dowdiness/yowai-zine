@@ -4,16 +4,6 @@ import { isWhiteSpace, convertRemToPx } from 'src/utils'
 import { useAtom } from "jotai"
 import { windowSize, windowSizeAtom } from "src/store"
 
-const calcFontSize = (len: number, width: number) => {
-  return width >= 1280
-  ? 1280 / len
-  : width >= 992
-    ? (width - convertRemToPx(6)) / len
-    : width >= 768
-      ? (width - convertRemToPx(5)) / len
-      : width / len
-}
-
 export type SplitTextLineProps = {
   text: string
   offset: number
@@ -38,7 +28,14 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
   const length = text.length + offset
 
   const [delay, setDelay] = useState(0.025);
-  const fontSize = calcFontSize(length, width)
+  const fontSize = width >= 1280
+    ? 1280 / length
+    : width >= 992
+      ? (width - convertRemToPx(6)) / length
+      : width >= 768
+        ? (width - convertRemToPx(5)) / length
+        : width / length
+
   const delayOffset = 0.2;
 
   useEffect(() => {
