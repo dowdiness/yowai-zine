@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import useRafState from './useRafState'
 import { isClient } from './util'
-import { debounce } from 'lodash'
 
 const useWindowSize = (initialWidth = Infinity, initialHeight = Infinity) => {
   const [state, setState] = useRafState<{ width: number; height: number }>({
@@ -17,10 +16,11 @@ const useWindowSize = (initialWidth = Infinity, initialHeight = Infinity) => {
         })
       }
       handler()
-      const debouncedHandler = debounce(handler, 300)
-      window.addEventListener('resize', debouncedHandler)
+      window.addEventListener('load', handler)
+      window.addEventListener('resize', handler)
       return () => {
-        window.removeEventListener('resize', debouncedHandler)
+        window.removeEventListener('load', handler)
+        window.removeEventListener('resize', handler)
       }
     }
   }, [])
