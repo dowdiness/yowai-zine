@@ -11,6 +11,7 @@ import {
   MotionConfig,
   AnimationFeature,
 } from "framer-motion"
+import { Provider } from "jotai"
 
 const wrapPageElement = ({ element, props }) => {
   return (
@@ -20,9 +21,11 @@ const wrapPageElement = ({ element, props }) => {
 
 const wrapRootElement = ({ element }) => {
   return (
-    <MotionConfig features={[AnimationFeature]}>
-      {element}
-    </MotionConfig>
+    <Provider>
+      <MotionConfig features={[AnimationFeature]}>
+        {element}
+      </MotionConfig>
+    </Provider>
   )
 }
 

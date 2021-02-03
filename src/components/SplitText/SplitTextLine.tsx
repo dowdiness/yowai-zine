@@ -1,6 +1,8 @@
 import React, { useMemo, useState, useEffect } from "react"
 import { m as motion } from 'framer-motion'
 import { isWhiteSpace, convertRemToPx } from 'src/utils'
+import { useAtom } from "jotai"
+import { windowSize, windowSizeAtom } from "src/store"
 
 const calcFontSize = (len: number, width: number) => {
   return width >= 1280
@@ -15,7 +17,6 @@ const calcFontSize = (len: number, width: number) => {
 export type SplitTextLineProps = {
   text: string
   offset: number
-  width: number
   easing?: number[]
   duration?: number
   delayOrder: number
@@ -25,13 +26,14 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
   className,
   text,
   offset,
-  width,
   easing = [0.42, 0, 0.58, 1], // [number, number, number, number] | "linear" | "easeIn" |
   //  "easeOut" | "easeInOut" | "circIn" | "circOut" | "circInOut" | "backIn" | "backOut" |
   // "backInOut" | "anticipate" | EasingFunction;
   duration = 0.004,
   delayOrder, // order of appearance
 }) => {
+  const [{ width },] = useAtom<windowSize>(windowSizeAtom)
+
   const chars = text.split("")
   const length = text.length + offset
 

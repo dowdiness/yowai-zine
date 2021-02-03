@@ -2,7 +2,7 @@ import { useRef, useLayoutEffect, useEffect, MutableRefObject } from 'react'
 import { gsap } from 'gsap'
 import { lerp, getMousePos } from 'src/utils'
 import { globalHistory } from '@reach/router'
-import { emitter, InViewPayload, CursorPayload, InViewEvent, CursorEvent, LoadingFinishedEvent } from 'src/utils/emitter'
+import { emitter, InViewPayload, CursorPayload, InViewEvent, CursorEvent } from 'src/utils/emitter'
 
 export interface Mouse {
   x: number
@@ -96,11 +96,6 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
           if(globalHistory.transitioning) {
             setTimeout(waitTransitioningFinished, 200)
           } else {
-            // トップページのテキストアニメーションの発火
-            if (location.pathname === '/') {
-              emitter.emit(LoadingFinishedEvent)
-            }
-
             document.querySelectorAll('a, button, .gatsby-resp-image-image').forEach(link => {
               link.addEventListener('mouseenter', enter)
               link.addEventListener('mouseleave', leave)

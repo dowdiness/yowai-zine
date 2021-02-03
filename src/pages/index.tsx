@@ -7,7 +7,8 @@ import { isNewArticle } from 'src/utils'
 import useSkew from 'src/hooks/useSkew'
 import useCursor from 'src/hooks/useCursor'
 import useCircularText from 'src/hooks/useCircularText'
-import useWindowSize from 'src/hooks/useWindowSize'
+import { useAtom } from "jotai"
+import { windowSize, windowSizeAtom } from "src/store"
 
 //Components
 import ScrollArticle from 'src/components/ScrollArticle'
@@ -24,7 +25,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   const posts = data.posts.nodes
   const genkiData = getImage(data.genki)
   const zineDate = getImage(data.zine)
-  const { width } = useWindowSize()
+  const [{ width },] = useAtom<windowSize>(windowSizeAtom)
   const circle = home?.catchphrase
   const ratio =
     (width > 992)
@@ -90,7 +91,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             <SplitTextWrap
               jp="ここは君のタイムラインの外側。"
               en="Here is the outside of your timeline."
-              width={width}
             />
           </Div100vh>
         </section>

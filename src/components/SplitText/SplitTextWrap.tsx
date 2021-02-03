@@ -8,7 +8,6 @@ import Scroll from 'src/components/Element/Scroll'
 type SplitTextProps = {
   jp: string
   en: string
-  width: number
 }
 
 const variants = {
@@ -24,19 +23,21 @@ const variants = {
   }
 }
 
-export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en,　width, ...rest }) => {
+export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => {
   const [isStarted, setIsStarted] = useState(false)
   const [isScrollVisible, setIsScrollVisible] = useState(false)
 
-
   useEffect(() => {
-    emitter.on(LoadingFinishedEvent, () => {
+    if (localStorage.getItem('previousPath')) {
       setIsScrollVisible(false)
+      setIsStarted(true)
+    }
+
+    emitter.on(LoadingFinishedEvent, () => {
       setIsStarted(true)
     })
     return (
       emitter.off('LoadingFinishedEvent', () => {
-        setIsScrollVisible(false)
         setIsStarted(true)
       })
     )
@@ -60,13 +61,11 @@ export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en,　width, ...re
           className="font-black"
           text={jp}
           offset={1.4}
-          width={width}
           delayOrder={1}
         />
         <SplitTextLine
           className="font-medium"
           text={en} offset={-13}
-          width={width}
           delayOrder={2}
         />
       </motion.h1>

@@ -15,6 +15,7 @@ import {
   MotionConfig,
   AnimationFeature,
 } from "framer-motion"
+import { Provider } from "jotai"
 
 import onClientEntry from 'src/gatsby/browser/onClientEntry'
 import onInitialClientRender from 'src/gatsby/browser/onInitialClientRender'
@@ -29,9 +30,11 @@ const wrapPageElement = ({ element, props }) => {
 
 const wrapRootElement = ({ element }) => {
   return (
-    <MotionConfig features={[AnimationFeature]}>
-      {element}
-    </MotionConfig>
+    <Provider>
+      <MotionConfig features={[AnimationFeature]}>
+        {element}
+      </MotionConfig>
+    </Provider>
   )
 }
 
