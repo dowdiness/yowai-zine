@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from "react"
 import { m as motion } from 'framer-motion'
 import { isWhiteSpace, convertRemToPx } from 'src/utils'
 import { useAtom } from "jotai"
-import { windowSize, windowSizeAtom } from "src/store"
+import { windowSizeAtom } from "src/store"
 
 export type SplitTextLineProps = {
   text: string
@@ -22,19 +22,22 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
   duration = 0.004,
   delayOrder, // order of appearance
 }) => {
-  const [{ width },] = useAtom<windowSize>(windowSizeAtom)
+  const [{ width },] = useAtom(windowSizeAtom)
 
   const chars = text.split("")
   const length = text.length + offset
 
   const [delay, setDelay] = useState(0.025);
-  const fontSize = width >= 1280
-    ? 1280 / length
-    : width >= 992
-      ? (width - convertRemToPx(6)) / length
-      : width >= 768
-        ? (width - convertRemToPx(5)) / length
-        : width / length
+  const fontSize =
+    width === null
+      ? undefined
+      : width >= 1280
+        ? 1280 / length
+        : width >= 992
+          ? (width - convertRemToPx(6)) / length
+          : width >= 768
+            ? (width - convertRemToPx(5)) / length
+            : width / length
 
   const delayOffset = 0.2;
 
@@ -71,7 +74,7 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
     <span
       aria-label={text}
       className={className}
-      style={{ fontSize: `${fontSize}px`}}
+      style={{ fontSize: fontSize ? `${fontSize}px` : undefined }}
     >
       {chars.map((char, i) => {
         return (
