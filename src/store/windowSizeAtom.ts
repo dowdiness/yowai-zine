@@ -8,27 +8,33 @@ export type windowSize = {
 }
 
 export const windowSizeAtom = atom<windowSize>({
-  width: isClient ? window.innerWidth : 0,
-  height: isClient ? window.innerHeight : 0,
+  width: isClient ? window.innerWidth : 320,
+  height: isClient ? window.innerHeight : 320,
 })
 
 windowSizeAtom.onMount = (setWindowSizeAtom) => {
-  if (isClient) {
-    const handler = () => {
-      setWindowSizeAtom({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    }
-    handler()
-    const debouncedHandler = debounce(handler, 200)
-    window.addEventListener('load', handler)
-    window.addEventListener('resize', debouncedHandler)
-    return () => {
-      window.addEventListener('load', handler)
-      window.removeEventListener('resize', debouncedHandler)
+  const handler = () => {
+    setWindowSizeAtom({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
+  }
+
+  const debouncedHandler = debounce(handler, 200)
+
+  const mount = () => {
+    if (isClient) {
+      handler()
+      window.addEventListener('resize', debouncedHandler)
+      return () => {
+        window.removeEventListener('resize', debouncedHandler)
+      }
+    } else {
+      setTimeout(mount, 100)
     }
   }
+
+  mount()
 }
 
 export default windowSizeAtom
