@@ -1166,11 +1166,11 @@ enum FileFieldsEnum {
   childrenPagesJson___internal___owner = 'childrenPagesJson.internal.owner',
   childrenPagesJson___internal___type = 'childrenPagesJson.internal.type',
   childrenPagesJson___path = 'childrenPagesJson.path',
-  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childrenPagesJson___introduction = 'childrenPagesJson.introduction',
   childrenPagesJson___image = 'childrenPagesJson.image',
   childrenPagesJson___displayTitle = 'childrenPagesJson.displayTitle',
   childrenPagesJson___title = 'childrenPagesJson.title',
+  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childPagesJson___id = 'childPagesJson.id',
   childPagesJson___parent___id = 'childPagesJson.parent.id',
   childPagesJson___parent___parent___id = 'childPagesJson.parent.parent.id',
@@ -1210,11 +1210,11 @@ enum FileFieldsEnum {
   childPagesJson___internal___owner = 'childPagesJson.internal.owner',
   childPagesJson___internal___type = 'childPagesJson.internal.type',
   childPagesJson___path = 'childPagesJson.path',
-  childPagesJson___catchphrase = 'childPagesJson.catchphrase',
   childPagesJson___introduction = 'childPagesJson.introduction',
   childPagesJson___image = 'childPagesJson.image',
   childPagesJson___displayTitle = 'childPagesJson.displayTitle',
-  childPagesJson___title = 'childPagesJson.title'
+  childPagesJson___title = 'childPagesJson.title',
+  childPagesJson___catchphrase = 'childPagesJson.catchphrase'
 }
 
 type FileFilterInput = {
@@ -2158,19 +2158,19 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___featuredImage___childrenPagesJson___id = 'frontmatter.featuredImage.childrenPagesJson.id',
   frontmatter___featuredImage___childrenPagesJson___children = 'frontmatter.featuredImage.childrenPagesJson.children',
   frontmatter___featuredImage___childrenPagesJson___path = 'frontmatter.featuredImage.childrenPagesJson.path',
-  frontmatter___featuredImage___childrenPagesJson___catchphrase = 'frontmatter.featuredImage.childrenPagesJson.catchphrase',
   frontmatter___featuredImage___childrenPagesJson___introduction = 'frontmatter.featuredImage.childrenPagesJson.introduction',
   frontmatter___featuredImage___childrenPagesJson___image = 'frontmatter.featuredImage.childrenPagesJson.image',
   frontmatter___featuredImage___childrenPagesJson___displayTitle = 'frontmatter.featuredImage.childrenPagesJson.displayTitle',
   frontmatter___featuredImage___childrenPagesJson___title = 'frontmatter.featuredImage.childrenPagesJson.title',
+  frontmatter___featuredImage___childrenPagesJson___catchphrase = 'frontmatter.featuredImage.childrenPagesJson.catchphrase',
   frontmatter___featuredImage___childPagesJson___id = 'frontmatter.featuredImage.childPagesJson.id',
   frontmatter___featuredImage___childPagesJson___children = 'frontmatter.featuredImage.childPagesJson.children',
   frontmatter___featuredImage___childPagesJson___path = 'frontmatter.featuredImage.childPagesJson.path',
-  frontmatter___featuredImage___childPagesJson___catchphrase = 'frontmatter.featuredImage.childPagesJson.catchphrase',
   frontmatter___featuredImage___childPagesJson___introduction = 'frontmatter.featuredImage.childPagesJson.introduction',
   frontmatter___featuredImage___childPagesJson___image = 'frontmatter.featuredImage.childPagesJson.image',
   frontmatter___featuredImage___childPagesJson___displayTitle = 'frontmatter.featuredImage.childPagesJson.displayTitle',
   frontmatter___featuredImage___childPagesJson___title = 'frontmatter.featuredImage.childPagesJson.title',
+  frontmatter___featuredImage___childPagesJson___catchphrase = 'frontmatter.featuredImage.childPagesJson.catchphrase',
   frontmatter___images = 'frontmatter.images',
   frontmatter___images___sourceInstanceName = 'frontmatter.images.sourceInstanceName',
   frontmatter___images___absolutePath = 'frontmatter.images.absolutePath',
@@ -2254,19 +2254,19 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___images___childrenPagesJson___id = 'frontmatter.images.childrenPagesJson.id',
   frontmatter___images___childrenPagesJson___children = 'frontmatter.images.childrenPagesJson.children',
   frontmatter___images___childrenPagesJson___path = 'frontmatter.images.childrenPagesJson.path',
-  frontmatter___images___childrenPagesJson___catchphrase = 'frontmatter.images.childrenPagesJson.catchphrase',
   frontmatter___images___childrenPagesJson___introduction = 'frontmatter.images.childrenPagesJson.introduction',
   frontmatter___images___childrenPagesJson___image = 'frontmatter.images.childrenPagesJson.image',
   frontmatter___images___childrenPagesJson___displayTitle = 'frontmatter.images.childrenPagesJson.displayTitle',
   frontmatter___images___childrenPagesJson___title = 'frontmatter.images.childrenPagesJson.title',
+  frontmatter___images___childrenPagesJson___catchphrase = 'frontmatter.images.childrenPagesJson.catchphrase',
   frontmatter___images___childPagesJson___id = 'frontmatter.images.childPagesJson.id',
   frontmatter___images___childPagesJson___children = 'frontmatter.images.childPagesJson.children',
   frontmatter___images___childPagesJson___path = 'frontmatter.images.childPagesJson.path',
-  frontmatter___images___childPagesJson___catchphrase = 'frontmatter.images.childPagesJson.catchphrase',
   frontmatter___images___childPagesJson___introduction = 'frontmatter.images.childPagesJson.introduction',
   frontmatter___images___childPagesJson___image = 'frontmatter.images.childPagesJson.image',
   frontmatter___images___childPagesJson___displayTitle = 'frontmatter.images.childPagesJson.displayTitle',
   frontmatter___images___childPagesJson___title = 'frontmatter.images.childPagesJson.title',
+  frontmatter___images___childPagesJson___catchphrase = 'frontmatter.images.childPagesJson.catchphrase',
   frontmatter___keywords = 'frontmatter.keywords',
   fields___slug = 'fields.slug',
   excerpt = 'excerpt',
@@ -2455,11 +2455,11 @@ type PagesJson = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly path: Maybe<Scalars['String']>;
-  readonly catchphrase: Maybe<Scalars['String']>;
   readonly introduction: Maybe<Scalars['String']>;
   readonly image: Maybe<Scalars['String']>;
   readonly displayTitle: Maybe<Scalars['Boolean']>;
   readonly title: Maybe<Scalars['String']>;
+  readonly catchphrase: Maybe<Scalars['String']>;
 };
 
 type PagesJsonConnection = {
@@ -2577,11 +2577,11 @@ enum PagesJsonFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   path = 'path',
-  catchphrase = 'catchphrase',
   introduction = 'introduction',
   image = 'image',
   displayTitle = 'displayTitle',
-  title = 'title'
+  title = 'title',
+  catchphrase = 'catchphrase'
 }
 
 type PagesJsonFilterInput = {
@@ -2590,11 +2590,11 @@ type PagesJsonFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
-  readonly catchphrase: Maybe<StringQueryOperatorInput>;
   readonly introduction: Maybe<StringQueryOperatorInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
   readonly displayTitle: Maybe<BooleanQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
+  readonly catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 type PagesJsonFilterListInput = {
@@ -2873,11 +2873,11 @@ type Query_pagesJsonArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   path: Maybe<StringQueryOperatorInput>;
-  catchphrase: Maybe<StringQueryOperatorInput>;
   introduction: Maybe<StringQueryOperatorInput>;
   image: Maybe<StringQueryOperatorInput>;
   displayTitle: Maybe<BooleanQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
+  catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -3469,6 +3469,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___delayTimeout = 'pluginCreator.pluginOptions.delayTimeout',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
+  pluginCreator___pluginOptions___staticFolderName = 'pluginCreator.pluginOptions.staticFolderName',
   pluginCreator___pluginOptions___maxWidth = 'pluginCreator.pluginOptions.maxWidth',
   pluginCreator___pluginOptions___linkImagesToOriginal = 'pluginCreator.pluginOptions.linkImagesToOriginal',
   pluginCreator___pluginOptions___backgroundColor = 'pluginCreator.pluginOptions.backgroundColor',
@@ -3709,6 +3710,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___plugins___id = 'pluginOptions.plugins.id',
   pluginOptions___plugins___name = 'pluginOptions.plugins.name',
   pluginOptions___plugins___version = 'pluginOptions.plugins.version',
+  pluginOptions___plugins___pluginOptions___staticFolderName = 'pluginOptions.plugins.pluginOptions.staticFolderName',
   pluginOptions___plugins___pluginOptions___maxWidth = 'pluginOptions.plugins.pluginOptions.maxWidth',
   pluginOptions___plugins___pluginOptions___linkImagesToOriginal = 'pluginOptions.plugins.pluginOptions.linkImagesToOriginal',
   pluginOptions___plugins___pluginOptions___backgroundColor = 'pluginOptions.plugins.pluginOptions.backgroundColor',
@@ -3739,6 +3741,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___delayTimeout = 'pluginOptions.delayTimeout',
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___name = 'pluginOptions.name',
+  pluginOptions___staticFolderName = 'pluginOptions.staticFolderName',
   pluginOptions___maxWidth = 'pluginOptions.maxWidth',
   pluginOptions___linkImagesToOriginal = 'pluginOptions.linkImagesToOriginal',
   pluginOptions___backgroundColor = 'pluginOptions.backgroundColor',
@@ -3918,6 +3921,7 @@ type SitePluginPluginOptions = {
   readonly delayTimeout: Maybe<Scalars['Int']>;
   readonly path: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
+  readonly staticFolderName: Maybe<Scalars['String']>;
   readonly maxWidth: Maybe<Scalars['Int']>;
   readonly linkImagesToOriginal: Maybe<Scalars['Boolean']>;
   readonly backgroundColor: Maybe<Scalars['String']>;
@@ -3983,6 +3987,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly delayTimeout: Maybe<IntQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
+  readonly staticFolderName: Maybe<StringQueryOperatorInput>;
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
   readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
   readonly backgroundColor: Maybe<StringQueryOperatorInput>;
@@ -4090,6 +4095,7 @@ type SitePluginPluginOptionsPluginsFilterListInput = {
 };
 
 type SitePluginPluginOptionsPluginsPluginOptions = {
+  readonly staticFolderName: Maybe<Scalars['String']>;
   readonly maxWidth: Maybe<Scalars['Int']>;
   readonly linkImagesToOriginal: Maybe<Scalars['Boolean']>;
   readonly backgroundColor: Maybe<Scalars['String']>;
@@ -4107,6 +4113,7 @@ type SitePluginPluginOptionsPluginsPluginOptions = {
 };
 
 type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  readonly staticFolderName: Maybe<StringQueryOperatorInput>;
   readonly maxWidth: Maybe<IntQueryOperatorInput>;
   readonly linkImagesToOriginal: Maybe<BooleanQueryOperatorInput>;
   readonly backgroundColor: Maybe<StringQueryOperatorInput>;
@@ -4246,20 +4253,5 @@ type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphr
       Pick<MarkdownRemark, 'excerpt'>
       & { readonly fields: Maybe<Pick<Fields, 'slug'>>, readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'author' | 'vol' | 'publishedAt'>> }
     )> } };
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
 }

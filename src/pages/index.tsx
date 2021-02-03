@@ -23,7 +23,9 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 }) => {
   const home = data.home
   const posts = data.posts.nodes
+  // @ts-ignore
   const genkiData = getImage(data.genki)
+  // @ts-ignore
   const zineDate = getImage(data.zine)
   const [{ width },] = useAtom<windowSize>(windowSizeAtom)
   const circle = home?.catchphrase
@@ -101,6 +103,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               <div className="absolute inline-block w-full transform -translate-x-1/2 -translate-y-1/2 h-1/3 inset-1/2">
                 <GatsbyImage
                   loading="eager"
+                  // @ts-ignore
                   width="798"
                   height="247"
                   className="cursor-none hover:animate-huruhuru"
@@ -124,6 +127,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               <GatsbyImage
                 image={zineDate!}
                 loading="eager"
+                // @ts-ignore
                 width="768"
                 height="359"
                 alt="Zine"

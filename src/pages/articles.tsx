@@ -19,6 +19,7 @@ const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 
 const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data }) => {
   const posts = data.posts.nodes
+  // @ts-ignore
   const zineDate = getImage(data.zine)
 
   useSkew('[data-skew]')
@@ -51,6 +52,7 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
         <section className="flex flex-col justify-center mx-auto space-y-32">
           <div data-skew className="flex justify-center mx-auto -mb-12">
             <GatsbyImage
+              // @ts-ignore
               image={zineDate}
               loading="eager"
               width="768"
