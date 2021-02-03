@@ -38,16 +38,12 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
   const length = text.length + offset
 
   const [delay, setDelay] = useState(0.025);
-  const [fontSize, setFontSize] = useState(calcFontSize(length, width))
+  const fontSize = calcFontSize(length, width)
   const delayOffset = 0.2;
 
   useEffect(() => {
     if (delayOrder) return setDelay(delayOrder * delayOffset);
   }, [delayOrder, delayOffset])
-
-  useEffect(() => {
-    setFontSize(calcFontSize(length, width))
-  }, [length, width])
 
   const transition = useMemo(
     () => ({
