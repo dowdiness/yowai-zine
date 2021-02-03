@@ -12,15 +12,15 @@ sections:
   label: Articles
   create: all
   match: "**/*"
-upload_dir: uploads
-public_path: "/uploads"
+upload_dir: content/assets
+public_path: "/content/assets"
 front_matter_path: ''
 use_front_matter_path: false
-file_template: ":filename:"
+file_template: " :year:/:month:/:day:/:filename:"
 build:
   preview_output_directory: public
-  install_dependencies_command: npm install
+  install_dependencies_command: yarn install
   preview_docker_image: forestryio/node:12
   mount_path: "/srv"
   working_dir: "/srv"
-  instant_preview_command: npm run develop
+  instant_preview_command: yarn develop
