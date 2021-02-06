@@ -21,11 +21,11 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
       >
         {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
         <main>{children}</main>
-        <Footer className="z-40 py-16" />
-        <motion.div
+        {/* <Footer className="z-40 py-16" /> */}
+        {/* <motion.div
           className="fixed top-0 right-0 z-50 w-2 h-screen bg-blue-600"
           style={{ scaleY: multipleScaleY, translateY: '-50%' }}
-        />
+        /> */}
       </div>
       <div
         ref={mouse.cursorRef}

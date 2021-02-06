@@ -11,7 +11,7 @@ import useCursor from 'src/hooks/useCursor'
 import ScrollArticle from 'src/components/ScrollArticle'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
-import { ArticleLink } from 'src/components/Article'
+import { ArticleList } from 'src/components/Article'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 //Ease
@@ -20,7 +20,7 @@ const transition = { duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }
 const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data }) => {
   const posts = data.posts.nodes
   // @ts-ignore
-  const zineDate = getImage(data.zine)
+  const zineData = getImage(data.zine)
 
   useSkew('[data-skew]')
   const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
@@ -43,24 +43,53 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
           },
         ]}
       />
-      <div className="py-16 space-y-16">
+      {/* <div className="py-16 space-y-16">
         <ArticleLink
           to={`/`}
           title='トップページに戻る'
           className="mt-12 text-left"
-        />
-        <section className="flex flex-col justify-center mx-auto space-y-32">
-          <div data-skew className="flex justify-center mx-auto -mb-12">
+        /> */}
+        <ArticleList>
+          <li
+            className="mx-auto mt-16"
+          >
             <GatsbyImage
-              // @ts-ignore
-              image={zineDate}
+              image={zineData!}
               loading="eager"
+              // @ts-ignore
               width="768"
               height="359"
               alt="Zine"
-              className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+              className="object-scale-down h-32 mx-auto hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
             />
-          </div>
+          </li>
+          {posts.map((post, index) => (
+            <li
+              className="mx-auto"
+            >
+              <ScrollArticle
+                index={index}
+                to={`/articles${post.fields?.slug}`}
+                text={post.frontmatter?.author}
+                linkText={post.frontmatter?.title!}
+                useCursor={true}
+                isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.publishedAt!), Date.now()))}
+              />
+            </li>
+          ))}
+        </ArticleList>
+        {/* <section className="flex flex-col justify-center mx-auto space-y-32">
+          <GatsbyImage
+            data-skew
+            data-loop-item
+            // @ts-ignore
+            image={zineData}
+            loading="eager"
+            width="768"
+            height="359"
+            alt="Zine"
+            className="object-scale-down h-32 mx-auto hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+          />
           <div className="flex flex-col justify-center mx-auto space-y-28">
             {posts.map((post, index) => (
               <ScrollArticle
@@ -73,8 +102,8 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
               />
             ))}
           </div>
-        </section>
-      </div>
+        </section> */}
+      {/* </div> */}
       {/* Cursor */}
       <div
         ref={cursorRef}
