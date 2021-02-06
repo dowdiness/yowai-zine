@@ -12,7 +12,7 @@ import linktree from "../../content/assets/linktree.jpg"
 // @ts-ignore
 import hatena from "../../content/assets/hatenablog-logo.svg"
 import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
-import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
+import { TiSocialInstagram, TiSocialTwitter, TiSocialYoutube } from 'react-icons/ti'
 //Hooks
 
 const HorizontalArticleTemplate: React.FC<PageProps<
@@ -141,6 +141,11 @@ const HorizontalArticleTemplate: React.FC<PageProps<
                   <TiSocialInstagram className="w-12 h-12" />
                 </a>
               )}
+              {post?.frontmatter?.youtube && (
+                <a aria-label="youtube" href={post?.frontmatter?.youtube} target="_blank" rel="noreferrer noopener">
+                  <TiSocialYoutube className="w-12 h-12" />
+                </a>
+              )}
               {post?.frontmatter?.twitter && (
                 <a aria-label="twitter" href={post?.frontmatter?.twitter} target="_blank" rel="noreferrer noopener">
                   <TiSocialTwitter className="w-12 h-12" />
@@ -190,6 +195,7 @@ export const pageQuery = graphql`
         vol
         align
         twitter
+        youtube
         instagram
         minnakikeru
         bandcamp
