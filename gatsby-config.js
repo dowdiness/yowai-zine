@@ -73,7 +73,6 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          `gatsby-remark-relative-images`,
           `gatsby-remark-normalize-paths`,
           `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
