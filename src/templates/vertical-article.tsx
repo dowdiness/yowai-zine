@@ -3,7 +3,14 @@ import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
-import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
+import {
+  ArticleHeader,
+  ArticleLink,
+  ArticleNav,
+  ArticleSideHeader,
+  ArticleShareButton,
+  ArticleSocialAccounts
+} from 'src/components/Article'
 import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
@@ -85,18 +92,16 @@ const VerticalArticleTemplate: React.FC<PageProps<
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
               <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
-              <div className="flex items-center justify-around w-1/2 mx-auto mt-4">
-              {post?.frontmatter?.instagram && (
-                <a href={post?.frontmatter?.instagram} target="_blank" rel="noreferrer noopener">
-                  <TiSocialInstagram className="w-12 h-12" />
-                </a>
-              )}
-              {post?.frontmatter?.twitter && (
-                <a href={post?.frontmatter?.twitter} target="_blank" rel="noreferrer noopener">
-                  <TiSocialTwitter className="w-12 h-12" />
-                </a>
-              )}
-            </div>
+              <ArticleSocialAccounts
+                className="flex items-center justify-around mx-auto mt-4 md:w-1/2"
+                linktree={post?.frontmatter?.linktree}
+                hatena={post?.frontmatter?.hatena}
+                bandcamp={post?.frontmatter?.bandcamp}
+                minnakikeru={post?.frontmatter?.minnakikeru}
+                instagram={post?.frontmatter?.instagram}
+                youtube={post?.frontmatter?.youtube}
+                twitter={post?.frontmatter?.twitter}
+              />
             </div>
           </footer>
         </article>
@@ -139,8 +144,13 @@ export const pageQuery = graphql`
         profile
         description
         vol
+        linktree
         twitter
+        hatena
+        bandcamp
+        minnakikeru
         instagram
+        youtube
         images {
           publicURL
         }

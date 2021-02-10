@@ -103,9 +103,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               <div className="absolute inline-block w-full transform -translate-x-1/2 -translate-y-1/2 h-1/3 inset-1/2">
                 <GatsbyImage
                   loading="eager"
-                  // @ts-ignore
-                  width="798"
-                  height="247"
                   className="cursor-none hover:animate-huruhuru"
                   image={genkiData!}
                   alt="Genki"
@@ -127,9 +124,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
               <GatsbyImage
                 image={zineDate!}
                 loading="eager"
-                // @ts-ignore
-                width="768"
-                height="359"
                 alt="Zine"
                 className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
               />
@@ -183,17 +177,17 @@ export const pageQuery = graphql`
     }
     genki: file(relativePath: { eq: "genki.png" }) {
       childImageSharp {
-        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
       }
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
       }
     }
     posts: allMarkdownRemark(
         filter: { frontmatter: { vol: { eq: "0" } } }
-        sort: { fields: [frontmatter___createdAt], order: DESC }
+        sort: { fields: [frontmatter___publishedAt], order: DESC }
       ) {
       nodes {
         excerpt(truncate: true)

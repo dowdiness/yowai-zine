@@ -3,16 +3,15 @@ import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
-// @ts-ignore
-import minnakikeru from "../../content/assets/minnakikeru.png"
-// @ts-ignore
-import bandcamp from "../../content/assets/bandcamp.png"
-// @ts-ignore
-import linktree from "../../content/assets/linktree.jpg"
-// @ts-ignore
-import hatena from "../../content/assets/hatenablog-logo.svg"
-import { ArticleHeader, ArticleLink, ArticleNav, ArticleSideHeader, ArticleShareButton } from 'src/components/Article'
-import { TiSocialInstagram, TiSocialTwitter, TiSocialYoutube } from 'react-icons/ti'
+
+import {
+  ArticleHeader,
+  ArticleLink,
+  ArticleNav,
+  ArticleSideHeader,
+  ArticleShareButton,
+  ArticleSocialAccounts
+} from 'src/components/Article'
 //Hooks
 
 const HorizontalArticleTemplate: React.FC<PageProps<
@@ -91,67 +90,16 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           />
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
-            <div className="flex items-center justify-around mx-auto mt-4 md:w-1/2">
-              {post?.frontmatter?.linktree && (
-                <a aria-label="linktree" href={`https://linktr.ee/${post?.frontmatter?.linktree}`} target="_blank" rel="noreferrer noopener">
-                  <img
-                    width={48}
-                    height={48}
-                    src={linktree}
-                    alt="linktree"
-                    className="rounded-full"
-                  />
-                </a>
-              )}
-              {post?.frontmatter?.hatena && (
-                <a className="flex items-center justify-center w-12 h-12" aria-label="hatena" href={`https://${post?.frontmatter?.hatena}.hatenablog.com`} target="_blank" rel="noreferrer noopener">
-                  <img
-                    width={48}
-                    height={48}
-                    src={hatena}
-                    alt="hatena"
-                    className="w-16 h-16 max-w-none blend-multiply"
-                  />
-                </a>
-              )}
-              {post?.frontmatter?.bandcamp && (
-                <a aria-label="bandcamp" href={post?.frontmatter?.bandcamp} target="_blank" rel="noreferrer noopener">
-                  <img
-                    width={48}
-                    height={48}
-                    src={bandcamp}
-                    alt="bandcamp"
-                    className="w-10 h-10 blend-multiply"
-                  />
-                </a>
-              )}
-              {post?.frontmatter?.minnakikeru && (
-                <a aria-label="minnakikeru" href={post?.frontmatter?.minnakikeru} target="_blank" rel="noreferrer noopener">
-                  <img
-                    width={48}
-                    height={48}
-                    src={minnakikeru}
-                    alt="minnakikeru"
-                    className="blend-multiply"
-                  />
-                </a>
-              )}
-              {post?.frontmatter?.instagram && (
-                <a aria-label="instagram" href={post?.frontmatter?.instagram} target="_blank" rel="noreferrer noopener">
-                  <TiSocialInstagram className="w-12 h-12" />
-                </a>
-              )}
-              {post?.frontmatter?.youtube && (
-                <a aria-label="youtube" href={post?.frontmatter?.youtube} target="_blank" rel="noreferrer noopener">
-                  <TiSocialYoutube className="w-12 h-12" />
-                </a>
-              )}
-              {post?.frontmatter?.twitter && (
-                <a aria-label="twitter" href={post?.frontmatter?.twitter} target="_blank" rel="noreferrer noopener">
-                  <TiSocialTwitter className="w-12 h-12" />
-                </a>
-              )}
-            </div>
+            <ArticleSocialAccounts
+              className="flex items-center justify-around mx-auto mt-4 md:w-1/2"
+              linktree={post?.frontmatter?.linktree}
+              hatena={post?.frontmatter?.hatena}
+              bandcamp={post?.frontmatter?.bandcamp}
+              minnakikeru={post?.frontmatter?.minnakikeru}
+              instagram={post?.frontmatter?.instagram}
+              youtube={post?.frontmatter?.youtube}
+              twitter={post?.frontmatter?.twitter}
+            />
           </div>
         </footer>
       </article>

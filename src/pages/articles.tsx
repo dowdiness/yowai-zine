@@ -55,8 +55,6 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
               // @ts-ignore
               image={zineDate}
               loading="eager"
-              width="768"
-              height="359"
               alt="Zine"
               className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
             />
@@ -102,7 +100,7 @@ export const pageQuery = graphql`
   query ArticlesPage {
     posts: allMarkdownRemark(
       filter: { frontmatter: { vol: { eq: "0" } } }
-      sort: { fields: [frontmatter___createdAt], order: DESC }
+      sort: { fields: [frontmatter___publishedAt], order: DESC }
     ) {
       nodes {
         excerpt(truncate: true)
@@ -119,7 +117,7 @@ export const pageQuery = graphql`
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(maxWidth: 768, layout: FLUID, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
       }
     }
   }
