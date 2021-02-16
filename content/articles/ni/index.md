@@ -10,6 +10,7 @@ updatedAt: 2021-02-16T12:15
 publishedAt: 2021-02-15T20:39
 vol: "0"
 writing: "horizontal"
+instagram: "https://www.instagram.com/nii_hir"
 align: "left"
 ---
 
