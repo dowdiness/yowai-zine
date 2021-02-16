@@ -5,12 +5,12 @@ profile: |
   東京生まれ、京都在住。映画や映像を作る。最新作『眠る虫』
   チェンマイのヤンキーで歌を歌う。
 createdAt: 2021-01-12T13:00
-updatedAt: 2021-02-15T21:24
+updatedAt: 2021-02-16T14:08
 publishedAt: 2021-01-15T23:30
 vol: "0"
 writing: "horizontal"
-twitter: "https://twitter.com/okomebroccoli"
-instagram: "https://instagram.com/okomebroccoli?igshid=18o4s3jvq4t0j"
+twitter: "okomebroccoli"
+instagram: "okomebroccoli"
 ---
 
 思い出し続けたい映画がある。

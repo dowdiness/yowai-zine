@@ -5,11 +5,11 @@ profile: |
   野方在住31歳。
   賢いユリシーズと海辺のニューゴリラ。
 createdAt: 2021-01-08T23:18
-updatedAt: 2021-02-15T21:23
+updatedAt: 2021-02-16T14:09
 publishedAt: 2021-01-15T23:18
 vol: "0"
 writing: "vertical"
-twitter: "https://twitter.com/masupuru"
+twitter: "masupuru"
 ---
 
 人生においてコントロールできるものは少ない。人によっては、仕事は安定しているだろうがそれは奴隷役を通じて安定したコントロールを受けているにすぎない。人はいずれ死ぬ。しむけんもいつか死ぬ運命だったんだ。しみけんだっていずれ…

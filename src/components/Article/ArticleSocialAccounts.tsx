@@ -53,7 +53,7 @@ export const ArticleSocialAccounts: React.FCX<Partial<ArticleSocialAccountsProps
         </a>
       )}
       {bandcamp && (
-        <a aria-label="bandcamp" href={bandcamp} target="_blank" rel="noreferrer noopener">
+        <a aria-label="bandcamp" href={`https://${bandcamp}.bandcamp.com/`} target="_blank" rel="noreferrer noopener">
           <StaticImage
             width={42}
             height={42}
@@ -79,17 +79,17 @@ export const ArticleSocialAccounts: React.FCX<Partial<ArticleSocialAccountsProps
         </a>
       )}
       {instagram && (
-        <a aria-label="instagram" href={instagram} target="_blank" rel="noreferrer noopener">
+        <a aria-label="instagram" href={`https://instagram.com/${instagram}`} target="_blank" rel="noreferrer noopener">
           <TiSocialInstagram className="w-12 h-12" />
         </a>
       )}
       {youtube && (
-        <a aria-label="youtube" href={youtube} target="_blank" rel="noreferrer noopener">
+        <a aria-label="youtube" href={`https://www.youtube.com/channel/${youtube}`} target="_blank" rel="noreferrer noopener">
           <TiSocialYoutube className="w-12 h-12" />
         </a>
       )}
       {twitter && (
-        <a aria-label="twitter" href={twitter} target="_blank" rel="noreferrer noopener">
+        <a aria-label="twitter" href={`https://twitter.com/${twitter}`} target="_blank" rel="noreferrer noopener">
           <TiSocialTwitter className="w-12 h-12" />
         </a>
       )}

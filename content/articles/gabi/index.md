@@ -5,7 +5,7 @@ profile: |
   豆が好きな日本に住んでるアメリカ人。
   Believes anything can be poetry.
 createdAt: 2021-01-07T16:15
-updatedAt: 2021-02-15T21:23
+updatedAt: 2021-02-16T14:09
 publishedAt: 2021-01-15T23:12
 featuredImage: "../../artworks/illbull/illbull-01.jpg"
 images:
@@ -19,7 +19,7 @@ images:
 vol: "0"
 align: "left"
 writing: "horizontal"
-instagram: "https://instagram.com/gereed"
+instagram: "gereed"
 ---
 
 ![](hand-writing-1.jpg)

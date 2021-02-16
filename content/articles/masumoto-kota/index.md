@@ -5,12 +5,12 @@ profile: |
   日本や世界各地で演奏を続けるミュージシャン。シンガーソングライター、ギタリストであり、ダンスミュージックのプロデューサーBLOWBOHEMIAとしても活動。
   10代から放浪。一時期ホームレス。北海道、沖縄、尾道、逗子へ移住。日本全国、ヨーロッパ、タイへのツアー後、ベルリンへ移住。その後近年は東アジアが主な拠点。韓国、台湾でも活動中。
 createdAt: 2020-12-26T23:01
-updatedAt: 2021-02-15T21:19
+updatedAt: 2021-02-16T14:08
 publishedAt: 2021-01-15T22:10
 vol: "0"
 writing: "vertical"
-twitter: "https://twitter.com/masumoto_kota"
-instagram: "https://instagram.com/masumotokota?igshid=a3kri2mi4dnn"
+twitter: "masumoto_kota"
+instagram: "masumotokota"
 ---
 
 人類がネット上に簡単に文をアップできる前の時代、zineは思いのたけをブチ込み、人に伝えられる貴重な場所の一つだった。
