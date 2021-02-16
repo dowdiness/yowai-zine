@@ -6,8 +6,8 @@ profile: |
   2017年にオーストラリアのシドニーで写真家として活動している親友タルバート・アンソニーを通じて写真を撮り始め、その後幾人かの友人のフィルム作品に感銘を受け、すぐにデジタルからフィルムに移行しました。
   今でもこつこつ写真を撮り続けています。
 createdAt: 2021-01-02T22:59
-updatedAt: 2021-01-26T18:01
-publishedAt: 2021-01-16T01:23
+updatedAt: 2021-02-16T14:05
+publishedAt: 2021-01-15T22:38
 vol: "0"
 featuredImage: "../../artworks/richard-dunn/richard-dunn-01.jpg"
 images:
@@ -15,7 +15,7 @@ images:
   - "../../artworks/richard-dunn/richard-dunn-02.jpg"
 align: "left"
 writing: "horizontal"
-instagram: "https://www.instagram.com/richard_james_dunn/"
+instagram: "richard_james_dunn"
 ---
 
 ![](../../artworks/richard-dunn/richard-dunn-01.jpg)

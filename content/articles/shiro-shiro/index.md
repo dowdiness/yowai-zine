@@ -7,12 +7,12 @@ profile: |
   まだTinderで消耗している。
   「母恵夢」というライブを企画しています。
 createdAt: 2021-01-19T07:56
-updatedAt: 2021-01-26T17:08
+updatedAt: 2021-02-16T14:02
 publishedAt: 2021-01-24T20:30
 vol: "0"
 align: "left"
 writing: "horizontal"
-twitter: "https://twitter.com/white_awakening"
+twitter: "white_awakening"
 ---
 
 　人と会うことがめっきり減った。ふさぎ込むことが多くなった。 平日も休日も変わらず、何をするでもない。 基本横になって、気が向いたらNetflixで適当な映画を見る。 ホラー映画くらいの寄る辺のなさが、ちょうどいいのかもしれない。

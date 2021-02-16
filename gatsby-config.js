@@ -73,10 +73,19 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          `gatsby-remark-relative-images`,
           `gatsby-remark-normalize-paths`,
           `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
+          {
+            resolve: 'gatsby-remark-audio',
+            options: {
+              preload: 'auto',
+              loop: false,
+              controls: true,
+              muted: false,
+              autoplay: false
+            }
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -108,6 +117,15 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: 'gatsby-plugin-draft',
+      options: {
+        timezone: 'Asia/Tokyo',
+        pickDate: node => node.frontmatter.publishedAt,
+        // draftのポストを開発時に表示する
+        // publishDraft: process.env.NODE_ENV !== 'production',
+      },
+    },
     // `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {

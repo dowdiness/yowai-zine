@@ -10,8 +10,8 @@ profile: |
   日本のインディコンピ「みんなみてる」を編纂、リリースされた。
   2020年5月、ストリーミングサイト「みんなきける」を立ち上げている。
 createdAt: 2021-01-02T22:58
-updatedAt: 2021-01-26T17:23
-publishedAt: 2021-01-15T22:16
+updatedAt: 2021-02-16T14:05
+publishedAt: 2021-01-15T22:27
 vol: "0"
 images:
   - "Mado-no-Tensi.jpg"
@@ -19,7 +19,7 @@ keywords:
   - "音楽"
   - "作詞"
 writing: "horizontal"
-twitter: "https://twitter.com/majikickn"
+twitter: "majikickn"
 minnakikeru: "https://minnakikeru.com"
 ---
 

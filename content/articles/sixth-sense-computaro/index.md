@@ -6,8 +6,8 @@ profile: |
   sixsensecomputer | PRODUCTION CENTER | TOPGEAR | OL | 賢いULYSSES(裏方)
   おしゃれのことを考えながらすごすことが多い
 createdAt: 2021-01-07T16:10
-updatedAt: 2021-01-26T18:02
-publishedAt: 2021-01-15T22:16
+updatedAt: 2021-02-16T14:02
+publishedAt: 2021-01-15T23:01
 vol: "0"
 images:
   - "../../artworks/第六感コンピュー太郎/第六感コンピュー太郎-01.png"
@@ -22,7 +22,7 @@ images:
   - "../../artworks/第六感コンピュー太郎/第六感コンピュー太郎-10.png"
   - "../../artworks/第六感コンピュー太郎/第六感コンピュー太郎-11.png"
 writing: "horizontal"
-twitter: "https://twitter.com/qidipidibiqibip"
+twitter: "qidipidibiqibip"
 ---
 
 ![](../../artworks/第六感コンピュー太郎/第六感コンピュー太郎-01.png)
