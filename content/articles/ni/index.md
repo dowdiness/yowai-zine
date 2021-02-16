@@ -7,7 +7,7 @@ profile: |
   古いものを売っている。
 createdAt: 2021-02-15T20:39
 updatedAt: 2021-02-16T14:07
-publishedAt: 2021-02-15T20:39
+publishedAt: 2021-02-16T18:10
 vol: "0"
 writing: "horizontal"
 align: "left"
