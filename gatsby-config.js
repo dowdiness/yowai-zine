@@ -117,6 +117,15 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: 'gatsby-plugin-draft',
+      options: {
+        timezone: 'Asia/Tokyo',
+        pickDate: node => node.frontmatter.publishedAt,
+        // draftのポストを開発時に表示する
+        // publishDraft: process.env.NODE_ENV !== 'production',
+      },
+    },
     // `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {

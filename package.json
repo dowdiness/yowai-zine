@@ -18,6 +18,7 @@
     "fontsource-noto-serif-jp": "^3.0.3",
     "framer-motion": "^3.1.1",
     "gatsby": "^2.32.3",
+    "gatsby-plugin-draft": "^0.1.0",
     "gatsby-plugin-feed": "^2.5.14",
     "gatsby-plugin-image": "^0.7.1",
     "gatsby-plugin-manifest": "^2.7.0",

@@ -99,7 +99,7 @@ export default ArticlesPage
 export const pageQuery = graphql`
   query ArticlesPage {
     posts: allMarkdownRemark(
-      filter: { frontmatter: { vol: { eq: "0" } } }
+      filter: { fields: {draft: { eq: false } } }
       sort: { fields: [frontmatter___publishedAt], order: DESC }
     ) {
       nodes {

@@ -127,7 +127,7 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
-    markdownRemark(id: { eq: $id }) {
+    markdownRemark(fields: { draft: { eq: false } }, id: { eq: $id }) {
       id
       excerpt(pruneLength: 120, truncate: true)
       html
@@ -158,7 +158,7 @@ export const pageQuery = graphql`
         keywords
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: markdownRemark(fields: { draft: { eq: false } }, id: { eq: $previousPostId }) {
       fields {
         slug
       }
@@ -167,7 +167,7 @@ export const pageQuery = graphql`
         vol
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: markdownRemark(fields: { draft: { eq: false } }, id: { eq: $nextPostId }) {
       fields {
         slug
       }
