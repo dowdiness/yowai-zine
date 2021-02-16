@@ -3,7 +3,7 @@ title: Black and Blue
 author: 黒木結
 profile: 美術家
 createdAt: 2021-02-15T20:39
-updatedAt: 2021-02-16T14:13
+updatedAt: 2021-02-16T14:18
 publishedAt: 2021-02-15T21:01
 vol: "0"
 writing: "horizontal"
