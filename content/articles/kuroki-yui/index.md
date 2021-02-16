@@ -8,6 +8,8 @@ updatedAt: 2021-02-16T12:16
 publishedAt: 2021-02-15T21:01
 vol: "0"
 writing: "horizontal"
+twitter: "https://twitter.com/yui_kuroki"
+instagram: "https://www.instagram.com/yui_kuroki"
 align: "center"
 ---
 
