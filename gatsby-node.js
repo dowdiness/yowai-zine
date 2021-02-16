@@ -7,14 +7,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Define a template for article post
   const verticalArticle = path.resolve(`./src/templates/vertical-article.tsx`)
   const horizontalArticle = path.resolve(`./src/templates/horizontal-article.tsx`)
-  // const ImageGallery = path.resolve(`./src/templates/image-gallery.tsx`)
 
-  // Get all markdown article posts sorted by date
   const resultAllMarkdowns = await graphql(
     `
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___createdAt], order: DESC }
+          filter: { fields: { draft: { eq: false } } }
+          sort: { fields: [frontmatter___publishedAt], order: DESC }
           limit: 1000
         ) {
           nodes {
@@ -42,90 +41,41 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const posts = resultAllMarkdowns.data.allMarkdownRemark.nodes
 
-  // Get all artworks folders posts sorted by date
-  const resultArtworks = await graphql(
-    `
-      {
-        allDirectory(filter: {sourceInstanceName: {eq: "artworks"}}, skip: 1) {
-          edges {
-            node {
-              id
-              name
-            }
-          }
-        }
-      }
-    `
-  )
-
-  if (resultArtworks.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your artworks directories`,
-      resultAllMarkdowns.errors
-    )
-    return
-  }
-
-  // const artworks = resultArtworks.data.allDirectory.edges
-
-  // Create article posts pages
-  // But only if there's at least one markdown file found at "content/article" (defined in gatsby-config.js)
+  // Create blog posts pages
+  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
-    const availableVols = []
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-      // const firstArtworkId = artworks[0].node.id
-      availableVols.push(post.frontmatter.vol)
+
+      const { slug } = post.fields
+      if (!slug) return
 
       if (post.frontmatter.writing === "horizontal") {
         createPage({
-          path: `/articles${post.fields.slug}`,
+          path: `/articles${slug}`,
           component: horizontalArticle,
           context: {
             id: post.id,
             previousPostId,
             nextPostId,
-            // firstArtworkId,
           },
         })
       } else if (post.frontmatter.writing === "vertical") {
         createPage({
-          path: `/articles${post.fields.slug}`,
+          path: `/articles${slug}`,
           component: verticalArticle,
           context: {
             id: post.id,
             previousPostId,
             nextPostId,
-            // firstArtworkId,
           },
         })
       }
     })
-    const availableVolsSet = new Set(availableVols)
   }
-
-  // if (artworks.length > 0) {
-  //   artworks.forEach((artwork, index) => {
-  //     const previousArtworkId = index === 0 ? null : artworks[index - 1].node.id
-  //     const nextArtworkId = index === artworks.length - 1 ? null : artworks[index + 1].node.id
-  //     const lastPostId = posts[posts.length - 1].id
-
-  //     createPage({
-  //       path: `/vol/0/${artwork.node.name}/`,
-  //       component: ImageGallery,
-  //       context: {
-  //         id: artwork.node.id,
-  //         artist: `${artwork.node.name}-*`,
-  //         previousArtworkId,
-  //         nextArtworkId,
-  //         lastPostId,
-  //       },
-  //     })
-  //   })
-  // }
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
