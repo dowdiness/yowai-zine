@@ -5,8 +5,8 @@ profile: |
   風の又サニーというバンドの鍵盤担当です。
   あとたまにダダ茶豆。
 createdAt: 2021-01-15T21:43
-updatedAt: 2021-01-26T17:09
-publishedAt: 2021-01-15T22:16
+updatedAt: 2021-02-15T21:24
+publishedAt: 2021-01-15T23:42
 vol: "0"
 writing: "vertical"
 twitter: "https://twitter.com/natsouki"

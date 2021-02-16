@@ -3,8 +3,8 @@ title: untitled
 author: illbull
 profile: 絵描き　京都在住
 createdAt: 2021-01-02T23:00
-updatedAt: 2021-01-26T18:02
-publishedAt: 2021-01-15T22:15
+updatedAt: 2021-02-15T21:21
+publishedAt: 2021-01-15T22:50
 vol: "0"
 featuredImage: "../../artworks/illbull/illbull-01.jpg"
 images:

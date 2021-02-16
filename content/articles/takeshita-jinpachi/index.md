@@ -3,8 +3,8 @@ title: 10円玉/ATP
 author: 竹下甚八
 profile: 1990年生　SON OF A BITCH ⇄ MOM OF A GEEK
 createdAt: 2021-01-07T16:07
-updatedAt: 2021-01-26T17:10
-publishedAt: 2021-01-15T22:18
+updatedAt: 2021-02-15T21:22
+publishedAt: 2021-01-15T22:55
 vol: "0"
 writing: "vertical"
 instagram: "https://instagram.com/beaverpatrooool"
