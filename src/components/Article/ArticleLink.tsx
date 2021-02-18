@@ -14,7 +14,7 @@ const ArticleLink: React.FCX<ArticleLinkProps> = ({ className, title, to, isRigh
       <Link
         to={to}
         rel={rel}
-        className={`animated-arrow ${className}`}
+        className={`animated-arrow text-base sm:text-lg md:text-xl italic ${className}`}
       >
         <span className='the-arrow -left'>
           <span className='shaft'></span>
@@ -34,7 +34,7 @@ const ArticleLink: React.FCX<ArticleLinkProps> = ({ className, title, to, isRigh
       <Link
         to={to}
         rel={rel}
-        className={`left-animated-arrow ${className}`}
+        className={`left-animated-arrow text-base sm:text-lg md:text-xl italic ${className}`}
       >
         <span className='left-arrow-content'>
           <span className='left-arrow -left'>

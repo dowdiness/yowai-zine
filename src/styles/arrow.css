@@ -97,8 +97,6 @@
   .left-animated-arrow {
     display: inline-block;
     color: var(--normal-color);
-    font-style: italic;
-    font-size: 1.25em;
     text-decoration: none;
     position: relative;
     transition: all 0.2s;
@@ -164,7 +162,6 @@
 
       > .text {
         margin: 0 0 0 var(--text-arrow-space);
-        line-height: 1;
       }
 
       > .left-arrow {
@@ -265,8 +262,6 @@
 .animated-arrow {
   display: inline-block;
   color: var(--normal-color);
-  font-size: 1.25em;
-  font-style: italic;
   text-decoration: none;
   position: relative;
   transition: all 0.2s;
@@ -332,7 +327,6 @@
 
     > .text {
       margin: 0 var(--text-arrow-space) 0 0;
-      line-height: 1;
     }
 
     > .the-arrow {
