@@ -95,6 +95,7 @@ minnakikeru: "https://minnakikeru.com"
 見送った、空をひろげ
 初めて会う朝
 
+![](image0.jpeg)
+
 #### Tenniscoats / Ende <br class="md:hidden"/>(Music Exists Disc.4)
 
-![](image0.jpeg)
