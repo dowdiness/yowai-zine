@@ -3,7 +3,7 @@ title: If falling were dancing
 author: てんしんくん
 profile: |
   愛知県在住。イラストレーター、ミュージシャン。
-　参加バンド→ジョセフ・アルフ・ポルカ、シンゴ
+  参加バンド→ジョセフ・アルフ・ポルカ、シンゴ
 createdAt: 2021-02-19T16:15
 updatedAt: 2021-02-19T16:15
 publishedAt: 2021-02-19T16:15
