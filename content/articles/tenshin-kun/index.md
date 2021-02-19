@@ -1,5 +1,5 @@
 ---
-title: If falling were dancing
+title: Tierra Whack
 author: てんしんくん
 profile: |
   愛知県在住。イラストレーター、ミュージシャン。
