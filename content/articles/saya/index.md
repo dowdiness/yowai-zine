@@ -96,3 +96,5 @@ minnakikeru: "https://minnakikeru.com"
 初めて会う朝
 
 #### Tenniscoats / Ende <br class="md:hidden"/>(Music Exists Disc.4)
+
+![](image0.jpeg)
