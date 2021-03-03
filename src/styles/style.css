@@ -55,7 +55,7 @@
     margin-left: auto;
     width: calc(100vw - 2rem);
     @screen sm {
-      width: calc(100vw - 8rem);
+      width: calc(100vw - 4rem);
     }
     @screen md {
       width: calc(100vw - 10rem);
