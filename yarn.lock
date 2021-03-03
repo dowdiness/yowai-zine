@@ -6349,20 +6349,20 @@ follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
 
-fontsource-jost@^3.1.6:
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/fontsource-jost/-/fontsource-jost-3.1.6.tgz#610cd0e1b35e7eebeec59ca6d44dbdb29e1dceae"
-  integrity sha512-dakIzCcYvgsvwgR4c3U/ZFt6jRSaEMKjYg5FXDlKZvaxXBVQD18CCYk9uI2IsEWBURY4bZiI+DADJ/QASJOz9g==
+fontsource-jost@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/fontsource-jost/-/fontsource-jost-4.0.0.tgz#c00828dde1e6a6d5db664bfec22aea8158c48923"
+  integrity sha512-pcIsUg575oCSYiLm+jRQzXVvRx8EQlWuXzw+9r3wpxhNj31mkeKa7UqAecNlgExbhoSjJnPfZ1YZaQEQytc7wQ==
 
-fontsource-noto-sans-jp@^3.0.9:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/fontsource-noto-sans-jp/-/fontsource-noto-sans-jp-3.0.9.tgz#804a42526c8c821a8354ac8159a198c41a259600"
-  integrity sha512-6cSYY2DSmE1eVs5w5U+O3taRXb3wKtsIS5eAauKN6stMtiYrdm4CkXEkCvP+2mh8Y52WHfLIRhCMSy0CzwT4Lw==
+fontsource-noto-sans-jp@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/fontsource-noto-sans-jp/-/fontsource-noto-sans-jp-4.0.0.tgz#24c09a8d314a3f4dee1cb689aca58163a4337a5f"
+  integrity sha512-/XLWHhy7nBTb8V+J05nb6O/SeeChlWhpx2Srs8Ipl2p0KztUTMz9AmYTARuWOLErtZc/Ar2XwuUjsWA+MBMBGw==
 
-fontsource-noto-serif-jp@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/fontsource-noto-serif-jp/-/fontsource-noto-serif-jp-3.0.3.tgz#c662c0d3fe810657a4d4e0caf2a6f89c444d0852"
-  integrity sha512-J+2VtL9uOkDfwEtz85TD9UQd4UCunwAgg1Lc4Rh1eTKjUpSMLfryzsjpSvT0FnFcmO9FNloUDratkbmt35v4sQ==
+fontsource-noto-serif-jp@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/fontsource-noto-serif-jp/-/fontsource-noto-serif-jp-4.0.0.tgz#1d2e96db7d0feef6b9c3906754dff0fbcd3ae789"
+  integrity sha512-c562DBO9meQrvk09q6YAp5qdONgoR9ssCadjZwfYPNcWGzlMhoSWvFBOC96bHCI+JWAlBXypcI6CXh6HDFxgcw==
 
 for-in@^1.0.2:
   version "1.0.2"
