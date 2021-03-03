@@ -70,10 +70,19 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        // host: process.env.NODE_ENV !== 'production' ? `preview.contentful.com` : `cdn.contentful.com`,
+        downloadLocal: true,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          `gatsby-remark-normalize-paths`,
           `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
           {
@@ -87,13 +96,14 @@ module.exports = {
             }
           },
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-contentful`,
             options: {
+              // max-w-3xlのwidthと同じサイズ
               maxWidth: 768,
               linkImagesToOriginal: false,
               backgroundColor: "transparent",
               withWebp: true,
-              showCaptions: ['alt'],
+              showCaptions: true,
               wrapperStyle: `white-space: normal; text-align: center;`,
             },
           },

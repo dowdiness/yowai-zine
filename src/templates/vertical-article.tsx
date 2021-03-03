@@ -11,29 +11,48 @@ import {
   ArticleShareButton,
   ArticleSocialAccounts
 } from 'src/components/Article'
-import { TiSocialInstagram, TiSocialTwitter } from 'react-icons/ti'
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
 const VerticalArticleTemplate: React.FC<PageProps<
   GatsbyTypes.VerticalArticleBySlugQuery
 >> = ({ data, location }) => {
-  const post = data.markdownRemark
+  const post = data.contentfulMarkdownArticle
   const siteUrl = data.site?.siteMetadata?.siteUrl
   const { previous, next } = data
+  const { content, images, featuredImage, author } = post!
   const { tategakiRef } = useTategaki()
   const articlesIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
-  const images = post?.frontmatter?.images?.map(image => image?.publicURL!)
+  const imageURLs = images?.map((image) => {
+    return image?.localFile?.publicURL
+  })
+
+  const publicURLs = imageURLs ? [featuredImage?.localFile?.publicURL, ...imageURLs!] : [featuredImage?.localFile?.publicURL]
 
   return (
     <div className="max-w-3xl mx-auto">
       <GatsbySeo
-        title={`${post?.frontmatter?.title} | ${post?.frontmatter?.author}`}
-        description={post?.excerpt || post?.frontmatter?.profile || ``}
+        title={`${post?.title} | ${author?.name}`}
+        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
         openGraph={{
-          title: `${post?.frontmatter?.title} | ${post?.frontmatter?.author} | 弱いZINE`,
-          description: post?.excerpt || post?.frontmatter?.profile || ``,
+          title: `${post?.title} | ${author?.name} | 弱いZINE`,
+          description: content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``,
+          images: featuredImage ? [
+            {
+              url: `${siteUrl}${featuredImage?.localFile?.publicURL}`,
+              width: 1200,
+              height: 840,
+              alt: featuredImage?.title,
+            }
+          ] : [
+            {
+              url: `${siteUrl}/yowai-ogp.png`,
+              width: 1200,
+              height: 840,
+              alt: 'Yowai zine',
+            }
+          ]
         }}
       />
       <LogoLd />
@@ -41,27 +60,28 @@ const VerticalArticleTemplate: React.FC<PageProps<
         itemListElements={[
           {
             position: 2,
-            name: '作品一覧',
+            name: 'ギャラリー',
             item: `articles`,
           },
           {
             position: 3,
-            name: `${post?.frontmatter?.title} | ${post?.frontmatter?.author}`,
-            item: `articles${post?.fields?.slug}`,
+            name: `${post?.title} | ${author?.name}`,
+            item: `articles/${post?.slug}/`,
           },
         ]}
       />
       <ArticleLd
-        url={post?.fields?.slug!}
-        headline={`${post?.frontmatter?.title} | ${post?.frontmatter?.author} | 弱いZINE`}
-        keywords={post?.frontmatter?.keywords as string | string[] | undefined}
-        images={images!}
-        datePublished={post?.frontmatter?.publishedAt!}
-        dateModified={post?.frontmatter?.updatedAt!}
-        authorName={post?.frontmatter?.author!}
-        description={post?.excerpt || post?.frontmatter?.profile || ``}
+        url={post?.slug!}
+        headline={`${post?.title} | ${author?.name} | 弱いZINE`}
+        keywords={`弱いZINE`}
+        // @ts-ignore
+        images={featuredImage || images ? publicURLs : undefined}
+        datePublished={post?.publishedAt!}
+        dateModified={post?.updatedAt!}
+        authorName={author?.name!}
+        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
       />
-      <div className="">
+      <div>
         <article
           className="py-16 mx-auto"
         >
@@ -70,46 +90,46 @@ const VerticalArticleTemplate: React.FC<PageProps<
             title='目次に戻る'
             className="mt-12"
           />
-          <ArticleHeader title={post?.frontmatter?.title} author={post?.frontmatter?.author} />
+          <ArticleHeader title={post?.title} author={author?.name} />
           <div className="flex p-4 pl-2 sm:p-6 sm:pl-4 md:pl-6 md:p-10 neumorphism-normal rounded-2xl">
             <ArticleSideHeader
               className="sticky w-full h-fit-content top-6"
-              title={post?.frontmatter?.title}
-              author={post?.frontmatter?.author}
+              title={post?.title}
+              author={author?.name}
             />
             <section
               ref={tategakiRef}
-              dangerouslySetInnerHTML={{ __html: post?.html || `記事無し` }}
+              dangerouslySetInnerHTML={{ __html: content?.childMarkdownRemark?.html || `記事無し` }}
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             />
           </div>
           <footer className="">
             <ArticleShareButton
               className="w-full py-4 mt-16 sm:py-6 md:py-10"
-              articleTitle={post?.frontmatter?.title!}
-              articleUrl={`${siteUrl}/articles${post?.fields?.slug}` || siteUrl!}
-              articleDescription={post?.excerpt!}
+              articleTitle={post?.title!}
+              articleUrl={`${siteUrl}/articles/${post?.slug}/` || siteUrl!}
+              articleDescription={content?.childMarkdownRemark?.excerpt!}
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
-              <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{post?.frontmatter?.profile}</p>
+              <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{author?.introduction?.introduction}</p>
               <ArticleSocialAccounts
                 className="flex items-center justify-around mx-auto mt-4 md:w-1/2"
-                linktree={post?.frontmatter?.linktree}
-                hatena={post?.frontmatter?.hatena}
-                bandcamp={post?.frontmatter?.bandcamp}
-                minnakikeru={post?.frontmatter?.minnakikeru}
-                instagram={post?.frontmatter?.instagram}
-                youtube={post?.frontmatter?.youtube}
-                twitter={post?.frontmatter?.twitter}
+                linktree={author?.linktree}
+                hatena={author?.hatena}
+                bandcamp={author?.bandcamp}
+                minnakikeru={author?.minnakikeru}
+                instagram={author?.instagram}
+                youtube={author?.youtube}
+                twitter={author?.twitter}
               />
             </div>
           </footer>
         </article>
         <ArticleNav
-          previousLink={previous ? `/articles${previous.fields?.slug}` : undefined}
-          previousTitle={previous ? previous.frontmatter?.title : undefined}
-          nextLink={next ? `/articles${next.fields?.slug}` : undefined}
-          nextTitle={next ? next.frontmatter?.title : undefined}
+          previousLink={previous ? `/articles/${previous.slug}/` : undefined}
+          previousTitle={previous ? previous.title : undefined}
+          nextLink={next ? `/articles/${next.slug}/` : undefined}
+          nextTitle={next ? next.title : undefined}
           className="mb-12"
         />
       </div>
@@ -124,58 +144,61 @@ export const pageQuery = graphql`
     $id: String!
     $previousPostId: String
     $nextPostId: String
-    # $firstArtworkId: String
   ) {
     site {
       siteMetadata {
         siteUrl
       }
     }
-    markdownRemark(fields: { draft: { eq: false } }, id: { eq: $id }) {
-      id
-      excerpt(pruneLength: 120, truncate: true)
-      html
-      fields {
-        slug
+    contentfulMarkdownArticle(id: {eq: $id}) {
+      content {
+        childMarkdownRemark {
+          html
+          excerpt(pruneLength: 120, truncate: true)
+        }
       }
-      frontmatter {
+      images {
         title
-        author
-        profile
-        description
-        vol
-        linktree
-        twitter
-        hatena
-        bandcamp
-        minnakikeru
-        instagram
-        youtube
-        images {
+        localFile {
           publicURL
         }
-        updatedAt
-        publishedAt
-        keywords
+        gatsbyImageData
       }
-    }
-    previous: markdownRemark(fields: { draft: { eq: false } }, id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
+      featuredImage {
         title
-        vol
+        localFile {
+          publicURL
+        }
+        gatsbyImageData
       }
+      author {
+        introduction {
+          introduction
+        }
+        name
+        bandcamp
+        instagram
+        minnakikeru
+        hatena
+        linktree
+        twitter
+        youtube
+      }
+      slug
+      title
+      disableSideHeader
+      isVirticalWriting
+      align
+      updatedAt
+      publishedAt
     }
-    next: markdownRemark(fields: { draft: { eq: false } }, id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        vol
-      }
+    previous: contentfulMarkdownArticle(id: { eq: $previousPostId }) {
+      slug
+      title
+    }
+    next: contentfulMarkdownArticle(id: { eq: $nextPostId }) {
+      slug
+      title
     }
   }
 `

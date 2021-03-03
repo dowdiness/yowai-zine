@@ -1,17 +1,14 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
-import { parseISO, differenceInDays } from 'date-fns'
-import { isNewArticle } from 'src/utils'
 
 //Hooks
 import useSkew from 'src/hooks/useSkew'
-import useCursor from 'src/hooks/useCursor'
 import useCircularText from 'src/hooks/useCircularText'
 import { useAtom } from "jotai"
 import { windowSize, windowSizeAtom } from "src/store"
 
 //Components
-import ScrollArticle from 'src/components/ScrollArticle'
+import { ArticleLists } from 'src/components/Article'
 import { SplitTextWrap } from 'src/components/SplitText/SplitTextWrap'
 import Div100vh from 'react-div-100vh'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
@@ -50,7 +47,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 
   const { circleTextRef } = useCircularText<HTMLHeadingElement>(radius, catchphrase!)
   useSkew('[data-skew]')
-  const { cursorRef } = useCursor<HTMLDivElement>('[data-cursor-src]')
 
   const text = `小さいチームで
     弱いzineという名前の
@@ -118,49 +114,11 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           </p>
         </section>
         {/* 記事 */}
-        <div className="py-16 space-y-48">
-          <section className="flex flex-col justify-center mx-auto space-y-32">
-            <div data-skew className="flex justify-center mx-auto -mb-12">
-              <GatsbyImage
-                image={zineDate!}
-                loading="eager"
-                alt="Zine"
-                className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
-              />
-            </div>
-            <div className="flex flex-col justify-center mx-auto space-y-28">
-              {posts.map((post, index) => {
-                return (
-                  <ScrollArticle
-                    index={index}
-                    to={`/articles${post.fields?.slug}`}
-                    text={post.frontmatter?.author}
-                    linkText={post.frontmatter?.title!}
-                    useCursor={true}
-                    isNew={isNewArticle(differenceInDays(parseISO(post.frontmatter?.publishedAt!), Date.now()))}
-                  />
-                )
-              })}
-            </div>
-          </section>
-        </div>
-        {/* Cursor */}
-        <div
-          ref={cursorRef}
-          className="fixed top-0 left-0 z-20 pointer-events-none"
-        >
-          <div className="relative block w-64 h-64 -mt-64 -ml-32 overflow-hidden scale-0 rounded-full transform-gpu">
-            {posts.map((post, index) => (
-              <p
-                key={index}
-                id={post.frontmatter?.title}
-                className="absolute inset-0 w-64 h-64 text-3xl"
-              >
-                {post.excerpt}
-              </p>
-            ))}
-          </div>
-        </div>
+        <ArticleLists
+          //@ts-ignore
+          posts={posts}
+          image={zineDate!}
+        />
       </div>
     </>
   )
@@ -185,20 +143,19 @@ export const pageQuery = graphql`
         gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
       }
     }
-    posts: allMarkdownRemark(
-        filter: { fields: { draft: { eq: false } } }
-        sort: { fields: [frontmatter___publishedAt], order: DESC }
-      ) {
+    posts: allContentfulMarkdownArticle(sort: {fields: publishedAt, order: DESC}) {
       nodes {
-        excerpt(truncate: true)
-        fields {
-          slug
+        id
+        title
+        slug
+        publishedAt
+        content {
+          childMarkdownRemark {
+            excerpt(truncate: true)
+          }
         }
-        frontmatter {
-          title
-          author
-          vol
-          publishedAt
+        author {
+          name
         }
       }
     }
