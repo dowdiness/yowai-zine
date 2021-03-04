@@ -82,6 +82,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images-medium-zoom`,
+            options: {
+              background: "#e6e7ee"
+            }
+          },
+        ],
         gatsbyRemarkPlugins: [
           `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
@@ -109,9 +117,7 @@ module.exports = {
           },
           {
             resolve: `gatsby-remark-images-medium-zoom`,
-            options: {
-              background: "#e6e7ee"
-            }
+            options: {}
           },
           `gatsby-remark-embedder`,
           {

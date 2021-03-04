@@ -7557,6 +7557,13 @@ enum SitePageFieldsEnum {
   pluginCreator___resolve = 'pluginCreator.resolve',
   pluginCreator___name = 'pluginCreator.name',
   pluginCreator___version = 'pluginCreator.version',
+  pluginCreator___pluginOptions___plugins = 'pluginCreator.pluginOptions.plugins',
+  pluginCreator___pluginOptions___plugins___resolve = 'pluginCreator.pluginOptions.plugins.resolve',
+  pluginCreator___pluginOptions___plugins___id = 'pluginCreator.pluginOptions.plugins.id',
+  pluginCreator___pluginOptions___plugins___name = 'pluginCreator.pluginOptions.plugins.name',
+  pluginCreator___pluginOptions___plugins___version = 'pluginCreator.pluginOptions.plugins.version',
+  pluginCreator___pluginOptions___plugins___browserAPIs = 'pluginCreator.pluginOptions.plugins.browserAPIs',
+  pluginCreator___pluginOptions___plugins___pluginFilepath = 'pluginCreator.pluginOptions.plugins.pluginFilepath',
   pluginCreator___pluginOptions___displayName = 'pluginCreator.pluginOptions.displayName',
   pluginCreator___pluginOptions___fileName = 'pluginCreator.pluginOptions.fileName',
   pluginCreator___pluginOptions___minify = 'pluginCreator.pluginOptions.minify',
@@ -7583,6 +7590,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___lessBabel = 'pluginCreator.pluginOptions.lessBabel',
   pluginCreator___pluginOptions___mediaTypes = 'pluginCreator.pluginOptions.mediaTypes',
   pluginCreator___pluginOptions___root = 'pluginCreator.pluginOptions.root',
+  pluginCreator___pluginOptions___background = 'pluginCreator.pluginOptions.background',
   pluginCreator___pluginOptions___output = 'pluginCreator.pluginOptions.output',
   pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
   pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
@@ -7804,6 +7812,14 @@ enum SitePluginFieldsEnum {
   resolve = 'resolve',
   name = 'name',
   version = 'version',
+  pluginOptions___plugins = 'pluginOptions.plugins',
+  pluginOptions___plugins___resolve = 'pluginOptions.plugins.resolve',
+  pluginOptions___plugins___id = 'pluginOptions.plugins.id',
+  pluginOptions___plugins___name = 'pluginOptions.plugins.name',
+  pluginOptions___plugins___version = 'pluginOptions.plugins.version',
+  pluginOptions___plugins___pluginOptions___background = 'pluginOptions.plugins.pluginOptions.background',
+  pluginOptions___plugins___browserAPIs = 'pluginOptions.plugins.browserAPIs',
+  pluginOptions___plugins___pluginFilepath = 'pluginOptions.plugins.pluginFilepath',
   pluginOptions___displayName = 'pluginOptions.displayName',
   pluginOptions___fileName = 'pluginOptions.fileName',
   pluginOptions___minify = 'pluginOptions.minify',
@@ -7830,6 +7846,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___lessBabel = 'pluginOptions.lessBabel',
   pluginOptions___mediaTypes = 'pluginOptions.mediaTypes',
   pluginOptions___root = 'pluginOptions.root',
+  pluginOptions___background = 'pluginOptions.background',
   pluginOptions___output = 'pluginOptions.output',
   pluginOptions___createLinkInHead = 'pluginOptions.createLinkInHead',
   pluginOptions___short_name = 'pluginOptions.short_name',
@@ -7981,6 +7998,7 @@ type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 type SitePluginPluginOptions = {
+  readonly plugins: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsPlugins>>>;
   readonly displayName: Maybe<Scalars['Boolean']>;
   readonly fileName: Maybe<Scalars['Boolean']>;
   readonly minify: Maybe<Scalars['Boolean']>;
@@ -8007,6 +8025,7 @@ type SitePluginPluginOptions = {
   readonly lessBabel: Maybe<Scalars['Boolean']>;
   readonly mediaTypes: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly root: Maybe<Scalars['String']>;
+  readonly background: Maybe<Scalars['String']>;
   readonly output: Maybe<Scalars['String']>;
   readonly createLinkInHead: Maybe<Scalars['Boolean']>;
   readonly short_name: Maybe<Scalars['String']>;
@@ -8044,6 +8063,7 @@ type SitePluginPluginOptionsFacebookFilterInput = {
 };
 
 type SitePluginPluginOptionsFilterInput = {
+  readonly plugins: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
   readonly displayName: Maybe<BooleanQueryOperatorInput>;
   readonly fileName: Maybe<BooleanQueryOperatorInput>;
   readonly minify: Maybe<BooleanQueryOperatorInput>;
@@ -8070,6 +8090,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly lessBabel: Maybe<BooleanQueryOperatorInput>;
   readonly mediaTypes: Maybe<StringQueryOperatorInput>;
   readonly root: Maybe<StringQueryOperatorInput>;
+  readonly background: Maybe<StringQueryOperatorInput>;
   readonly output: Maybe<StringQueryOperatorInput>;
   readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
   readonly short_name: Maybe<StringQueryOperatorInput>;
@@ -8134,6 +8155,38 @@ type SitePluginPluginOptionsOpenGraphImagesFilterInput = {
 
 type SitePluginPluginOptionsOpenGraphImagesFilterListInput = {
   readonly elemMatch: Maybe<SitePluginPluginOptionsOpenGraphImagesFilterInput>;
+};
+
+type SitePluginPluginOptionsPlugins = {
+  readonly resolve: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly version: Maybe<Scalars['String']>;
+  readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptions>;
+  readonly browserAPIs: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly pluginFilepath: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsPluginsFilterInput = {
+  readonly resolve: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
+  readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>;
+  readonly browserAPIs: Maybe<StringQueryOperatorInput>;
+  readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsPluginsFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsPluginsFilterInput>;
+};
+
+type SitePluginPluginOptionsPluginsPluginOptions = {
+  readonly background: Maybe<Scalars['String']>;
+};
+
+type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  readonly background: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsTwitter = {
@@ -8282,6 +8335,11 @@ type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphr
       & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
     )> } };
 
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
 type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -8291,10 +8349,5 @@ type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx12714607
 
 
 type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
 }
