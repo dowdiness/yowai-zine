@@ -95,18 +95,18 @@ module.exports = {
               autoplay: false
             }
           },
-          // {
-          //   resolve: `gatsby-remark-images-contentful`,
-          //   options: {
-          //     // max-w-3xlのwidthと同じサイズ
-          //     maxWidth: 768,
-          //     linkImagesToOriginal: false,
-          //     backgroundColor: "transparent",
-          //     withWebp: true,
-          //     showCaptions: true,
-          //     wrapperStyle: `white-space: normal; text-align: center;`,
-          //   },
-          // },
+          {
+            resolve: `gatsby-remark-images-contentful`,
+            options: {
+              // max-w-3xlのwidthと同じサイズ
+              maxWidth: 768,
+              linkImagesToOriginal: false,
+              backgroundColor: "transparent",
+              withWebp: true,
+              showCaptions: true,
+              wrapperStyle: `white-space: normal; text-align: center;`,
+            },
+          },
           {
             resolve: `gatsby-remark-images-medium-zoom`,
             options: {
