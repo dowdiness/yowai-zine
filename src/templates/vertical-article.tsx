@@ -169,14 +169,12 @@ export const pageQuery = graphql`
         localFile {
           publicURL
         }
-        gatsbyImageData
       }
       featuredImage {
         title
         localFile {
           publicURL
         }
-        gatsbyImageData
       }
       author {
         introduction {
