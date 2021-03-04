@@ -394,11 +394,11 @@ enum ContentfulAssetFieldsEnum {
   localFile___childrenPagesJson___internal___owner = 'localFile.childrenPagesJson.internal.owner',
   localFile___childrenPagesJson___internal___type = 'localFile.childrenPagesJson.internal.type',
   localFile___childrenPagesJson___path = 'localFile.childrenPagesJson.path',
+  localFile___childrenPagesJson___catchphrase = 'localFile.childrenPagesJson.catchphrase',
   localFile___childrenPagesJson___introduction = 'localFile.childrenPagesJson.introduction',
   localFile___childrenPagesJson___image = 'localFile.childrenPagesJson.image',
   localFile___childrenPagesJson___displayTitle = 'localFile.childrenPagesJson.displayTitle',
   localFile___childrenPagesJson___title = 'localFile.childrenPagesJson.title',
-  localFile___childrenPagesJson___catchphrase = 'localFile.childrenPagesJson.catchphrase',
   localFile___childPagesJson___id = 'localFile.childPagesJson.id',
   localFile___childPagesJson___parent___id = 'localFile.childPagesJson.parent.id',
   localFile___childPagesJson___parent___children = 'localFile.childPagesJson.parent.children',
@@ -414,11 +414,11 @@ enum ContentfulAssetFieldsEnum {
   localFile___childPagesJson___internal___owner = 'localFile.childPagesJson.internal.owner',
   localFile___childPagesJson___internal___type = 'localFile.childPagesJson.internal.type',
   localFile___childPagesJson___path = 'localFile.childPagesJson.path',
+  localFile___childPagesJson___catchphrase = 'localFile.childPagesJson.catchphrase',
   localFile___childPagesJson___introduction = 'localFile.childPagesJson.introduction',
   localFile___childPagesJson___image = 'localFile.childPagesJson.image',
   localFile___childPagesJson___displayTitle = 'localFile.childPagesJson.displayTitle',
   localFile___childPagesJson___title = 'localFile.childPagesJson.title',
-  localFile___childPagesJson___catchphrase = 'localFile.childPagesJson.catchphrase',
   localFile___id = 'localFile.id',
   localFile___parent___id = 'localFile.parent.id',
   localFile___parent___parent___id = 'localFile.parent.parent.id',
@@ -2721,19 +2721,19 @@ enum ContentfulImageWithAiTagsFieldsEnum {
   image___localFile___childrenPagesJson___id = 'image.localFile.childrenPagesJson.id',
   image___localFile___childrenPagesJson___children = 'image.localFile.childrenPagesJson.children',
   image___localFile___childrenPagesJson___path = 'image.localFile.childrenPagesJson.path',
+  image___localFile___childrenPagesJson___catchphrase = 'image.localFile.childrenPagesJson.catchphrase',
   image___localFile___childrenPagesJson___introduction = 'image.localFile.childrenPagesJson.introduction',
   image___localFile___childrenPagesJson___image = 'image.localFile.childrenPagesJson.image',
   image___localFile___childrenPagesJson___displayTitle = 'image.localFile.childrenPagesJson.displayTitle',
   image___localFile___childrenPagesJson___title = 'image.localFile.childrenPagesJson.title',
-  image___localFile___childrenPagesJson___catchphrase = 'image.localFile.childrenPagesJson.catchphrase',
   image___localFile___childPagesJson___id = 'image.localFile.childPagesJson.id',
   image___localFile___childPagesJson___children = 'image.localFile.childPagesJson.children',
   image___localFile___childPagesJson___path = 'image.localFile.childPagesJson.path',
+  image___localFile___childPagesJson___catchphrase = 'image.localFile.childPagesJson.catchphrase',
   image___localFile___childPagesJson___introduction = 'image.localFile.childPagesJson.introduction',
   image___localFile___childPagesJson___image = 'image.localFile.childPagesJson.image',
   image___localFile___childPagesJson___displayTitle = 'image.localFile.childPagesJson.displayTitle',
   image___localFile___childPagesJson___title = 'image.localFile.childPagesJson.title',
-  image___localFile___childPagesJson___catchphrase = 'image.localFile.childPagesJson.catchphrase',
   image___localFile___id = 'image.localFile.id',
   image___localFile___parent___id = 'image.localFile.parent.id',
   image___localFile___parent___children = 'image.localFile.parent.children',
@@ -3667,19 +3667,19 @@ enum ContentfulMarkdownArticleFieldsEnum {
   featuredImage___localFile___childrenPagesJson___id = 'featuredImage.localFile.childrenPagesJson.id',
   featuredImage___localFile___childrenPagesJson___children = 'featuredImage.localFile.childrenPagesJson.children',
   featuredImage___localFile___childrenPagesJson___path = 'featuredImage.localFile.childrenPagesJson.path',
+  featuredImage___localFile___childrenPagesJson___catchphrase = 'featuredImage.localFile.childrenPagesJson.catchphrase',
   featuredImage___localFile___childrenPagesJson___introduction = 'featuredImage.localFile.childrenPagesJson.introduction',
   featuredImage___localFile___childrenPagesJson___image = 'featuredImage.localFile.childrenPagesJson.image',
   featuredImage___localFile___childrenPagesJson___displayTitle = 'featuredImage.localFile.childrenPagesJson.displayTitle',
   featuredImage___localFile___childrenPagesJson___title = 'featuredImage.localFile.childrenPagesJson.title',
-  featuredImage___localFile___childrenPagesJson___catchphrase = 'featuredImage.localFile.childrenPagesJson.catchphrase',
   featuredImage___localFile___childPagesJson___id = 'featuredImage.localFile.childPagesJson.id',
   featuredImage___localFile___childPagesJson___children = 'featuredImage.localFile.childPagesJson.children',
   featuredImage___localFile___childPagesJson___path = 'featuredImage.localFile.childPagesJson.path',
+  featuredImage___localFile___childPagesJson___catchphrase = 'featuredImage.localFile.childPagesJson.catchphrase',
   featuredImage___localFile___childPagesJson___introduction = 'featuredImage.localFile.childPagesJson.introduction',
   featuredImage___localFile___childPagesJson___image = 'featuredImage.localFile.childPagesJson.image',
   featuredImage___localFile___childPagesJson___displayTitle = 'featuredImage.localFile.childPagesJson.displayTitle',
   featuredImage___localFile___childPagesJson___title = 'featuredImage.localFile.childPagesJson.title',
-  featuredImage___localFile___childPagesJson___catchphrase = 'featuredImage.localFile.childPagesJson.catchphrase',
   featuredImage___localFile___id = 'featuredImage.localFile.id',
   featuredImage___localFile___parent___id = 'featuredImage.localFile.parent.id',
   featuredImage___localFile___parent___children = 'featuredImage.localFile.parent.children',
@@ -3833,19 +3833,19 @@ enum ContentfulMarkdownArticleFieldsEnum {
   images___localFile___childrenPagesJson___id = 'images.localFile.childrenPagesJson.id',
   images___localFile___childrenPagesJson___children = 'images.localFile.childrenPagesJson.children',
   images___localFile___childrenPagesJson___path = 'images.localFile.childrenPagesJson.path',
+  images___localFile___childrenPagesJson___catchphrase = 'images.localFile.childrenPagesJson.catchphrase',
   images___localFile___childrenPagesJson___introduction = 'images.localFile.childrenPagesJson.introduction',
   images___localFile___childrenPagesJson___image = 'images.localFile.childrenPagesJson.image',
   images___localFile___childrenPagesJson___displayTitle = 'images.localFile.childrenPagesJson.displayTitle',
   images___localFile___childrenPagesJson___title = 'images.localFile.childrenPagesJson.title',
-  images___localFile___childrenPagesJson___catchphrase = 'images.localFile.childrenPagesJson.catchphrase',
   images___localFile___childPagesJson___id = 'images.localFile.childPagesJson.id',
   images___localFile___childPagesJson___children = 'images.localFile.childPagesJson.children',
   images___localFile___childPagesJson___path = 'images.localFile.childPagesJson.path',
+  images___localFile___childPagesJson___catchphrase = 'images.localFile.childPagesJson.catchphrase',
   images___localFile___childPagesJson___introduction = 'images.localFile.childPagesJson.introduction',
   images___localFile___childPagesJson___image = 'images.localFile.childPagesJson.image',
   images___localFile___childPagesJson___displayTitle = 'images.localFile.childPagesJson.displayTitle',
   images___localFile___childPagesJson___title = 'images.localFile.childPagesJson.title',
-  images___localFile___childPagesJson___catchphrase = 'images.localFile.childPagesJson.catchphrase',
   images___localFile___id = 'images.localFile.id',
   images___localFile___parent___id = 'images.localFile.parent.id',
   images___localFile___parent___children = 'images.localFile.parent.children',
@@ -5197,11 +5197,11 @@ enum FileFieldsEnum {
   childrenPagesJson___internal___owner = 'childrenPagesJson.internal.owner',
   childrenPagesJson___internal___type = 'childrenPagesJson.internal.type',
   childrenPagesJson___path = 'childrenPagesJson.path',
+  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childrenPagesJson___introduction = 'childrenPagesJson.introduction',
   childrenPagesJson___image = 'childrenPagesJson.image',
   childrenPagesJson___displayTitle = 'childrenPagesJson.displayTitle',
   childrenPagesJson___title = 'childrenPagesJson.title',
-  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childPagesJson___id = 'childPagesJson.id',
   childPagesJson___parent___id = 'childPagesJson.parent.id',
   childPagesJson___parent___parent___id = 'childPagesJson.parent.parent.id',
@@ -5241,11 +5241,11 @@ enum FileFieldsEnum {
   childPagesJson___internal___owner = 'childPagesJson.internal.owner',
   childPagesJson___internal___type = 'childPagesJson.internal.type',
   childPagesJson___path = 'childPagesJson.path',
+  childPagesJson___catchphrase = 'childPagesJson.catchphrase',
   childPagesJson___introduction = 'childPagesJson.introduction',
   childPagesJson___image = 'childPagesJson.image',
   childPagesJson___displayTitle = 'childPagesJson.displayTitle',
   childPagesJson___title = 'childPagesJson.title',
-  childPagesJson___catchphrase = 'childPagesJson.catchphrase',
   id = 'id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -6319,11 +6319,11 @@ type PagesJson = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly path: Maybe<Scalars['String']>;
+  readonly catchphrase: Maybe<Scalars['String']>;
   readonly introduction: Maybe<Scalars['String']>;
   readonly image: Maybe<Scalars['String']>;
   readonly displayTitle: Maybe<Scalars['Boolean']>;
   readonly title: Maybe<Scalars['String']>;
-  readonly catchphrase: Maybe<Scalars['String']>;
 };
 
 type PagesJsonConnection = {
@@ -6441,11 +6441,11 @@ enum PagesJsonFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   path = 'path',
+  catchphrase = 'catchphrase',
   introduction = 'introduction',
   image = 'image',
   displayTitle = 'displayTitle',
-  title = 'title',
-  catchphrase = 'catchphrase'
+  title = 'title'
 }
 
 type PagesJsonFilterInput = {
@@ -6454,11 +6454,11 @@ type PagesJsonFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
+  readonly catchphrase: Maybe<StringQueryOperatorInput>;
   readonly introduction: Maybe<StringQueryOperatorInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
   readonly displayTitle: Maybe<BooleanQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 type PagesJsonFilterListInput = {
@@ -6667,6 +6667,8 @@ type Query_allDirectoryArgs = {
 type Query_siteArgs = {
   buildTime: Maybe<DateQueryOperatorInput>;
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  port: Maybe<IntQueryOperatorInput>;
+  host: Maybe<StringQueryOperatorInput>;
   polyfill: Maybe<BooleanQueryOperatorInput>;
   pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -6980,11 +6982,11 @@ type Query_pagesJsonArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   path: Maybe<StringQueryOperatorInput>;
+  catchphrase: Maybe<StringQueryOperatorInput>;
   introduction: Maybe<StringQueryOperatorInput>;
   image: Maybe<StringQueryOperatorInput>;
   displayTitle: Maybe<BooleanQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
-  catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -7040,6 +7042,8 @@ type Query_allSitePluginArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
+  readonly port: Maybe<Scalars['Int']>;
+  readonly host: Maybe<Scalars['String']>;
   readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -7246,6 +7250,8 @@ enum SiteFieldsEnum {
   siteMetadata___author___name = 'siteMetadata.author.name',
   siteMetadata___author___summary = 'siteMetadata.author.summary',
   siteMetadata___social___twitter = 'siteMetadata.social.twitter',
+  port = 'port',
+  host = 'host',
   polyfill = 'polyfill',
   pathPrefix = 'pathPrefix',
   id = 'id',
@@ -7339,6 +7345,8 @@ enum SiteFieldsEnum {
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  readonly port: Maybe<IntQueryOperatorInput>;
+  readonly host: Maybe<StringQueryOperatorInput>;
   readonly polyfill: Maybe<BooleanQueryOperatorInput>;
   readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -8211,36 +8219,26 @@ type WebPOptions = {
   readonly quality: Maybe<Scalars['Int']>;
 };
 
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+type VerticalArticleBySlugQueryVariables = Exact<{
+  id: Scalars['String'];
+  previousPostId: Maybe<Scalars['String']>;
+  nextPostId: Maybe<Scalars['String']>;
+}>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_2_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_3_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type ArticlesPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ArticlesPageQuery = { readonly posts: { readonly nodes: ReadonlyArray<(
-      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
-      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )> }, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> };
-
-type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphrase' | 'introduction'>>, readonly genki: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly posts: { readonly nodes: ReadonlyArray<(
-      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
-      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )> } };
+type VerticalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly contentfulMarkdownArticle: Maybe<(
+    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
+    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>>>, readonly featuredImage: Maybe<(
+      Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>, readonly author: Maybe<(
+      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
+      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
+    )> }
+  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
 
 type HorizontalArticleBySlugQueryVariables = Exact<{
   id: Scalars['String'];
@@ -8263,115 +8261,40 @@ type HorizontalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetada
     )> }
   )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
 
-type VerticalArticleBySlugQueryVariables = Exact<{
-  id: Scalars['String'];
-  previousPostId: Maybe<Scalars['String']>;
-  nextPostId: Maybe<Scalars['String']>;
-}>;
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type VerticalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly contentfulMarkdownArticle: Maybe<(
-    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
-    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>>>, readonly featuredImage: Maybe<(
-      Pick<ContentfulAsset, 'title' | 'gatsbyImageData'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>, readonly author: Maybe<(
-      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
-      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
-    )> }
-  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
+type ArticlesPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
 
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
+type ArticlesPageQuery = { readonly posts: { readonly nodes: ReadonlyArray<(
+      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
+      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )> }, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> };
 
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphrase' | 'introduction'>>, readonly genki: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly posts: { readonly nodes: ReadonlyArray<(
+      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
+      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )> } };
 
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
 
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
 
-type GatsbyContentfulResolutionsFragment = Pick<ContentfulResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
-type GatsbyContentfulResolutions_tracedSVGFragment = Pick<ContentfulResolutions, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
-type GatsbyContentfulResolutions_noBase64Fragment = Pick<ContentfulResolutions, 'width' | 'height' | 'src' | 'srcSet'>;
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
 
-type GatsbyContentfulResolutions_withWebpFragment = Pick<ContentfulResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
-type GatsbyContentfulResolutions_withWebp_noBase64Fragment = Pick<ContentfulResolutions, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulSizesFragment = Pick<ContentfulSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulSizes_tracedSVGFragment = Pick<ContentfulSizes, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulSizes_noBase64Fragment = Pick<ContentfulSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulSizes_withWebpFragment = Pick<ContentfulSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulSizes_withWebp_noBase64Fragment = Pick<ContentfulSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebpFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebp_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
-
-type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpResolutionsFragment = Pick<ImageSharpResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpResolutions_tracedSVGFragment = Pick<ImageSharpResolutions, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpResolutions_withWebpFragment = Pick<ImageSharpResolutions, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpResolutions_withWebp_tracedSVGFragment = Pick<ImageSharpResolutions, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpResolutions_noBase64Fragment = Pick<ImageSharpResolutions, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpResolutions_withWebp_noBase64Fragment = Pick<ImageSharpResolutions, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpSizesFragment = Pick<ImageSharpSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpSizes_tracedSVGFragment = Pick<ImageSharpSizes, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpSizes_withWebpFragment = Pick<ImageSharpSizes, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpSizes_withWebp_tracedSVGFragment = Pick<ImageSharpSizes, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpSizes_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpSizes_withWebp_noBase64Fragment = Pick<ImageSharpSizes, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
 }
