@@ -3,6 +3,8 @@ import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
+import { MDXRenderer } from "gatsby-plugin-mdx"
+
 import {
   ArticleHeader,
   ArticleLink,
@@ -99,9 +101,11 @@ const VerticalArticleTemplate: React.FC<PageProps<
             />
             <section
               ref={tategakiRef}
-              dangerouslySetInnerHTML={{ __html: content?.childMarkdownRemark?.html || `記事無し` }}
+              // dangerouslySetInnerHTML={{ __html: content?.childMarkdownRemark?.html || `記事無し` }}
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
-            />
+            >
+              <MDXRenderer>{content?.childMdx?.body}</MDXRenderer>
+            </section>
           </div>
           <footer className="">
             <ArticleShareButton
@@ -152,8 +156,8 @@ export const pageQuery = graphql`
     }
     contentfulMarkdownArticle(id: {eq: $id}) {
       content {
-        childMarkdownRemark {
-          html
+        childMdx {
+          body
           excerpt(pruneLength: 120, truncate: true)
         }
       }

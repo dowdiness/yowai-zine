@@ -80,9 +80,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        gatsbyRemarkPlugins: [
           `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
           {
@@ -127,15 +127,6 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: 'gatsby-plugin-draft',
-      options: {
-        timezone: 'Asia/Tokyo',
-        pickDate: node => node.frontmatter.publishedAt,
-        // draftのポストを開発時に表示する
-        // publishDraft: process.env.NODE_ENV !== 'production',
-      },
-    },
     // `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {

@@ -150,7 +150,8 @@ export const pageQuery = graphql`
         slug
         publishedAt
         content {
-          childMarkdownRemark {
+          childMdx {
+            # need to truncate for non-laten characters
             excerpt(truncate: true)
           }
         }
