@@ -34,16 +34,23 @@ const HorizontalArticleTemplate: React.FC<PageProps<
     <div className="max-w-3xl mx-auto">
       <GatsbySeo
         title={`${post?.title} | ${author?.name}`}
-        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
+        description={content?.childMdx?.excerpt || author?.introduction?.introduction || ``}
         openGraph={{
           title: `${post?.title} | ${author?.name} | 弱いZINE`,
-          description: content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``,
-          images: [
+          description: content?.childMdx?.excerpt || author?.introduction?.introduction || ``,
+          images: featuredImage ? [
             {
               url: `${siteUrl}${featuredImage?.localFile?.publicURL}`,
               width: 1200,
               height: 840,
               alt: featuredImage?.title,
+            }
+          ] : [
+            {
+              url: `${siteUrl}/yowai-ogp.png`,
+              width: 1200,
+              height: 840,
+              alt: 'Yowai zine',
             }
           ]
         }}
@@ -72,7 +79,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
         datePublished={post?.publishedAt!}
         dateModified={post?.updatedAt!}
         authorName={author?.name!}
-        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
+        description={content?.childMdx?.excerpt || author?.introduction?.introduction || ``}
       />
       <article
         className="py-16"
@@ -92,10 +99,13 @@ const HorizontalArticleTemplate: React.FC<PageProps<
             />
           )}
           <section
-            // dangerouslySetInnerHTML={{ __html: content?.childMarkdownRemark?.html || `記事無し` }}
             className={`${post?.align ? "text-left" : "text-center"} font-serif prose whitespace-pre-line main-article-width sm:prose-lg md:prose-xl text-character`}
           >
-            <MDXRenderer>{content?.childMdx?.body}</MDXRenderer>
+            {
+              content?.childMdx?.body
+                ? <MDXRenderer>{content?.childMdx?.body}</MDXRenderer>
+                : `記事無し`
+            }
           </section>
         </div>
         <footer>
@@ -103,7 +113,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
             className="w-full py-4 mt-16 sm:py-6 md:py-10"
             articleTitle={post?.title!}
             articleUrl={`${siteUrl}/articles/${post?.slug}/` || siteUrl!}
-            articleDescription={content?.childMarkdownRemark?.excerpt!}
+            articleDescription={content?.childMdx?.excerpt!}
         />
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
             <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{author?.introduction?.introduction}</p>

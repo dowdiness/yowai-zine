@@ -36,10 +36,10 @@ const VerticalArticleTemplate: React.FC<PageProps<
     <div className="max-w-3xl mx-auto">
       <GatsbySeo
         title={`${post?.title} | ${author?.name}`}
-        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
+        description={content?.childMdx?.excerpt || author?.introduction?.introduction || ``}
         openGraph={{
           title: `${post?.title} | ${author?.name} | 弱いZINE`,
-          description: content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``,
+          description: content?.childMdx?.excerpt || author?.introduction?.introduction || ``,
           images: featuredImage ? [
             {
               url: `${siteUrl}${featuredImage?.localFile?.publicURL}`,
@@ -81,7 +81,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
         datePublished={post?.publishedAt!}
         dateModified={post?.updatedAt!}
         authorName={author?.name!}
-        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
+        description={content?.childMdx?.excerpt || author?.introduction?.introduction || ``}
       />
       <div>
         <article
@@ -101,10 +101,13 @@ const VerticalArticleTemplate: React.FC<PageProps<
             />
             <section
               ref={tategakiRef}
-              // dangerouslySetInnerHTML={{ __html: content?.childMarkdownRemark?.html || `記事無し` }}
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             >
-              <MDXRenderer>{content?.childMdx?.body}</MDXRenderer>
+              {
+                content?.childMdx?.body
+                  ? <MDXRenderer>{content?.childMdx?.body}</MDXRenderer>
+                  : `記事無し`
+              }
             </section>
           </div>
           <footer className="">
@@ -112,7 +115,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
               className="w-full py-4 mt-16 sm:py-6 md:py-10"
               articleTitle={post?.title!}
               articleUrl={`${siteUrl}/articles/${post?.slug}/` || siteUrl!}
-              articleDescription={content?.childMarkdownRemark?.excerpt!}
+              articleDescription={content?.childMdx?.excerpt!}
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
               <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{author?.introduction?.introduction}</p>
