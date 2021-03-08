@@ -35,18 +35,9 @@
     @apply text-gray-900 bg-neumorphism;
   }
 
-  /* body::before {
-    animation: grain 8s steps(10) infinite;
-    background-image: url("/paper-pattern.png");
-    content: "";
-    height: 300%;
-    left: -50%;
-    opacity: 0.3;
-    position: fixed;
-    top: -100%;
-    width: 300%;
-    z-index: -10;
-  } */
+  .gatsby-resp-image-figcaption {
+    text-align: center;
+  }
 }
 
 @layer components {
