@@ -128,6 +128,7 @@ module.exports = {
               backgroundColor: "transparent",
               withWebp: true,
               showCaptions: true,
+              wrapperStyle: `white-space: normal;`,
             },
           },
           {
