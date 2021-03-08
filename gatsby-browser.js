@@ -16,6 +16,7 @@ import {
   AnimationFeature,
 } from "framer-motion"
 import { Provider } from "jotai"
+import { MDXEmbedProvider } from 'mdx-embed';
 
 import onClientEntry from 'src/gatsby/browser/onClientEntry'
 import onInitialClientRender from 'src/gatsby/browser/onInitialClientRender'
@@ -28,13 +29,19 @@ const wrapPageElement = ({ element, props }) => {
   )
 }
 
+const components = {
+  blockquote: (props) => <blockquote className="text-center">{props.children}</blockquote>
+}
+
 const wrapRootElement = ({ element }) => {
   return (
-    <Provider>
-      <MotionConfig features={[AnimationFeature]}>
-        {element}
-      </MotionConfig>
-    </Provider>
+    <MDXEmbedProvider components={components}>
+      <Provider>
+        <MotionConfig features={[AnimationFeature]}>
+          {element}
+        </MotionConfig>
+      </Provider>
+    </MDXEmbedProvider>
   )
 }
 

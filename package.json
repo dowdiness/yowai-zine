@@ -25,7 +25,6 @@
     "gatsby-plugin-image": "^1.0.0",
     "gatsby-plugin-manifest": "^3.0.0",
     "gatsby-plugin-mdx": "^2.0.0",
-    "gatsby-plugin-mdx-embed": "^0.0.19",
     "gatsby-plugin-next-seo": "^1.6.1",
     "gatsby-plugin-nprogress": "^3.0.0",
     "gatsby-plugin-offline": "^4.0.0",
