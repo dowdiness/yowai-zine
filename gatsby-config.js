@@ -47,6 +47,7 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-mdx-embed`,
     {
       resolve: `gatsby-plugin-splitbee`,
       options: {
