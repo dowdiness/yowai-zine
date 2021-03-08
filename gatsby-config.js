@@ -14,6 +14,19 @@ require("dotenv").config({
   path: `.env.${activeEnv}`,
 })
 
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken:
+    process.env.CONTENTFUL_ACCESS_TOKEN ||
+    process.env.CONTENTFUL_DELIVERY_TOKEN,
+  downloadLocal: true,
+}
+
+if (process.env.CONTENTFUL_HOST) {
+  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
+}
+
 module.exports = {
   siteMetadata: {
     title: config.title,
@@ -71,13 +84,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        // host: process.env.NODE_ENV !== 'production' ? `preview.contentful.com` : `cdn.contentful.com`,
-        downloadLocal: true,
-      },
+      options: contentfulConfig,
     },
     {
       resolve: `gatsby-plugin-mdx`,
@@ -112,7 +119,6 @@ module.exports = {
               backgroundColor: "transparent",
               withWebp: true,
               showCaptions: true,
-              wrapperStyle: `white-space: normal; text-align: center;`,
             },
           },
           {
