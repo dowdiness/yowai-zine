@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+// @ts-ignore
+import ErrorBoundary from 'src/components/Element/ErrorBoundary'
 
 import { m as motion, useViewportScroll, useTransform } from 'framer-motion'
 import useMouse from 'src/hooks/useMouse'
@@ -15,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   const multipleScaleY = useTransform(scrollYProgress, value => value * 2)
 
   return (
-    <>
+    <ErrorBoundary>
       <div
         className="container"
       >
@@ -32,7 +34,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
         id="cursor"
         className={`fixed top-0 left-0 z-20 pointer-events-none hidden sm:block`}
       />
-    </>
+    </ErrorBoundary>
   )
 }
 

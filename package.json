@@ -31,6 +31,7 @@
     "gatsby-plugin-offline": "^4.0.0",
     "gatsby-plugin-postcss": "^4.0.0",
     "gatsby-plugin-preact": "^5.0.0",
+    "gatsby-plugin-sentry": "^1.0.1",
     "gatsby-plugin-sharp": "^3.0.0",
     "gatsby-plugin-sitemap": "^3.0.0",
     "gatsby-plugin-splitbee": "^0.1.0",

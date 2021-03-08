@@ -49,6 +49,14 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-mdx-embed`,
     {
+      resolve: `gatsby-plugin-sentry`,
+      options: {
+        dsn: process.env.SENTRY_DSN,
+        environment: process.env.NODE_ENV,
+        enabled: (() => ["production", "preview"].indexOf(process.env.NODE_ENV) !== -1)()
+      },
+    },
+    {
       resolve: `gatsby-plugin-splitbee`,
       options: {
         includeInDevelopment: false,
