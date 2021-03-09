@@ -35,6 +35,7 @@
     @apply text-gray-900 bg-neumorphism;
   }
 
+  /* purgecss ignore */
   .gatsby-resp-image-figcaption {
     text-align: center;
   }
