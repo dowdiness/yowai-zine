@@ -13,6 +13,7 @@ import {
 } from "framer-motion"
 import { Provider } from "jotai"
 import { MDXEmbedProvider } from 'mdx-embed';
+import { MDXProvider } from "@mdx-js/react"
 
 const wrapPageElement = ({ element, props }) => {
   return (
@@ -20,19 +21,17 @@ const wrapPageElement = ({ element, props }) => {
   )
 }
 
-const components = {
-  blockquote: (props) => <blockquote className="text-center">{props.children}</blockquote>
-}
-
 const wrapRootElement = ({ element }) => {
   return (
-    <MDXEmbedProvider components={components}>
-      <Provider>
-        <MotionConfig features={[AnimationFeature]}>
-          {element}
-        </MotionConfig>
-      </Provider>
-    </MDXEmbedProvider>
+    <MDXProvider>
+      <MDXEmbedProvider>
+        <Provider>
+          <MotionConfig features={[AnimationFeature]}>
+            {element}
+          </MotionConfig>
+        </Provider>
+      </MDXEmbedProvider>
+    </MDXProvider>
   )
 }
 

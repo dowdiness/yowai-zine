@@ -7485,4 +7485,19 @@ type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphr
       & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
     )> } };
 
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
 }
