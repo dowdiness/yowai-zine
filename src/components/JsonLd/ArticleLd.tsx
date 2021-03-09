@@ -33,7 +33,7 @@ const ArticleLd: React.FC<Omit<ArticleJsonLdProps, "publisherName" | "publisherL
   return (
     <>
       <ArticleJsonLd
-        url={`${site.siteMetadata.siteUrl}/articles${url}`}
+        url={`${site.siteMetadata.siteUrl}/articles/${url}/`}
         headline={headline}
         keywords={keywords || undefined}
         images={images}

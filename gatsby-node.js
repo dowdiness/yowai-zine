@@ -1,5 +1,4 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -8,22 +7,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const verticalArticle = path.resolve(`./src/templates/vertical-article.tsx`)
   const horizontalArticle = path.resolve(`./src/templates/horizontal-article.tsx`)
 
-  const resultAllMarkdowns = await graphql(
+  const resultContentfulMarkdowns = await graphql(
     `
       {
-        allMarkdownRemark(
-          filter: { fields: { draft: { eq: false } } }
-          sort: { fields: [frontmatter___publishedAt], order: DESC }
-          limit: 1000
-        ) {
-          nodes {
-            id
-            frontmatter {
-              vol
-              writing
-            }
-            fields {
+        allContentfulMarkdownArticle(sort: {fields: publishedAt, order: DESC}) {
+          edges {
+            node {
+              id
               slug
+              isVirticalWriting
+              publishedAt
+            }
+            next {
+              id
+            }
+            previous {
+              id
             }
           }
         }
@@ -31,15 +30,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     `
   )
 
-  if (resultAllMarkdowns.errors) {
+  if (resultContentfulMarkdowns.errors) {
     reporter.panicOnBuild(
       `There was an error loading your article posts`,
-      resultAllMarkdowns.errors
+      resultContentfulMarkdowns.errors
     )
     return
   }
 
-  const posts = resultAllMarkdowns.data.allMarkdownRemark.nodes
+  const posts = resultContentfulMarkdowns.data.allContentfulMarkdownArticle.edges
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
@@ -47,47 +46,30 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-
-      const { slug } = post.fields
+      const { slug } = post.node
       if (!slug) return
 
-      if (post.frontmatter.writing === "horizontal") {
+      if (post.node.isVirticalWriting === true) {
         createPage({
-          path: `/articles${slug}`,
-          component: horizontalArticle,
-          context: {
-            id: post.id,
-            previousPostId,
-            nextPostId,
-          },
-        })
-      } else if (post.frontmatter.writing === "vertical") {
-        createPage({
-          path: `/articles${slug}`,
+          path: `/articles/${slug}/`,
           component: verticalArticle,
           context: {
-            id: post.id,
-            previousPostId,
-            nextPostId,
+            id: post.node.id,
+            previousPostId: post.previous ? post.previous.id : null,
+            nextPostId: post.next ? post.next.id :  null,
+          },
+        })
+      } else{
+        createPage({
+          path: `/articles/${slug}/`,
+          component: horizontalArticle,
+          context: {
+            id: post.node.id,
+            previousPostId: post.previous ? post.previous.id : null,
+            nextPostId: post.next ? post.next.id :  null,
           },
         })
       }
-    })
-  }
-}
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
     })
   }
 }
@@ -103,48 +85,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   // article posts are stored inside "content/article" instead of returning an error
   createTypes(`
     type SiteSiteMetadata {
-      author: Author
       siteUrl: String
-      social: Social
-    }
-
-    type Author {
-      name: String
-      summary: String
-    }
-
-    type Social {
-      twitter: String
-    }
-
-    type MarkdownRemark implements Node @infer {
-      frontmatter: Frontmatter
-      fields: Fields
-    }
-
-    type Frontmatter @infer {
-      title: String
-      description: String
-      author: String
-      vol: String
-      align: String
-      writing: String
-      profile: String
-      twitter: String
-      instagram: String
-      minnakikeru: String
-      bandcamp: String
-      linktree: String
-      hatena: String
-      createdAt: Date @dateformat
-      updatedAt: Date @dateformat
-      publishedAt: Date @dateformat
-      disableSideHeader: Boolean
-      featuredImage: File
-    }
-
-    type Fields {
-      slug: String
     }
   `)
 }

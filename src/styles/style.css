@@ -35,18 +35,10 @@
     @apply text-gray-900 bg-neumorphism;
   }
 
-  /* body::before {
-    animation: grain 8s steps(10) infinite;
-    background-image: url("/paper-pattern.png");
-    content: "";
-    height: 300%;
-    left: -50%;
-    opacity: 0.3;
-    position: fixed;
-    top: -100%;
-    width: 300%;
-    z-index: -10;
-  } */
+  /* purgecss ignore */
+  .gatsby-resp-image-figcaption {
+    text-align: center;
+  }
 }
 
 @layer components {
@@ -55,7 +47,7 @@
     margin-left: auto;
     width: calc(100vw - 2rem);
     @screen sm {
-      width: calc(100vw - 8rem);
+      width: calc(100vw - 4rem);
     }
     @screen md {
       width: calc(100vw - 10rem);

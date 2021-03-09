@@ -30,8 +30,27 @@ module.exports = {
         DEFAULT: {
           css: {
             color: theme('colors.gray.700'),
+            blockquote: {
+              textAlign: 'center',
+              borderLeftWidth: '0',
+              paddingLeft: '0',
+            }
           },
         },
+        lg: {
+          css: {
+            blockquote: {
+              paddingLeft: '0',
+            }
+          }
+        },
+        xl: {
+          css: {
+            blockquote: {
+              paddingLeft: '0',
+            }
+          }
+        }
       }),
       animation: {
         'spin-slow': 'spin 20s linear infinite',

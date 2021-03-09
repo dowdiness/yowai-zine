@@ -4,11 +4,10 @@ import { Link } from 'gatsby'
 import { useInView } from 'react-intersection-observer'
 import { m as motion } from 'framer-motion'
 import { isClient } from 'src/utils'
-import Div100vh from 'react-div-100vh'
 const transition = { duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }
 import { emitter, InViewPayload, InViewEvent } from 'src/utils/emitter'
 
-export type ScrollArticleProps = {
+export type ArticleListProps = {
     index: number
     to: string
     text?: string
@@ -17,7 +16,7 @@ export type ScrollArticleProps = {
     isNew: boolean
   }
 
-const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkText, className, useCursor, isNew }) => {
+const ArticleList: React.FCX<ArticleListProps> = ({ index, to, text, linkText, className, useCursor, isNew }) => {
   const [viewRef, inView] = useInView({
     triggerOnce: true,
     rootMargin: '-15% 0px',
@@ -118,4 +117,4 @@ const ScrollArticle: React.FCX<ScrollArticleProps> = ({ index, to, text, linkTex
   }
 }
 
-export default ScrollArticle
+export default ArticleList

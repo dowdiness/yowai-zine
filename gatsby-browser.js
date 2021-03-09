@@ -16,6 +16,8 @@ import {
   AnimationFeature,
 } from "framer-motion"
 import { Provider } from "jotai"
+import { MDXEmbedProvider } from 'mdx-embed'
+import { MDXProvider } from "@mdx-js/react"
 
 import onClientEntry from 'src/gatsby/browser/onClientEntry'
 import onInitialClientRender from 'src/gatsby/browser/onInitialClientRender'
@@ -30,11 +32,15 @@ const wrapPageElement = ({ element, props }) => {
 
 const wrapRootElement = ({ element }) => {
   return (
-    <Provider>
-      <MotionConfig features={[AnimationFeature]}>
-        {element}
-      </MotionConfig>
-    </Provider>
+    <MDXProvider>
+      <MDXEmbedProvider>
+        <Provider>
+          <MotionConfig features={[AnimationFeature]}>
+            {element}
+          </MotionConfig>
+        </Provider>
+      </MDXEmbedProvider>
+    </MDXProvider>
   )
 }
 

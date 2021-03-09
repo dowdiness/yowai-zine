@@ -14,6 +14,19 @@ require("dotenv").config({
   path: `.env.${activeEnv}`,
 })
 
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken:
+    process.env.CONTENTFUL_ACCESS_TOKEN ||
+    process.env.CONTENTFUL_DELIVERY_TOKEN,
+  downloadLocal: true,
+}
+
+if (process.env.CONTENTFUL_HOST) {
+  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+  contentfulConfig.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
+}
+
 module.exports = {
   siteMetadata: {
     title: config.title,
@@ -34,6 +47,14 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sentry`,
+      options: {
+        dsn: process.env.SENTRY_DSN,
+        environment: process.env.NODE_ENV,
+        enabled: (() => ["production", "preview"].indexOf(process.env.NODE_ENV) !== -1)()
+      },
+    },
     {
       resolve: `gatsby-plugin-splitbee`,
       options: {
@@ -70,10 +91,21 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-source-contentful`,
+      options: contentfulConfig,
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
       options: {
         plugins: [
-          `gatsby-remark-normalize-paths`,
+          {
+            resolve: `gatsby-remark-images-medium-zoom`,
+            options: {
+              background: "#e6e7ee"
+            }
+          },
+        ],
+        gatsbyRemarkPlugins: [
           `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
           {
@@ -87,21 +119,20 @@ module.exports = {
             }
           },
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-contentful`,
             options: {
+              // max-w-3xlのwidthと同じサイズ
               maxWidth: 768,
               linkImagesToOriginal: false,
               backgroundColor: "transparent",
               withWebp: true,
-              showCaptions: ['alt'],
-              wrapperStyle: `white-space: normal; text-align: center;`,
+              showCaptions: true,
+              wrapperStyle: `white-space: normal;`,
             },
           },
           {
             resolve: `gatsby-remark-images-medium-zoom`,
-            options: {
-              background: "#e6e7ee"
-            }
+            options: {}
           },
           `gatsby-remark-embedder`,
           {
@@ -117,15 +148,6 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: 'gatsby-plugin-draft',
-      options: {
-        timezone: 'Asia/Tokyo',
-        pickDate: node => node.frontmatter.publishedAt,
-        // draftのポストを開発時に表示する
-        // publishDraft: process.env.NODE_ENV !== 'production',
-      },
-    },
     // `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {
