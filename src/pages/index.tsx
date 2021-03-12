@@ -5,7 +5,7 @@ import { graphql, PageProps } from 'gatsby'
 import useSkew from 'src/hooks/useSkew'
 import useCircularText from 'src/hooks/useCircularText'
 import { useAtom } from "jotai"
-import { windowSize, windowSizeAtom } from "src/store"
+import { windowSize, windowSizeAtom } from "src/atoms"
 
 //Components
 import { ArticleLists } from 'src/components/Article'
