@@ -112,6 +112,9 @@ module.exports = {
       fontSize: {
         'xxs': ['0.5rem', '1rem'],
       },
+      zIndex: {
+        '-10': '-10',
+      },
     },
   },
   variants: {
