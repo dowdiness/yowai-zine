@@ -6,19 +6,9 @@ function useAudioPlayer(tracks: Track[]) {
   const [trackProgress, setTrackProgress] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  const audioRef = useRef(new Audio(tracks[trackIndex].audioSrc))
+  const audioRef = useRef<HTMLAudioElement>(null!)
   const intervalRef = useRef<number>(0)
   const isReady = useRef(false)
-
-  // Destructure for conciseness
-  const { duration } = audioRef.current
-
-  const currentPercentage = duration
-    ? `${(trackProgress / duration) * 100}%`
-    : "0%"
-  const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
-  `
 
   const startTimer = () => {
     // Clear any timers already running
@@ -64,6 +54,28 @@ function useAudioPlayer(tracks: Track[]) {
     }
   }
 
+  let duration = 0
+  let currentPercentage = "0%"
+
+  useEffect(() => {
+  audioRef.current = new Audio(tracks[trackIndex].audioSrc)
+  // Destructure for conciseness
+  duration = audioRef.current.duration
+
+  currentPercentage = duration
+    ? `${(trackProgress / duration) * 100}%`
+    : "0%"
+    // Pause and clean up on unmount
+    return () => {
+      audioRef.current.pause()
+      clearInterval(intervalRef.current)
+    }
+  }, [])
+
+  const trackStyling = `
+    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+    `
+
   useEffect(() => {
     if (isPlaying) {
       audioRef.current.play()
@@ -89,15 +101,6 @@ function useAudioPlayer(tracks: Track[]) {
       isReady.current = true
     }
   }, [trackIndex])
-
-
-  useEffect(() => {
-    // Pause and clean up on unmount
-    return () => {
-      audioRef.current.pause()
-      clearInterval(intervalRef.current)
-    }
-  }, [])
 
   return {
     trackIndex,

@@ -4,9 +4,9 @@ import { FaPlay, FaPause } from 'react-icons/fa'
 import useAudioPlayer from 'src/hooks/useAudioPlayer'
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
 
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { useAtom } from "jotai"
-import { trackSetupedAtom } from 'src/atoms/audioPlayer'
+// import { GatsbyImage, getImage } from "gatsby-plugin-image"
+// import { useAtom } from "jotai"
+// import { trackSetupedAtom } from 'src/atoms/audioPlayer'
 
 const AudioPage: React.FC<PageProps<GatsbyTypes.AudioPageQuery>> = ({ data }) => {
   const pichis = [{
@@ -21,7 +21,7 @@ const AudioPage: React.FC<PageProps<GatsbyTypes.AudioPageQuery>> = ({ data }) =>
     cover: '/static/71ae161b191736917195ebea67962d59/NISSEKI-blue.jpg',
   }]
 
-  const [tracks, setTracks] = useAtom(trackSetupedAtom)
+  // const [tracks, setTracks] = useAtom(trackSetupedAtom)
   const {
     trackIndex,
     trackStyling,
