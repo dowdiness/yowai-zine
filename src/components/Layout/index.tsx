@@ -1,12 +1,15 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
-import AudioModal from 'src/components/AudioPlayer/Audio'
+import loadable from '@loadable/component'
+
 // @ts-ignore
 import ErrorBoundary from 'src/components/Element/ErrorBoundary'
 
 import { m as motion, useViewportScroll, useTransform } from 'framer-motion'
 import useMouse from 'src/hooks/useMouse'
+
+const AudioModal = loadable(() => import('src/components/AudioPlayer/Audio'))
 
 type LayoutProps = {
   location: Location
