@@ -10,7 +10,7 @@ import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 import { ArticleLink } from 'src/components/Article'
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistPageQuery>> = ({ data }) => {
+const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistIndexPageQuery>> = ({ data }) => {
   useSkew('[data-skew]')
 
 
@@ -45,8 +45,8 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistPageQuery>> = ({ data
             // @ts-ignore
             const cover = getImage(node.coverart)
             return (
-              <li key={index} className="w-64">
-                <Link to={node.albumPath}>
+              <li key={index} className="w-full">
+                <Link to={node.albumPath!}>
                   <GatsbyImage
                     image={cover!}
                     loading="eager"
@@ -55,7 +55,13 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistPageQuery>> = ({ data
                   />
                   <div className="z-30">
                     <h2 className="text-lg font-bold md:text-2xl">{node.title}</h2>
-                    <h3 className="text-base text-gray-700 md:text-xl">{node.artists[0].name}</h3>
+                    <h3 className="text-base text-gray-700 md:text-xl">
+                      {node?.artists?.map((artist, index) => {
+                        return (
+                          index === 0 ? <span>{artist?.name}</span> : <span>, {artist?.name}</span>
+                        )
+                      })}
+                    </h3>
                   </div>
                 </Link>
               </li>
@@ -70,7 +76,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistPageQuery>> = ({ data
 export default PlaylistPage
 
 export const pageQuery = graphql`
-  query PlaylistPage {
+  query PlaylistIndexPage {
     allContentfulPlaylist(sort: {order: DESC, fields: updatedAt}) {
       edges {
         node {

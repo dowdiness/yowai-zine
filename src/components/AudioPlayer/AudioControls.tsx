@@ -5,13 +5,15 @@ import { GrChapterNext, GrChapterPrevious } from "react-icons/gr"
 type AudioControlsProps =
   {
     isPlaying: boolean,
+    audio: HTMLAudioElement | null,
     onPlayPauseClick: React.Dispatch<React.SetStateAction<boolean>>,
-    onPrevClick: () => void,
+    onPrevClick: (update: HTMLAudioElement | null) => void,
     onNextClick: () => void
   }
 
 const AudioControls = ({
   isPlaying,
+  audio,
   onPlayPauseClick,
   onPrevClick,
   onNextClick
@@ -21,7 +23,7 @@ const AudioControls = ({
       type="button"
       className="prev"
       aria-label="Previous"
-      onClick={onPrevClick}
+      onClick={() => onPrevClick(audio)}
     >
       <GrChapterPrevious size={42} />
     </button>

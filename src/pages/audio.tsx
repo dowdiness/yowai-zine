@@ -1,72 +1,95 @@
 import React from 'react'
 import { PageProps, graphql } from 'gatsby'
-import { FaPlay, FaPause } from 'react-icons/fa'
 import useAudioPlayer from 'src/hooks/useAudioPlayer'
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
+import { useAtom } from "jotai"
+import { tracksAtom, updateTracksAtom, prevTrackAtom, nextTrackAtom, durationAtom, trackProgressAtom, isPlayingAtom } from 'src/atoms/track'
 
-// import { GatsbyImage, getImage } from "gatsby-plugin-image"
-// import { useAtom } from "jotai"
-// import { trackSetupedAtom } from 'src/atoms/audioPlayer'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const AudioPage: React.FC<PageProps<GatsbyTypes.AudioPageQuery>> = ({ data }) => {
-  const pichis = [{
-    title: 'あーなにを見ていればいいのか',
-    artist: 'ピチピチニートまんじゅう',
-    audioSrc: '/static/5b3dcaf46ed11182b50780fec3effcf8/___________________________.mp3',
-    cover: "/static/1a16fc5dfdd2ddd2cdde7484adbb6d90/pichipichi.jpg",
-  },{
-    title: 'feelings, NONAME',
-    artist: 'osamuosanai',
-    audioSrc: '/static/d63e669934f18e72f9824d258181a59a/GASOLINE___STAND_-_NISSEKI_blue_-_01_feelings__NONAME.mp3',
-    cover: '/static/71ae161b191736917195ebea67962d59/NISSEKI-blue.jpg',
-  }]
+  const [tracks] = useAtom(tracksAtom)
+  const [, updateTracks] = useAtom(updateTracksAtom)
+  const [,toPrevTrack] = useAtom(prevTrackAtom)
+  const [,toNextTrack] = useAtom(nextTrackAtom)
+  const [duration] = useAtom(durationAtom)
+  const [trackProgress] = useAtom(trackProgressAtom)
+  const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
 
-  // const [tracks, setTracks] = useAtom(trackSetupedAtom)
+  const songs = data.allContentfulSong.nodes
+
+  const normarizedSongs = songs?.map((song, index) => {
+    const coverArt = getImage(song?.coverart?.gatsbyImageData!)
+    return {
+      title: song?.title!,
+      artist: song?.artist?.name!,
+      audioSrc: song?.sound?.localFile?.publicURL!,
+      cover: coverArt!,
+    }
+  })
+
+  let currentPercentage = "0%"
+  currentPercentage = duration
+    ? `${(trackProgress / duration) * 100}%`
+    : "0%"
+
+  const trackStyling = `
+  -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+  `
+
   const {
-    trackIndex,
-    trackStyling,
-    duration,
-    isPlaying,
-    trackProgress,
-    setIsPlaying,
+    audioRef,
     onScrub,
     onScrubEnd,
-    toPrevTrack,
-    toNextTrack
-  } = useAudioPlayer(pichis)
+  } = useAudioPlayer()
 
   return (
     <div>
-      <div className="flex flex-col items-center justify-between w-full py-8 space-y-6">
-          <img
-            loading="eager"
-            className="cursor-none hover:animate-huruhuru"
-            src={pichis[trackIndex].cover}
-            alt={pichis[trackIndex].title}
-            height={350}
-            width={350}
-          />
-          <h2 className="font-sans text-xl font-bold text-center text-black">{pichis[trackIndex].title}</h2>
-          <h3 className="font-sans text-lg text-center text-gray-600">{pichis[trackIndex].artist}</h3>
-          <AudioControls
-            isPlaying={isPlaying}
-            onPrevClick={toPrevTrack}
-            onNextClick={toNextTrack}
-            onPlayPauseClick={setIsPlaying}
-          />
-          <input
-            type="range"
-            value={trackProgress}
-            step="1"
-            min="0"
-            max={duration ? duration : `${duration}`}
-            className="w-10/12 mt-12"
-            onChange={(e) => onScrub(e.target.value)}
-            onMouseUp={onScrubEnd}
-            onKeyUp={onScrubEnd}
-            style={{ background: trackStyling }}
-          />
-      </div>
+        {tracks[0] ?
+          <div className="flex flex-col items-center justify-between w-full py-8 space-y-6">
+            <GatsbyImage
+              loading="eager"
+              className="cursor-none hover:animate-huruhuru"
+              image={tracks[0].cover}
+              alt={tracks[0].title}
+            />
+            <h2 className="font-sans text-xl font-bold text-center text-black">{tracks[0].title}</h2>
+            <h3 className="font-sans text-lg text-center text-gray-600">{tracks[0].artist}</h3>
+            <AudioControls
+              isPlaying={isPlaying}
+              audio={audioRef.current}
+              onPrevClick={toPrevTrack}
+              onNextClick={toNextTrack}
+              onPlayPauseClick={setIsPlaying}
+            />
+            <input
+              type="range"
+              value={trackProgress}
+              step="1"
+              min="0"
+              max={duration}
+              className="w-10/12 mt-12"
+              onChange={(e) => onScrub(e.target.value)}
+              onMouseUp={onScrubEnd}
+              onKeyUp={onScrubEnd}
+              style={{ background: trackStyling }}
+            />
+          </div> :
+        <div>
+          <ul>
+            {normarizedSongs?.map((track, index) => {
+              return (
+                <li key={index} className="">
+                  <button className="flex items-center" onClick={() => {updateTracks(normarizedSongs.slice(index))}}>
+                    <span className="mr-4 font-mono">{index + 1}</span>
+                    <h3 className="text-lg">{track.title}</h3>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        }
     </div>
   )
 }

@@ -1,118 +1,93 @@
 import { useState, useEffect, useRef } from "react"
-import { Track } from 'src/atoms/audioPlayer'
+import { useAtom } from "jotai"
+import { Track, tracksAtom, nextTrackAtom, durationAtom, trackProgressAtom, isPlayingAtom } from 'src/atoms/track'
 
-function useAudioPlayer(tracks: Track[]) {
-  const [trackIndex, setTrackIndex] = useState(0)
-  const [trackProgress, setTrackProgress] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
+function useAudioPlayer() {
+  const [tracks] = useAtom(tracksAtom)
+  const [, toNextTrack] = useAtom(nextTrackAtom)
+  const [, setDuration] = useAtom(durationAtom)
+  const [, setTrackProgress] = useAtom(trackProgressAtom)
+  const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
 
-  const audioRef = useRef<HTMLAudioElement>(null!)
-  const intervalRef = useRef<number>(0)
+  const audioRef = useRef<HTMLAudioElement|null>(null)
   const isReady = useRef(false)
 
-  const startTimer = () => {
-    // Clear any timers already running
-    clearInterval(intervalRef.current);
-
-    intervalRef.current = window.setInterval(() => {
-      if (audioRef.current.ended) {
-        toNextTrack()
-      } else {
-        setTrackProgress(audioRef.current.currentTime);
-      }
-    }, 1000)
-  }
-
   const onScrub = (value: string) => {
-    // Clear any timers already running
-    clearInterval(intervalRef.current);
-    audioRef.current.currentTime = parseInt(value, 10)
-    setTrackProgress(audioRef.current.currentTime);
-  };
+    if (audioRef.current) {
+      audioRef.current.currentTime = parseInt(value, 10)
+      setTrackProgress(audioRef.current.currentTime)
+    }
+  }
 
   const onScrubEnd = () => {
     // If not already playing, start
     if (!isPlaying) {
       setIsPlaying(true)
     }
-    startTimer()
-  };
-
-  const toPrevTrack = () => {
-    if (trackIndex - 1 < 0) {
-      setTrackIndex(tracks.length - 1)
-    } else {
-      setTrackIndex(trackIndex - 1)
-    }
   }
-
-  const toNextTrack = () => {
-    if (trackIndex < tracks.length - 1) {
-      setTrackIndex(trackIndex + 1)
-    } else {
-      setTrackIndex(0)
-    }
-  }
-
-  let duration = 0
-  let currentPercentage = "0%"
 
   useEffect(() => {
-  audioRef.current = new Audio(tracks[trackIndex].audioSrc)
-  // Destructure for conciseness
-  duration = audioRef.current.duration
-
-  currentPercentage = duration
-    ? `${(trackProgress / duration) * 100}%`
-    : "0%"
     // Pause and clean up on unmount
     return () => {
-      audioRef.current.pause()
-      clearInterval(intervalRef.current)
+      audioRef.current?.pause()
     }
   }, [])
 
-  const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
-    `
-
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.play()
-      startTimer()
+      audioRef.current?.play()
     } else {
-      audioRef.current.pause()
+      audioRef.current?.pause()
     }
   }, [isPlaying])
 
   // Handles cleanup and setup when changing tracks
   useEffect(() => {
-    audioRef.current.pause()
+    audioRef.current?.pause()
 
-    audioRef.current = new Audio(tracks[trackIndex].audioSrc)
-    setTrackProgress(audioRef.current.currentTime)
-
-    if (isReady.current) {
+    if (tracks[0] && isReady.current) {
+      // remove previous audio eventlisners
+      if(audioRef.current) {
+        audioRef.current.removeEventListener('timeupdate', (_event) => {
+          if (audioRef.current?.ended) {
+            toNextTrack()
+          } else if (audioRef.current) {
+            setTrackProgress(audioRef.current.currentTime)
+          }
+        })
+        audioRef.current.removeEventListener('loadedmetadata', (_event) => {
+          if (audioRef.current) {
+            console.log(audioRef.current.duration)
+            setDuration(audioRef.current.duration)
+          }
+        })
+      }
+      audioRef.current = new Audio(tracks[0].audioSrc)
+      setTrackProgress(audioRef.current.currentTime)
       audioRef.current.play()
       setIsPlaying(true)
-      startTimer()
-    } else {
+      audioRef.current.addEventListener('timeupdate', (_event) => {
+        if (audioRef.current?.ended) {
+          toNextTrack()
+        } else if (audioRef.current) {
+          setTrackProgress(audioRef.current.currentTime)
+        }
+      })
+      audioRef.current.addEventListener('loadedmetadata', (_event) => {
+        if (audioRef.current) {
+          setDuration(audioRef.current.duration)
+        }
+      })
+    } else if (!isReady.current){
       // Set the isReady ref as true for the next pass
       isReady.current = true
     }
-  }, [trackIndex])
+  }, [tracks])
 
   return {
-    trackIndex,
-    trackStyling,
-    duration,
-    isPlaying,
-    trackProgress,
-    setIsPlaying,
+    audioRef,
     onScrub,
     onScrubEnd,
-    toPrevTrack,
-    toNextTrack,
   }
 }
 
