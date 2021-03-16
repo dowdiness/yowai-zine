@@ -18,14 +18,14 @@ const AudioControls = ({
   onPrevClick,
   onNextClick
 }: AudioControlsProps) => (
-  <div className="flex items-center justify-between w-4/6">
+  <div className="flex items-center justify-between space-x-8">
     <button
       type="button"
       className="prev"
       aria-label="Previous"
       onClick={() => onPrevClick(audio)}
     >
-      <GrChapterPrevious size={42} />
+      <GrChapterPrevious size={16} />
     </button>
     {isPlaying ? (
       <button
@@ -34,7 +34,7 @@ const AudioControls = ({
         onClick={() => onPlayPauseClick(false)}
         aria-label="Pause"
       >
-        <FaPause size={58} />
+        <FaPause size={24} />
       </button>
     ) : (
       <button
@@ -43,7 +43,7 @@ const AudioControls = ({
         onClick={() => onPlayPauseClick(true)}
         aria-label="Play"
       >
-        <FaPlay size={58} />
+        <FaPlay size={24} />
       </button>
     )}
     <button
@@ -52,7 +52,7 @@ const AudioControls = ({
       aria-label="Next"
       onClick={onNextClick}
     >
-      <GrChapterNext size={42} />
+      <GrChapterNext size={16} />
     </button>
   </div>
 )

@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import AudioModal from 'src/components/AudioPlayer/Audio'
 // @ts-ignore
 import ErrorBoundary from 'src/components/Element/ErrorBoundary'
 
@@ -34,6 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
         id="cursor"
         className={`fixed top-0 left-0 z-20 pointer-events-none hidden sm:block`}
       />
+      <AudioModal />
     </ErrorBoundary>
   )
 }

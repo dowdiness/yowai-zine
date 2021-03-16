@@ -99,16 +99,6 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
           })}
         </ul>
       </section>
-      <ul className="mt-24">
-        {tracks?.map((track, index) => {
-          return (
-            <li key={index} className="">
-              <span className="mr-4 font-mono">{index + 1}</span>
-              <h3 className="text-lg">{track.title}</h3>
-            </li>
-          )
-        })}
-      </ul>
     </div>
   )
 }
