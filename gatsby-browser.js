@@ -16,8 +16,12 @@ import {
   AnimationFeature,
 } from "framer-motion"
 import { Provider } from "jotai"
-import { MDXEmbedProvider } from 'mdx-embed'
 import { MDXProvider } from "@mdx-js/react"
+import { YouTube } from 'mdx-embed'
+
+const components = {
+  YouTube,
+}
 
 import onClientEntry from 'src/gatsby/browser/onClientEntry'
 import onInitialClientRender from 'src/gatsby/browser/onInitialClientRender'
@@ -32,14 +36,12 @@ const wrapPageElement = ({ element, props }) => {
 
 const wrapRootElement = ({ element }) => {
   return (
-    <MDXProvider>
-      <MDXEmbedProvider>
-        <Provider>
-          <MotionConfig features={[AnimationFeature]}>
-            {element}
-          </MotionConfig>
-        </Provider>
-      </MDXEmbedProvider>
+    <MDXProvider components={components}>
+      <Provider>
+        <MotionConfig features={[AnimationFeature]}>
+          {element}
+        </MotionConfig>
+      </Provider>
     </MDXProvider>
   )
 }
