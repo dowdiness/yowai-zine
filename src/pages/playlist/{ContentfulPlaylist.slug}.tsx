@@ -116,7 +116,7 @@ export const pageQuery = graphql`
       songs {
         title
         coverart {
-          gatsbyImageData
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
         }
         sound {
           localFile {
