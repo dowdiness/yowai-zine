@@ -20,10 +20,6 @@ import "src/styles/tailwind-utils.css"
 
 import * as React from 'react'
 import Layout from 'src/components/Layout'
-import {
-  MotionConfig,
-  AnimationFeature,
-} from "framer-motion"
 import { Provider } from "jotai"
 import { MDXProvider } from "@mdx-js/react"
 import { YouTube } from 'mdx-embed'
@@ -47,9 +43,7 @@ const wrapRootElement = ({ element }) => {
   return (
     <MDXProvider components={components}>
       <Provider>
-        <MotionConfig features={[AnimationFeature]}>
-          {element}
-        </MotionConfig>
+        {element}
       </Provider>
     </MDXProvider>
   )

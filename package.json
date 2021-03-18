@@ -19,7 +19,7 @@
     "fontsource-jost": "^4.0.0",
     "fontsource-noto-sans-jp": "^4.0.0",
     "fontsource-noto-serif-jp": "^4.0.0",
-    "framer-motion": "^3.10.0",
+    "framer-motion": "^4.0.0",
     "gatsby": "^3.1.0",
     "gatsby-plugin-draft": "^0.1.0",
     "gatsby-plugin-feed": "^3.1.0",
@@ -101,7 +101,7 @@
     "url": "git+https://github.com/dowdiness/yowai-zine.git"
   },
   "scripts": {
-    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=false gatsby build --log-pages",
+    "build": "gatsby build --log-pages",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
