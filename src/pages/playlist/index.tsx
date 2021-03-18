@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 
 //Hooks
-import useSkew from 'src/hooks/useSkew'
+// import useSkew from 'src/hooks/useSkew'
 
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
@@ -11,7 +11,7 @@ import { ArticleLink } from 'src/components/Article'
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
 const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistIndexPageQuery>> = ({ data }) => {
-  useSkew('[data-skew]')
+  // useSkew('[data-skew]')
 
 
   const albumList = data.allContentfulPlaylist.edges

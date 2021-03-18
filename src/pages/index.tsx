@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
 //Hooks
-import useSkew from 'src/hooks/useSkew'
 import useCircularText from 'src/hooks/useCircularText'
 import { useAtom } from "jotai"
 import { windowSize, windowSizeAtom } from "src/atoms"
@@ -46,7 +45,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   const catchphrase = circle?.repeat(Math.ceil(ratio)).slice(0, circle?.length * ratio)
 
   const { circleTextRef } = useCircularText<HTMLHeadingElement>(radius, catchphrase!)
-  useSkew('[data-skew]')
 
   const text = `小さいチームで
     弱いzineという名前の
@@ -135,12 +133,12 @@ export const pageQuery = graphql`
     }
     genki: file(relativePath: { eq: "genki.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
       }
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
       }
     }
     posts: allContentfulMarkdownArticle(sort: {fields: publishedAt, order: DESC}) {

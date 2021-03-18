@@ -1,9 +1,6 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
-//Hooks
-import useSkew from 'src/hooks/useSkew'
-
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
@@ -17,8 +14,6 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
   const posts = data.posts.nodes
   // @ts-ignore
   const zineDate = getImage(data.zine)
-
-  useSkew('[data-skew]')
 
   return (
     <>
@@ -71,7 +66,7 @@ export const pageQuery = graphql`
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
       }
     }
   }

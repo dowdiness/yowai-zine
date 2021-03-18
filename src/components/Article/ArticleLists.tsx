@@ -1,7 +1,10 @@
 import React from 'react'
 
 //Components
-import { ArticleLink, ArticleList, ArticleCursor } from 'src/components/Article'
+import { ArticleLink, ArticleList } from 'src/components/Article'
+import loadable from '@loadable/component'
+
+const ArticleCursor = loadable(() => import('src/components/Article/ArticleCursor'))
 
 //Utils
 import { parseISO, differenceInDays } from 'date-fns'

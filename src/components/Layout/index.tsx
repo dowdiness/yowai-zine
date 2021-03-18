@@ -7,9 +7,10 @@ import loadable from '@loadable/component'
 import ErrorBoundary from 'src/components/Element/ErrorBoundary'
 
 import { m as motion, useViewportScroll, useTransform, LazyMotion } from 'framer-motion'
-import useMouse from 'src/hooks/useMouse'
 
 const AudioModal = loadable(() => import('src/components/AudioPlayer/Audio'))
+const Mouse = loadable(() => import('src/components/Layout/Mouse'))
+const Skew = loadable(() => import('src/components/Layout/Skew'))
 
 const loadFeatures = () => import('./domAnimation').then(res => res.default)
 
@@ -18,7 +19,6 @@ type LayoutProps = {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, location }) => {
-  const mouse = useMouse<HTMLDivElement>(true)
   const { scrollYProgress } = useViewportScroll()
   const multipleScaleY = useTransform(scrollYProgress, value => value * 2)
 
@@ -30,17 +30,14 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
         >
           {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
           <main>{children}</main>
-          <Footer className="z-40 py-16" />
+          <Footer className="py-16" />
           <motion.div
             className="fixed top-0 right-0 z-50 w-2 h-screen bg-blue-600"
             style={{ scaleY: multipleScaleY, translateY: '-50%' }}
           />
         </div>
-        <div
-          ref={mouse.cursorRef}
-          id="cursor"
-          className={`fixed top-0 left-0 z-20 pointer-events-none hidden sm:block`}
-        />
+        <Mouse />
+        <Skew />
         <AudioModal />
       </LazyMotion>
     </ErrorBoundary>
