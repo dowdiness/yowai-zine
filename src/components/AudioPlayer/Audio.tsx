@@ -30,6 +30,18 @@ const AudioModal: React.FC = () => {
     onScrubEnd,
   } = useAudioPlayer()
 
+  const displayTime = (second: number): string => {
+    const roundedSecond = Math.round(second)
+    // 3600秒以上の場合に対応してません
+    if (roundedSecond < 10) {
+      return `0:0${roundedSecond}`
+    } else if(roundedSecond < 60) {
+      return `0:${roundedSecond}`
+    } else {
+      return `${Math.floor(roundedSecond / 60)}:${roundedSecond % 60}`
+    }
+  }
+
   return (
     <>
       {tracks[0] ?
@@ -55,18 +67,22 @@ const AudioModal: React.FC = () => {
                 onNextClick={toNextTrack}
                 onPlayPauseClick={setIsPlaying}
               />
-              <input
-                type="range"
-                value={trackProgress}
-                step="1"
-                min="0"
-                max={duration}
-                className="w-full mt-4"
-                onChange={(e) => onScrub(e.target.value)}
-                onMouseUp={onScrubEnd}
-                onKeyUp={onScrubEnd}
-                style={{ background: trackStyling }}
-              />
+              <div className="flex items-center">
+                <span>{displayTime(trackProgress)}</span>
+                <input
+                  type="range"
+                  value={trackProgress}
+                  step="1"
+                  min="0"
+                  max={duration}
+                  className="w-full"
+                  onChange={(e) => onScrub(e.target.value)}
+                  onMouseUp={onScrubEnd}
+                  onKeyUp={onScrubEnd}
+                  style={{ background: trackStyling }}
+                />
+                <span>{displayTime(duration)}</span>
+              </div>
             </div>
           </div>
         </div>
