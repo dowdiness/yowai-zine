@@ -1,18 +1,26 @@
 import React from 'react'
 import useAudioPlayer from 'src/hooks/useAudioPlayer'
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
-import { useAtom } from "jotai"
-import { tracksAtom, prevTrackAtom, nextTrackAtom, durationAtom, trackProgressAtom, isPlayingAtom } from 'src/atoms/track'
+import AudioInfo from 'src/components/AudioPlayer/AudioInfo'
 
-import { GatsbyImage } from "gatsby-plugin-image"
+import { useAtom } from "jotai"
+import {
+  tracksAtom,
+  durationAtom,
+  trackProgressAtom,
+  volumeAtom,
+  isPlayingAtom,
+} from 'src/atoms/track'
+
+import { FaRegPlayCircle, FaRegPauseCircle } from 'react-icons/fa'
+import { IoVolumeOff, IoVolumeLow, IoVolumeMedium, IoVolumeHigh } from "react-icons/io5"
+import { RiPlayList2Line } from "react-icons/ri"
 
 const AudioModal: React.FC = () => {
   const [tracks] = useAtom(tracksAtom)
-  // const [, updateTracks] = useAtom(updateTracksAtom)
-  const [, toPrevTrack] = useAtom(prevTrackAtom)
-  const [, toNextTrack] = useAtom(nextTrackAtom)
   const [duration] = useAtom(durationAtom)
   const [trackProgress] = useAtom(trackProgressAtom)
+  const [volume, setVolume] = useAtom(volumeAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
 
   let currentPercentage = "0%"
@@ -26,6 +34,8 @@ const AudioModal: React.FC = () => {
 
   const {
     audioRef,
+    seekbackward,
+    seekforward,
     onScrub,
     onScrubEnd,
   } = useAudioPlayer()
@@ -38,37 +48,50 @@ const AudioModal: React.FC = () => {
     } else if(roundedSecond < 60) {
       return `0:${roundedSecond}`
     } else {
-      return `${Math.floor(roundedSecond / 60)}:${roundedSecond % 60}`
+      return `${Math.floor(roundedSecond / 60)}:${roundedSecond % 60 < 10 ? `0${roundedSecond % 60}` : roundedSecond % 60 }`
     }
   }
 
   return (
     <>
       {tracks[0] ?
-        <div className="fixed bottom-0 w-screen h-24 border border-t border-black bg-neumorphism">
-          <div className="flex items-center justify-around w-full pt-4 space-x-6">
-            <div className="flex items-center space-x-4 justify-evenly">
-              <GatsbyImage
-                loading="eager"
-                className="w-16 h-16 cursor-none hover:animate-huruhuru"
-                image={tracks[0].cover}
-                alt={tracks[0].title}
-              />
-              <div className="flex flex-col items-start">
-                <h2 className="font-sans text-sm font-bold text-black">{tracks[0].title}</h2>
-                <h3 className="font-sans text-xs text-gray-600">{tracks[0].artist}</h3>
-              </div>
+        <div className="fixed bottom-0 z-40 flex w-screen h-24 border border-t border-black bg-neumorphism md:flex">
+          <div className="flex items-center justify-between w-full md:px-4">
+            <AudioInfo
+              className="w-4/5 md:w-3/12"
+              image={tracks[0].cover}
+              title={tracks[0].title}
+              artist={tracks[0].artist}
+            />
+            <div className="flex items-center justify-center m-auto md:hidden">
+              {isPlaying ? (
+                <button
+                  type="button"
+                  className="pause"
+                  onClick={() => setIsPlaying(false)}
+                  aria-label="Pause"
+                >
+                  <FaRegPauseCircle size={38} />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="play"
+                  onClick={() => setIsPlaying(true)}
+                  aria-label="Play"
+                >
+                  <FaRegPlayCircle size={38} />
+                </button>
+              )}
             </div>
-            <div className="flex flex-col items-center w-1/3">
+            <div className="flex-col items-center hidden w-1/2 md:flex">
               <AudioControls
-                isPlaying={isPlaying}
                 audio={audioRef.current}
-                onPrevClick={toPrevTrack}
-                onNextClick={toNextTrack}
-                onPlayPauseClick={setIsPlaying}
+                seekbackward={seekbackward}
+                seekforward={seekforward}
               />
-              <div className="flex items-center">
-                <span>{displayTime(trackProgress)}</span>
+              <div className="flex items-center w-full mt-2 space-x-2">
+                <span className="text-sm">{displayTime(trackProgress)}</span>
                 <input
                   type="range"
                   value={trackProgress}
@@ -81,7 +104,32 @@ const AudioModal: React.FC = () => {
                   onKeyUp={onScrubEnd}
                   style={{ background: trackStyling }}
                 />
-                <span>{displayTime(duration)}</span>
+                <span className="text-sm">{displayTime(duration)}</span>
+              </div>
+            </div>
+            <div className="items-center justify-around hidden w-3/12 pl-4 pr-2 md:flex">
+              <RiPlayList2Line size={24} />
+              <div className="flex items-center justify-end">
+                {volume === 0
+                  ? <IoVolumeOff size={24}/>
+                  : volume < 0.35
+                  ? <IoVolumeLow size={24} />
+                  : volume < 0.8
+                  ? <IoVolumeMedium size={24} />
+                  : <IoVolumeHigh size={24} />
+                }
+                <input
+                  type="range"
+                  value={volume}
+                  step="0.01"
+                  min="0"
+                  max="1"
+                  className="w-3/5 ml-2"
+                  onChange={(e) => setVolume(parseFloat(e.target.value))}
+                  onMouseUp={onScrubEnd}
+                  onKeyUp={onScrubEnd}
+                  style={{ background: trackStyling }}
+                />
               </div>
             </div>
           </div>

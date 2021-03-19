@@ -72,7 +72,7 @@ export const durationAtom = atom<number>(0)
 
 export const trackProgressAtom = atom<number>(0)
 
-export const volumeAtom = atom<number>(0)
+export const volumeAtom = atom<number>(1)
 
 export const isPlayingAtom = atom<boolean>(false)
 

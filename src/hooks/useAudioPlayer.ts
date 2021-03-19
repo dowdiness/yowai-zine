@@ -8,7 +8,8 @@ import {
   durationAtom,
   trackProgressAtom,
   isPlayingAtom,
-  playbackRateAtom
+  playbackRateAtom,
+  volumeAtom,
 } from 'src/atoms/track'
 
 function useAudioPlayer() {
@@ -19,7 +20,8 @@ function useAudioPlayer() {
   const [duration, setDuration] = useAtom(durationAtom)
   const [trackProgress, setTrackProgress] = useAtom(trackProgressAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
-  const [playbackRate, setplaybackRate] = useAtom(playbackRateAtom)
+  const [playbackRate] = useAtom(playbackRateAtom)
+  const [volume] = useAtom(volumeAtom)
 
   const audioRef = useRef<HTMLAudioElement|null>(null)
   const isReady = useRef(false)
@@ -71,7 +73,7 @@ function useAudioPlayer() {
         }
       })
 
-      const defaultSkipTime = 15
+      const defaultSkipTime = 10
 
       navigator.mediaSession.setActionHandler('seekbackward', (details) => {
         const skipTime = details.seekOffset || defaultSkipTime
@@ -103,6 +105,22 @@ function useAudioPlayer() {
       })
       navigator.mediaSession.setActionHandler('previoustrack', () => toPrevTrack(audioRef.current))
       navigator.mediaSession.setActionHandler('nexttrack', () => toNextTrack())
+    }
+  }
+
+  const seekbackward = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = Math.max(audioRef.current.currentTime - 10, 0)
+      setTrackProgress(audioRef.current.currentTime)
+      updatePositionState()
+    }
+  }
+
+  const seekforward = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = Math.min(audioRef.current.currentTime + 10, audioRef.current.duration)
+      setTrackProgress(audioRef.current.currentTime)
+      updatePositionState()
     }
   }
 
@@ -140,6 +158,12 @@ function useAudioPlayer() {
       audioRef.current?.pause()
     }
   }, [])
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume
+    }
+  }, [volume])
 
   useEffect(() => {
     if (isPlaying) {
@@ -196,6 +220,8 @@ function useAudioPlayer() {
 
   return {
     audioRef,
+    seekbackward,
+    seekforward,
     onScrub,
     onScrubEnd,
   }
