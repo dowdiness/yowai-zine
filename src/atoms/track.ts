@@ -17,6 +17,18 @@ export type Artwork = {
   type: string
 }
 
+export type PlayBackRate =
+  0.5 |
+  0.8 |
+  1   |
+  1.2 |
+  1.5 |
+  1.8 |
+  2   |
+  2.5 |
+  3
+
+
 export const tracksAtom = atomWithReset<Track[]>([])
 
 export const updateTracksAtom = atom(
@@ -63,3 +75,5 @@ export const trackProgressAtom = atom<number>(0)
 export const volumeAtom = atom<number>(0)
 
 export const isPlayingAtom = atom<boolean>(false)
+
+export const playbackRateAtom = atom<PlayBackRate>(1)

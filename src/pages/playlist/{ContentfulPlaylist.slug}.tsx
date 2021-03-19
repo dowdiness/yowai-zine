@@ -22,10 +22,12 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   const cover = getImage(songs[0].coverart)!
 
   const normarizedSongs = songs?.map((song) => {
-    const re = / +(1x,|1.5x,|2x,|3x)/
-    const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((_src, index) => {
-      if (index % 2 === 0) true
-      false
+    const re = / +(1x,\n|1.5x,\n|2x,\n|3x)/
+    const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((src, index) => {
+      if (index % 2 !== 1 && src !== '') {
+        return true
+      }
+      return false
     }).map((src, index)=> {
       const size = index === 0 ? 128 : index === 1 ? 128 * 1.5 : index === 2 ? 128 * 2 : 128 * 3
       return {
