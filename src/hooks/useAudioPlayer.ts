@@ -12,6 +12,17 @@ function useAudioPlayer() {
   const audioRef = useRef<HTMLAudioElement|null>(null)
   const isReady = useRef(false)
 
+  const setMediaMetadata = () => {
+    if (navigator.mediaSession?.metadata && tracks[0]) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: tracks[0].title,
+        artist: tracks[0].artist,
+        album: tracks[0].album,
+        artwork: tracks[0].artworks
+      })
+    }
+  }
+
   const onScrub = (value: string) => {
     if (audioRef.current) {
       audioRef.current.currentTime = parseInt(value, 10)
@@ -57,8 +68,8 @@ function useAudioPlayer() {
         })
         audioRef.current.removeEventListener('loadedmetadata', (_event) => {
           if (audioRef.current) {
-            console.log(audioRef.current.duration)
             setDuration(audioRef.current.duration)
+            setMediaMetadata()
           }
         })
       }
@@ -76,6 +87,7 @@ function useAudioPlayer() {
       audioRef.current.addEventListener('loadedmetadata', (_event) => {
         if (audioRef.current) {
           setDuration(audioRef.current.duration)
+          setMediaMetadata()
         }
       })
     } else if (!isReady.current){

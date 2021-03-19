@@ -3,10 +3,18 @@ import { atomWithReset } from 'jotai/utils'
 import { IGatsbyImageData } from "gatsby-plugin-image"
 
 export type Track = {
+  audioSrc: string
   title: string
   artist: string
-  audioSrc: string
+  album: string
   cover: IGatsbyImageData
+  artworks: Artwork[]
+}
+
+export type Artwork = {
+  src: string
+  sizes: string
+  type: string
 }
 
 export const tracksAtom = atomWithReset<Track[]>([])

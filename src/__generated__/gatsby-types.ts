@@ -260,6 +260,8 @@ type Directory_ctimeArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
+  readonly port: Maybe<Scalars['Int']>;
+  readonly host: Maybe<Scalars['String']>;
   readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -1184,8 +1186,6 @@ type SitePluginPluginOptions = {
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
   readonly defaultQuality: Maybe<Scalars['Int']>;
   readonly failOnError: Maybe<Scalars['Boolean']>;
-  readonly environment: Maybe<Scalars['String']>;
-  readonly enabled: Maybe<Scalars['Boolean']>;
   readonly includeInDevelopment: Maybe<Scalars['Boolean']>;
   readonly delayTimeout: Maybe<Scalars['Int']>;
   readonly path: Maybe<Scalars['String']>;
@@ -1194,6 +1194,7 @@ type SitePluginPluginOptions = {
   readonly accessToken: Maybe<Scalars['String']>;
   readonly downloadLocal: Maybe<Scalars['Boolean']>;
   readonly host: Maybe<Scalars['String']>;
+  readonly environment: Maybe<Scalars['String']>;
   readonly forceFullSync: Maybe<Scalars['Boolean']>;
   readonly pageLimit: Maybe<Scalars['Int']>;
   readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
@@ -1229,6 +1230,7 @@ type SitePluginPluginOptions = {
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
+  readonly enabled: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPluginOptionsPlugins = {
@@ -1446,6 +1448,8 @@ type Query_allDirectoryArgs = {
 type Query_siteArgs = {
   buildTime: Maybe<DateQueryOperatorInput>;
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  port: Maybe<IntQueryOperatorInput>;
+  host: Maybe<StringQueryOperatorInput>;
   polyfill: Maybe<BooleanQueryOperatorInput>;
   pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -2701,6 +2705,8 @@ enum SiteFieldsEnum {
   siteMetadata___author___name = 'siteMetadata.author.name',
   siteMetadata___author___summary = 'siteMetadata.author.summary',
   siteMetadata___social___twitter = 'siteMetadata.social.twitter',
+  port = 'port',
+  host = 'host',
   polyfill = 'polyfill',
   pathPrefix = 'pathPrefix',
   id = 'id',
@@ -2803,6 +2809,8 @@ type SiteGroupConnection = {
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
+  readonly port: Maybe<IntQueryOperatorInput>;
+  readonly host: Maybe<StringQueryOperatorInput>;
   readonly polyfill: Maybe<BooleanQueryOperatorInput>;
   readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -2856,8 +2864,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
   readonly defaultQuality: Maybe<IntQueryOperatorInput>;
   readonly failOnError: Maybe<BooleanQueryOperatorInput>;
-  readonly environment: Maybe<StringQueryOperatorInput>;
-  readonly enabled: Maybe<BooleanQueryOperatorInput>;
   readonly includeInDevelopment: Maybe<BooleanQueryOperatorInput>;
   readonly delayTimeout: Maybe<IntQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
@@ -2866,6 +2872,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly accessToken: Maybe<StringQueryOperatorInput>;
   readonly downloadLocal: Maybe<BooleanQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
+  readonly environment: Maybe<StringQueryOperatorInput>;
   readonly forceFullSync: Maybe<BooleanQueryOperatorInput>;
   readonly pageLimit: Maybe<IntQueryOperatorInput>;
   readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
@@ -2901,6 +2908,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
+  readonly enabled: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsPluginsFilterListInput = {
@@ -3174,8 +3182,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
   pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
   pluginCreator___pluginOptions___failOnError = 'pluginCreator.pluginOptions.failOnError',
-  pluginCreator___pluginOptions___environment = 'pluginCreator.pluginOptions.environment',
-  pluginCreator___pluginOptions___enabled = 'pluginCreator.pluginOptions.enabled',
   pluginCreator___pluginOptions___includeInDevelopment = 'pluginCreator.pluginOptions.includeInDevelopment',
   pluginCreator___pluginOptions___delayTimeout = 'pluginCreator.pluginOptions.delayTimeout',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
@@ -3184,6 +3190,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
   pluginCreator___pluginOptions___downloadLocal = 'pluginCreator.pluginOptions.downloadLocal',
   pluginCreator___pluginOptions___host = 'pluginCreator.pluginOptions.host',
+  pluginCreator___pluginOptions___environment = 'pluginCreator.pluginOptions.environment',
   pluginCreator___pluginOptions___forceFullSync = 'pluginCreator.pluginOptions.forceFullSync',
   pluginCreator___pluginOptions___pageLimit = 'pluginCreator.pluginOptions.pageLimit',
   pluginCreator___pluginOptions___assetDownloadWorkers = 'pluginCreator.pluginOptions.assetDownloadWorkers',
@@ -3227,6 +3234,7 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
   pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
   pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
+  pluginCreator___pluginOptions___enabled = 'pluginCreator.pluginOptions.enabled',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
@@ -10365,8 +10373,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___stripMetadata = 'pluginOptions.stripMetadata',
   pluginOptions___defaultQuality = 'pluginOptions.defaultQuality',
   pluginOptions___failOnError = 'pluginOptions.failOnError',
-  pluginOptions___environment = 'pluginOptions.environment',
-  pluginOptions___enabled = 'pluginOptions.enabled',
   pluginOptions___includeInDevelopment = 'pluginOptions.includeInDevelopment',
   pluginOptions___delayTimeout = 'pluginOptions.delayTimeout',
   pluginOptions___path = 'pluginOptions.path',
@@ -10375,6 +10381,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___accessToken = 'pluginOptions.accessToken',
   pluginOptions___downloadLocal = 'pluginOptions.downloadLocal',
   pluginOptions___host = 'pluginOptions.host',
+  pluginOptions___environment = 'pluginOptions.environment',
   pluginOptions___forceFullSync = 'pluginOptions.forceFullSync',
   pluginOptions___pageLimit = 'pluginOptions.pageLimit',
   pluginOptions___assetDownloadWorkers = 'pluginOptions.assetDownloadWorkers',
@@ -10422,6 +10429,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___allExtensions = 'pluginOptions.allExtensions',
   pluginOptions___isTSX = 'pluginOptions.isTSX',
   pluginOptions___jsxPragma = 'pluginOptions.jsxPragma',
+  pluginOptions___enabled = 'pluginOptions.enabled',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
@@ -10457,20 +10465,47 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+type HorizontalArticleBySlugQueryVariables = Exact<{
+  id: Scalars['String'];
+  previousPostId: Maybe<Scalars['String']>;
+  nextPostId: Maybe<Scalars['String']>;
+}>;
 
 
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+type HorizontalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly post: Maybe<(
+    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
+    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulAsset, 'title'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>>>, readonly featuredImage: Maybe<(
+      Pick<ContentfulAsset, 'title'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>, readonly author: Maybe<(
+      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
+      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
+    )> }
+  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
 
-type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+type VerticalArticleBySlugQueryVariables = Exact<{
+  id: Scalars['String'];
+  previousPostId: Maybe<Scalars['String']>;
+  nextPostId: Maybe<Scalars['String']>;
+}>;
 
 
-type Unnamed_2_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_3_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+type VerticalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly contentfulMarkdownArticle: Maybe<(
+    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
+    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulAsset, 'title'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>>>, readonly featuredImage: Maybe<(
+      Pick<ContentfulAsset, 'title'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>, readonly author: Maybe<(
+      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
+      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
+    )> }
+  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
 
 type ArticlesPageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10517,99 +10552,19 @@ type PlaylistQuery = { readonly contentfulPlaylist: Maybe<(
     Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
     & { readonly songs: Maybe<ReadonlyArray<Maybe<(
       Pick<ContentfulSong, 'title'>
-      & { readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>>, readonly sound: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>> }
+      & { readonly coverart: Maybe<(
+        Pick<ContentfulAsset, 'gatsbyImageData'>
+        & { readonly fixed: Maybe<Pick<ContentfulFixed, 'srcSet'>> }
+      )>, readonly sound: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>> }
     )>>>, readonly artists: Maybe<ReadonlyArray<Maybe<(
       Pick<ContentfulAuthor, 'name'>
       & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
     )>>> }
   )> };
 
-type HorizontalArticleBySlugQueryVariables = Exact<{
-  id: Scalars['String'];
-  previousPostId: Maybe<Scalars['String']>;
-  nextPostId: Maybe<Scalars['String']>;
-}>;
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type HorizontalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly post: Maybe<(
-    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
-    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulAsset, 'title'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>>>, readonly featuredImage: Maybe<(
-      Pick<ContentfulAsset, 'title'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>, readonly author: Maybe<(
-      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
-      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
-    )> }
-  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
-
-type VerticalArticleBySlugQueryVariables = Exact<{
-  id: Scalars['String'];
-  previousPostId: Maybe<Scalars['String']>;
-  nextPostId: Maybe<Scalars['String']>;
-}>;
-
-
-type VerticalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly contentfulMarkdownArticle: Maybe<(
-    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
-    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulAsset, 'title'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>>>, readonly featuredImage: Maybe<(
-      Pick<ContentfulAsset, 'title'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>, readonly author: Maybe<(
-      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
-      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
-    )> }
-  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
-
-type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebpFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFixed_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
-
-type GatsbyImageSharpFixed_withWebp_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
-
-type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
-
-type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
-
-type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
 }

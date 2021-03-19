@@ -21,13 +21,28 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   // @ts-ignore
   const cover = getImage(songs[0].coverart)!
 
-  const normarizedSongs = songs?.map((song, index) => {
+  const normarizedSongs = songs?.map((song) => {
+    const re = / +(1x,|1.5x,|2x,|3x)/
+    const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((_src, index) => {
+      if (index % 2 === 0) true
+      false
+    }).map((src, index)=> {
+      const size = index === 0 ? 128 : index === 1 ? 128 * 1.5 : index === 2 ? 128 * 2 : 128 * 3
+      return {
+        src: `https:${src}`,
+        sizes: `${size}x${size}`,
+        type: 'image/png',
+      }
+    })
+
     const coverArt = getImage(song?.coverart?.gatsbyImageData!)
     return {
+      audioSrc: song?.sound?.localFile?.publicURL!,
       title: song?.title!,
       artist: song?.artist?.name!,
-      audioSrc: song?.sound?.localFile?.publicURL!,
+      album: playlist?.title!,
       cover: coverArt!,
+      artworks: artworksSrc!
     }
   })
 
@@ -117,6 +132,9 @@ export const pageQuery = graphql`
         title
         coverart {
           gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
+          fixed(height: 128, toFormat: PNG) {
+            srcSet
+          }
         }
         sound {
           localFile {

@@ -2660,6 +2660,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/wicg-mediasession@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/wicg-mediasession/-/wicg-mediasession-1.1.0.tgz#368bb113ffc1a5410895cbb1e5ba50ee291f162f"
+  integrity sha512-aA6+ZUHgNpXqWEL8UdS1fx/oCFSrh/Hu9BbM8rXYZLiCQSuZ8+Lzu1//LKwHMNBAXgen7/8LoThDEKS9VEaGxw==
+
 "@types/yargs-parser@*":
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-15.0.0.tgz#cb3f9f741869e20cce330ffbeb9271590483882d"
