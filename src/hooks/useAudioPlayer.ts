@@ -33,24 +33,41 @@ function useAudioPlayer() {
         artwork: tracks[0].artworks
       })
     }
+    updatePositionState()
+  }
+
+  const updatePositionState = () => {
+    if (navigator.mediaSession && 'setPositionState' in navigator.mediaSession) {
+      // 再生が終わった時にpositionがdurationを越えることがありエラーになる。
+      if (duration > trackProgress && audioRef.current) {
+        navigator.mediaSession.setPositionState!({
+          duration: audioRef.current.duration,
+          playbackRate: audioRef.current.playbackRate,
+          position: audioRef.current.currentTime,
+        })
+      }
+    }
   }
 
   const setActionHandler = () => {
     if (navigator.mediaSession && tracks[0]) {
-      navigator.mediaSession.setActionHandler('play', () => {
+      navigator.mediaSession.setActionHandler('play', async () => {
+        await audioRef?.current?.play()
         setIsPlaying(true)
         navigator.mediaSession!.playbackState = 'playing'
       })
       navigator.mediaSession.setActionHandler('pause', () => {
+        audioRef?.current?.pause()
         setIsPlaying(false)
         navigator.mediaSession!.playbackState = 'paused'
       })
       navigator.mediaSession.setActionHandler('stop', () => {
+        audioRef?.current?.pause()
         setIsPlaying(false)
         resetTracks()
         navigator.mediaSession!.playbackState = 'none'
         if (navigator.mediaSession && 'setPositionState' in navigator.mediaSession) {
-          navigator.mediaSession.setPositionState!(undefined)
+          navigator.mediaSession.setPositionState!(null!)
         }
       })
 
@@ -61,6 +78,7 @@ function useAudioPlayer() {
         if (audioRef.current) {
           audioRef.current.currentTime = Math.max(audioRef.current.currentTime - skipTime, 0)
           setTrackProgress(audioRef.current.currentTime)
+          updatePositionState()
         }
       })
       navigator.mediaSession.setActionHandler('seekforward', (details) => {
@@ -68,6 +86,7 @@ function useAudioPlayer() {
         if (audioRef.current) {
           audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
           setTrackProgress(audioRef.current.currentTime)
+          updatePositionState()
         }
       })
       navigator.mediaSession.setActionHandler('seekto', (details) => {
@@ -79,11 +98,11 @@ function useAudioPlayer() {
         } else if (audioRef.current) {
           audioRef.current.currentTime = details.seekTime
           setTrackProgress(audioRef.current.currentTime)
+          updatePositionState()
         }
       })
       navigator.mediaSession.setActionHandler('previoustrack', () => toPrevTrack(audioRef.current))
       navigator.mediaSession.setActionHandler('nexttrack', () => toNextTrack())
-      // navigator.mediaSession.setActionHandler('skipad', function() { /* Code excerpted. */ })
     }
   }
 
@@ -124,7 +143,13 @@ function useAudioPlayer() {
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current?.play()
+      audioRef.current?.play().then(_ => {
+        if (audioRef.current) {
+          setDuration(audioRef.current.duration)
+          setMediaMetadata()
+          setActionHandler()
+        }
+      })
     } else {
       audioRef.current?.pause()
     }
@@ -144,29 +169,23 @@ function useAudioPlayer() {
             setTrackProgress(audioRef.current.currentTime)
           }
         })
-        audioRef.current.removeEventListener('loadedmetadata', (_event) => {
-          if (audioRef.current) {
-            setDuration(audioRef.current.duration)
-          }
-        })
       }
       audioRef.current = new Audio(tracks[0].audioSrc)
-      setTrackProgress(audioRef.current.currentTime)
       // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata
-      setMediaMetadata()
-      setActionHandler()
-      audioRef.current.play()
-      setIsPlaying(true)
+      audioRef.current.play().then(_ => {
+        if (audioRef.current) {
+          setDuration(audioRef.current.duration)
+          setTrackProgress(audioRef.current.currentTime)
+          setMediaMetadata()
+          setActionHandler()
+          setIsPlaying(true)
+        }
+      })
       audioRef.current.addEventListener('timeupdate', (_event) => {
         if (audioRef.current?.ended) {
           toNextTrack()
         } else if (audioRef.current) {
           setTrackProgress(audioRef.current.currentTime)
-        }
-      })
-      audioRef.current.addEventListener('loadedmetadata', (_event) => {
-        if (audioRef.current) {
-          setDuration(audioRef.current.duration)
         }
       })
     } else if (!isReady.current){
