@@ -18,7 +18,7 @@ const AudioInfo = ({
   <div className={`${className} flex items-center justify-start`}>
     <GatsbyImage
       loading="eager"
-      className="w-24 h-24 rounded-sm md:w-16 md:h-16 cursor-none hover:animate-huruhuru"
+      className="w-16 h-16 rounded-sm cursor-none hover:animate-huruhuru"
       image={image}
       alt={title}
     />

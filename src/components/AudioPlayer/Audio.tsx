@@ -10,10 +10,11 @@ import {
   trackProgressAtom,
   volumeAtom,
   isPlayingAtom,
+  isMuteAtom,
 } from 'src/atoms/track'
 
 import { FaRegPlayCircle, FaRegPauseCircle } from 'react-icons/fa'
-import { IoVolumeOff, IoVolumeLow, IoVolumeMedium, IoVolumeHigh } from "react-icons/io5"
+import { IoVolumeMute, IoVolumeOff, IoVolumeLow, IoVolumeMedium, IoVolumeHigh } from "react-icons/io5"
 import { RiPlayList2Line } from "react-icons/ri"
 
 const AudioModal: React.FC = () => {
@@ -22,6 +23,7 @@ const AudioModal: React.FC = () => {
   const [trackProgress] = useAtom(trackProgressAtom)
   const [volume, setVolume] = useAtom(volumeAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
+  const [isMute, setIsMute] = useAtom(isMuteAtom)
 
   let currentPercentage = "0%"
   currentPercentage = duration
@@ -29,7 +31,7 @@ const AudioModal: React.FC = () => {
     : "0%"
 
   const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
+    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #414141))
     `
 
   const {
@@ -55,7 +57,7 @@ const AudioModal: React.FC = () => {
   return (
     <>
       {tracks[0] ?
-        <div className="fixed bottom-0 z-40 flex w-screen h-24 border border-t border-black bg-neumorphism md:flex">
+        <div className="fixed bottom-0 z-40 flex w-screen h-16 border border-t border-black md:h-24 bg-neumorphism md:flex">
           <div className="flex items-center justify-between w-full md:px-4">
             <AudioInfo
               className="w-4/5 md:w-3/12"
@@ -110,14 +112,32 @@ const AudioModal: React.FC = () => {
             <div className="items-center justify-around hidden w-3/12 pl-4 pr-2 md:flex">
               <RiPlayList2Line size={24} />
               <div className="flex items-center justify-end">
-                {volume === 0
-                  ? <IoVolumeOff size={24}/>
-                  : volume < 0.35
-                  ? <IoVolumeLow size={24} />
-                  : volume < 0.8
-                  ? <IoVolumeMedium size={24} />
-                  : <IoVolumeHigh size={24} />
-                }
+                {isMute ? (
+                  <button
+                    type="button"
+                    className="mute"
+                    onClick={() => setIsMute(false)}
+                    aria-label="MuteOn"
+                  >
+                    <IoVolumeMute size={24} />
+                  </button>
+                ): (
+                  <button
+                    type="button"
+                    className="mute"
+                    onClick={() => setIsMute(true)}
+                    aria-label="MuteOff"
+                  >
+                    {
+                    volume === 0
+                    ? <IoVolumeOff size={24}/>
+                    : volume < 0.35
+                    ? <IoVolumeLow size={24} />
+                    : volume < 0.8
+                    ? <IoVolumeMedium size={24} />
+                    : <IoVolumeHigh size={24} />}
+                  </button>
+                )}
                 <input
                   type="range"
                   value={volume}
@@ -126,8 +146,6 @@ const AudioModal: React.FC = () => {
                   max="1"
                   className="w-3/5 ml-2"
                   onChange={(e) => setVolume(parseFloat(e.target.value))}
-                  onMouseUp={onScrubEnd}
-                  onKeyUp={onScrubEnd}
                   style={{ background: trackStyling }}
                 />
               </div>

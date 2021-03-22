@@ -76,4 +76,6 @@ export const volumeAtom = atom<number>(1)
 
 export const isPlayingAtom = atom<boolean>(false)
 
+export const isMuteAtom = atom<boolean>(false)
+
 export const playbackRateAtom = atom<PlayBackRate>(1)

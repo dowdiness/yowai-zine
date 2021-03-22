@@ -48,9 +48,6 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
     }
   })
 
-  useEffect(() => {
-  }, [])
-
   const playlistIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
   return (

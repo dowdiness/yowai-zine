@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react"
 import { useAtom } from "jotai"
 import { useResetAtom } from 'jotai/utils'
 import {
+  Track,
   tracksAtom,
   prevTrackAtom,
   nextTrackAtom,
@@ -10,6 +11,7 @@ import {
   isPlayingAtom,
   playbackRateAtom,
   volumeAtom,
+  isMuteAtom,
 } from 'src/atoms/track'
 
 function useAudioPlayer() {
@@ -22,17 +24,18 @@ function useAudioPlayer() {
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
   const [playbackRate] = useAtom(playbackRateAtom)
   const [volume] = useAtom(volumeAtom)
+  const [isMute] = useAtom(isMuteAtom)
 
   const audioRef = useRef<HTMLAudioElement|null>(null)
   const isReady = useRef(false)
 
-  const setMediaMetadata = () => {
-    if (navigator.mediaSession && tracks[0]) {
+  const setMediaMetadata = (audioTracks: Track[]) => {
+    if (navigator.mediaSession && audioTracks[0]) {
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: tracks[0].title,
-        artist: tracks[0].artist,
-        album: tracks[0].album,
-        artwork: tracks[0].artworks
+        title: audioTracks[0].title,
+        artist: audioTracks[0].artist,
+        album: audioTracks[0].album,
+        artwork: audioTracks[0].artworks
       })
     }
     updatePositionState()
@@ -153,24 +156,22 @@ function useAudioPlayer() {
   }, [duration, playbackRate, trackProgress])
 
   useEffect(() => {
-    // Pause and clean up on unmount
-    return () => {
-      audioRef.current?.pause()
-    }
-  }, [])
-
-  useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume
     }
   }, [volume])
 
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMute
+    }
+  }, [isMute])
+
+  useEffect(() => {
     if (isPlaying) {
       audioRef.current?.play().then(_ => {
         if (audioRef.current) {
           setDuration(audioRef.current.duration)
-          setMediaMetadata()
           setActionHandler()
         }
       })
@@ -200,7 +201,7 @@ function useAudioPlayer() {
         if (audioRef.current) {
           setDuration(audioRef.current.duration)
           setTrackProgress(audioRef.current.currentTime)
-          setMediaMetadata()
+          setMediaMetadata(tracks)
           setActionHandler()
           setIsPlaying(true)
         }

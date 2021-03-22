@@ -49,7 +49,7 @@ const AudioControls = ({
           onClick={() => setIsPlaying(false)}
           aria-label="Pause"
         >
-          <FaRegPauseCircle size={32} />
+          <FaRegPauseCircle size={36} />
         </button>
       ) : (
         <button
@@ -58,7 +58,7 @@ const AudioControls = ({
           onClick={() => setIsPlaying(true)}
           aria-label="Play"
         >
-          <FaRegPlayCircle size={32} />
+          <FaRegPlayCircle size={36} />
         </button>
       )}
       <button
