@@ -12,6 +12,8 @@ import {
   playbackRateAtom,
   volumeAtom,
   isMuteAtom,
+  skipTimeAtom,
+  currentTimeAtom,
 } from 'src/atoms/track'
 
 function useAudioPlayer() {
@@ -25,6 +27,8 @@ function useAudioPlayer() {
   const [playbackRate] = useAtom(playbackRateAtom)
   const [volume] = useAtom(volumeAtom)
   const [isMute] = useAtom(isMuteAtom)
+  const [skipTime, setSkipTime] = useAtom(skipTimeAtom)
+  const [currentTime] = useAtom(currentTimeAtom)
 
   const audioRef = useRef<HTMLAudioElement|null>(null)
   const isReady = useRef(false)
@@ -111,33 +115,10 @@ function useAudioPlayer() {
     }
   }
 
-  const seekbackward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = Math.max(audioRef.current.currentTime - 10, 0)
-      setTrackProgress(audioRef.current.currentTime)
-      updatePositionState()
-    }
-  }
-
-  const seekforward = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = Math.min(audioRef.current.currentTime + 10, audioRef.current.duration)
-      setTrackProgress(audioRef.current.currentTime)
-      updatePositionState()
-    }
-  }
-
   const onScrub = (value: string) => {
     if (audioRef.current) {
       audioRef.current.currentTime = parseInt(value, 10)
       setTrackProgress(audioRef.current.currentTime)
-    }
-  }
-
-  const onScrubEnd = () => {
-    // If not already playing, start
-    if (!isPlaying) {
-      setIsPlaying(true)
     }
   }
 
@@ -166,6 +147,30 @@ function useAudioPlayer() {
       audioRef.current.muted = isMute
     }
   }, [isMute])
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = currentTime
+      setTrackProgress(audioRef.current.currentTime)
+    }
+  }, [currentTime])
+
+  useEffect(() => {
+    if (audioRef.current) {
+      // seekforward
+      if (skipTime > 0) {
+        audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
+        //seekbackward
+      } else if (skipTime < 0) {
+        audioRef.current.currentTime = Math.max(audioRef.current.currentTime + skipTime, 0)
+      } else {
+        return
+      }
+      setTrackProgress(audioRef.current.currentTime)
+      updatePositionState()
+      setSkipTime(0)
+    }
+  }, [skipTime])
 
   useEffect(() => {
     if (isPlaying) {
@@ -221,10 +226,7 @@ function useAudioPlayer() {
 
   return {
     audioRef,
-    seekbackward,
-    seekforward,
     onScrub,
-    onScrubEnd,
   }
 }
 

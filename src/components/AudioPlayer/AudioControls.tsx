@@ -6,22 +6,18 @@ import {
   prevTrackAtom,
   nextTrackAtom,
   isPlayingAtom,
+  skipTimeAtom,
 } from 'src/atoms/track'
 
 type AudioControlsProps =
   {
     audio: HTMLAudioElement | null
-    seekbackward: () => void
-    seekforward: () => void
   }
 
-const AudioControls = ({
-  audio,
-  seekbackward,
-  seekforward,
-}: AudioControlsProps) => {
+const AudioControls = ({ audio }: AudioControlsProps) => {
   const [, toPrevTrack] = useAtom(prevTrackAtom)
   const [, toNextTrack] = useAtom(nextTrackAtom)
+  const [, setSkipTime] = useAtom(skipTimeAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
 
   return (
@@ -38,7 +34,10 @@ const AudioControls = ({
         type="button"
         className="seekbackward"
         aria-label="Seekbackward"
-        onClick={() => seekbackward()}
+        onClick={(event) => {
+          event.stopPropagation()
+          setSkipTime(-10)
+        }}
       >
         <GrBackTen size={24} />
       </button>
@@ -46,7 +45,10 @@ const AudioControls = ({
         <button
           type="button"
           className="pause"
-          onClick={() => setIsPlaying(false)}
+          onClick={(event) => {
+            event.stopPropagation()
+            setIsPlaying(false)
+          }}
           aria-label="Pause"
         >
           <FaRegPauseCircle size={36} />
@@ -55,7 +57,10 @@ const AudioControls = ({
         <button
           type="button"
           className="play"
-          onClick={() => setIsPlaying(true)}
+          onClick={(event) => {
+            event.stopPropagation()
+            setIsPlaying(true)
+          }}
           aria-label="Play"
         >
           <FaRegPlayCircle size={36} />
@@ -65,7 +70,10 @@ const AudioControls = ({
         type="button"
         className="seekforward"
         aria-label="Seekforward"
-        onClick={seekforward}
+        onClick={(event) => {
+          event.stopPropagation()
+          setSkipTime(10)
+        }}
       >
         <GrForwardTen size={24} />
       </button>

@@ -32,7 +32,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
           <main>{children}</main>
           <Footer className="py-16" />
           <motion.div
-            className="fixed top-0 right-0 z-50 w-2 h-screen bg-blue-600"
+            className="fixed top-0 right-0 z-10 w-2 h-screen bg-blue-600"
             style={{ scaleY: multipleScaleY, translateY: '-50%' }}
           />
         </div>
