@@ -1,6 +1,7 @@
 import React from "react"
 import { useAtom } from "jotai"
 import { m as motion } from 'framer-motion'
+
 import {
   tracksAtom,
   durationAtom,
@@ -11,23 +12,17 @@ import {
 import {
   isAudioModalOpenAtom
 } from 'src/atoms/ui'
+
+import {
+  windowSizeAtom
+} from 'src/atoms/windowSizeAtom'
+
+
 import { IoChevronDown } from "react-icons/io5"
 import { GatsbyImage } from "gatsby-plugin-image"
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
 
 import { displayTime } from './utils'
-
-const variants = {
-  hidden: {
-    opacity: 0,
-    y: window.innerHeight,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'tween' }
-  }
-}
 
 type AudioModalProps =
   {
@@ -41,7 +36,21 @@ const AudioModal = ({ audio }: AudioModalProps) => {
   const [, setIsPlaying] = useAtom(isPlayingAtom)
   const [, setCurrentTime] = useAtom(currentTimeAtom)
 
-  const [isAudioModalOpen, setIsAudioModalOpen] = useAtom(isAudioModalOpenAtom)
+  const [, setIsAudioModalOpen] = useAtom(isAudioModalOpenAtom)
+
+  const [windowSize] = useAtom(windowSizeAtom)
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: windowSize.height,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { type: 'tween' }
+    }
+  }
 
   return (
     <motion.article
