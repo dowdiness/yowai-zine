@@ -70,7 +70,7 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
 
   useLayoutEffect(() => {
     cursorRef.current.style.opacity = '0'
-  }, [transitionFinished])
+  }, [])
 
   // addEventListener to scale up cursor for new pages
   useEffect(() => {
@@ -96,7 +96,7 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
           if(globalHistory.transitioning) {
             setTimeout(waitTransitioningFinished, 200)
           } else {
-            document.querySelectorAll('a, button, .gatsby-resp-image-image').forEach(link => {
+            document.querySelectorAll('a, button, input, input, .gatsby-resp-image-image').forEach(link => {
               link.addEventListener('mouseenter', enter)
               link.addEventListener('mouseleave', leave)
             })
@@ -110,16 +110,22 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   useEffect(() => {
     document.addEventListener('mousemove', firstMoveHandler)
     document.addEventListener('mousemove', moveHandler)
-
-    if(transitionFinished) {
-      document.querySelectorAll('a, button, .gatsby-resp-image-image').forEach(link => {
-        link.addEventListener('mouseenter', enter)
-        link.addEventListener('mouseleave', leave)
-      })
-    }
+    document.querySelectorAll('a, button, input, .gatsby-resp-image-image').forEach(link => {
+      link.addEventListener('mouseenter', enter)
+      link.addEventListener('mouseleave', leave)
+    })
 
     return () => {
       document.removeEventListener('mousemove', moveHandler)
+    }
+  }, [])
+
+  useEffect(() => {
+    if(transitionFinished) {
+      document.querySelectorAll('a, button, input, .gatsby-resp-image-image').forEach(link => {
+        link.addEventListener('mouseenter', enter)
+        link.addEventListener('mouseleave', leave)
+      })
     }
   }, [transitionFinished])
 
