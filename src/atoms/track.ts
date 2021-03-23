@@ -2,6 +2,7 @@ import { atom } from "jotai"
 import { atomWithReset } from 'jotai/utils'
 import { IGatsbyImageData } from "gatsby-plugin-image"
 import { isAudioMiniPlayerOpenAtom, isAudioModalOpenAtom } from './ui'
+import { historyAtom } from './history'
 
 export type Track = {
   audioSrc: string
@@ -36,6 +37,7 @@ export const updateTracksAtom = atom(
   null,
   (_get, set, newTracks: Track[]) => {
     set(tracksAtom, newTracks)
+    set(historyAtom, [])
     if (newTracks.length) {
       set(isAudioMiniPlayerOpenAtom, true)
     } else {
@@ -54,8 +56,13 @@ export const addTrackAtom = atom(
 
 export const prevTrackAtom = atom(
   null,
-  (_get, _set, audio: HTMLAudioElement|null) => {
-    if (audio) {
+  (get, set, audio: HTMLAudioElement|null) => {
+    const history = get(historyAtom)
+    const prevTrack = history.pop()
+    if (prevTrack) {
+      const tracks = get(tracksAtom)
+      set(tracksAtom, [prevTrack, ...tracks])
+    } else if (audio) {
       audio.currentTime = 0
     }
   }
@@ -65,8 +72,12 @@ export const nextTrackAtom = atom(
   null,
   (get, set) => {
     const tracks = get(tracksAtom)
+    const history = get(historyAtom)
+    const prevTrack = tracks.shift()
+    if (prevTrack) {
+      set(historyAtom, [...history, prevTrack])
+    }
     if (tracks.length > 1) {
-      tracks.shift()
       set(tracksAtom, [...tracks])
     } else {
       set(isPlayingAtom, false)

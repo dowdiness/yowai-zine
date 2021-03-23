@@ -9,12 +9,13 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 // Atoms
 import { useAtom } from "jotai"
-import { tracksAtom, updateTracksAtom, nextTrackAtom } from 'src/atoms/track'
+import { tracksAtom, updateTracksAtom } from 'src/atoms/track'
+import { historyAtom } from 'src/atoms/history'
 
 const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, location }) => {
   const [tracks] = useAtom(tracksAtom)
   const [,updateTracks] = useAtom(updateTracksAtom)
-  const [,nextTrack] = useAtom(nextTrackAtom)
+  const [,setHistory] = useAtom(historyAtom)
 
   const playlist = data.contentfulPlaylist
   const songs = playlist?.songs
@@ -104,7 +105,13 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
           {normarizedSongs?.map((track, index) => {
             return (
               <li key={index} className="">
-                <button className="flex items-center" onClick={() => {updateTracks(normarizedSongs.slice(index))}}>
+                <button
+                  className="flex items-center"
+                  onClick={() => {
+                    updateTracks(normarizedSongs.slice(index))
+                    setHistory(normarizedSongs.slice(0, index))
+                  }}
+                >
                   <span className="mr-4 font-mono">{index + 1}</span>
                   <h3 className="text-lg">{track.title}</h3>
                 </button>
