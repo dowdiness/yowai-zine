@@ -6,6 +6,8 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 import { ArticleLink } from 'src/components/Article'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
+import { useContextSelector } from 'use-context-selector'
 
 // Atoms
 import { useAtom } from "jotai"
@@ -16,6 +18,8 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   const [tracks] = useAtom(tracksAtom)
   const [,updateTracks] = useAtom(updateTracksAtom)
   const [,setHistory] = useAtom(historyAtom)
+
+  const audio = useContextSelector(AudioContext, audio => audio)
 
   const playlist = data.contentfulPlaylist
   const songs = playlist?.songs
@@ -51,8 +55,23 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
 
   const playlistIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
+  // https://bagelee.com/programming/safari-video-audio-action/
+  const initializeForSafari = async () => {
+    if (audio?.current) {
+      audio.current.muted = true
+      try {
+        await audio.current.play()
+      } catch (err) {
+        console.error(err)
+      }
+      audio.current.pause()
+      audio.current.muted = false
+      audio.current.currentTime = 0
+    }
+  }
+
   return (
-    <div className="py-16">
+    <div className="max-w-3xl py-16 mx-auto">
       <GatsbySeo
         title={playlist?.title}
         openGraph={{
@@ -108,6 +127,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                 <button
                   className="flex items-center"
                   onClick={() => {
+                    initializeForSafari()
                     updateTracks(normarizedSongs.slice(index))
                     setHistory(normarizedSongs.slice(0, index))
                   }}

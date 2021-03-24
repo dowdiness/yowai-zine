@@ -9,16 +9,17 @@ import {
   skipTimeAtom,
 } from 'src/atoms/track'
 
-type AudioControlsProps =
-  {
-    audio: HTMLAudioElement | null
-  }
+import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
+import { useContextSelector } from 'use-context-selector'
 
-const AudioControls = ({ audio }: AudioControlsProps) => {
+
+const AudioControls = () => {
   const [, toPrevTrack] = useAtom(prevTrackAtom)
   const [, toNextTrack] = useAtom(nextTrackAtom)
   const [, setSkipTime] = useAtom(skipTimeAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
+
+  const audio = useContextSelector(AudioContext, audio => audio?.current)
 
   return (
     <div className="flex items-center justify-between space-x-8">

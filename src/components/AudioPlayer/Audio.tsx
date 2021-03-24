@@ -5,6 +5,8 @@ import AudioInfo from 'src/components/AudioPlayer/AudioInfo'
 import AudioVolume from 'src/components/AudioPlayer/AudioVolume'
 import AudioModal from 'src/components/AudioPlayer/AudioModal'
 import { m as motion, AnimatePresence } from 'framer-motion'
+import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
+import { useContextSelector } from 'use-context-selector'
 
 import { useAtom } from "jotai"
 import {
@@ -55,14 +57,15 @@ const AudioPlayer: React.FC = () => {
     -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #414141))
     `
 
-  const { audioRef } = useAudioPlayer()
+  const audio = useContextSelector(AudioContext, audio => audio)
+  useAudioPlayer(audio)
 
   return (
     <AnimatePresence>
       {isAudioMiniPlayerOpen ? isAudioModalOpen
-        ? <AudioModal audio={audioRef.current} />
+        ? <AudioModal />
         : <motion.div
-          className="fixed bottom-0 z-30 flex w-screen h-16 border border-t border-black md:h-24 bg-neumorphism md:flex"
+          className="fixed bottom-0 left-0 z-30 flex w-screen h-16 border border-t border-black md:h-24 bg-neumorphism md:flex"
           onClick={() => setIsAudioModalOpen(true)}
           initial="hidden"
           animate="show"
@@ -105,9 +108,7 @@ const AudioPlayer: React.FC = () => {
                 )}
             </div>
             <div className="flex-col items-center hidden w-1/2 md:flex">
-              <AudioControls
-                audio={audioRef.current}
-              />
+              <AudioControls />
               <div className="flex items-center w-full mt-2 space-x-2">
                 <span className="text-sm">{displayTime(trackProgress)}</span>
                 <input

@@ -56,7 +56,7 @@ export const addTrackAtom = atom(
 
 export const prevTrackAtom = atom(
   null,
-  (get, set, audio: HTMLAudioElement|null) => {
+  (get, set, audio: HTMLAudioElement|undefined) => {
     const history = get(historyAtom)
     const prevTrack = history.pop()
     if (prevTrack) {

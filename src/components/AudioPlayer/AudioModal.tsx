@@ -24,12 +24,7 @@ import AudioControls from 'src/components/AudioPlayer/AudioControls'
 
 import { displayTime } from './utils'
 
-type AudioModalProps =
-  {
-    audio: HTMLAudioElement | null
-  }
-
-const AudioModal = ({ audio }: AudioModalProps) => {
+const AudioModal = () => {
   const [tracks] = useAtom(tracksAtom)
   const [duration] = useAtom(durationAtom)
   const [trackProgress] = useAtom(trackProgressAtom)
@@ -99,7 +94,7 @@ const AudioModal = ({ audio }: AudioModalProps) => {
           <span className="text-sm">{displayTime(duration)}</span>
         </div>
       </section>
-      <AudioControls audio={audio} />
+      <AudioControls />
     </motion.article>
   )
 }

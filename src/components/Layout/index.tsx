@@ -5,6 +5,7 @@ import loadable from '@loadable/component'
 
 // @ts-ignore
 import ErrorBoundary from 'src/components/Element/ErrorBoundary'
+import { AudioProvider } from 'src/components/AudioPlayer/AudioProvider'
 
 import { m as motion, useViewportScroll, useTransform, LazyMotion } from 'framer-motion'
 
@@ -29,7 +30,10 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
           className="container"
         >
           {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
-          <main>{children}</main>
+          <AudioProvider>
+            <main>{children}</main>
+            <AudioModal />
+          </AudioProvider>
           <Footer className="py-16" />
           <motion.div
             className="fixed top-0 right-0 z-10 w-2 h-screen bg-blue-600"
@@ -38,7 +42,6 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
         </div>
         <Mouse />
         <Skew />
-        <AudioModal />
       </LazyMotion>
     </ErrorBoundary>
   )

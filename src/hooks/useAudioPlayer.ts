@@ -16,7 +16,7 @@ import {
   currentTimeAtom,
 } from 'src/atoms/track'
 
-function useAudioPlayer() {
+function useAudioPlayer(audioRef: React.MutableRefObject<HTMLAudioElement>|null) {
   const [tracks] = useAtom(tracksAtom)
   const resetTracks = useResetAtom(tracksAtom)
   const [, toPrevTrack] = useAtom(prevTrackAtom)
@@ -30,7 +30,6 @@ function useAudioPlayer() {
   const [skipTime, setSkipTime] = useAtom(skipTimeAtom)
   const [currentTime] = useAtom(currentTimeAtom)
 
-  const audioRef = useRef<HTMLAudioElement|null>(null)
   const isReady = useRef(false)
 
   const setMediaMetadata = (audioTracks: Track[]) => {
@@ -48,7 +47,7 @@ function useAudioPlayer() {
   const updatePositionState = () => {
     if (navigator.mediaSession && 'setPositionState' in navigator.mediaSession) {
       // 再生が終わった時にpositionがdurationを越えることがありエラーになる。
-      if (duration > trackProgress && audioRef.current) {
+      if (duration > trackProgress && audioRef?.current) {
         navigator.mediaSession.setPositionState!({
           duration: audioRef.current.duration,
           playbackRate: audioRef.current.playbackRate,
@@ -84,7 +83,7 @@ function useAudioPlayer() {
 
       navigator.mediaSession.setActionHandler('seekbackward', (details) => {
         const skipTime = details.seekOffset || defaultSkipTime
-        if (audioRef.current) {
+        if (audioRef?.current) {
           audioRef.current.currentTime = Math.max(audioRef.current.currentTime - skipTime, 0)
           setTrackProgress(audioRef.current.currentTime)
           updatePositionState()
@@ -92,7 +91,7 @@ function useAudioPlayer() {
       })
       navigator.mediaSession.setActionHandler('seekforward', (details) => {
         const skipTime = details.seekOffset || defaultSkipTime
-        if (audioRef.current) {
+        if (audioRef?.current) {
           audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
           setTrackProgress(audioRef.current.currentTime)
           updatePositionState()
@@ -104,19 +103,19 @@ function useAudioPlayer() {
           audioRef?.current?.fastSeek(details.seekTime)
           setTrackProgress(audioRef?.current?.currentTime!)
           return
-        } else if (audioRef.current) {
+        } else if (audioRef?.current) {
           audioRef.current.currentTime = details.seekTime
           setTrackProgress(audioRef.current.currentTime)
           updatePositionState()
         }
       })
-      navigator.mediaSession.setActionHandler('previoustrack', () => toPrevTrack(audioRef.current))
+      navigator.mediaSession.setActionHandler('previoustrack', () => toPrevTrack(audioRef?.current))
       navigator.mediaSession.setActionHandler('nexttrack', () => toNextTrack())
     }
   }
 
   const onScrub = (value: string) => {
-    if (audioRef.current) {
+    if (audioRef?.current) {
       audioRef.current.currentTime = parseInt(value, 10)
       setTrackProgress(audioRef.current.currentTime)
     }
@@ -137,26 +136,26 @@ function useAudioPlayer() {
   }, [duration, playbackRate, trackProgress])
 
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef?.current) {
       audioRef.current.volume = volume
     }
   }, [volume])
 
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef?.current) {
       audioRef.current.muted = isMute
     }
   }, [isMute])
 
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef?.current) {
       audioRef.current.currentTime = currentTime
       setTrackProgress(audioRef.current.currentTime)
     }
   }, [currentTime])
 
   useEffect(() => {
-    if (audioRef.current) {
+    if (audioRef?.current) {
       // seekforward
       if (skipTime > 0) {
         audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
@@ -174,24 +173,24 @@ function useAudioPlayer() {
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current?.play().then(_ => {
+      audioRef?.current?.play().then(_ => {
         if (audioRef.current) {
           setDuration(audioRef.current.duration)
           setActionHandler()
         }
       })
     } else {
-      audioRef.current?.pause()
+      audioRef?.current?.pause()
     }
   }, [isPlaying])
 
   // Handles cleanup and setup when changing tracks
   useEffect(() => {
-    audioRef.current?.pause()
+    audioRef?.current?.pause()
 
     if (tracks[0] && isReady.current) {
       // remove previous audio eventlisners
-      if(audioRef.current) {
+      if(audioRef?.current) {
         audioRef.current.removeEventListener('timeupdate', (_event) => {
           if (audioRef.current?.ended) {
             toNextTrack()
@@ -200,9 +199,11 @@ function useAudioPlayer() {
           }
         })
       }
-      audioRef.current = new Audio(tracks[0].audioSrc)
+      if (audioRef) {
+        audioRef.current = new Audio(tracks[0].audioSrc)
+      }
       // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata
-      audioRef.current.play().then(_ => {
+      audioRef?.current.play().then(_ => {
         if (audioRef.current) {
           setDuration(audioRef.current.duration)
           setTrackProgress(audioRef.current.currentTime)
@@ -211,7 +212,7 @@ function useAudioPlayer() {
           setIsPlaying(true)
         }
       })
-      audioRef.current.addEventListener('timeupdate', (_event) => {
+      audioRef?.current.addEventListener('timeupdate', (_event) => {
         if (audioRef.current?.ended) {
           toNextTrack()
         } else if (audioRef.current) {
