@@ -17,7 +17,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistIndexPageQuery>> = ({
   const albumList = data.allContentfulPlaylist.edges
 
   return (
-    <>
+    <div className="max-w-3xl mx-auto">
       <GatsbySeo
         title="プレイリスト"
         openGraph={{
@@ -69,7 +69,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistIndexPageQuery>> = ({
           })}
         </ul>
       </section>
-    </>
+    </div>
   )
 }
 
