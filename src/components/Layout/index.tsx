@@ -3,8 +3,6 @@ import Header from './Header'
 import Footer from './Footer'
 import loadable from '@loadable/component'
 
-// @ts-ignore
-import ErrorBoundary from 'src/components/Element/ErrorBoundary'
 import { AudioProvider } from 'src/components/AudioPlayer/AudioProvider'
 
 import { m as motion, useViewportScroll, useTransform, LazyMotion } from 'framer-motion'
@@ -24,26 +22,24 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   const multipleScaleY = useTransform(scrollYProgress, value => value * 2)
 
   return (
-    <ErrorBoundary>
-      <LazyMotion strict features={loadFeatures}>
-        <div
-          className="container"
-        >
-          {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
-          <AudioProvider>
-            <main>{children}</main>
-            <AudioModal />
-          </AudioProvider>
-          <Footer className="py-16" />
-          <motion.div
-            className="fixed top-0 right-0 z-10 w-2 h-screen bg-blue-600"
-            style={{ scaleY: multipleScaleY, translateY: '-50%' }}
-          />
-        </div>
-        <Mouse />
-        <Skew />
-      </LazyMotion>
-    </ErrorBoundary>
+    <LazyMotion strict features={loadFeatures}>
+      <div
+        className="container"
+      >
+        {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
+        <AudioProvider>
+          <main>{children}</main>
+          <AudioModal />
+        </AudioProvider>
+        <Footer className="py-16" />
+        <motion.div
+          className="fixed top-0 right-0 z-10 w-2 h-screen bg-blue-600"
+          style={{ scaleY: multipleScaleY, translateY: '-50%' }}
+        />
+      </div>
+      <Mouse />
+      <Skew />
+    </LazyMotion>
   )
 }
 

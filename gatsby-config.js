@@ -49,11 +49,11 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-sentry`,
+      resolve: `@sentry/gatsby`,
       options: {
         dsn: process.env.SENTRY_DSN,
         environment: process.env.NODE_ENV,
-        enabled: (() => ["production", "preview"].indexOf(process.env.NODE_ENV) !== -1)()
+        tracesSampleRate: 1,
       },
     },
     {
