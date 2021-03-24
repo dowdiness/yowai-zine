@@ -1,12 +1,9 @@
 import React from 'react'
-import useAudioPlayer from 'src/hooks/useAudioPlayer'
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
 import AudioInfo from 'src/components/AudioPlayer/AudioInfo'
 import AudioVolume from 'src/components/AudioPlayer/AudioVolume'
 import AudioModal from 'src/components/AudioPlayer/AudioModal'
 import { m as motion, AnimatePresence } from 'framer-motion'
-import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
-import { useContextSelector } from 'use-context-selector'
 
 import { useAtom } from "jotai"
 import {
@@ -56,9 +53,6 @@ const AudioPlayer: React.FC = () => {
   const trackStyling = `
     -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #414141))
     `
-
-  const audio = useContextSelector(AudioContext, audio => audio)
-  useAudioPlayer(audio)
 
   return (
     <AnimatePresence>

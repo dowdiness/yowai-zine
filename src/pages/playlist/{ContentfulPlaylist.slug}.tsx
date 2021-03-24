@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { PageProps, graphql } from 'gatsby'
 
 //Components
@@ -18,6 +18,8 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   const [tracks] = useAtom(tracksAtom)
   const [,updateTracks] = useAtom(updateTracksAtom)
   const [,setHistory] = useAtom(historyAtom)
+
+  const [isPlayed, setIsPlayed] = useState(false)
 
   const audio = useContextSelector(AudioContext, audio => audio)
 
@@ -67,6 +69,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
       audio.current.pause()
       audio.current.muted = false
       audio.current.currentTime = 0
+      setIsPlayed(true)
     }
   }
 
@@ -127,7 +130,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                 <button
                   className="flex items-center"
                   onClick={() => {
-                    initializeForSafari()
+                    if (!isPlayed) initializeForSafari()
                     updateTracks(normarizedSongs.slice(index))
                     setHistory(normarizedSongs.slice(0, index))
                   }}

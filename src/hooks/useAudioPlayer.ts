@@ -16,7 +16,7 @@ import {
   currentTimeAtom,
 } from 'src/atoms/track'
 
-function useAudioPlayer(audioRef: React.MutableRefObject<HTMLAudioElement>|null) {
+function useAudioPlayer() {
   const [tracks] = useAtom(tracksAtom)
   const resetTracks = useResetAtom(tracksAtom)
   const [, toPrevTrack] = useAtom(prevTrackAtom)
@@ -30,6 +30,7 @@ function useAudioPlayer(audioRef: React.MutableRefObject<HTMLAudioElement>|null)
   const [skipTime, setSkipTime] = useAtom(skipTimeAtom)
   const [currentTime] = useAtom(currentTimeAtom)
 
+  const audioRef = useRef<HTMLAudioElement>(null!)
   const isReady = useRef(false)
 
   const setMediaMetadata = (audioTracks: Track[]) => {
@@ -109,17 +110,19 @@ function useAudioPlayer(audioRef: React.MutableRefObject<HTMLAudioElement>|null)
           updatePositionState()
         }
       })
-      navigator.mediaSession.setActionHandler('previoustrack', () => toPrevTrack(audioRef?.current))
+      navigator.mediaSession.setActionHandler('previoustrack', () => toPrevTrack(audioRef.current))
       navigator.mediaSession.setActionHandler('nexttrack', () => toNextTrack())
     }
   }
 
-  const onScrub = (value: string) => {
-    if (audioRef?.current) {
-      audioRef.current.currentTime = parseInt(value, 10)
-      setTrackProgress(audioRef.current.currentTime)
-    }
-  }
+  useEffect(() => {
+    // initialize audioRef
+    audioRef.current = new Audio('/001.wav')
+    return (() => {
+      // prevent memory leak
+      audioRef.current.pause()
+    })
+  }, [])
 
   // updatePositionState https://developer.mozilla.org/en-US/docs/Web/API/MediaSession/setPositionState
   useEffect(() => {
@@ -136,74 +139,61 @@ function useAudioPlayer(audioRef: React.MutableRefObject<HTMLAudioElement>|null)
   }, [duration, playbackRate, trackProgress])
 
   useEffect(() => {
-    if (audioRef?.current) {
-      audioRef.current.volume = volume
-    }
+    audioRef.current.volume = volume
   }, [volume])
 
   useEffect(() => {
-    if (audioRef?.current) {
-      audioRef.current.muted = isMute
-    }
+    audioRef.current.muted = isMute
   }, [isMute])
 
   useEffect(() => {
-    if (audioRef?.current) {
-      audioRef.current.currentTime = currentTime
-      setTrackProgress(audioRef.current.currentTime)
-    }
+    audioRef.current.currentTime = currentTime
+    setTrackProgress(audioRef.current.currentTime)
   }, [currentTime])
 
   useEffect(() => {
-    if (audioRef?.current) {
-      // seekforward
-      if (skipTime > 0) {
-        audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
-        //seekbackward
-      } else if (skipTime < 0) {
-        audioRef.current.currentTime = Math.max(audioRef.current.currentTime + skipTime, 0)
-      } else {
-        return
-      }
-      setTrackProgress(audioRef.current.currentTime)
-      updatePositionState()
-      setSkipTime(0)
+    // seekforward
+    if (skipTime > 0) {
+      audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
+      //seekbackward
+    } else if (skipTime < 0) {
+      audioRef.current.currentTime = Math.max(audioRef.current.currentTime + skipTime, 0)
+    } else {
+      return
     }
+    setTrackProgress(audioRef.current.currentTime)
+    updatePositionState()
+    setSkipTime(0)
   }, [skipTime])
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef?.current?.play().then(_ => {
-        if (audioRef.current) {
-          setDuration(audioRef.current.duration)
-          setActionHandler()
-        }
+      audioRef.current.play().then(_ => {
+        setDuration(audioRef.current.duration)
+        setActionHandler()
       })
     } else {
-      audioRef?.current?.pause()
+      audioRef.current.pause()
     }
   }, [isPlaying])
 
   // Handles cleanup and setup when changing tracks
   useEffect(() => {
-    audioRef?.current?.pause()
+    audioRef.current.pause()
 
     if (tracks[0] && isReady.current) {
       // remove previous audio eventlisners
-      if(audioRef?.current) {
-        audioRef.current.removeEventListener('timeupdate', (_event) => {
-          if (audioRef.current?.ended) {
-            toNextTrack()
-          } else if (audioRef.current) {
-            setTrackProgress(audioRef.current.currentTime)
-          }
-        })
-      }
-      if (audioRef) {
-        audioRef.current = new Audio(tracks[0].audioSrc)
-      }
+      audioRef.current.removeEventListener('timeupdate', (_event) => {
+        if (audioRef.current.ended) {
+          toNextTrack()
+        } else {
+          setTrackProgress(audioRef.current.currentTime)
+        }
+      })
+
+      audioRef.current = new Audio(tracks[0].audioSrc)
       // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata
-      audioRef?.current.play().then(_ => {
+      audioRef.current.play().then(_ => {
         if (audioRef.current) {
           setDuration(audioRef.current.duration)
           setTrackProgress(audioRef.current.currentTime)
@@ -212,8 +202,8 @@ function useAudioPlayer(audioRef: React.MutableRefObject<HTMLAudioElement>|null)
           setIsPlaying(true)
         }
       })
-      audioRef?.current.addEventListener('timeupdate', (_event) => {
-        if (audioRef.current?.ended) {
+      audioRef.current.addEventListener('timeupdate', (_event) => {
+        if (audioRef.current.ended) {
           toNextTrack()
         } else if (audioRef.current) {
           setTrackProgress(audioRef.current.currentTime)
@@ -227,7 +217,6 @@ function useAudioPlayer(audioRef: React.MutableRefObject<HTMLAudioElement>|null)
 
   return {
     audioRef,
-    onScrub,
   }
 }
 

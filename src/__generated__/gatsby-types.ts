@@ -1135,11 +1135,11 @@ type PagesJson = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly path: Maybe<Scalars['String']>;
+  readonly catchphrase: Maybe<Scalars['String']>;
   readonly introduction: Maybe<Scalars['String']>;
   readonly image: Maybe<Scalars['String']>;
   readonly displayTitle: Maybe<Scalars['Boolean']>;
   readonly title: Maybe<Scalars['String']>;
-  readonly catchphrase: Maybe<Scalars['String']>;
 };
 
 type SiteBuildMetadata = Node & {
@@ -1186,6 +1186,8 @@ type SitePluginPluginOptions = {
   readonly stripMetadata: Maybe<Scalars['Boolean']>;
   readonly defaultQuality: Maybe<Scalars['Int']>;
   readonly failOnError: Maybe<Scalars['Boolean']>;
+  readonly environment: Maybe<Scalars['String']>;
+  readonly tracesSampleRate: Maybe<Scalars['Int']>;
   readonly includeInDevelopment: Maybe<Scalars['Boolean']>;
   readonly delayTimeout: Maybe<Scalars['Int']>;
   readonly path: Maybe<Scalars['String']>;
@@ -1194,7 +1196,6 @@ type SitePluginPluginOptions = {
   readonly accessToken: Maybe<Scalars['String']>;
   readonly downloadLocal: Maybe<Scalars['Boolean']>;
   readonly host: Maybe<Scalars['String']>;
-  readonly environment: Maybe<Scalars['String']>;
   readonly forceFullSync: Maybe<Scalars['Boolean']>;
   readonly pageLimit: Maybe<Scalars['Int']>;
   readonly assetDownloadWorkers: Maybe<Scalars['Int']>;
@@ -1230,7 +1231,6 @@ type SitePluginPluginOptions = {
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
   readonly jsxPragma: Maybe<Scalars['String']>;
-  readonly enabled: Maybe<Scalars['Boolean']>;
 };
 
 type SitePluginPluginOptionsPlugins = {
@@ -1781,11 +1781,11 @@ type Query_pagesJsonArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   path: Maybe<StringQueryOperatorInput>;
+  catchphrase: Maybe<StringQueryOperatorInput>;
   introduction: Maybe<StringQueryOperatorInput>;
   image: Maybe<StringQueryOperatorInput>;
   displayTitle: Maybe<BooleanQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
-  catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -1987,11 +1987,11 @@ type PagesJsonFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
+  readonly catchphrase: Maybe<StringQueryOperatorInput>;
   readonly introduction: Maybe<StringQueryOperatorInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
   readonly displayTitle: Maybe<BooleanQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 type FileConnection = {
@@ -2248,11 +2248,11 @@ enum FileFieldsEnum {
   childrenPagesJson___internal___owner = 'childrenPagesJson.internal.owner',
   childrenPagesJson___internal___type = 'childrenPagesJson.internal.type',
   childrenPagesJson___path = 'childrenPagesJson.path',
+  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childrenPagesJson___introduction = 'childrenPagesJson.introduction',
   childrenPagesJson___image = 'childrenPagesJson.image',
   childrenPagesJson___displayTitle = 'childrenPagesJson.displayTitle',
   childrenPagesJson___title = 'childrenPagesJson.title',
-  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childPagesJson___id = 'childPagesJson.id',
   childPagesJson___parent___id = 'childPagesJson.parent.id',
   childPagesJson___parent___parent___id = 'childPagesJson.parent.parent.id',
@@ -2292,11 +2292,11 @@ enum FileFieldsEnum {
   childPagesJson___internal___owner = 'childPagesJson.internal.owner',
   childPagesJson___internal___type = 'childPagesJson.internal.type',
   childPagesJson___path = 'childPagesJson.path',
+  childPagesJson___catchphrase = 'childPagesJson.catchphrase',
   childPagesJson___introduction = 'childPagesJson.introduction',
   childPagesJson___image = 'childPagesJson.image',
   childPagesJson___displayTitle = 'childPagesJson.displayTitle',
   childPagesJson___title = 'childPagesJson.title',
-  childPagesJson___catchphrase = 'childPagesJson.catchphrase',
   id = 'id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -2864,6 +2864,8 @@ type SitePluginPluginOptionsFilterInput = {
   readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
   readonly defaultQuality: Maybe<IntQueryOperatorInput>;
   readonly failOnError: Maybe<BooleanQueryOperatorInput>;
+  readonly environment: Maybe<StringQueryOperatorInput>;
+  readonly tracesSampleRate: Maybe<IntQueryOperatorInput>;
   readonly includeInDevelopment: Maybe<BooleanQueryOperatorInput>;
   readonly delayTimeout: Maybe<IntQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
@@ -2872,7 +2874,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly accessToken: Maybe<StringQueryOperatorInput>;
   readonly downloadLocal: Maybe<BooleanQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
-  readonly environment: Maybe<StringQueryOperatorInput>;
   readonly forceFullSync: Maybe<BooleanQueryOperatorInput>;
   readonly pageLimit: Maybe<IntQueryOperatorInput>;
   readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
@@ -2908,7 +2909,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
   readonly jsxPragma: Maybe<StringQueryOperatorInput>;
-  readonly enabled: Maybe<BooleanQueryOperatorInput>;
 };
 
 type SitePluginPluginOptionsPluginsFilterListInput = {
@@ -3182,6 +3182,8 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
   pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
   pluginCreator___pluginOptions___failOnError = 'pluginCreator.pluginOptions.failOnError',
+  pluginCreator___pluginOptions___environment = 'pluginCreator.pluginOptions.environment',
+  pluginCreator___pluginOptions___tracesSampleRate = 'pluginCreator.pluginOptions.tracesSampleRate',
   pluginCreator___pluginOptions___includeInDevelopment = 'pluginCreator.pluginOptions.includeInDevelopment',
   pluginCreator___pluginOptions___delayTimeout = 'pluginCreator.pluginOptions.delayTimeout',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
@@ -3190,7 +3192,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
   pluginCreator___pluginOptions___downloadLocal = 'pluginCreator.pluginOptions.downloadLocal',
   pluginCreator___pluginOptions___host = 'pluginCreator.pluginOptions.host',
-  pluginCreator___pluginOptions___environment = 'pluginCreator.pluginOptions.environment',
   pluginCreator___pluginOptions___forceFullSync = 'pluginCreator.pluginOptions.forceFullSync',
   pluginCreator___pluginOptions___pageLimit = 'pluginCreator.pluginOptions.pageLimit',
   pluginCreator___pluginOptions___assetDownloadWorkers = 'pluginCreator.pluginOptions.assetDownloadWorkers',
@@ -3234,7 +3235,6 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
   pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
   pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
-  pluginCreator___pluginOptions___enabled = 'pluginCreator.pluginOptions.enabled',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
@@ -3834,11 +3834,11 @@ enum ContentfulAssetFieldsEnum {
   localFile___childrenPagesJson___internal___owner = 'localFile.childrenPagesJson.internal.owner',
   localFile___childrenPagesJson___internal___type = 'localFile.childrenPagesJson.internal.type',
   localFile___childrenPagesJson___path = 'localFile.childrenPagesJson.path',
+  localFile___childrenPagesJson___catchphrase = 'localFile.childrenPagesJson.catchphrase',
   localFile___childrenPagesJson___introduction = 'localFile.childrenPagesJson.introduction',
   localFile___childrenPagesJson___image = 'localFile.childrenPagesJson.image',
   localFile___childrenPagesJson___displayTitle = 'localFile.childrenPagesJson.displayTitle',
   localFile___childrenPagesJson___title = 'localFile.childrenPagesJson.title',
-  localFile___childrenPagesJson___catchphrase = 'localFile.childrenPagesJson.catchphrase',
   localFile___childPagesJson___id = 'localFile.childPagesJson.id',
   localFile___childPagesJson___parent___id = 'localFile.childPagesJson.parent.id',
   localFile___childPagesJson___parent___children = 'localFile.childPagesJson.parent.children',
@@ -3854,11 +3854,11 @@ enum ContentfulAssetFieldsEnum {
   localFile___childPagesJson___internal___owner = 'localFile.childPagesJson.internal.owner',
   localFile___childPagesJson___internal___type = 'localFile.childPagesJson.internal.type',
   localFile___childPagesJson___path = 'localFile.childPagesJson.path',
+  localFile___childPagesJson___catchphrase = 'localFile.childPagesJson.catchphrase',
   localFile___childPagesJson___introduction = 'localFile.childPagesJson.introduction',
   localFile___childPagesJson___image = 'localFile.childPagesJson.image',
   localFile___childPagesJson___displayTitle = 'localFile.childPagesJson.displayTitle',
   localFile___childPagesJson___title = 'localFile.childPagesJson.title',
-  localFile___childPagesJson___catchphrase = 'localFile.childPagesJson.catchphrase',
   localFile___id = 'localFile.id',
   localFile___parent___id = 'localFile.parent.id',
   localFile___parent___parent___id = 'localFile.parent.parent.id',
@@ -6345,19 +6345,19 @@ enum ContentfulMarkdownArticleFieldsEnum {
   featuredImage___localFile___childrenPagesJson___id = 'featuredImage.localFile.childrenPagesJson.id',
   featuredImage___localFile___childrenPagesJson___children = 'featuredImage.localFile.childrenPagesJson.children',
   featuredImage___localFile___childrenPagesJson___path = 'featuredImage.localFile.childrenPagesJson.path',
+  featuredImage___localFile___childrenPagesJson___catchphrase = 'featuredImage.localFile.childrenPagesJson.catchphrase',
   featuredImage___localFile___childrenPagesJson___introduction = 'featuredImage.localFile.childrenPagesJson.introduction',
   featuredImage___localFile___childrenPagesJson___image = 'featuredImage.localFile.childrenPagesJson.image',
   featuredImage___localFile___childrenPagesJson___displayTitle = 'featuredImage.localFile.childrenPagesJson.displayTitle',
   featuredImage___localFile___childrenPagesJson___title = 'featuredImage.localFile.childrenPagesJson.title',
-  featuredImage___localFile___childrenPagesJson___catchphrase = 'featuredImage.localFile.childrenPagesJson.catchphrase',
   featuredImage___localFile___childPagesJson___id = 'featuredImage.localFile.childPagesJson.id',
   featuredImage___localFile___childPagesJson___children = 'featuredImage.localFile.childPagesJson.children',
   featuredImage___localFile___childPagesJson___path = 'featuredImage.localFile.childPagesJson.path',
+  featuredImage___localFile___childPagesJson___catchphrase = 'featuredImage.localFile.childPagesJson.catchphrase',
   featuredImage___localFile___childPagesJson___introduction = 'featuredImage.localFile.childPagesJson.introduction',
   featuredImage___localFile___childPagesJson___image = 'featuredImage.localFile.childPagesJson.image',
   featuredImage___localFile___childPagesJson___displayTitle = 'featuredImage.localFile.childPagesJson.displayTitle',
   featuredImage___localFile___childPagesJson___title = 'featuredImage.localFile.childPagesJson.title',
-  featuredImage___localFile___childPagesJson___catchphrase = 'featuredImage.localFile.childPagesJson.catchphrase',
   featuredImage___localFile___id = 'featuredImage.localFile.id',
   featuredImage___localFile___parent___id = 'featuredImage.localFile.parent.id',
   featuredImage___localFile___parent___children = 'featuredImage.localFile.parent.children',
@@ -6494,19 +6494,19 @@ enum ContentfulMarkdownArticleFieldsEnum {
   images___localFile___childrenPagesJson___id = 'images.localFile.childrenPagesJson.id',
   images___localFile___childrenPagesJson___children = 'images.localFile.childrenPagesJson.children',
   images___localFile___childrenPagesJson___path = 'images.localFile.childrenPagesJson.path',
+  images___localFile___childrenPagesJson___catchphrase = 'images.localFile.childrenPagesJson.catchphrase',
   images___localFile___childrenPagesJson___introduction = 'images.localFile.childrenPagesJson.introduction',
   images___localFile___childrenPagesJson___image = 'images.localFile.childrenPagesJson.image',
   images___localFile___childrenPagesJson___displayTitle = 'images.localFile.childrenPagesJson.displayTitle',
   images___localFile___childrenPagesJson___title = 'images.localFile.childrenPagesJson.title',
-  images___localFile___childrenPagesJson___catchphrase = 'images.localFile.childrenPagesJson.catchphrase',
   images___localFile___childPagesJson___id = 'images.localFile.childPagesJson.id',
   images___localFile___childPagesJson___children = 'images.localFile.childPagesJson.children',
   images___localFile___childPagesJson___path = 'images.localFile.childPagesJson.path',
+  images___localFile___childPagesJson___catchphrase = 'images.localFile.childPagesJson.catchphrase',
   images___localFile___childPagesJson___introduction = 'images.localFile.childPagesJson.introduction',
   images___localFile___childPagesJson___image = 'images.localFile.childPagesJson.image',
   images___localFile___childPagesJson___displayTitle = 'images.localFile.childPagesJson.displayTitle',
   images___localFile___childPagesJson___title = 'images.localFile.childPagesJson.title',
-  images___localFile___childPagesJson___catchphrase = 'images.localFile.childPagesJson.catchphrase',
   images___localFile___id = 'images.localFile.id',
   images___localFile___parent___id = 'images.localFile.parent.id',
   images___localFile___parent___children = 'images.localFile.parent.children',
@@ -7858,19 +7858,19 @@ enum ContentfulPlaylistFieldsEnum {
   coverart___localFile___childrenPagesJson___id = 'coverart.localFile.childrenPagesJson.id',
   coverart___localFile___childrenPagesJson___children = 'coverart.localFile.childrenPagesJson.children',
   coverart___localFile___childrenPagesJson___path = 'coverart.localFile.childrenPagesJson.path',
+  coverart___localFile___childrenPagesJson___catchphrase = 'coverart.localFile.childrenPagesJson.catchphrase',
   coverart___localFile___childrenPagesJson___introduction = 'coverart.localFile.childrenPagesJson.introduction',
   coverart___localFile___childrenPagesJson___image = 'coverart.localFile.childrenPagesJson.image',
   coverart___localFile___childrenPagesJson___displayTitle = 'coverart.localFile.childrenPagesJson.displayTitle',
   coverart___localFile___childrenPagesJson___title = 'coverart.localFile.childrenPagesJson.title',
-  coverart___localFile___childrenPagesJson___catchphrase = 'coverart.localFile.childrenPagesJson.catchphrase',
   coverart___localFile___childPagesJson___id = 'coverart.localFile.childPagesJson.id',
   coverart___localFile___childPagesJson___children = 'coverart.localFile.childPagesJson.children',
   coverart___localFile___childPagesJson___path = 'coverart.localFile.childPagesJson.path',
+  coverart___localFile___childPagesJson___catchphrase = 'coverart.localFile.childPagesJson.catchphrase',
   coverart___localFile___childPagesJson___introduction = 'coverart.localFile.childPagesJson.introduction',
   coverart___localFile___childPagesJson___image = 'coverart.localFile.childPagesJson.image',
   coverart___localFile___childPagesJson___displayTitle = 'coverart.localFile.childPagesJson.displayTitle',
   coverart___localFile___childPagesJson___title = 'coverart.localFile.childPagesJson.title',
-  coverart___localFile___childPagesJson___catchphrase = 'coverart.localFile.childPagesJson.catchphrase',
   coverart___localFile___id = 'coverart.localFile.id',
   coverart___localFile___parent___id = 'coverart.localFile.parent.id',
   coverart___localFile___parent___children = 'coverart.localFile.parent.children',
@@ -8546,19 +8546,19 @@ enum ContentfulSongFieldsEnum {
   sound___localFile___childrenPagesJson___id = 'sound.localFile.childrenPagesJson.id',
   sound___localFile___childrenPagesJson___children = 'sound.localFile.childrenPagesJson.children',
   sound___localFile___childrenPagesJson___path = 'sound.localFile.childrenPagesJson.path',
+  sound___localFile___childrenPagesJson___catchphrase = 'sound.localFile.childrenPagesJson.catchphrase',
   sound___localFile___childrenPagesJson___introduction = 'sound.localFile.childrenPagesJson.introduction',
   sound___localFile___childrenPagesJson___image = 'sound.localFile.childrenPagesJson.image',
   sound___localFile___childrenPagesJson___displayTitle = 'sound.localFile.childrenPagesJson.displayTitle',
   sound___localFile___childrenPagesJson___title = 'sound.localFile.childrenPagesJson.title',
-  sound___localFile___childrenPagesJson___catchphrase = 'sound.localFile.childrenPagesJson.catchphrase',
   sound___localFile___childPagesJson___id = 'sound.localFile.childPagesJson.id',
   sound___localFile___childPagesJson___children = 'sound.localFile.childPagesJson.children',
   sound___localFile___childPagesJson___path = 'sound.localFile.childPagesJson.path',
+  sound___localFile___childPagesJson___catchphrase = 'sound.localFile.childPagesJson.catchphrase',
   sound___localFile___childPagesJson___introduction = 'sound.localFile.childPagesJson.introduction',
   sound___localFile___childPagesJson___image = 'sound.localFile.childPagesJson.image',
   sound___localFile___childPagesJson___displayTitle = 'sound.localFile.childPagesJson.displayTitle',
   sound___localFile___childPagesJson___title = 'sound.localFile.childPagesJson.title',
-  sound___localFile___childPagesJson___catchphrase = 'sound.localFile.childPagesJson.catchphrase',
   sound___localFile___id = 'sound.localFile.id',
   sound___localFile___parent___id = 'sound.localFile.parent.id',
   sound___localFile___parent___children = 'sound.localFile.parent.children',
@@ -8694,19 +8694,19 @@ enum ContentfulSongFieldsEnum {
   coverart___localFile___childrenPagesJson___id = 'coverart.localFile.childrenPagesJson.id',
   coverart___localFile___childrenPagesJson___children = 'coverart.localFile.childrenPagesJson.children',
   coverart___localFile___childrenPagesJson___path = 'coverart.localFile.childrenPagesJson.path',
+  coverart___localFile___childrenPagesJson___catchphrase = 'coverart.localFile.childrenPagesJson.catchphrase',
   coverart___localFile___childrenPagesJson___introduction = 'coverart.localFile.childrenPagesJson.introduction',
   coverart___localFile___childrenPagesJson___image = 'coverart.localFile.childrenPagesJson.image',
   coverart___localFile___childrenPagesJson___displayTitle = 'coverart.localFile.childrenPagesJson.displayTitle',
   coverart___localFile___childrenPagesJson___title = 'coverart.localFile.childrenPagesJson.title',
-  coverart___localFile___childrenPagesJson___catchphrase = 'coverart.localFile.childrenPagesJson.catchphrase',
   coverart___localFile___childPagesJson___id = 'coverart.localFile.childPagesJson.id',
   coverart___localFile___childPagesJson___children = 'coverart.localFile.childPagesJson.children',
   coverart___localFile___childPagesJson___path = 'coverart.localFile.childPagesJson.path',
+  coverart___localFile___childPagesJson___catchphrase = 'coverart.localFile.childPagesJson.catchphrase',
   coverart___localFile___childPagesJson___introduction = 'coverart.localFile.childPagesJson.introduction',
   coverart___localFile___childPagesJson___image = 'coverart.localFile.childPagesJson.image',
   coverart___localFile___childPagesJson___displayTitle = 'coverart.localFile.childPagesJson.displayTitle',
   coverart___localFile___childPagesJson___title = 'coverart.localFile.childPagesJson.title',
-  coverart___localFile___childPagesJson___catchphrase = 'coverart.localFile.childPagesJson.catchphrase',
   coverart___localFile___id = 'coverart.localFile.id',
   coverart___localFile___parent___id = 'coverart.localFile.parent.id',
   coverart___localFile___parent___children = 'coverart.localFile.parent.children',
@@ -10078,11 +10078,11 @@ enum PagesJsonFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   path = 'path',
+  catchphrase = 'catchphrase',
   introduction = 'introduction',
   image = 'image',
   displayTitle = 'displayTitle',
-  title = 'title',
-  catchphrase = 'catchphrase'
+  title = 'title'
 }
 
 type PagesJsonGroupConnection = {
@@ -10373,6 +10373,8 @@ enum SitePluginFieldsEnum {
   pluginOptions___stripMetadata = 'pluginOptions.stripMetadata',
   pluginOptions___defaultQuality = 'pluginOptions.defaultQuality',
   pluginOptions___failOnError = 'pluginOptions.failOnError',
+  pluginOptions___environment = 'pluginOptions.environment',
+  pluginOptions___tracesSampleRate = 'pluginOptions.tracesSampleRate',
   pluginOptions___includeInDevelopment = 'pluginOptions.includeInDevelopment',
   pluginOptions___delayTimeout = 'pluginOptions.delayTimeout',
   pluginOptions___path = 'pluginOptions.path',
@@ -10381,7 +10383,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___accessToken = 'pluginOptions.accessToken',
   pluginOptions___downloadLocal = 'pluginOptions.downloadLocal',
   pluginOptions___host = 'pluginOptions.host',
-  pluginOptions___environment = 'pluginOptions.environment',
   pluginOptions___forceFullSync = 'pluginOptions.forceFullSync',
   pluginOptions___pageLimit = 'pluginOptions.pageLimit',
   pluginOptions___assetDownloadWorkers = 'pluginOptions.assetDownloadWorkers',
@@ -10429,7 +10430,6 @@ enum SitePluginFieldsEnum {
   pluginOptions___allExtensions = 'pluginOptions.allExtensions',
   pluginOptions___isTSX = 'pluginOptions.isTSX',
   pluginOptions___jsxPragma = 'pluginOptions.jsxPragma',
-  pluginOptions___enabled = 'pluginOptions.enabled',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
   ssrAPIs = 'ssrAPIs',
@@ -10507,6 +10507,11 @@ type VerticalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata
     )> }
   )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
 
+type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+
 type ArticlesPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -10562,9 +10567,19 @@ type PlaylistQuery = { readonly contentfulPlaylist: Maybe<(
     )>>> }
   )> };
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
 }
