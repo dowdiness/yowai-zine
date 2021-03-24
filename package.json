@@ -75,7 +75,8 @@
     "scheduler": "^0.20.1",
     "simplex-noise": "^2.4.0",
     "smoothscroll-polyfill": "^0.4.4",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "use-context-selector": "^1.3.7"
   },
   "devDependencies": {
     "@dowdiness/eslint-config": "^0.1.5",
