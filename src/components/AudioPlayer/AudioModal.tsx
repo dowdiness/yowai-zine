@@ -63,11 +63,16 @@ const AudioModal = () => {
       key="modal"
     >
       <header className="flex items-center justify-between w-full h-24">
-        <IoChevronDown
-          size={36}
+        <button
+          type="button"
+          className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
           onClick={() => setIsAudioModalOpen(false)}
-          className="cursor-pointer"
-        />
+          aria-label="オーディオプレイヤーを閉じる"
+        >
+          <IoChevronDown
+            size={36}
+          />
+        </button>
         <h2 className="text-lg font-medium">{tracks[0].album}</h2>
         <div className="w-9 h-9" />
       </header>
@@ -98,7 +103,7 @@ const AudioModal = () => {
           />
           <div id="value" style={{ width: currentPercentage }} className={AudioStyle.value} />
         </div>
-        <div className="flex items-center justify-between w-full -mt-2">
+        <div className="flex items-center justify-between w-full">
           <span className="text-sm">{displayTime(trackProgress)}</span>
           <span className="text-sm">{displayTime(duration)}</span>
         </div>
