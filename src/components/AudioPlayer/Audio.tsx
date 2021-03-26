@@ -91,7 +91,7 @@ const AudioPlayer: React.FC = () => {
       {isAudioMiniPlayerOpen ? isAudioModalOpen
         ? <AudioModal />
         : <motion.div
-          className="fixed bottom-0 left-0 z-30 flex w-screen h-16 border border-t border-black md:h-24 bg-neumorphism md:flex"
+          className="fixed bottom-0 left-0 z-30 flex w-screen h-16 py-2 neumorphism-normal md:h-24 bg-neumorphism md:flex"
           onClick={() => isPc ? null : setIsAudioModalOpen(true)}
           initial="hidden"
           animate="show"
@@ -110,8 +110,7 @@ const AudioPlayer: React.FC = () => {
               {isPlaying ? (
                 <button
                   type="button"
-                  className="pause"
-                  onClick={(event) => {
+                  className="p-2 rounded-full neumorphism-inset active:neumorphism-normal"                  onClick={(event) => {
                     event.stopPropagation()
                     setIsPlaying(false)
                   }}
@@ -122,7 +121,7 @@ const AudioPlayer: React.FC = () => {
               ) : (
                   <button
                     type="button"
-                    className="play"
+                    className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
                     onClick={(event) => {
                       event.stopPropagation()
                       setIsPlaying(true)

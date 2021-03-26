@@ -25,7 +25,7 @@ const AudioControls = () => {
     <div className="flex items-center justify-between space-x-8">
       <button
         type="button"
-        className="prev"
+        className="p-2 rounded-full neumorphism-normal focus:neumorphism-inset"
         aria-label="Previous"
         onClick={() => toPrevTrack(audio)}
       >
@@ -33,7 +33,7 @@ const AudioControls = () => {
       </button>
       <button
         type="button"
-        className="seekbackward"
+        className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
         aria-label="Seekbackward"
         onClick={(event) => {
           event.stopPropagation()
@@ -45,7 +45,7 @@ const AudioControls = () => {
       {isPlaying ? (
         <button
           type="button"
-          className="pause"
+          className="p-2 rounded-full neumorphism-inset active:neumorphism-normal"
           onClick={(event) => {
             event.stopPropagation()
             setIsPlaying(false)
@@ -57,7 +57,7 @@ const AudioControls = () => {
       ) : (
         <button
           type="button"
-          className="play"
+          className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
           onClick={(event) => {
             event.stopPropagation()
             setIsPlaying(true)
@@ -69,7 +69,7 @@ const AudioControls = () => {
       )}
       <button
         type="button"
-        className="seekforward"
+        className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
         aria-label="Seekforward"
         onClick={(event) => {
           event.stopPropagation()
@@ -80,7 +80,7 @@ const AudioControls = () => {
       </button>
       <button
         type="button"
-        className="next"
+        className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
         aria-label="Next"
         onClick={toNextTrack}
       >

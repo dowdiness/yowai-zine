@@ -13,7 +13,7 @@ const AudioVolume = () => {
       {isMute ? (
         <button
           type="button"
-          className="mute"
+          className="p-2 rounded-full neumorphism-inset active:neumorphism-normal"
           onClick={() => setIsMute(false)}
           aria-label="MuteOn"
         >
@@ -22,7 +22,7 @@ const AudioVolume = () => {
       ) : (
           <button
             type="button"
-            className="mute"
+            className={`p-2 rounded-full active:neumorphism-inset ${volume === 0 ? `neumorphism-inset` : `neumorphism-normal` }`}
             onClick={() => setIsMute(true)}
             aria-label="MuteOff"
           >
