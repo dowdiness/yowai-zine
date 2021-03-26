@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
 import AudioInfo from 'src/components/AudioPlayer/AudioInfo'
 import AudioVolume from 'src/components/AudioPlayer/AudioVolume'
@@ -22,6 +22,7 @@ import { FaRegPlayCircle, FaRegPauseCircle } from 'react-icons/fa'
 import { RiPlayList2Line } from "react-icons/ri"
 
 import { displayTime } from './utils'
+import * as AudioStyle from "./audio.module.css"
 
 const audioPlaylerVariants = {
   hidden: {
@@ -45,14 +46,45 @@ const AudioPlayer: React.FC = () => {
   const [isAudioMiniPlayerOpen] = useAtom(isAudioMiniPlayerOpenAtom)
   const [isAudioModalOpen, setIsAudioModalOpen] = useAtom(isAudioModalOpenAtom)
 
+  const [isPc, setIsPc] = useState(false)
+
   let currentPercentage = "0%"
   currentPercentage = duration
-    ? `${(trackProgress / duration) * 100}%`
-    : "0%"
+    ? `${(trackProgress / duration) * 97 + 2}%`
+    : "2%"
 
-  const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #414141))
-    `
+  const changeIsPc = (e: MediaQueryListEvent) => {
+    if (e.matches) {
+      setIsPc(true)
+    } else {
+      setIsPc(false)
+    }
+  }
+
+  useEffect(() => {
+    const mql = matchMedia("(min-width: 768px)")
+    if (mql.matches) {
+      setIsPc(true)
+    } else {
+      setIsPc(false)
+    }
+
+    // Safari 14 以前ではEventTargetを元にしていた為にメソッドの名前が違う
+    if (typeof mql.addEventListener === 'undefined') {
+      // Safari 14 以前への対応
+      // @ts-ignore
+      mql.addListener(changeIsPc)
+      return() => {
+        // @ts-ignore
+        mql.removeListener(changeIsPc)
+      }
+    } else {
+      mql.addEventListener("change", changeIsPc)
+      return() => {
+        mql.removeEventListener("change" , changeIsPc)
+      }
+    }
+  }, [])
 
   return (
     <AnimatePresence>
@@ -60,7 +92,7 @@ const AudioPlayer: React.FC = () => {
         ? <AudioModal />
         : <motion.div
           className="fixed bottom-0 left-0 z-30 flex w-screen h-16 border border-t border-black md:h-24 bg-neumorphism md:flex"
-          onClick={() => setIsAudioModalOpen(true)}
+          onClick={() => isPc ? null : setIsAudioModalOpen(true)}
           initial="hidden"
           animate="show"
           exit="hidden"
@@ -105,18 +137,20 @@ const AudioPlayer: React.FC = () => {
               <AudioControls />
               <div className="flex items-center w-full mt-2 space-x-2">
                 <span className="text-sm">{displayTime(trackProgress)}</span>
-                <input
-                  type="range"
-                  value={trackProgress}
-                  step="1"
-                  min="0"
-                  max={duration}
-                  className="w-full"
-                  onChange={(e) => setCurrentTime(parseInt(e.target.value, 10))}
-                  onMouseUp={() => setIsPlaying(true)}
-                  onKeyUp={() => setIsPlaying(true)}
-                  style={{ background: trackStyling }}
-                />
+                <div className="relative w-full">
+                  <input
+                    type="range"
+                    value={trackProgress}
+                    step="1"
+                    min="0"
+                    max={duration}
+                    className={AudioStyle.slider}
+                    onChange={(e) => setCurrentTime(parseInt(e.target.value, 10))}
+                    onMouseUp={() => setIsPlaying(true)}
+                    onKeyUp={() => setIsPlaying(true)}
+                  />
+                  <div id="value" style={{ width: currentPercentage }} className={AudioStyle.value} />
+                </div>
                 <span className="text-sm">{displayTime(duration)}</span>
               </div>
             </div>

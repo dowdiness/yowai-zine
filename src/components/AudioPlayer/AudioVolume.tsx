@@ -2,14 +2,11 @@ import React from "react"
 import { IoVolumeMute, IoVolumeOff, IoVolumeLow, IoVolumeMedium, IoVolumeHigh } from "react-icons/io5"
 import { useAtom } from "jotai"
 import { volumeAtom, isMuteAtom } from 'src/atoms/track'
+import * as AudioStyle from "./audio.module.css"
 
 const AudioVolume = () => {
   const [volume, setVolume] = useAtom(volumeAtom)
   const [isMute, setIsMute] = useAtom(isMuteAtom)
-
-  const volumeStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${volume}, #fff), color-stop(${volume}, #414141))
-    `
 
   return (
     <div className="flex items-center justify-end">
@@ -39,16 +36,18 @@ const AudioVolume = () => {
                     : <IoVolumeHigh size={24} />}
           </button>
         )}
-      <input
-        type="range"
-        value={volume}
-        step="0.01"
-        min="0"
-        max="1"
-        className="w-3/5 ml-2"
-        onChange={(e) => setVolume(parseFloat(e.target.value))}
-        style={{ background: volumeStyling }}
-      />
+      <div className="relative w-3/5 ml-2">
+        <input
+          type="range"
+          value={volume}
+          step="0.01"
+          min="0"
+          max="1"
+          className={AudioStyle.slider}
+          onChange={(e) => setVolume(parseFloat(e.target.value))}
+          />
+        <div id="value" style={{ width: `${volume * 100.0}%` }} className={AudioStyle.value} />
+      </div>
     </div>
   )
 }

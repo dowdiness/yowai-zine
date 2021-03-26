@@ -1,0 +1,56 @@
+.slider {
+  -webkit-appearance: none;
+  cursor: pointer;
+  width: 100%;
+  height: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: #ECF0F3;
+  box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+              inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+              inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+              inset 2px 2px 8px rgba(0, 0, 0, .3);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply bg-yowai;
+  cursor: ew-resize;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+              -2px -2px 12px rgba(255, 255, 255, 0.5),
+              inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+              2px 2px 8px rgba(0, 0, 0, .3);
+}
+
+.slider::-moz-range-thumb {
+  -webkit-appearance: none;
+  @apply bg-yowai;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+              -2px -2px 12px rgba(255, 255, 255, 0.5),
+              inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+              2px 2px 8px rgba(0, 0, 0, .3);
+}
+
+.slider::-moz-focus-outer {
+  border: 0;
+}
+
+.value {
+  position: absolute;
+  pointer-events: none;
+  top: 8px;
+  left: 0px;
+  height: 10px;
+  @apply bg-yowai;
+  border-radius: 5px 0 0 5px;
+  box-sizing: content-box;
+}

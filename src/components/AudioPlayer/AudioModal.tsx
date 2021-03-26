@@ -23,6 +23,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
 
 import { displayTime } from './utils'
+import * as AudioStyle from "./audio.module.css"
 
 const AudioModal = () => {
   const [tracks] = useAtom(tracksAtom)
@@ -34,6 +35,11 @@ const AudioModal = () => {
   const [, setIsAudioModalOpen] = useAtom(isAudioModalOpenAtom)
 
   const [windowSize] = useAtom(windowSizeAtom)
+
+  let currentPercentage = "0%"
+  currentPercentage = duration
+    ? `${(trackProgress / duration) * 97 + 2}%`
+    : "2%"
 
   const variants = {
     hidden: {
@@ -60,6 +66,7 @@ const AudioModal = () => {
         <IoChevronDown
           size={36}
           onClick={() => setIsAudioModalOpen(false)}
+          className="cursor-pointer"
         />
         <h2 className="text-lg font-medium">{tracks[0].album}</h2>
         <div className="w-9 h-9" />
@@ -77,18 +84,20 @@ const AudioModal = () => {
         </div>
       </section>
       <section>
-        <input
-          type="range"
-          value={trackProgress}
-          step="1"
-          min="0"
-          max={duration}
-          className="w-full"
-          onChange={(e) => setCurrentTime(parseInt(e.target.value, 10))}
-          onMouseUp={() => setIsPlaying(true)}
-          onKeyUp={() => setIsPlaying(true)}
-        // style={{ background: trackStyling }}
-        />
+        <div className="relative w-full">
+          <input
+            type="range"
+            value={trackProgress}
+            step="1"
+            min="0"
+            max={duration}
+            className={AudioStyle.slider}
+            onChange={(e) => setCurrentTime(parseInt(e.target.value, 10))}
+            onMouseUp={() => setIsPlaying(true)}
+            onKeyUp={() => setIsPlaying(true)}
+          />
+          <div id="value" style={{ width: currentPercentage }} className={AudioStyle.value} />
+        </div>
         <div className="flex items-center justify-between w-full -mt-2">
           <span className="text-sm">{displayTime(trackProgress)}</span>
           <span className="text-sm">{displayTime(duration)}</span>
