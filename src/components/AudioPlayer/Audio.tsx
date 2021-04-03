@@ -100,13 +100,47 @@ const AudioPlayer: React.FC = () => {
           key="player"
         >
           <div className="flex items-center justify-between w-full md:px-4">
+            <div
+              className="absolute left-0 z-10 w-full -top-4 md:hidden"
+            >
+              <input
+                type="range"
+                value={trackProgress}
+                step="1"
+                min="0"
+                max={duration}
+                className={AudioStyle.slider}
+                style={{
+                  borderRadius: 0,
+                  backgroundColor: '#e6e7ee',
+                  boxShadow: 'none',
+                }}
+                onClick={(event) => {
+                  event.stopPropagation()
+                }}
+                onChange={(event) => {
+                  event.stopPropagation()
+                  setCurrentTime(parseInt(event.target.value, 10))
+                }}
+                onMouseUp={() => setIsPlaying(true)}
+                onKeyUp={() => setIsPlaying(true)}
+              />
+              <div
+                id="value"
+                style={{
+                  width: currentPercentage,
+                  borderRadius: 0,
+                }}
+                className={AudioStyle.value}
+              />
+            </div>
             <AudioInfo
-              className="w-4/5 md:w-3/12"
+              className="flex-1 w-4/5 md:w-4/12"
               image={tracks[0].cover}
               title={tracks[0].title}
               artist={tracks[0].artist}
             />
-            <div className="flex items-center justify-center m-auto md:hidden">
+            <div className="flex items-center justify-center flex-none px-2 m-auto md:hidden">
               {isPlaying ? (
                 <button
                   type="button"
@@ -132,7 +166,7 @@ const AudioPlayer: React.FC = () => {
                   </button>
                 )}
             </div>
-            <div className="flex-col items-center hidden w-1/2 md:flex">
+            <div className="flex-col items-center hidden w-5/12 md:flex">
               <AudioControls />
               <div className="flex items-center w-full mt-2 space-x-2">
                 <span className="text-sm">{displayTime(trackProgress)}</span>

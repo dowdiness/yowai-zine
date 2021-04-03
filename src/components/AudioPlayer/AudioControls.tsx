@@ -22,7 +22,7 @@ const AudioControls = () => {
   const audio = useContextSelector(AudioContext, audio => audio?.current)
 
   return (
-    <div className="flex items-center justify-between space-x-8">
+    <div className="flex items-center justify-around w-full">
       <button
         type="button"
         className="p-2 rounded-full neumorphism-normal focus:neumorphism-inset"

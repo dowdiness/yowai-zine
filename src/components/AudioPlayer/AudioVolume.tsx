@@ -46,7 +46,7 @@ const AudioVolume = () => {
           className={AudioStyle.slider}
           onChange={(e) => setVolume(parseFloat(e.target.value))}
           />
-        <div id="value" style={{ width: `${volume * 100.0}%` }} className={AudioStyle.value} />
+        <div id="value" style={{ width: `${volume * 98.0}%` }} className={AudioStyle.value} />
       </div>
     </div>
   )
