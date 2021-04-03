@@ -21,7 +21,9 @@ import {
 
 // import { RiPlayList2Line } from "react-icons/ri"
 
+// Utils
 import { displayTime } from './utils'
+import { stopBodyScrolling, restartBodyScrolling } from 'src/utils'
 import * as AudioStyle from "./audio.module.css"
 
 const audioPlaylerVariants = {
@@ -60,6 +62,14 @@ const AudioPlayer: React.FC = () => {
       setIsPc(false)
     }
   }
+
+  useEffect(() => {
+    if (isAudioModalOpen) {
+      stopBodyScrolling()
+    } else {
+      restartBodyScrolling()
+    }
+  }, [isAudioModalOpen])
 
   useEffect(() => {
     const mql = matchMedia("(min-width: 768px)")
