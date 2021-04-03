@@ -19,7 +19,7 @@ import {
   isAudioModalOpenAtom,
 } from 'src/atoms/ui'
 
-import { RiPlayList2Line } from "react-icons/ri"
+// import { RiPlayList2Line } from "react-icons/ri"
 
 import { displayTime } from './utils'
 import * as AudioStyle from "./audio.module.css"
@@ -175,7 +175,7 @@ const AudioPlayer: React.FC = () => {
               </div>
             </div>
             <div className="items-center justify-around hidden w-3/12 pl-4 pr-2 md:flex">
-              <RiPlayList2Line size={24} />
+              {/* <RiPlayList2Line size={24} /> */}
               <AudioVolume />
             </div>
           </div>
