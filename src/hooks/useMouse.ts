@@ -52,7 +52,7 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
     gsap.to(cursorRef.current, {
       duration: 2,
       ease: 'Power3.easeOut',
-      opacity: 1,
+      opacity: 0.75,
     })
 
     requestAnimationFrame(() => render())
