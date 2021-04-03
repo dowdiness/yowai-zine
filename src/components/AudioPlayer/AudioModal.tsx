@@ -55,14 +55,14 @@ const AudioModal = () => {
 
   return (
     <motion.article
-      className={`flex flex-col justify-around fixed inset-0 z-40 h-screen bg-neumorphism px-4 space-y-2`}
+      className={`flex flex-col justify-evenly fixed inset-0 z-40 h-screen bg-neumorphism px-4 space-y-2`}
       initial="hidden"
       animate="show"
       exit="hidden"
       variants={variants}
       key="modal"
     >
-      <header className="flex items-center justify-between w-full h-16">
+      <header className="flex items-center justify-between w-full h-12">
         <button
           type="button"
           className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
