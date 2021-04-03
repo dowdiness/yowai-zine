@@ -56,7 +56,7 @@ export const addTrackAtom = atom(
 
 export const prevTrackAtom = atom(
   null,
-  (get, set, audio: HTMLAudioElement|undefined) => {
+  (get, set, audio: HTMLAudioElement|null) => {
     const history = get(historyAtom)
     const prevTrack = history.pop()
     if (prevTrack) {
@@ -77,7 +77,7 @@ export const nextTrackAtom = atom(
     if (prevTrack) {
       set(historyAtom, [...history, prevTrack])
     }
-    if (tracks.length > 1) {
+    if (tracks.length > 0) {
       set(tracksAtom, [...tracks])
     } else {
       set(isPlayingAtom, false)

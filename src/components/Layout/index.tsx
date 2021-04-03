@@ -7,7 +7,7 @@ import { AudioProvider } from 'src/components/AudioPlayer/AudioProvider'
 
 import { m as motion, useViewportScroll, useTransform, LazyMotion } from 'framer-motion'
 
-const AudioModal = loadable(() => import('src/components/AudioPlayer/Audio'))
+const AudioModal = loadable(() => import('src/components/AudioPlayer/AudioPlayer'))
 const Mouse = loadable(() => import('src/components/Layout/Mouse'))
 const Skew = loadable(() => import('src/components/Layout/Skew'))
 

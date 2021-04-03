@@ -30,7 +30,7 @@ function useAudioPlayer() {
   const [skipTime, setSkipTime] = useAtom(skipTimeAtom)
   const [currentTime] = useAtom(currentTimeAtom)
 
-  const audioRef = useRef<HTMLAudioElement>(null!)
+  const audioRef = useRef<HTMLAudioElement|null>(null!)
   const isReady = useRef(false)
 
   const setMediaMetadata = (audioTracks: Track[]) => {
@@ -120,7 +120,7 @@ function useAudioPlayer() {
     audioRef.current = new Audio('/001.wav')
     return (() => {
       // prevent memory leak
-      audioRef.current.pause()
+      audioRef.current?.pause()
     })
   }, [])
 
@@ -139,54 +139,64 @@ function useAudioPlayer() {
   }, [duration, playbackRate, trackProgress])
 
   useEffect(() => {
-    audioRef.current.volume = volume
+    if (audioRef.current) {
+      audioRef.current.volume = volume
+    }
   }, [volume])
 
   useEffect(() => {
-    audioRef.current.muted = isMute
+    if (audioRef.current) {
+      audioRef.current.muted = isMute
+    }
   }, [isMute])
 
   useEffect(() => {
-    audioRef.current.currentTime = currentTime
-    setTrackProgress(audioRef.current.currentTime)
+    if (audioRef.current) {
+      audioRef.current.currentTime = currentTime
+      setTrackProgress(audioRef.current.currentTime)
+    }
   }, [currentTime])
 
   useEffect(() => {
-    // seekforward
-    if (skipTime > 0) {
-      audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
-      //seekbackward
-    } else if (skipTime < 0) {
-      audioRef.current.currentTime = Math.max(audioRef.current.currentTime + skipTime, 0)
-    } else {
-      return
+    if (audioRef.current) {
+      // seekforward
+      if (skipTime > 0) {
+        audioRef.current.currentTime = Math.min(audioRef.current.currentTime + skipTime, audioRef.current.duration)
+        //seekbackward
+      } else if (skipTime < 0) {
+        audioRef.current.currentTime = Math.max(audioRef.current.currentTime + skipTime, 0)
+      } else {
+        return
+      }
+      setTrackProgress(audioRef.current.currentTime)
+      updatePositionState()
+      setSkipTime(0)
     }
-    setTrackProgress(audioRef.current.currentTime)
-    updatePositionState()
-    setSkipTime(0)
   }, [skipTime])
 
   useEffect(() => {
-    if (isPlaying) {
+    if (isPlaying && audioRef.current) {
       audioRef.current.play().then(_ => {
-        setDuration(audioRef.current.duration)
+        if (audioRef.current) {
+          setDuration(audioRef.current.duration)
+        }
         setActionHandler()
       })
     } else {
-      audioRef.current.pause()
+      audioRef.current?.pause()
     }
   }, [isPlaying])
 
   // Handles cleanup and setup when changing tracks
   useEffect(() => {
-    audioRef.current.pause()
+    audioRef.current?.pause()
 
     if (tracks[0] && isReady.current) {
       // remove previous audio eventlisners
-      audioRef.current.removeEventListener('timeupdate', (_event) => {
-        if (audioRef.current.ended) {
+      audioRef.current?.removeEventListener('timeupdate', (_event) => {
+        if (audioRef.current?.ended) {
           toNextTrack()
-        } else {
+        } else if (audioRef.current) {
           setTrackProgress(audioRef.current.currentTime)
         }
       })
@@ -203,7 +213,7 @@ function useAudioPlayer() {
         }
       })
       audioRef.current.addEventListener('timeupdate', (_event) => {
-        if (audioRef.current.ended) {
+        if (audioRef.current?.ended) {
           toNextTrack()
         } else if (audioRef.current) {
           setTrackProgress(audioRef.current.currentTime)
