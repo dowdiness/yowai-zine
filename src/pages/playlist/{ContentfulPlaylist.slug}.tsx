@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { PageProps, graphql } from 'gatsby'
 
 //Components
@@ -28,6 +28,8 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
 
   const [isPlayed, setIsPlayed] = useState(false)
+  const [trackIndex, setTrackIndex] = useState(0)
+  const isReady = useRef(false)
 
   const audio = useContextSelector(AudioContext, audio => audio)
 
@@ -82,9 +84,18 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
       audio.current.muted = false
       audio.current.currentTime = 0
       setIsPlayed(true)
-      // console.log('initial')
     }
   }
+
+  useEffect(() => {
+    if (normarizedSongs && isReady.current) {
+      updateTracks(normarizedSongs.slice(trackIndex))
+      setHistory(normarizedSongs.slice(0, trackIndex))
+    } else if (!isReady.current){
+      // Set the isReady ref as true for the next pass
+      isReady.current = true
+    }
+  }, [isPlayed])
 
   const updateHovers = (index: number, result: boolean) => {
     setHovers(isHovers.map((isHover, i) => {
@@ -166,11 +177,13 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                   onMouseEnter={() => updateHovers(index, true)}
                   onMouseLeave={() => updateHovers(index, false)}
                   onDoubleClick={() => {
-                    if (!isPlayed) initializeForSafari()
-                    updateTracks(normarizedSongs.slice(index))
-                    // console.log('update')
-                    setHistory(normarizedSongs.slice(0, index))
-                    // console.log('history')
+                    if (!isPlayed) {
+                      setTrackIndex(index)
+                      initializeForSafari()
+                    } else {
+                      updateTracks(normarizedSongs.slice(index))
+                      setHistory(normarizedSongs.slice(0, index))
+                    }
                   }}
                 >
                   {isHovers[index] || (tracks[0] ? tracks[0].audioSrc === track.audioSrc : false)
@@ -180,11 +193,13 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                       isPlay={tracks[0] ? (tracks[0].audioSrc === track.audioSrc) && isPlaying : false}
                       size={12}
                       onPlay={() => {
-                        if (!isPlayed) initializeForSafari()
-                        updateTracks(normarizedSongs.slice(index))
-                        // console.log('update')
-                        setHistory(normarizedSongs.slice(0, index))
-                        // console.log('history')
+                        if (!isPlayed) {
+                          setTrackIndex(index)
+                          initializeForSafari()
+                        } else {
+                          updateTracks(normarizedSongs.slice(index))
+                          setHistory(normarizedSongs.slice(0, index))
+                        }
                       }}
                       onPause={() => {
                         setIsPlaying(false)
