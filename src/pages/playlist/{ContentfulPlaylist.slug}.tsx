@@ -192,7 +192,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                     />
                     : <span className="mr-4 text-lg text-center w-7">{index + 1}</span>
                   }
-                  <h3 className="text-lg font-medium">{track.title}</h3>
+                  <h3 className="text-lg font-medium line-clamp-1">{track.title}</h3>
                   <h4 className="ml-auto text-lg">{displayTime(track.duration)}</h4>
                 </li>
               </>
