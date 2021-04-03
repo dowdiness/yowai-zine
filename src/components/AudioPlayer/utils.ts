@@ -1,5 +1,5 @@
 export const displayTime = (second: number): string => {
-  const roundedSecond = Math.round(second)
+  const roundedSecond = Math.floor(second)
   // 3600秒以上の場合に対応してません
   if (roundedSecond < 10) {
     return `0:0${roundedSecond}`
