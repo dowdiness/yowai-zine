@@ -19,12 +19,12 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   const currentMouse = useRef<Mouse>({
     x: 0,
     y: 0,
-    scale: 3.5,
+    scale: 1.0,
   })
   const previousMouse = useRef<Mouse>({
     x: 0,
     y: 0,
-    scale: 3.5,
+    scale: 1.0,
   })
 
   const render = () => {
@@ -46,13 +46,14 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
 
   const firstMoveHandler = (event: MouseEvent) => {
     const newMouse = getMousePos(event)
-    currentMouse.current = {scale: 3.5, ...newMouse}
-    previousMouse.current = {scale: 3.5, ...newMouse}
+    currentMouse.current = {scale: 1.0, ...newMouse}
+    previousMouse.current = {scale: 1.0, ...newMouse}
 
     gsap.to(cursorRef.current, {
       duration: 2,
       ease: 'Power3.easeOut',
       opacity: 0.75,
+      force3D: false,
     })
 
     requestAnimationFrame(() => render())
@@ -61,11 +62,11 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   }
 
   const enter = () => {
-    currentMouse.current.scale = 1.5
+    currentMouse.current.scale = 0.4
   }
 
   const leave = () => {
-    currentMouse.current.scale = 3.5
+    currentMouse.current.scale = 1.0
   }
 
   useLayoutEffect(() => {
