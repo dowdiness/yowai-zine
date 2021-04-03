@@ -3,6 +3,7 @@ import AudioControls from 'src/components/AudioPlayer/AudioControls'
 import AudioInfo from 'src/components/AudioPlayer/AudioInfo'
 import AudioVolume from 'src/components/AudioPlayer/AudioVolume'
 import AudioModal from 'src/components/AudioPlayer/AudioModal'
+import AudioPlayButton from 'src/components/AudioPlayer/AudioPlayButton'
 import { m as motion, AnimatePresence } from 'framer-motion'
 
 import { useAtom } from "jotai"
@@ -18,7 +19,6 @@ import {
   isAudioModalOpenAtom,
 } from 'src/atoms/ui'
 
-import { FaRegPlayCircle, FaRegPauseCircle } from 'react-icons/fa'
 import { RiPlayList2Line } from "react-icons/ri"
 
 import { displayTime } from './utils'
@@ -140,32 +140,19 @@ const AudioPlayer: React.FC = () => {
               title={tracks[0].title}
               artist={tracks[0].artist}
             />
-            <div className="flex items-center justify-center flex-none px-2 m-auto md:hidden">
-              {isPlaying ? (
-                <button
-                  type="button"
-                  className="p-2 rounded-full neumorphism-inset active:neumorphism-normal"                  onClick={(event) => {
-                    event.stopPropagation()
-                    setIsPlaying(false)
-                  }}
-                  aria-label="Pause"
-                >
-                  <FaRegPauseCircle size={38} />
-                </button>
-              ) : (
-                  <button
-                    type="button"
-                    className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
-                    onClick={(event) => {
-                      event.stopPropagation()
-                      setIsPlaying(true)
-                    }}
-                    aria-label="Play"
-                  >
-                    <FaRegPlayCircle size={38} />
-                  </button>
-                )}
-            </div>
+            <AudioPlayButton
+              className='flex-none px-2 m-auto md:hidden'
+              isPlay={isPlaying}
+              size={38}
+              onPlay={(event) => {
+                event.stopPropagation()
+                setIsPlaying(true)
+              }}
+              onPause={(event) => {
+                event.stopPropagation()
+                setIsPlaying(false)
+              }}
+            />
             <div className="flex-col items-center hidden w-5/12 md:flex">
               <AudioControls />
               <div className="flex items-center w-full mt-2 space-x-2">
