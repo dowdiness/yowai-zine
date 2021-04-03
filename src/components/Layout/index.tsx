@@ -7,7 +7,7 @@ import { AudioProvider } from 'src/components/AudioPlayer/AudioProvider'
 
 import { m as motion, useViewportScroll, useTransform, LazyMotion } from 'framer-motion'
 
-const AudioModal = loadable(() => import('src/components/AudioPlayer/AudioPlayer'))
+const AudioPlayer = loadable(() => import('src/components/AudioPlayer/AudioPlayer'))
 const Mouse = loadable(() => import('src/components/Layout/Mouse'))
 const Skew = loadable(() => import('src/components/Layout/Skew'))
 
@@ -29,12 +29,12 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
         {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
         <AudioProvider>
           <main>{children}</main>
-          <AudioModal />
+          <AudioPlayer />
         </AudioProvider>
         <Footer className="py-16" />
         <motion.div
           className="fixed top-0 right-0 z-10 w-2 h-screen bg-blue-600"
-          style={{ scaleY: multipleScaleY, translateY: '-50%' }}
+          style={{ scaleY: multipleScaleY, translateY: '-50%', isolation: 'isolate' }}
         />
       </div>
       <Mouse />
