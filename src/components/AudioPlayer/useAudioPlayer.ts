@@ -202,6 +202,7 @@ function useAudioPlayer() {
       })
 
       audioRef.current = new Audio(tracks[0].audioSrc)
+      audioRef.current.load()
       // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata
       audioRef.current.play().then(_ => {
         if (audioRef.current) {
