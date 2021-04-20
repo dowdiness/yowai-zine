@@ -71,7 +71,7 @@ const AudioModal = () => {
 
   return (
     <motion.article
-      className={`flex flex-col justify-evenly fixed inset-0 z-40 h-screen bg-neumorphism px-4 space-y-2`}
+      className={`flex flex-col justify-evenly fixed inset-0 z-40 h-full bg-neumorphism px-4 space-y-2`}
       initial="hidden"
       animate="show"
       exit="hidden"
