@@ -6,13 +6,13 @@ import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import {
-  ArticleHeader,
   ArticleLink,
   ArticleNav,
   ArticleSideHeader,
   ArticleShareButton,
   ArticleSocialAccounts
 } from 'src/components/Article'
+import SectionHeader from 'src/components/Element/SectionHeader'
 //Hooks
 
 const HorizontalArticleTemplate: React.FC<PageProps<
@@ -89,7 +89,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           title='目次に戻る'
           className="mt-12 text-left"
         />
-          <ArticleHeader title={post?.title} author={author?.name} />
+        <SectionHeader title={post?.title} author={author?.name} />
         <div className={`${post?.disableSideHeader ? 'justify-center py-6 sm:py-8 md:py-10' : 'p-4 sm:p-6 md:p-10 pl-0 sm:pl-0 md:pl-0'} flex neumorphism-normal rounded-2xl`}>
           {!post?.disableSideHeader && (
             <ArticleSideHeader

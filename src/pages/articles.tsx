@@ -4,7 +4,8 @@ import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
-import { ArticleLists } from 'src/components/Article'
+import { ArticleLink, ArticleLists } from 'src/components/Article'
+import SectionHeader from 'src/components/Element/SectionHeader'
 import { getImage } from "gatsby-plugin-image"
 
 //Ease
@@ -16,7 +17,7 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
   const zineDate = getImage(data.zine)
 
   return (
-    <>
+    <div className="max-w-3xl py-16 mx-auto">
       <GatsbySeo
         title="ギャラリー"
         openGraph={{
@@ -33,13 +34,18 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
           },
         ]}
       />
+      <ArticleLink
+        to={`/`}
+        title='トップページに戻る'
+        className="mt-12 text-left"
+      />
+      <SectionHeader title="Gallery" author="ギャラリー" />
       <ArticleLists
         //@ts-ignore
         posts={posts}
         image={zineDate!}
-        hasBackLink={true}
       />
-    </>
+    </div>
   )
 }
 

@@ -5,6 +5,7 @@ import { PageProps, graphql } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
 import { ArticleLink } from 'src/components/Article'
+import SectionHeader from 'src/components/Element/SectionHeader'
 import AudioPlayButton from 'src/components/AudioPlayer/AudioPlayButton'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { IoTimeOutline } from "react-icons/io5"
@@ -121,32 +122,33 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
         title='プレイリストに戻る'
         className="mt-12 text-left"
       />
+      <SectionHeader
+        title={playlist?.title}
+        author={
+          playlist?.artists?.map((artist, index) => {
+            return (
+              index === 0 ? <span>{artist?.name}</span> : <span>, {artist?.name}</span>
+            )
+          })}
+        />
       <section className="mt-12">
-        <div className="flex flex-col md:flex-row">
-          <div className="mb-8 space-y-4 md:ml-6">
-            <h1 className="text-4xl font-black">{playlist?.title}</h1>
-            <h2 className="text-2xl font-medium text-gray-700">
-              {playlist?.artists?.map((artist, index) => {
-                return (
-                  index === 0 ? <span>{artist?.name}</span> : <span>, {artist?.name}</span>
-                )
-              })}
-            </h2>
-          </div>
+        <div className="flex flex-col items-center md:flex-row md:items-start md:justify-around">
           <GatsbyImage
             image={cover}
             loading="eager"
             alt="Zine"
-            className="object-scale-down mb-12 md:order-first md:w-64 md:h-64"
+            className="object-scale-down w-full h-full mb-12 md:w-64 md:h-64"
           />
+          <div className="mb-8 space-y-4 md:ml-12">
+            <p className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg">
+              {playlist?.artists?.map((artist, index) => {
+                return (
+                  index === 0 ? <span>{artist?.introduction?.introduction}</span> : <span>, {artist?.introduction?.introduction}</span>
+                )
+              })}
+            </p>
+          </div>
         </div>
-        <p className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">
-          {playlist?.artists?.map((artist, index) => {
-            return (
-              index === 0 ? <span>{artist?.introduction?.introduction}</span> : <span>, {artist?.introduction?.introduction}</span>
-            )
-          })}
-        </p>
         <ul className="mt-8 space-y-2">
           {normarizedSongs?.map((track, index) => {
             return (
