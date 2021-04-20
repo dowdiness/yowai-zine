@@ -45,7 +45,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistIndexPageQuery>> = ({
             // @ts-ignore
             const cover = getImage(node.coverart)
             return (
-              <li data-skew key={index} className="w-full">
+              <li data-skew key={`playlist-${node.title}-${index}`} className="w-full">
                 <Link to={node.albumPath!}>
                   <GatsbyImage
                     image={cover!}
