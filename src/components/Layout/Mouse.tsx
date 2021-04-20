@@ -2,10 +2,12 @@ import React from 'react'
 import useMouse from 'src/hooks/useMouse'
 import { useAtom } from "jotai"
 import { isPlayingAtom } from 'src/atoms/track'
+import { isAudioModalOpenAtom } from 'src/atoms/ui'
 
 const Mouse = () => {
   const [isPlaying] = useAtom(isPlayingAtom)
-  const mouse = useMouse<HTMLDivElement>(isPlaying)
+  const [isAudioModalOpen] = useAtom(isAudioModalOpenAtom)
+  const mouse = useMouse<HTMLDivElement>(isPlaying, isAudioModalOpen)
   return (
     <div
       ref={mouse.cursorRef}

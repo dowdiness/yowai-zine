@@ -260,8 +260,6 @@ type Directory_ctimeArgs = {
 type Site = Node & {
   readonly buildTime: Maybe<Scalars['Date']>;
   readonly siteMetadata: Maybe<SiteSiteMetadata>;
-  readonly port: Maybe<Scalars['Int']>;
-  readonly host: Maybe<Scalars['String']>;
   readonly polyfill: Maybe<Scalars['Boolean']>;
   readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -860,12 +858,12 @@ type ContentfulMarkdownArticle = ContentfulReference & ContentfulEntry & Node & 
   readonly align: Maybe<Scalars['Boolean']>;
   readonly author: Maybe<ContentfulAuthor>;
   readonly featuredImage: Maybe<ContentfulAsset>;
-  readonly images: Maybe<ReadonlyArray<Maybe<ContentfulAsset>>>;
   readonly content: Maybe<contentfulMarkdownArticleContentTextNode>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulMarkdownArticleSys>;
+  readonly images: Maybe<ReadonlyArray<Maybe<ContentfulAsset>>>;
   /** Returns all children nodes filtered by type contentfulMarkdownArticleContentTextNode */
   readonly childrenContentfulMarkdownArticleContentTextNode: Maybe<ReadonlyArray<Maybe<contentfulMarkdownArticleContentTextNode>>>;
   /** Returns the first child node of type contentfulMarkdownArticleContentTextNode or null if there are no children of given type on this node */
@@ -976,6 +974,7 @@ type ContentfulSong = ContentfulReference & ContentfulEntry & Node & {
   readonly id: Scalars['ID'];
   readonly node_locale: Scalars['String'];
   readonly title: Maybe<Scalars['String']>;
+  readonly duration: Maybe<Scalars['Int']>;
   readonly artist: Maybe<ContentfulAuthor>;
   readonly sound: Maybe<ContentfulAsset>;
   readonly coverart: Maybe<ContentfulAsset>;
@@ -1448,8 +1447,6 @@ type Query_allDirectoryArgs = {
 type Query_siteArgs = {
   buildTime: Maybe<DateQueryOperatorInput>;
   siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-  port: Maybe<IntQueryOperatorInput>;
-  host: Maybe<StringQueryOperatorInput>;
   polyfill: Maybe<BooleanQueryOperatorInput>;
   pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -1610,12 +1607,12 @@ type Query_contentfulMarkdownArticleArgs = {
   align: Maybe<BooleanQueryOperatorInput>;
   author: Maybe<ContentfulAuthorFilterInput>;
   featuredImage: Maybe<ContentfulAssetFilterInput>;
-  images: Maybe<ContentfulAssetFilterListInput>;
   content: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulMarkdownArticleSysFilterInput>;
+  images: Maybe<ContentfulAssetFilterListInput>;
   childrenContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterListInput>;
   childContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   parent: Maybe<NodeFilterInput>;
@@ -1665,6 +1662,7 @@ type Query_contentfulSongArgs = {
   id: Maybe<StringQueryOperatorInput>;
   node_locale: Maybe<StringQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
+  duration: Maybe<IntQueryOperatorInput>;
   artist: Maybe<ContentfulAuthorFilterInput>;
   sound: Maybe<ContentfulAssetFilterInput>;
   coverart: Maybe<ContentfulAssetFilterInput>;
@@ -2705,8 +2703,6 @@ enum SiteFieldsEnum {
   siteMetadata___author___name = 'siteMetadata.author.name',
   siteMetadata___author___summary = 'siteMetadata.author.summary',
   siteMetadata___social___twitter = 'siteMetadata.social.twitter',
-  port = 'port',
-  host = 'host',
   polyfill = 'polyfill',
   pathPrefix = 'pathPrefix',
   id = 'id',
@@ -2809,8 +2805,6 @@ type SiteGroupConnection = {
 type SiteFilterInput = {
   readonly buildTime: Maybe<DateQueryOperatorInput>;
   readonly siteMetadata: Maybe<SiteSiteMetadataFilterInput>;
-  readonly port: Maybe<IntQueryOperatorInput>;
-  readonly host: Maybe<StringQueryOperatorInput>;
   readonly polyfill: Maybe<BooleanQueryOperatorInput>;
   readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
@@ -4059,12 +4053,12 @@ type ContentfulMarkdownArticleFilterInput = {
   readonly align: Maybe<BooleanQueryOperatorInput>;
   readonly author: Maybe<ContentfulAuthorFilterInput>;
   readonly featuredImage: Maybe<ContentfulAssetFilterInput>;
-  readonly images: Maybe<ContentfulAssetFilterListInput>;
   readonly content: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulMarkdownArticleSysFilterInput>;
+  readonly images: Maybe<ContentfulAssetFilterListInput>;
   readonly childrenContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterListInput>;
   readonly childContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -4208,6 +4202,7 @@ type ContentfulSongFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly node_locale: Maybe<StringQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
+  readonly duration: Maybe<IntQueryOperatorInput>;
   readonly artist: Maybe<ContentfulAuthorFilterInput>;
   readonly sound: Maybe<ContentfulAssetFilterInput>;
   readonly coverart: Maybe<ContentfulAssetFilterInput>;
@@ -4257,10 +4252,6 @@ type contentfulAuthorIntroductionTextNodeFilterListInput = {
   readonly elemMatch: Maybe<contentfulAuthorIntroductionTextNodeFilterInput>;
 };
 
-type ContentfulAssetFilterListInput = {
-  readonly elemMatch: Maybe<ContentfulAssetFilterInput>;
-};
-
 type contentfulMarkdownArticleContentTextNodeFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -4290,6 +4281,10 @@ type ContentfulMarkdownArticleSysContentTypeSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
   readonly linkType: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
+};
+
+type ContentfulAssetFilterListInput = {
+  readonly elemMatch: Maybe<ContentfulAssetFilterInput>;
 };
 
 type contentfulMarkdownArticleContentTextNodeFilterListInput = {
@@ -4354,10 +4349,10 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___author___markdownarticle___disableSideHeader = 'markdownarticle.author.markdownarticle.disableSideHeader',
   markdownarticle___author___markdownarticle___isVirticalWriting = 'markdownarticle.author.markdownarticle.isVirticalWriting',
   markdownarticle___author___markdownarticle___align = 'markdownarticle.author.markdownarticle.align',
-  markdownarticle___author___markdownarticle___images = 'markdownarticle.author.markdownarticle.images',
   markdownarticle___author___markdownarticle___spaceId = 'markdownarticle.author.markdownarticle.spaceId',
   markdownarticle___author___markdownarticle___createdAt = 'markdownarticle.author.markdownarticle.createdAt',
   markdownarticle___author___markdownarticle___updatedAt = 'markdownarticle.author.markdownarticle.updatedAt',
+  markdownarticle___author___markdownarticle___images = 'markdownarticle.author.markdownarticle.images',
   markdownarticle___author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'markdownarticle.author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   markdownarticle___author___markdownarticle___children = 'markdownarticle.author.markdownarticle.children',
   markdownarticle___author___introduction___id = 'markdownarticle.author.introduction.id',
@@ -4389,6 +4384,7 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___author___song___id = 'markdownarticle.author.song.id',
   markdownarticle___author___song___node_locale = 'markdownarticle.author.song.node_locale',
   markdownarticle___author___song___title = 'markdownarticle.author.song.title',
+  markdownarticle___author___song___duration = 'markdownarticle.author.song.duration',
   markdownarticle___author___song___playlist = 'markdownarticle.author.song.playlist',
   markdownarticle___author___song___spaceId = 'markdownarticle.author.song.spaceId',
   markdownarticle___author___song___createdAt = 'markdownarticle.author.song.createdAt',
@@ -4509,6 +4505,52 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___featuredImage___internal___mediaType = 'markdownarticle.featuredImage.internal.mediaType',
   markdownarticle___featuredImage___internal___owner = 'markdownarticle.featuredImage.internal.owner',
   markdownarticle___featuredImage___internal___type = 'markdownarticle.featuredImage.internal.type',
+  markdownarticle___content___id = 'markdownarticle.content.id',
+  markdownarticle___content___parent___id = 'markdownarticle.content.parent.id',
+  markdownarticle___content___parent___children = 'markdownarticle.content.parent.children',
+  markdownarticle___content___children = 'markdownarticle.content.children',
+  markdownarticle___content___children___id = 'markdownarticle.content.children.id',
+  markdownarticle___content___children___children = 'markdownarticle.content.children.children',
+  markdownarticle___content___internal___content = 'markdownarticle.content.internal.content',
+  markdownarticle___content___internal___contentDigest = 'markdownarticle.content.internal.contentDigest',
+  markdownarticle___content___internal___description = 'markdownarticle.content.internal.description',
+  markdownarticle___content___internal___fieldOwners = 'markdownarticle.content.internal.fieldOwners',
+  markdownarticle___content___internal___ignoreType = 'markdownarticle.content.internal.ignoreType',
+  markdownarticle___content___internal___mediaType = 'markdownarticle.content.internal.mediaType',
+  markdownarticle___content___internal___owner = 'markdownarticle.content.internal.owner',
+  markdownarticle___content___internal___type = 'markdownarticle.content.internal.type',
+  markdownarticle___content___content = 'markdownarticle.content.content',
+  markdownarticle___content___sys___type = 'markdownarticle.content.sys.type',
+  markdownarticle___content___childrenMdx = 'markdownarticle.content.childrenMdx',
+  markdownarticle___content___childrenMdx___rawBody = 'markdownarticle.content.childrenMdx.rawBody',
+  markdownarticle___content___childrenMdx___fileAbsolutePath = 'markdownarticle.content.childrenMdx.fileAbsolutePath',
+  markdownarticle___content___childrenMdx___slug = 'markdownarticle.content.childrenMdx.slug',
+  markdownarticle___content___childrenMdx___body = 'markdownarticle.content.childrenMdx.body',
+  markdownarticle___content___childrenMdx___excerpt = 'markdownarticle.content.childrenMdx.excerpt',
+  markdownarticle___content___childrenMdx___headings = 'markdownarticle.content.childrenMdx.headings',
+  markdownarticle___content___childrenMdx___html = 'markdownarticle.content.childrenMdx.html',
+  markdownarticle___content___childrenMdx___mdxAST = 'markdownarticle.content.childrenMdx.mdxAST',
+  markdownarticle___content___childrenMdx___tableOfContents = 'markdownarticle.content.childrenMdx.tableOfContents',
+  markdownarticle___content___childrenMdx___timeToRead = 'markdownarticle.content.childrenMdx.timeToRead',
+  markdownarticle___content___childrenMdx___id = 'markdownarticle.content.childrenMdx.id',
+  markdownarticle___content___childrenMdx___children = 'markdownarticle.content.childrenMdx.children',
+  markdownarticle___content___childMdx___rawBody = 'markdownarticle.content.childMdx.rawBody',
+  markdownarticle___content___childMdx___fileAbsolutePath = 'markdownarticle.content.childMdx.fileAbsolutePath',
+  markdownarticle___content___childMdx___slug = 'markdownarticle.content.childMdx.slug',
+  markdownarticle___content___childMdx___body = 'markdownarticle.content.childMdx.body',
+  markdownarticle___content___childMdx___excerpt = 'markdownarticle.content.childMdx.excerpt',
+  markdownarticle___content___childMdx___headings = 'markdownarticle.content.childMdx.headings',
+  markdownarticle___content___childMdx___html = 'markdownarticle.content.childMdx.html',
+  markdownarticle___content___childMdx___mdxAST = 'markdownarticle.content.childMdx.mdxAST',
+  markdownarticle___content___childMdx___tableOfContents = 'markdownarticle.content.childMdx.tableOfContents',
+  markdownarticle___content___childMdx___timeToRead = 'markdownarticle.content.childMdx.timeToRead',
+  markdownarticle___content___childMdx___id = 'markdownarticle.content.childMdx.id',
+  markdownarticle___content___childMdx___children = 'markdownarticle.content.childMdx.children',
+  markdownarticle___spaceId = 'markdownarticle.spaceId',
+  markdownarticle___createdAt = 'markdownarticle.createdAt',
+  markdownarticle___updatedAt = 'markdownarticle.updatedAt',
+  markdownarticle___sys___type = 'markdownarticle.sys.type',
+  markdownarticle___sys___revision = 'markdownarticle.sys.revision',
   markdownarticle___images = 'markdownarticle.images',
   markdownarticle___images___contentful_id = 'markdownarticle.images.contentful_id',
   markdownarticle___images___id = 'markdownarticle.images.id',
@@ -4599,52 +4641,6 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___images___internal___mediaType = 'markdownarticle.images.internal.mediaType',
   markdownarticle___images___internal___owner = 'markdownarticle.images.internal.owner',
   markdownarticle___images___internal___type = 'markdownarticle.images.internal.type',
-  markdownarticle___content___id = 'markdownarticle.content.id',
-  markdownarticle___content___parent___id = 'markdownarticle.content.parent.id',
-  markdownarticle___content___parent___children = 'markdownarticle.content.parent.children',
-  markdownarticle___content___children = 'markdownarticle.content.children',
-  markdownarticle___content___children___id = 'markdownarticle.content.children.id',
-  markdownarticle___content___children___children = 'markdownarticle.content.children.children',
-  markdownarticle___content___internal___content = 'markdownarticle.content.internal.content',
-  markdownarticle___content___internal___contentDigest = 'markdownarticle.content.internal.contentDigest',
-  markdownarticle___content___internal___description = 'markdownarticle.content.internal.description',
-  markdownarticle___content___internal___fieldOwners = 'markdownarticle.content.internal.fieldOwners',
-  markdownarticle___content___internal___ignoreType = 'markdownarticle.content.internal.ignoreType',
-  markdownarticle___content___internal___mediaType = 'markdownarticle.content.internal.mediaType',
-  markdownarticle___content___internal___owner = 'markdownarticle.content.internal.owner',
-  markdownarticle___content___internal___type = 'markdownarticle.content.internal.type',
-  markdownarticle___content___content = 'markdownarticle.content.content',
-  markdownarticle___content___sys___type = 'markdownarticle.content.sys.type',
-  markdownarticle___content___childrenMdx = 'markdownarticle.content.childrenMdx',
-  markdownarticle___content___childrenMdx___rawBody = 'markdownarticle.content.childrenMdx.rawBody',
-  markdownarticle___content___childrenMdx___fileAbsolutePath = 'markdownarticle.content.childrenMdx.fileAbsolutePath',
-  markdownarticle___content___childrenMdx___slug = 'markdownarticle.content.childrenMdx.slug',
-  markdownarticle___content___childrenMdx___body = 'markdownarticle.content.childrenMdx.body',
-  markdownarticle___content___childrenMdx___excerpt = 'markdownarticle.content.childrenMdx.excerpt',
-  markdownarticle___content___childrenMdx___headings = 'markdownarticle.content.childrenMdx.headings',
-  markdownarticle___content___childrenMdx___html = 'markdownarticle.content.childrenMdx.html',
-  markdownarticle___content___childrenMdx___mdxAST = 'markdownarticle.content.childrenMdx.mdxAST',
-  markdownarticle___content___childrenMdx___tableOfContents = 'markdownarticle.content.childrenMdx.tableOfContents',
-  markdownarticle___content___childrenMdx___timeToRead = 'markdownarticle.content.childrenMdx.timeToRead',
-  markdownarticle___content___childrenMdx___id = 'markdownarticle.content.childrenMdx.id',
-  markdownarticle___content___childrenMdx___children = 'markdownarticle.content.childrenMdx.children',
-  markdownarticle___content___childMdx___rawBody = 'markdownarticle.content.childMdx.rawBody',
-  markdownarticle___content___childMdx___fileAbsolutePath = 'markdownarticle.content.childMdx.fileAbsolutePath',
-  markdownarticle___content___childMdx___slug = 'markdownarticle.content.childMdx.slug',
-  markdownarticle___content___childMdx___body = 'markdownarticle.content.childMdx.body',
-  markdownarticle___content___childMdx___excerpt = 'markdownarticle.content.childMdx.excerpt',
-  markdownarticle___content___childMdx___headings = 'markdownarticle.content.childMdx.headings',
-  markdownarticle___content___childMdx___html = 'markdownarticle.content.childMdx.html',
-  markdownarticle___content___childMdx___mdxAST = 'markdownarticle.content.childMdx.mdxAST',
-  markdownarticle___content___childMdx___tableOfContents = 'markdownarticle.content.childMdx.tableOfContents',
-  markdownarticle___content___childMdx___timeToRead = 'markdownarticle.content.childMdx.timeToRead',
-  markdownarticle___content___childMdx___id = 'markdownarticle.content.childMdx.id',
-  markdownarticle___content___childMdx___children = 'markdownarticle.content.childMdx.children',
-  markdownarticle___spaceId = 'markdownarticle.spaceId',
-  markdownarticle___createdAt = 'markdownarticle.createdAt',
-  markdownarticle___updatedAt = 'markdownarticle.updatedAt',
-  markdownarticle___sys___type = 'markdownarticle.sys.type',
-  markdownarticle___sys___revision = 'markdownarticle.sys.revision',
   markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
   markdownarticle___childrenContentfulMarkdownArticleContentTextNode___parent___id = 'markdownarticle.childrenContentfulMarkdownArticleContentTextNode.parent.id',
@@ -4898,10 +4894,10 @@ enum ContentfulAuthorFieldsEnum {
   playlist___artists___markdownarticle___disableSideHeader = 'playlist.artists.markdownarticle.disableSideHeader',
   playlist___artists___markdownarticle___isVirticalWriting = 'playlist.artists.markdownarticle.isVirticalWriting',
   playlist___artists___markdownarticle___align = 'playlist.artists.markdownarticle.align',
-  playlist___artists___markdownarticle___images = 'playlist.artists.markdownarticle.images',
   playlist___artists___markdownarticle___spaceId = 'playlist.artists.markdownarticle.spaceId',
   playlist___artists___markdownarticle___createdAt = 'playlist.artists.markdownarticle.createdAt',
   playlist___artists___markdownarticle___updatedAt = 'playlist.artists.markdownarticle.updatedAt',
+  playlist___artists___markdownarticle___images = 'playlist.artists.markdownarticle.images',
   playlist___artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'playlist.artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   playlist___artists___markdownarticle___children = 'playlist.artists.markdownarticle.children',
   playlist___artists___introduction___id = 'playlist.artists.introduction.id',
@@ -4933,6 +4929,7 @@ enum ContentfulAuthorFieldsEnum {
   playlist___artists___song___id = 'playlist.artists.song.id',
   playlist___artists___song___node_locale = 'playlist.artists.song.node_locale',
   playlist___artists___song___title = 'playlist.artists.song.title',
+  playlist___artists___song___duration = 'playlist.artists.song.duration',
   playlist___artists___song___playlist = 'playlist.artists.song.playlist',
   playlist___artists___song___spaceId = 'playlist.artists.song.spaceId',
   playlist___artists___song___createdAt = 'playlist.artists.song.createdAt',
@@ -4969,6 +4966,7 @@ enum ContentfulAuthorFieldsEnum {
   playlist___songs___id = 'playlist.songs.id',
   playlist___songs___node_locale = 'playlist.songs.node_locale',
   playlist___songs___title = 'playlist.songs.title',
+  playlist___songs___duration = 'playlist.songs.duration',
   playlist___songs___artist___contentful_id = 'playlist.songs.artist.contentful_id',
   playlist___songs___artist___id = 'playlist.songs.artist.id',
   playlist___songs___artist___node_locale = 'playlist.songs.artist.node_locale',
@@ -5176,6 +5174,7 @@ enum ContentfulAuthorFieldsEnum {
   song___id = 'song.id',
   song___node_locale = 'song.node_locale',
   song___title = 'song.title',
+  song___duration = 'song.duration',
   song___artist___contentful_id = 'song.artist.contentful_id',
   song___artist___id = 'song.artist.id',
   song___artist___node_locale = 'song.artist.node_locale',
@@ -5191,10 +5190,10 @@ enum ContentfulAuthorFieldsEnum {
   song___artist___markdownarticle___disableSideHeader = 'song.artist.markdownarticle.disableSideHeader',
   song___artist___markdownarticle___isVirticalWriting = 'song.artist.markdownarticle.isVirticalWriting',
   song___artist___markdownarticle___align = 'song.artist.markdownarticle.align',
-  song___artist___markdownarticle___images = 'song.artist.markdownarticle.images',
   song___artist___markdownarticle___spaceId = 'song.artist.markdownarticle.spaceId',
   song___artist___markdownarticle___createdAt = 'song.artist.markdownarticle.createdAt',
   song___artist___markdownarticle___updatedAt = 'song.artist.markdownarticle.updatedAt',
+  song___artist___markdownarticle___images = 'song.artist.markdownarticle.images',
   song___artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'song.artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   song___artist___markdownarticle___children = 'song.artist.markdownarticle.children',
   song___artist___introduction___id = 'song.artist.introduction.id',
@@ -5226,6 +5225,7 @@ enum ContentfulAuthorFieldsEnum {
   song___artist___song___id = 'song.artist.song.id',
   song___artist___song___node_locale = 'song.artist.song.node_locale',
   song___artist___song___title = 'song.artist.song.title',
+  song___artist___song___duration = 'song.artist.song.duration',
   song___artist___song___playlist = 'song.artist.song.playlist',
   song___artist___song___spaceId = 'song.artist.song.spaceId',
   song___artist___song___createdAt = 'song.artist.song.createdAt',
@@ -5466,6 +5466,7 @@ enum ContentfulAuthorFieldsEnum {
   song___playlist___songs___id = 'song.playlist.songs.id',
   song___playlist___songs___node_locale = 'song.playlist.songs.node_locale',
   song___playlist___songs___title = 'song.playlist.songs.title',
+  song___playlist___songs___duration = 'song.playlist.songs.duration',
   song___playlist___songs___playlist = 'song.playlist.songs.playlist',
   song___playlist___songs___spaceId = 'song.playlist.songs.spaceId',
   song___playlist___songs___createdAt = 'song.playlist.songs.createdAt',
@@ -5931,6 +5932,15 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___markdownarticle___featuredImage___node_locale = 'author.markdownarticle.featuredImage.node_locale',
   author___markdownarticle___featuredImage___gatsbyImageData = 'author.markdownarticle.featuredImage.gatsbyImageData',
   author___markdownarticle___featuredImage___children = 'author.markdownarticle.featuredImage.children',
+  author___markdownarticle___content___id = 'author.markdownarticle.content.id',
+  author___markdownarticle___content___children = 'author.markdownarticle.content.children',
+  author___markdownarticle___content___content = 'author.markdownarticle.content.content',
+  author___markdownarticle___content___childrenMdx = 'author.markdownarticle.content.childrenMdx',
+  author___markdownarticle___spaceId = 'author.markdownarticle.spaceId',
+  author___markdownarticle___createdAt = 'author.markdownarticle.createdAt',
+  author___markdownarticle___updatedAt = 'author.markdownarticle.updatedAt',
+  author___markdownarticle___sys___type = 'author.markdownarticle.sys.type',
+  author___markdownarticle___sys___revision = 'author.markdownarticle.sys.revision',
   author___markdownarticle___images = 'author.markdownarticle.images',
   author___markdownarticle___images___contentful_id = 'author.markdownarticle.images.contentful_id',
   author___markdownarticle___images___id = 'author.markdownarticle.images.id',
@@ -5942,15 +5952,6 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___markdownarticle___images___node_locale = 'author.markdownarticle.images.node_locale',
   author___markdownarticle___images___gatsbyImageData = 'author.markdownarticle.images.gatsbyImageData',
   author___markdownarticle___images___children = 'author.markdownarticle.images.children',
-  author___markdownarticle___content___id = 'author.markdownarticle.content.id',
-  author___markdownarticle___content___children = 'author.markdownarticle.content.children',
-  author___markdownarticle___content___content = 'author.markdownarticle.content.content',
-  author___markdownarticle___content___childrenMdx = 'author.markdownarticle.content.childrenMdx',
-  author___markdownarticle___spaceId = 'author.markdownarticle.spaceId',
-  author___markdownarticle___createdAt = 'author.markdownarticle.createdAt',
-  author___markdownarticle___updatedAt = 'author.markdownarticle.updatedAt',
-  author___markdownarticle___sys___type = 'author.markdownarticle.sys.type',
-  author___markdownarticle___sys___revision = 'author.markdownarticle.sys.revision',
   author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
   author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___children = 'author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.children',
@@ -6052,6 +6053,7 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___playlist___songs___id = 'author.playlist.songs.id',
   author___playlist___songs___node_locale = 'author.playlist.songs.node_locale',
   author___playlist___songs___title = 'author.playlist.songs.title',
+  author___playlist___songs___duration = 'author.playlist.songs.duration',
   author___playlist___songs___playlist = 'author.playlist.songs.playlist',
   author___playlist___songs___spaceId = 'author.playlist.songs.spaceId',
   author___playlist___songs___createdAt = 'author.playlist.songs.createdAt',
@@ -6091,6 +6093,7 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___song___id = 'author.song.id',
   author___song___node_locale = 'author.song.node_locale',
   author___song___title = 'author.song.title',
+  author___song___duration = 'author.song.duration',
   author___song___artist___contentful_id = 'author.song.artist.contentful_id',
   author___song___artist___id = 'author.song.artist.id',
   author___song___artist___node_locale = 'author.song.artist.node_locale',
@@ -6433,6 +6436,115 @@ enum ContentfulMarkdownArticleFieldsEnum {
   featuredImage___internal___mediaType = 'featuredImage.internal.mediaType',
   featuredImage___internal___owner = 'featuredImage.internal.owner',
   featuredImage___internal___type = 'featuredImage.internal.type',
+  content___id = 'content.id',
+  content___parent___id = 'content.parent.id',
+  content___parent___parent___id = 'content.parent.parent.id',
+  content___parent___parent___children = 'content.parent.parent.children',
+  content___parent___children = 'content.parent.children',
+  content___parent___children___id = 'content.parent.children.id',
+  content___parent___children___children = 'content.parent.children.children',
+  content___parent___internal___content = 'content.parent.internal.content',
+  content___parent___internal___contentDigest = 'content.parent.internal.contentDigest',
+  content___parent___internal___description = 'content.parent.internal.description',
+  content___parent___internal___fieldOwners = 'content.parent.internal.fieldOwners',
+  content___parent___internal___ignoreType = 'content.parent.internal.ignoreType',
+  content___parent___internal___mediaType = 'content.parent.internal.mediaType',
+  content___parent___internal___owner = 'content.parent.internal.owner',
+  content___parent___internal___type = 'content.parent.internal.type',
+  content___children = 'content.children',
+  content___children___id = 'content.children.id',
+  content___children___parent___id = 'content.children.parent.id',
+  content___children___parent___children = 'content.children.parent.children',
+  content___children___children = 'content.children.children',
+  content___children___children___id = 'content.children.children.id',
+  content___children___children___children = 'content.children.children.children',
+  content___children___internal___content = 'content.children.internal.content',
+  content___children___internal___contentDigest = 'content.children.internal.contentDigest',
+  content___children___internal___description = 'content.children.internal.description',
+  content___children___internal___fieldOwners = 'content.children.internal.fieldOwners',
+  content___children___internal___ignoreType = 'content.children.internal.ignoreType',
+  content___children___internal___mediaType = 'content.children.internal.mediaType',
+  content___children___internal___owner = 'content.children.internal.owner',
+  content___children___internal___type = 'content.children.internal.type',
+  content___internal___content = 'content.internal.content',
+  content___internal___contentDigest = 'content.internal.contentDigest',
+  content___internal___description = 'content.internal.description',
+  content___internal___fieldOwners = 'content.internal.fieldOwners',
+  content___internal___ignoreType = 'content.internal.ignoreType',
+  content___internal___mediaType = 'content.internal.mediaType',
+  content___internal___owner = 'content.internal.owner',
+  content___internal___type = 'content.internal.type',
+  content___content = 'content.content',
+  content___sys___type = 'content.sys.type',
+  content___childrenMdx = 'content.childrenMdx',
+  content___childrenMdx___rawBody = 'content.childrenMdx.rawBody',
+  content___childrenMdx___fileAbsolutePath = 'content.childrenMdx.fileAbsolutePath',
+  content___childrenMdx___frontmatter___title = 'content.childrenMdx.frontmatter.title',
+  content___childrenMdx___slug = 'content.childrenMdx.slug',
+  content___childrenMdx___body = 'content.childrenMdx.body',
+  content___childrenMdx___excerpt = 'content.childrenMdx.excerpt',
+  content___childrenMdx___headings = 'content.childrenMdx.headings',
+  content___childrenMdx___headings___value = 'content.childrenMdx.headings.value',
+  content___childrenMdx___headings___depth = 'content.childrenMdx.headings.depth',
+  content___childrenMdx___html = 'content.childrenMdx.html',
+  content___childrenMdx___mdxAST = 'content.childrenMdx.mdxAST',
+  content___childrenMdx___tableOfContents = 'content.childrenMdx.tableOfContents',
+  content___childrenMdx___timeToRead = 'content.childrenMdx.timeToRead',
+  content___childrenMdx___wordCount___paragraphs = 'content.childrenMdx.wordCount.paragraphs',
+  content___childrenMdx___wordCount___sentences = 'content.childrenMdx.wordCount.sentences',
+  content___childrenMdx___wordCount___words = 'content.childrenMdx.wordCount.words',
+  content___childrenMdx___id = 'content.childrenMdx.id',
+  content___childrenMdx___parent___id = 'content.childrenMdx.parent.id',
+  content___childrenMdx___parent___children = 'content.childrenMdx.parent.children',
+  content___childrenMdx___children = 'content.childrenMdx.children',
+  content___childrenMdx___children___id = 'content.childrenMdx.children.id',
+  content___childrenMdx___children___children = 'content.childrenMdx.children.children',
+  content___childrenMdx___internal___content = 'content.childrenMdx.internal.content',
+  content___childrenMdx___internal___contentDigest = 'content.childrenMdx.internal.contentDigest',
+  content___childrenMdx___internal___description = 'content.childrenMdx.internal.description',
+  content___childrenMdx___internal___fieldOwners = 'content.childrenMdx.internal.fieldOwners',
+  content___childrenMdx___internal___ignoreType = 'content.childrenMdx.internal.ignoreType',
+  content___childrenMdx___internal___mediaType = 'content.childrenMdx.internal.mediaType',
+  content___childrenMdx___internal___owner = 'content.childrenMdx.internal.owner',
+  content___childrenMdx___internal___type = 'content.childrenMdx.internal.type',
+  content___childMdx___rawBody = 'content.childMdx.rawBody',
+  content___childMdx___fileAbsolutePath = 'content.childMdx.fileAbsolutePath',
+  content___childMdx___frontmatter___title = 'content.childMdx.frontmatter.title',
+  content___childMdx___slug = 'content.childMdx.slug',
+  content___childMdx___body = 'content.childMdx.body',
+  content___childMdx___excerpt = 'content.childMdx.excerpt',
+  content___childMdx___headings = 'content.childMdx.headings',
+  content___childMdx___headings___value = 'content.childMdx.headings.value',
+  content___childMdx___headings___depth = 'content.childMdx.headings.depth',
+  content___childMdx___html = 'content.childMdx.html',
+  content___childMdx___mdxAST = 'content.childMdx.mdxAST',
+  content___childMdx___tableOfContents = 'content.childMdx.tableOfContents',
+  content___childMdx___timeToRead = 'content.childMdx.timeToRead',
+  content___childMdx___wordCount___paragraphs = 'content.childMdx.wordCount.paragraphs',
+  content___childMdx___wordCount___sentences = 'content.childMdx.wordCount.sentences',
+  content___childMdx___wordCount___words = 'content.childMdx.wordCount.words',
+  content___childMdx___id = 'content.childMdx.id',
+  content___childMdx___parent___id = 'content.childMdx.parent.id',
+  content___childMdx___parent___children = 'content.childMdx.parent.children',
+  content___childMdx___children = 'content.childMdx.children',
+  content___childMdx___children___id = 'content.childMdx.children.id',
+  content___childMdx___children___children = 'content.childMdx.children.children',
+  content___childMdx___internal___content = 'content.childMdx.internal.content',
+  content___childMdx___internal___contentDigest = 'content.childMdx.internal.contentDigest',
+  content___childMdx___internal___description = 'content.childMdx.internal.description',
+  content___childMdx___internal___fieldOwners = 'content.childMdx.internal.fieldOwners',
+  content___childMdx___internal___ignoreType = 'content.childMdx.internal.ignoreType',
+  content___childMdx___internal___mediaType = 'content.childMdx.internal.mediaType',
+  content___childMdx___internal___owner = 'content.childMdx.internal.owner',
+  content___childMdx___internal___type = 'content.childMdx.internal.type',
+  spaceId = 'spaceId',
+  createdAt = 'createdAt',
+  updatedAt = 'updatedAt',
+  sys___type = 'sys.type',
+  sys___revision = 'sys.revision',
+  sys___contentType___sys___type = 'sys.contentType.sys.type',
+  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
+  sys___contentType___sys___id = 'sys.contentType.sys.id',
   images = 'images',
   images___contentful_id = 'images.contentful_id',
   images___id = 'images.id',
@@ -6582,115 +6694,6 @@ enum ContentfulMarkdownArticleFieldsEnum {
   images___internal___mediaType = 'images.internal.mediaType',
   images___internal___owner = 'images.internal.owner',
   images___internal___type = 'images.internal.type',
-  content___id = 'content.id',
-  content___parent___id = 'content.parent.id',
-  content___parent___parent___id = 'content.parent.parent.id',
-  content___parent___parent___children = 'content.parent.parent.children',
-  content___parent___children = 'content.parent.children',
-  content___parent___children___id = 'content.parent.children.id',
-  content___parent___children___children = 'content.parent.children.children',
-  content___parent___internal___content = 'content.parent.internal.content',
-  content___parent___internal___contentDigest = 'content.parent.internal.contentDigest',
-  content___parent___internal___description = 'content.parent.internal.description',
-  content___parent___internal___fieldOwners = 'content.parent.internal.fieldOwners',
-  content___parent___internal___ignoreType = 'content.parent.internal.ignoreType',
-  content___parent___internal___mediaType = 'content.parent.internal.mediaType',
-  content___parent___internal___owner = 'content.parent.internal.owner',
-  content___parent___internal___type = 'content.parent.internal.type',
-  content___children = 'content.children',
-  content___children___id = 'content.children.id',
-  content___children___parent___id = 'content.children.parent.id',
-  content___children___parent___children = 'content.children.parent.children',
-  content___children___children = 'content.children.children',
-  content___children___children___id = 'content.children.children.id',
-  content___children___children___children = 'content.children.children.children',
-  content___children___internal___content = 'content.children.internal.content',
-  content___children___internal___contentDigest = 'content.children.internal.contentDigest',
-  content___children___internal___description = 'content.children.internal.description',
-  content___children___internal___fieldOwners = 'content.children.internal.fieldOwners',
-  content___children___internal___ignoreType = 'content.children.internal.ignoreType',
-  content___children___internal___mediaType = 'content.children.internal.mediaType',
-  content___children___internal___owner = 'content.children.internal.owner',
-  content___children___internal___type = 'content.children.internal.type',
-  content___internal___content = 'content.internal.content',
-  content___internal___contentDigest = 'content.internal.contentDigest',
-  content___internal___description = 'content.internal.description',
-  content___internal___fieldOwners = 'content.internal.fieldOwners',
-  content___internal___ignoreType = 'content.internal.ignoreType',
-  content___internal___mediaType = 'content.internal.mediaType',
-  content___internal___owner = 'content.internal.owner',
-  content___internal___type = 'content.internal.type',
-  content___content = 'content.content',
-  content___sys___type = 'content.sys.type',
-  content___childrenMdx = 'content.childrenMdx',
-  content___childrenMdx___rawBody = 'content.childrenMdx.rawBody',
-  content___childrenMdx___fileAbsolutePath = 'content.childrenMdx.fileAbsolutePath',
-  content___childrenMdx___frontmatter___title = 'content.childrenMdx.frontmatter.title',
-  content___childrenMdx___slug = 'content.childrenMdx.slug',
-  content___childrenMdx___body = 'content.childrenMdx.body',
-  content___childrenMdx___excerpt = 'content.childrenMdx.excerpt',
-  content___childrenMdx___headings = 'content.childrenMdx.headings',
-  content___childrenMdx___headings___value = 'content.childrenMdx.headings.value',
-  content___childrenMdx___headings___depth = 'content.childrenMdx.headings.depth',
-  content___childrenMdx___html = 'content.childrenMdx.html',
-  content___childrenMdx___mdxAST = 'content.childrenMdx.mdxAST',
-  content___childrenMdx___tableOfContents = 'content.childrenMdx.tableOfContents',
-  content___childrenMdx___timeToRead = 'content.childrenMdx.timeToRead',
-  content___childrenMdx___wordCount___paragraphs = 'content.childrenMdx.wordCount.paragraphs',
-  content___childrenMdx___wordCount___sentences = 'content.childrenMdx.wordCount.sentences',
-  content___childrenMdx___wordCount___words = 'content.childrenMdx.wordCount.words',
-  content___childrenMdx___id = 'content.childrenMdx.id',
-  content___childrenMdx___parent___id = 'content.childrenMdx.parent.id',
-  content___childrenMdx___parent___children = 'content.childrenMdx.parent.children',
-  content___childrenMdx___children = 'content.childrenMdx.children',
-  content___childrenMdx___children___id = 'content.childrenMdx.children.id',
-  content___childrenMdx___children___children = 'content.childrenMdx.children.children',
-  content___childrenMdx___internal___content = 'content.childrenMdx.internal.content',
-  content___childrenMdx___internal___contentDigest = 'content.childrenMdx.internal.contentDigest',
-  content___childrenMdx___internal___description = 'content.childrenMdx.internal.description',
-  content___childrenMdx___internal___fieldOwners = 'content.childrenMdx.internal.fieldOwners',
-  content___childrenMdx___internal___ignoreType = 'content.childrenMdx.internal.ignoreType',
-  content___childrenMdx___internal___mediaType = 'content.childrenMdx.internal.mediaType',
-  content___childrenMdx___internal___owner = 'content.childrenMdx.internal.owner',
-  content___childrenMdx___internal___type = 'content.childrenMdx.internal.type',
-  content___childMdx___rawBody = 'content.childMdx.rawBody',
-  content___childMdx___fileAbsolutePath = 'content.childMdx.fileAbsolutePath',
-  content___childMdx___frontmatter___title = 'content.childMdx.frontmatter.title',
-  content___childMdx___slug = 'content.childMdx.slug',
-  content___childMdx___body = 'content.childMdx.body',
-  content___childMdx___excerpt = 'content.childMdx.excerpt',
-  content___childMdx___headings = 'content.childMdx.headings',
-  content___childMdx___headings___value = 'content.childMdx.headings.value',
-  content___childMdx___headings___depth = 'content.childMdx.headings.depth',
-  content___childMdx___html = 'content.childMdx.html',
-  content___childMdx___mdxAST = 'content.childMdx.mdxAST',
-  content___childMdx___tableOfContents = 'content.childMdx.tableOfContents',
-  content___childMdx___timeToRead = 'content.childMdx.timeToRead',
-  content___childMdx___wordCount___paragraphs = 'content.childMdx.wordCount.paragraphs',
-  content___childMdx___wordCount___sentences = 'content.childMdx.wordCount.sentences',
-  content___childMdx___wordCount___words = 'content.childMdx.wordCount.words',
-  content___childMdx___id = 'content.childMdx.id',
-  content___childMdx___parent___id = 'content.childMdx.parent.id',
-  content___childMdx___parent___children = 'content.childMdx.parent.children',
-  content___childMdx___children = 'content.childMdx.children',
-  content___childMdx___children___id = 'content.childMdx.children.id',
-  content___childMdx___children___children = 'content.childMdx.children.children',
-  content___childMdx___internal___content = 'content.childMdx.internal.content',
-  content___childMdx___internal___contentDigest = 'content.childMdx.internal.contentDigest',
-  content___childMdx___internal___description = 'content.childMdx.internal.description',
-  content___childMdx___internal___fieldOwners = 'content.childMdx.internal.fieldOwners',
-  content___childMdx___internal___ignoreType = 'content.childMdx.internal.ignoreType',
-  content___childMdx___internal___mediaType = 'content.childMdx.internal.mediaType',
-  content___childMdx___internal___owner = 'content.childMdx.internal.owner',
-  content___childMdx___internal___type = 'content.childMdx.internal.type',
-  spaceId = 'spaceId',
-  createdAt = 'createdAt',
-  updatedAt = 'updatedAt',
-  sys___type = 'sys.type',
-  sys___revision = 'sys.revision',
-  sys___contentType___sys___type = 'sys.contentType.sys.type',
-  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
-  sys___contentType___sys___id = 'sys.contentType.sys.id',
   childrenContentfulMarkdownArticleContentTextNode = 'childrenContentfulMarkdownArticleContentTextNode',
   childrenContentfulMarkdownArticleContentTextNode___id = 'childrenContentfulMarkdownArticleContentTextNode.id',
   childrenContentfulMarkdownArticleContentTextNode___parent___id = 'childrenContentfulMarkdownArticleContentTextNode.parent.id',
@@ -7073,6 +7076,15 @@ enum ContentfulPlaylistFieldsEnum {
   artists___markdownarticle___featuredImage___node_locale = 'artists.markdownarticle.featuredImage.node_locale',
   artists___markdownarticle___featuredImage___gatsbyImageData = 'artists.markdownarticle.featuredImage.gatsbyImageData',
   artists___markdownarticle___featuredImage___children = 'artists.markdownarticle.featuredImage.children',
+  artists___markdownarticle___content___id = 'artists.markdownarticle.content.id',
+  artists___markdownarticle___content___children = 'artists.markdownarticle.content.children',
+  artists___markdownarticle___content___content = 'artists.markdownarticle.content.content',
+  artists___markdownarticle___content___childrenMdx = 'artists.markdownarticle.content.childrenMdx',
+  artists___markdownarticle___spaceId = 'artists.markdownarticle.spaceId',
+  artists___markdownarticle___createdAt = 'artists.markdownarticle.createdAt',
+  artists___markdownarticle___updatedAt = 'artists.markdownarticle.updatedAt',
+  artists___markdownarticle___sys___type = 'artists.markdownarticle.sys.type',
+  artists___markdownarticle___sys___revision = 'artists.markdownarticle.sys.revision',
   artists___markdownarticle___images = 'artists.markdownarticle.images',
   artists___markdownarticle___images___contentful_id = 'artists.markdownarticle.images.contentful_id',
   artists___markdownarticle___images___id = 'artists.markdownarticle.images.id',
@@ -7084,15 +7096,6 @@ enum ContentfulPlaylistFieldsEnum {
   artists___markdownarticle___images___node_locale = 'artists.markdownarticle.images.node_locale',
   artists___markdownarticle___images___gatsbyImageData = 'artists.markdownarticle.images.gatsbyImageData',
   artists___markdownarticle___images___children = 'artists.markdownarticle.images.children',
-  artists___markdownarticle___content___id = 'artists.markdownarticle.content.id',
-  artists___markdownarticle___content___children = 'artists.markdownarticle.content.children',
-  artists___markdownarticle___content___content = 'artists.markdownarticle.content.content',
-  artists___markdownarticle___content___childrenMdx = 'artists.markdownarticle.content.childrenMdx',
-  artists___markdownarticle___spaceId = 'artists.markdownarticle.spaceId',
-  artists___markdownarticle___createdAt = 'artists.markdownarticle.createdAt',
-  artists___markdownarticle___updatedAt = 'artists.markdownarticle.updatedAt',
-  artists___markdownarticle___sys___type = 'artists.markdownarticle.sys.type',
-  artists___markdownarticle___sys___revision = 'artists.markdownarticle.sys.revision',
   artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
   artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___children = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.children',
@@ -7194,6 +7197,7 @@ enum ContentfulPlaylistFieldsEnum {
   artists___playlist___songs___id = 'artists.playlist.songs.id',
   artists___playlist___songs___node_locale = 'artists.playlist.songs.node_locale',
   artists___playlist___songs___title = 'artists.playlist.songs.title',
+  artists___playlist___songs___duration = 'artists.playlist.songs.duration',
   artists___playlist___songs___playlist = 'artists.playlist.songs.playlist',
   artists___playlist___songs___spaceId = 'artists.playlist.songs.spaceId',
   artists___playlist___songs___createdAt = 'artists.playlist.songs.createdAt',
@@ -7233,6 +7237,7 @@ enum ContentfulPlaylistFieldsEnum {
   artists___song___id = 'artists.song.id',
   artists___song___node_locale = 'artists.song.node_locale',
   artists___song___title = 'artists.song.title',
+  artists___song___duration = 'artists.song.duration',
   artists___song___artist___contentful_id = 'artists.song.artist.contentful_id',
   artists___song___artist___id = 'artists.song.artist.id',
   artists___song___artist___node_locale = 'artists.song.artist.node_locale',
@@ -7432,6 +7437,7 @@ enum ContentfulPlaylistFieldsEnum {
   songs___id = 'songs.id',
   songs___node_locale = 'songs.node_locale',
   songs___title = 'songs.title',
+  songs___duration = 'songs.duration',
   songs___artist___contentful_id = 'songs.artist.contentful_id',
   songs___artist___id = 'songs.artist.id',
   songs___artist___node_locale = 'songs.artist.node_locale',
@@ -7447,10 +7453,10 @@ enum ContentfulPlaylistFieldsEnum {
   songs___artist___markdownarticle___disableSideHeader = 'songs.artist.markdownarticle.disableSideHeader',
   songs___artist___markdownarticle___isVirticalWriting = 'songs.artist.markdownarticle.isVirticalWriting',
   songs___artist___markdownarticle___align = 'songs.artist.markdownarticle.align',
-  songs___artist___markdownarticle___images = 'songs.artist.markdownarticle.images',
   songs___artist___markdownarticle___spaceId = 'songs.artist.markdownarticle.spaceId',
   songs___artist___markdownarticle___createdAt = 'songs.artist.markdownarticle.createdAt',
   songs___artist___markdownarticle___updatedAt = 'songs.artist.markdownarticle.updatedAt',
+  songs___artist___markdownarticle___images = 'songs.artist.markdownarticle.images',
   songs___artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'songs.artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   songs___artist___markdownarticle___children = 'songs.artist.markdownarticle.children',
   songs___artist___introduction___id = 'songs.artist.introduction.id',
@@ -7482,6 +7488,7 @@ enum ContentfulPlaylistFieldsEnum {
   songs___artist___song___id = 'songs.artist.song.id',
   songs___artist___song___node_locale = 'songs.artist.song.node_locale',
   songs___artist___song___title = 'songs.artist.song.title',
+  songs___artist___song___duration = 'songs.artist.song.duration',
   songs___artist___song___playlist = 'songs.artist.song.playlist',
   songs___artist___song___spaceId = 'songs.artist.song.spaceId',
   songs___artist___song___createdAt = 'songs.artist.song.createdAt',
@@ -7722,6 +7729,7 @@ enum ContentfulPlaylistFieldsEnum {
   songs___playlist___songs___id = 'songs.playlist.songs.id',
   songs___playlist___songs___node_locale = 'songs.playlist.songs.node_locale',
   songs___playlist___songs___title = 'songs.playlist.songs.title',
+  songs___playlist___songs___duration = 'songs.playlist.songs.duration',
   songs___playlist___songs___playlist = 'songs.playlist.songs.playlist',
   songs___playlist___songs___spaceId = 'songs.playlist.songs.spaceId',
   songs___playlist___songs___createdAt = 'songs.playlist.songs.createdAt',
@@ -8088,6 +8096,7 @@ enum ContentfulSongFieldsEnum {
   id = 'id',
   node_locale = 'node_locale',
   title = 'title',
+  duration = 'duration',
   artist___contentful_id = 'artist.contentful_id',
   artist___id = 'artist.id',
   artist___node_locale = 'artist.node_locale',
@@ -8132,6 +8141,15 @@ enum ContentfulSongFieldsEnum {
   artist___markdownarticle___featuredImage___node_locale = 'artist.markdownarticle.featuredImage.node_locale',
   artist___markdownarticle___featuredImage___gatsbyImageData = 'artist.markdownarticle.featuredImage.gatsbyImageData',
   artist___markdownarticle___featuredImage___children = 'artist.markdownarticle.featuredImage.children',
+  artist___markdownarticle___content___id = 'artist.markdownarticle.content.id',
+  artist___markdownarticle___content___children = 'artist.markdownarticle.content.children',
+  artist___markdownarticle___content___content = 'artist.markdownarticle.content.content',
+  artist___markdownarticle___content___childrenMdx = 'artist.markdownarticle.content.childrenMdx',
+  artist___markdownarticle___spaceId = 'artist.markdownarticle.spaceId',
+  artist___markdownarticle___createdAt = 'artist.markdownarticle.createdAt',
+  artist___markdownarticle___updatedAt = 'artist.markdownarticle.updatedAt',
+  artist___markdownarticle___sys___type = 'artist.markdownarticle.sys.type',
+  artist___markdownarticle___sys___revision = 'artist.markdownarticle.sys.revision',
   artist___markdownarticle___images = 'artist.markdownarticle.images',
   artist___markdownarticle___images___contentful_id = 'artist.markdownarticle.images.contentful_id',
   artist___markdownarticle___images___id = 'artist.markdownarticle.images.id',
@@ -8143,15 +8161,6 @@ enum ContentfulSongFieldsEnum {
   artist___markdownarticle___images___node_locale = 'artist.markdownarticle.images.node_locale',
   artist___markdownarticle___images___gatsbyImageData = 'artist.markdownarticle.images.gatsbyImageData',
   artist___markdownarticle___images___children = 'artist.markdownarticle.images.children',
-  artist___markdownarticle___content___id = 'artist.markdownarticle.content.id',
-  artist___markdownarticle___content___children = 'artist.markdownarticle.content.children',
-  artist___markdownarticle___content___content = 'artist.markdownarticle.content.content',
-  artist___markdownarticle___content___childrenMdx = 'artist.markdownarticle.content.childrenMdx',
-  artist___markdownarticle___spaceId = 'artist.markdownarticle.spaceId',
-  artist___markdownarticle___createdAt = 'artist.markdownarticle.createdAt',
-  artist___markdownarticle___updatedAt = 'artist.markdownarticle.updatedAt',
-  artist___markdownarticle___sys___type = 'artist.markdownarticle.sys.type',
-  artist___markdownarticle___sys___revision = 'artist.markdownarticle.sys.revision',
   artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
   artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___children = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.children',
@@ -8253,6 +8262,7 @@ enum ContentfulSongFieldsEnum {
   artist___playlist___songs___id = 'artist.playlist.songs.id',
   artist___playlist___songs___node_locale = 'artist.playlist.songs.node_locale',
   artist___playlist___songs___title = 'artist.playlist.songs.title',
+  artist___playlist___songs___duration = 'artist.playlist.songs.duration',
   artist___playlist___songs___playlist = 'artist.playlist.songs.playlist',
   artist___playlist___songs___spaceId = 'artist.playlist.songs.spaceId',
   artist___playlist___songs___createdAt = 'artist.playlist.songs.createdAt',
@@ -8292,6 +8302,7 @@ enum ContentfulSongFieldsEnum {
   artist___song___id = 'artist.song.id',
   artist___song___node_locale = 'artist.song.node_locale',
   artist___song___title = 'artist.song.title',
+  artist___song___duration = 'artist.song.duration',
   artist___song___artist___contentful_id = 'artist.song.artist.contentful_id',
   artist___song___artist___id = 'artist.song.artist.id',
   artist___song___artist___node_locale = 'artist.song.artist.node_locale',
@@ -8804,10 +8815,10 @@ enum ContentfulSongFieldsEnum {
   playlist___artists___markdownarticle___disableSideHeader = 'playlist.artists.markdownarticle.disableSideHeader',
   playlist___artists___markdownarticle___isVirticalWriting = 'playlist.artists.markdownarticle.isVirticalWriting',
   playlist___artists___markdownarticle___align = 'playlist.artists.markdownarticle.align',
-  playlist___artists___markdownarticle___images = 'playlist.artists.markdownarticle.images',
   playlist___artists___markdownarticle___spaceId = 'playlist.artists.markdownarticle.spaceId',
   playlist___artists___markdownarticle___createdAt = 'playlist.artists.markdownarticle.createdAt',
   playlist___artists___markdownarticle___updatedAt = 'playlist.artists.markdownarticle.updatedAt',
+  playlist___artists___markdownarticle___images = 'playlist.artists.markdownarticle.images',
   playlist___artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'playlist.artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   playlist___artists___markdownarticle___children = 'playlist.artists.markdownarticle.children',
   playlist___artists___introduction___id = 'playlist.artists.introduction.id',
@@ -8839,6 +8850,7 @@ enum ContentfulSongFieldsEnum {
   playlist___artists___song___id = 'playlist.artists.song.id',
   playlist___artists___song___node_locale = 'playlist.artists.song.node_locale',
   playlist___artists___song___title = 'playlist.artists.song.title',
+  playlist___artists___song___duration = 'playlist.artists.song.duration',
   playlist___artists___song___playlist = 'playlist.artists.song.playlist',
   playlist___artists___song___spaceId = 'playlist.artists.song.spaceId',
   playlist___artists___song___createdAt = 'playlist.artists.song.createdAt',
@@ -8875,6 +8887,7 @@ enum ContentfulSongFieldsEnum {
   playlist___songs___id = 'playlist.songs.id',
   playlist___songs___node_locale = 'playlist.songs.node_locale',
   playlist___songs___title = 'playlist.songs.title',
+  playlist___songs___duration = 'playlist.songs.duration',
   playlist___songs___artist___contentful_id = 'playlist.songs.artist.contentful_id',
   playlist___songs___artist___id = 'playlist.songs.artist.id',
   playlist___songs___artist___node_locale = 'playlist.songs.artist.node_locale',
@@ -10465,6 +10478,65 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_2_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type Unnamed_3_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_3_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type ArticlesPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ArticlesPageQuery = { readonly posts: { readonly nodes: ReadonlyArray<(
+      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
+      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )> }, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> };
+
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphrase' | 'introduction'>>, readonly genki: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly posts: { readonly nodes: ReadonlyArray<(
+      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
+      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )> } };
+
+type PlaylistIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PlaylistIndexPageQuery = { readonly allContentfulPlaylist: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
+        & { albumPath: ContentfulPlaylist['gatsbyPath'] }
+        & { readonly artists: Maybe<ReadonlyArray<Maybe<Pick<ContentfulAuthor, 'name'>>>>, readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
+      ) }> } };
+
+type PlaylistQueryVariables = Exact<{
+  id: Maybe<Scalars['String']>;
+}>;
+
+
+type PlaylistQuery = { readonly contentfulPlaylist: Maybe<(
+    Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
+    & { readonly songs: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulSong, 'title' | 'duration'>
+      & { readonly coverart: Maybe<(
+        Pick<ContentfulAsset, 'gatsbyImageData'>
+        & { readonly fixed: Maybe<Pick<ContentfulFixed, 'srcSet'>> }
+      )>, readonly sound: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )>>>, readonly artists: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulAuthor, 'name'>
+      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
+    )>>> }
+  )> };
+
 type HorizontalArticleBySlugQueryVariables = Exact<{
   id: Scalars['String'];
   previousPostId: Maybe<Scalars['String']>;
@@ -10507,79 +10579,50 @@ type VerticalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata
     )> }
   )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
 
-type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type GatsbyContentfulFixedFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
+type GatsbyContentfulFixed_tracedSVGFragment = Pick<ContentfulFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
 
-type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
+type GatsbyContentfulFixed_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet'>;
 
-type ArticlesPageQueryVariables = Exact<{ [key: string]: never; }>;
+type GatsbyContentfulFixed_withWebpFragment = Pick<ContentfulFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
+type GatsbyContentfulFixed_withWebp_noBase64Fragment = Pick<ContentfulFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
-type ArticlesPageQuery = { readonly posts: { readonly nodes: ReadonlyArray<(
-      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
-      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )> }, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> };
+type GatsbyContentfulFluidFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
-type AudioPageQueryVariables = Exact<{ [key: string]: never; }>;
+type GatsbyContentfulFluid_tracedSVGFragment = Pick<ContentfulFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
+type GatsbyContentfulFluid_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
-type AudioPageQuery = { readonly allContentfulSong: { readonly nodes: ReadonlyArray<(
-      Pick<ContentfulSong, 'title'>
-      & { readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>>, readonly sound: Maybe<(
-        Pick<ContentfulAsset, 'id'>
-        & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-      )> }
-    )> } };
+type GatsbyContentfulFluid_withWebpFragment = Pick<ContentfulFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+type GatsbyContentfulFluid_withWebp_noBase64Fragment = Pick<ContentfulFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
-type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphrase' | 'introduction'>>, readonly genki: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly posts: { readonly nodes: ReadonlyArray<(
-      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
-      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )> } };
+type GatsbyImageSharpFixed_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet'>;
 
-type PlaylistIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+type GatsbyImageSharpFixed_withWebpFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
+type GatsbyImageSharpFixed_withWebp_tracedSVGFragment = Pick<ImageSharpFixed, 'tracedSVG' | 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
-type PlaylistIndexPageQuery = { readonly allContentfulPlaylist: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
-        & { albumPath: ContentfulPlaylist['gatsbyPath'] }
-        & { readonly artists: Maybe<ReadonlyArray<Maybe<Pick<ContentfulAuthor, 'name'>>>>, readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
-      ) }> } };
+type GatsbyImageSharpFixed_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet'>;
 
-type PlaylistQueryVariables = Exact<{
-  id: Maybe<Scalars['String']>;
-}>;
+type GatsbyImageSharpFixed_withWebp_noBase64Fragment = Pick<ImageSharpFixed, 'width' | 'height' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp'>;
 
+type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
-type PlaylistQuery = { readonly contentfulPlaylist: Maybe<(
-    Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
-    & { readonly songs: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulSong, 'title'>
-      & { readonly coverart: Maybe<(
-        Pick<ContentfulAsset, 'gatsbyImageData'>
-        & { readonly fixed: Maybe<Pick<ContentfulFixed, 'srcSet'>> }
-      )>, readonly sound: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )>>>, readonly artists: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulAuthor, 'name'>
-      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
-    )>>> }
-  )> };
+type GatsbyImageSharpFluidLimitPresentationSizeFragment = { maxHeight: ImageSharpFluid['presentationHeight'], maxWidth: ImageSharpFluid['presentationWidth'] };
 
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+type GatsbyImageSharpFluid_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
+type GatsbyImageSharpFluid_withWebpFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 'tracedSVG' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
 }

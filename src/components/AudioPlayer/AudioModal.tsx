@@ -1,7 +1,7 @@
 import React from "react"
-import { useAtom } from "jotai"
-import { m as motion } from 'framer-motion'
 
+// Atoms
+import { useAtom } from "jotai"
 import {
   tracksAtom,
   durationAtom,
@@ -12,16 +12,21 @@ import {
 import {
   isAudioModalOpenAtom
 } from 'src/atoms/ui'
-
 import {
   windowSizeAtom
 } from 'src/atoms/windowSizeAtom'
 
+// Hooks
+import { useLocation } from '@reach/router'
 
+// Components
+import { m as motion } from 'framer-motion'
 import { IoChevronDown } from "react-icons/io5"
 import { GatsbyImage } from "gatsby-plugin-image"
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
+import { Link } from 'gatsby'
 
+// Utils
 import { displayTime } from './utils'
 import * as AudioStyle from "./audio.module.css"
 
@@ -35,6 +40,17 @@ const AudioModal = () => {
   const [, setIsAudioModalOpen] = useAtom(isAudioModalOpenAtom)
 
   const [windowSize] = useAtom(windowSizeAtom)
+
+  const location = useLocation()
+  const isReady = React.useRef(false)
+
+  React.useEffect(() => {
+    if (isReady.current) {
+      setIsAudioModalOpen(false)
+    } else {
+      isReady.current = true
+    }
+  }, [location.pathname])
 
   let currentPercentage = "0%"
   currentPercentage = duration
@@ -73,7 +89,9 @@ const AudioModal = () => {
             size={24}
           />
         </button>
-        <h2 className="text-lg font-medium line-clamp-1">{tracks[0].album}</h2>
+        <Link to={`/playlist/${tracks[0].slug}`}>
+          <h2 className="text-lg font-medium line-clamp-1">{tracks[0].album}</h2>
+        </Link>
         <div className="w-9 h-9" />
       </header>
       <section className={`flex flex-col items-center`}>

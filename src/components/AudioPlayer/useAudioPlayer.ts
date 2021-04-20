@@ -9,11 +9,14 @@ import {
   durationAtom,
   trackProgressAtom,
   isPlayingAtom,
+  isPlayedAtom,
+  isNotClickedAtom,
   playbackRateAtom,
   volumeAtom,
   isMuteAtom,
   skipTimeAtom,
   currentTimeAtom,
+  isLoadingAtom,
 } from 'src/atoms/track'
 
 function useAudioPlayer() {
@@ -24,13 +27,16 @@ function useAudioPlayer() {
   const [duration, setDuration] = useAtom(durationAtom)
   const [trackProgress, setTrackProgress] = useAtom(trackProgressAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
+  const [isPlayed, setIsPlayed] = useAtom(isPlayedAtom)
+  const [isNotClicked, setIsNotClicked] = useAtom(isNotClickedAtom)
   const [playbackRate] = useAtom(playbackRateAtom)
   const [volume] = useAtom(volumeAtom)
   const [isMute] = useAtom(isMuteAtom)
   const [skipTime, setSkipTime] = useAtom(skipTimeAtom)
   const [currentTime] = useAtom(currentTimeAtom)
+  const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
 
-  const audioRef = useRef<HTMLAudioElement|null>(null!)
+  const audioRef = useRef<HTMLAudioElement>(null!)
   const isReady = useRef(false)
 
   const setMediaMetadata = (audioTracks: Track[]) => {
@@ -116,7 +122,6 @@ function useAudioPlayer() {
   }
 
   useEffect(() => {
-    // initialize audioRef
     audioRef.current = new Audio('/001.wav')
     return (() => {
       // prevent memory leak
@@ -175,23 +180,55 @@ function useAudioPlayer() {
   }, [skipTime])
 
   useEffect(() => {
-    if (isPlaying && audioRef.current) {
-      audioRef.current.play().then(_ => {
-        if (audioRef.current) {
-          setDuration(audioRef.current.duration)
-        }
+    if(isReady.current && audioRef.current) {
+      if (isPlaying && !isPlayed) {
+        audioRef.current.play().then(_ => {
+          if (audioRef.current) {
+            setDuration(audioRef.current.duration)
+          }
+          setActionHandler()
+        }).catch((error) => console.error(error))
+      } else if (isPlayed) {
+        setDuration(audioRef.current.duration)
+        setTrackProgress(audioRef.current.currentTime)
+        setMediaMetadata(tracks)
         setActionHandler()
-      })
-    } else {
-      audioRef.current?.pause()
+        setIsPlaying(true)
+        setIsNotClicked(false)
+        setIsPlayed(false)
+      } else {
+        audioRef.current.pause()
+      }
     }
   }, [isPlaying])
 
   // Handles cleanup and setup when changing tracks
   useEffect(() => {
-    audioRef.current?.pause()
+    if (tracks[0] && isReady.current && isNotClicked && audioRef.current) {
+      audioRef.current.pause()
+      setIsLoading(true)
+      audioRef.current.src = tracks[0].audioSrc
+      audioRef.current.load()
+      // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata
+      audioRef.current?.play().then(_ => {
+        if (audioRef.current) {
+          setDuration(audioRef.current.duration)
+          setTrackProgress(audioRef.current.currentTime)
+          setMediaMetadata(tracks)
+          setActionHandler()
+          setIsLoading(false)
+          setIsPlaying(true)
+          setIsNotClicked(false)
+        }
+      }).catch((error) => console.error(error))
+    } else if (!isReady.current){
+      // Set the isReady ref as true for the next pass
+      isReady.current = true
+    }
+  }, [tracks])
 
-    if (tracks[0] && isReady.current) {
+  useEffect(() => {
+    if (isReady.current) {
       // remove previous audio eventlisners
       audioRef.current?.removeEventListener('timeupdate', (_event) => {
         if (audioRef.current?.ended) {
@@ -200,31 +237,15 @@ function useAudioPlayer() {
           setTrackProgress(audioRef.current.currentTime)
         }
       })
-
-      audioRef.current = new Audio(tracks[0].audioSrc)
-      audioRef.current.load()
-      // https://developer.mozilla.org/en-US/docs/Web/API/MediaMetadata
-      audioRef.current.play().then(_ => {
-        if (audioRef.current) {
-          setDuration(audioRef.current.duration)
-          setTrackProgress(audioRef.current.currentTime)
-          setMediaMetadata(tracks)
-          setActionHandler()
-          setIsPlaying(true)
-        }
-      })
-      audioRef.current.addEventListener('timeupdate', (_event) => {
+      audioRef.current?.addEventListener('timeupdate', (_event) => {
         if (audioRef.current?.ended) {
           toNextTrack()
         } else if (audioRef.current) {
           setTrackProgress(audioRef.current.currentTime)
         }
       })
-    } else if (!isReady.current){
-      // Set the isReady ref as true for the next pass
-      isReady.current = true
     }
-  }, [tracks])
+  }, [audioRef.current])
 
   return {
     audioRef,

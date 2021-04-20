@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { PageProps, graphql } from 'gatsby'
 
 //Components
@@ -11,11 +11,10 @@ import { IoTimeOutline } from "react-icons/io5"
 
 // Context
 import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
-import { useContextSelector } from 'use-context-selector'
 
 // Atoms
 import { useAtom } from "jotai"
-import { tracksAtom, updateTracksAtom, isPlayingAtom } from 'src/atoms/track'
+import { tracksAtom, updateTracksAtom, isPlayingAtom, isPlayedAtom, isLoadingAtom } from 'src/atoms/track'
 import { historyAtom } from 'src/atoms/history'
 
 // Utils
@@ -26,12 +25,12 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   const [, updateTracks] = useAtom(updateTracksAtom)
   const [, setHistory] = useAtom(historyAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
-
-  const [isPlayed, setIsPlayed] = useState(false)
+  const [isPlayed, setIsPlayed] = useAtom(isPlayedAtom)
+  const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
   const [trackIndex, setTrackIndex] = useState(0)
   const isReady = useRef(false)
 
-  const audio = useContextSelector(AudioContext, audio => audio)
+  const audio = useContext(AudioContext)
 
   const playlist = data.contentfulPlaylist
   const songs = playlist?.songs
@@ -63,36 +62,27 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
       title: song?.title!,
       artist: song?.artist?.name!,
       album: playlist?.title!,
+      slug: playlist?.slug!,
+      duration: song?.duration!,
       cover: coverArt!,
       artworks: artworksSrc!,
-      duration: song?.duration!,
     }
   })
 
   const playlistIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
 
   // https://bagelee.com/programming/safari-video-audio-action/
-  const initializeForSafari = async () => {
-    if (audio?.current) {
-      audio.current.muted = true
-      try {
-        await audio.current.play()
-      } catch (err) {
-        console.error(err)
-      }
-      audio.current.pause()
-      audio.current.muted = false
-      audio.current.currentTime = 0
-      setIsPlayed(true)
-    }
-  }
-
   useEffect(() => {
-    if (normarizedSongs && isReady.current) {
-      updateTracks(normarizedSongs.slice(trackIndex))
-      setHistory(normarizedSongs.slice(0, trackIndex))
-    } else if (!isReady.current){
-      // Set the isReady ref as true for the next pass
+    if (isReady.current) {
+      if (isPlayed === true) {
+        if (normarizedSongs) {
+          updateTracks(normarizedSongs.slice(trackIndex))
+          setHistory(normarizedSongs.slice(0, trackIndex))
+          setIsPlaying(true)
+          setIsLoading(false)
+        }
+      }
+    } else {
       isReady.current = true
     }
   }, [isPlayed])
@@ -162,27 +152,37 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             return (
               <>
                 {index === 0 &&
-                  <li className="flex items-center justify-start p-2 mb-4 text-gray-600 border-b border-gray-400">
+                  <li key="track-table-head" className="flex items-center justify-start p-2 mb-4 text-gray-600 border-b border-gray-400">
                     <span className="mr-4 text-center w-7">#</span>
                     <span className="mr-4">タイトル</span>
                     <IoTimeOutline className="ml-auto" size={20}/>
                   </li>
                 }
                 <li
-                  key={index}
+                  key={`track-${track.title}-${index}`}
                   className={`
                     ${isHovers[index] || (tracks[0] ? tracks[0].audioSrc === track.audioSrc : false)
                       ? `neumorphism-normal` : ``}
-                    flex items-end justify-start p-2 rounded-3xl transition-shadow`}
+                    flex items-end justify-start p-2 rounded-3xl transition-shadow use-mouse`}
                   onMouseEnter={() => updateHovers(index, true)}
                   onMouseLeave={() => updateHovers(index, false)}
-                  onDoubleClick={() => {
-                    if (!isPlayed) {
-                      setTrackIndex(index)
-                      initializeForSafari()
+                  onClick={() => {
+                    if (isLoading) return
+                    if (isPlaying !== true && audio.current) {
+                      setIsLoading(true)
+                      if (tracks[0] ? audio.current.src === track.audioSrc : false) {
+                        setIsPlaying(true)
+                      } else if (track) {
+                        audio.current.pause()
+                        audio.current = new Audio(track.audioSrc)
+                        audio.current.load()
+                        audio.current.play().then(() => {
+                          setTrackIndex(index)
+                          setIsPlayed(true)
+                        }).catch((error) => { console.error(error)})
+                      }
                     } else {
-                      updateTracks(normarizedSongs.slice(index))
-                      setHistory(normarizedSongs.slice(0, index))
+                      setIsPlaying(false)
                     }
                   }}
                 >
@@ -192,18 +192,6 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                       className="mr-4"
                       isPlay={tracks[0] ? (tracks[0].audioSrc === track.audioSrc) && isPlaying : false}
                       size={12}
-                      onPlay={() => {
-                        if (!isPlayed) {
-                          setTrackIndex(index)
-                          initializeForSafari()
-                        } else {
-                          updateTracks(normarizedSongs.slice(index))
-                          setHistory(normarizedSongs.slice(0, index))
-                        }
-                      }}
-                      onPause={() => {
-                        setIsPlaying(false)
-                      }}
                     />
                     : <span className="mr-4 text-lg text-center w-7">{index + 1}</span>
                   }

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { FaRegPlayCircle, FaRegPauseCircle } from 'react-icons/fa'
 import { GrChapterNext, GrChapterPrevious, GrForwardTen, GrBackTen } from "react-icons/gr"
 import { useAtom } from "jotai"
@@ -10,8 +10,6 @@ import {
 } from 'src/atoms/track'
 
 import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
-import { useContextSelector } from 'use-context-selector'
-
 
 const AudioControls = () => {
   const [, toPrevTrack] = useAtom(prevTrackAtom)
@@ -19,7 +17,7 @@ const AudioControls = () => {
   const [, setSkipTime] = useAtom(skipTimeAtom)
   const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom)
 
-  const audio = useContextSelector(AudioContext, audio => audio?.current)
+  const audio = useContext(AudioContext)
 
   return (
     <div className="flex items-center justify-around w-full">
@@ -27,7 +25,7 @@ const AudioControls = () => {
         type="button"
         className="p-2 rounded-full neumorphism-normal focus:neumorphism-inset"
         aria-label="Previous"
-        onClick={() => toPrevTrack(audio)}
+        onClick={() => toPrevTrack(audio.current)}
       >
         <GrChapterPrevious size={16} />
       </button>

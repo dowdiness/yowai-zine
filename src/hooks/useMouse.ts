@@ -14,7 +14,7 @@ export interface MouseData<T> {
   cursorRef: MutableRefObject<T>
 }
 
-const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseData<T> => {
+const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): MouseData<T> => {
   const cursorRef = useRef<T>(null!)
   const currentMouse = useRef<Mouse>({
     x: 0,
@@ -97,7 +97,7 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
           if(globalHistory.transitioning) {
             setTimeout(waitTransitioningFinished, 200)
           } else {
-            document.querySelectorAll('a, button, input, input, .gatsby-resp-image-image').forEach(link => {
+            document.querySelectorAll('a, button, input, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
               link.addEventListener('mouseenter', enter)
               link.addEventListener('mouseleave', leave)
             })
@@ -111,7 +111,7 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   useEffect(() => {
     document.addEventListener('mousemove', firstMoveHandler)
     document.addEventListener('mousemove', moveHandler)
-    document.querySelectorAll('a, button, input, .gatsby-resp-image-image').forEach(link => {
+    document.querySelectorAll('a, button, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
       link.addEventListener('mouseenter', enter)
       link.addEventListener('mouseleave', leave)
     })
@@ -122,13 +122,15 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   }, [])
 
   useEffect(() => {
-    if(transitionFinished) {
-      document.querySelectorAll('a, button, input, .gatsby-resp-image-image').forEach(link => {
-        link.addEventListener('mouseenter', enter)
-        link.addEventListener('mouseleave', leave)
-      })
+    for (var i = 0; i < addEventTriggers.length; i++) {
+      if (addEventTriggers[i]) {
+        document.querySelectorAll('a, button, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
+          link.addEventListener('mouseenter', enter)
+          link.addEventListener('mouseleave', leave)
+        })
+      }
     }
-  }, [transitionFinished])
+  }, [...addEventTriggers])
 
   return { cursorRef }
 }

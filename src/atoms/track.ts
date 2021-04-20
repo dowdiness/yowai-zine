@@ -9,6 +9,8 @@ export type Track = {
   title: string
   artist: string
   album: string
+  slug: string
+  duration: number
   cover: IGatsbyImageData
   artworks: Artwork[]
 }
@@ -60,6 +62,7 @@ export const prevTrackAtom = atom(
     const history = get(historyAtom)
     const prevTrack = history.pop()
     if (prevTrack) {
+      set(isNotClickedAtom, true)
       const tracks = get(tracksAtom)
       set(tracksAtom, [prevTrack, ...tracks])
     } else if (audio) {
@@ -78,6 +81,7 @@ export const nextTrackAtom = atom(
       set(historyAtom, [...history, prevTrack])
     }
     if (tracks.length > 0) {
+      set(isNotClickedAtom, true)
       set(tracksAtom, [...tracks])
     } else {
       set(isPlayingAtom, false)
@@ -97,6 +101,12 @@ export const trackProgressAtom = atom<number>(0)
 export const volumeAtom = atom<number>(1)
 
 export const isPlayingAtom = atom<boolean>(false)
+
+export const isPlayedAtom = atom<boolean>(false)
+
+export const isLoadingAtom = atom<boolean>(false)
+
+export const isNotClickedAtom = atom<boolean>(false)
 
 export const isMuteAtom = atom<boolean>(false)
 
