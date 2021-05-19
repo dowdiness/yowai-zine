@@ -192,7 +192,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/articles/*`],
+        precachePages: [`/articles/*`, `/playlist/*`],
       },
     },
     `gatsby-plugin-typegen`,
