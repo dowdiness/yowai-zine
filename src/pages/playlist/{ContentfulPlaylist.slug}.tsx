@@ -35,6 +35,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
 
   const playlist = data.contentfulPlaylist
   const songs = playlist?.songs
+  const siteUrl = data.site?.siteMetadata?.siteUrl
 
   const [isHovers, setHovers] = useState([...Array(songs?.length)].map(() => false))
 
@@ -100,6 +101,21 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
         title={playlist?.title}
         openGraph={{
           title: `${playlist?.title} | 弱いZINE`,
+          images: playlist?.coverart?.localFile?.publicURL ? [
+            {
+              url: `${siteUrl}${playlist?.coverart?.localFile?.publicURL}`,
+              width: 1200,
+              height: 840,
+              alt: playlist?.title,
+            }
+          ] : [
+            {
+              url: `${siteUrl}/yowai-ogp.png`,
+              width: 1200,
+              height: 840,
+              alt: 'Yowai zine',
+            }
+          ]
         }}
       />
       <LogoLd />
@@ -213,12 +229,22 @@ export default PlaylistPage
 
 export const pageQuery = graphql`
   query Playlist($id: String) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     contentfulPlaylist(
       id: {eq: $id}
     ) {
       id
       title
       slug
+      coverart {
+        localFile {
+          publicURL
+        }
+      }
       songs {
         title
         duration
