@@ -1176,10 +1176,17 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.13.10", "@babel/runtime@^7.7.7":
+"@babel/runtime@^7.13.10":
   version "7.13.10"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.10.tgz#47d42a57b6095f4468da440388fdbad8bebf0d7d"
   integrity sha512-4QPkjJq6Ns3V/RgpEahRk+AGfL0eO6RHHtTWoNNr5mO49G6B5+X6d6THgWEAvTrznU5xYpbAlVKRYcsCgh/Akw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.7.7", "@babel/runtime@^7.9.6":
+  version "7.14.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
+  integrity sha512-JELkvo/DlpNdJ7dlyw/eY7E0suy5i5GQH+Vlxaq1nsNJ+H7f4Vtv3jMeCEgRhZZQFXTjldYfQgv2qmM6M1v5wA==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -2049,26 +2056,26 @@
   dependencies:
     "@babel/plugin-syntax-dynamic-import" "^7.7.4"
 
-"@loadable/component@^5.14.1":
-  version "5.14.1"
-  resolved "https://registry.yarnpkg.com/@loadable/component/-/component-5.14.1.tgz#cacd807162430bb85ae085945318027a600adc85"
-  integrity sha512-UQBZfZrp1FLTf8RNhljXNHFNY4QhAA1L2+GOEeABBFre9TD0aFyQh3Sai5QxcOfy+FTbjIfti5iHaNRR7yUzEQ==
+"@loadable/component@^5.14.1", "@loadable/component@^5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@loadable/component/-/component-5.15.0.tgz#48b9524237be553f48b158f8c9152593f3f3fded"
+  integrity sha512-g63rQzypPOZi0BeGsK4ST2MYhsFR+i7bhL8k/McUoWDNMDuTTdUlQ2GACKxqh5sI/dNC/6nVoPrycMnSylnAgQ==
   dependencies:
     "@babel/runtime" "^7.7.7"
     hoist-non-react-statics "^3.3.1"
     react-is "^16.12.0"
 
-"@loadable/server@^5.14.2":
-  version "5.14.2"
-  resolved "https://registry.yarnpkg.com/@loadable/server/-/server-5.14.2.tgz#8e1467655633184cc7f9418b76741f48d24c4d29"
-  integrity sha512-2CkcmHx5PUEBn8evIvHPyOncMtWMNTu68ON1rnyAJnd+2MCq+eWMPKIR8DAdJYf56iVArBOBI0nyo3N+6laCPw==
+"@loadable/server@^5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@loadable/server/-/server-5.15.0.tgz#40d282df53cbc7a1815c38133871fa292f559ced"
+  integrity sha512-1WaKLO+fS2fx9eCzj85zq6DeGtwY9YKKJ2nF7KFcmUXh4IaolcC5lalKKb2DQuE4ucu6gIINjhVU+EBFFlZN9g==
   dependencies:
     lodash "^4.17.15"
 
-"@loadable/webpack-plugin@^5.14.2":
-  version "5.14.2"
-  resolved "https://registry.yarnpkg.com/@loadable/webpack-plugin/-/webpack-plugin-5.14.2.tgz#8948f6955e410fdde04bda04b6e149af4a73d734"
-  integrity sha512-VcRCFs1EXZrEcLayU3BsXfwESBDEEpwmsq1d1yU0Y40ZLWRsuoxteXu8sbMpleYzESlsmoEbtTIDFnFy4RLTDw==
+"@loadable/webpack-plugin@^5.14.2", "@loadable/webpack-plugin@^5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@loadable/webpack-plugin/-/webpack-plugin-5.15.0.tgz#2e8cb749faef79d958cb72761dbda6f3c25c6ff1"
+  integrity sha512-6eKaEqjGiMuMiazzVopbyMHrUflUkTOd29nUHaUmmbdo6FTGo+VqdBZ4Y1dvkEaa/b6NjkPTKbLdVmZvHVx2jg==
   dependencies:
     make-dir "^3.0.2"
 
@@ -4141,22 +4148,7 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001135:
-  version "1.0.30001211"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001211.tgz"
-  integrity sha512-v3GXWKofIkN3PkSidLI5d1oqeKNsam9nQkqieoMhP87nxOY0RPDC8X2+jcv8pjV4dRozPLSoMqNii9sDViOlIg==
-
-caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001181:
-  version "1.0.30001211"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001211.tgz"
-  integrity sha512-v3GXWKofIkN3PkSidLI5d1oqeKNsam9nQkqieoMhP87nxOY0RPDC8X2+jcv8pjV4dRozPLSoMqNii9sDViOlIg==
-
-caniuse-lite@^1.0.30001154:
-  version "1.0.30001211"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001211.tgz"
-  integrity sha512-v3GXWKofIkN3PkSidLI5d1oqeKNsam9nQkqieoMhP87nxOY0RPDC8X2+jcv8pjV4dRozPLSoMqNii9sDViOlIg==
-
-caniuse-lite@^1.0.30001157:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001125, caniuse-lite@^1.0.30001135, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001157, caniuse-lite@^1.0.30001181:
   version "1.0.30001211"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001211.tgz"
   integrity sha512-v3GXWKofIkN3PkSidLI5d1oqeKNsam9nQkqieoMhP87nxOY0RPDC8X2+jcv8pjV4dRozPLSoMqNii9sDViOlIg==
@@ -7175,14 +7167,16 @@ gatsby-plugin-image@^1.1.0:
     objectFitPolyfill "^2.3.0"
     prop-types "^15.7.2"
 
-gatsby-plugin-loadable-components-ssr@workstory/gatsby-plugin-loadable-components-ssr#gatsby-3.0-ssr-fix:
-  version "2.1.0"
-  resolved "https://codeload.github.com/workstory/gatsby-plugin-loadable-components-ssr/tar.gz/9992b70ad407da2a46c7b9d3c0bbb427a7eb7144"
+gatsby-plugin-loadable-components-ssr@next:
+  version "2.2.1-beta.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-loadable-components-ssr/-/gatsby-plugin-loadable-components-ssr-2.2.1-beta.2.tgz#7b20838bcdcf2ff51d1e3a4b17dba806204ae1e7"
+  integrity sha512-1vRPkOUXnUZqgkDWNHv45jAf4ePSvqMWzjar21DxVDf/OYFCVVvjhbUAoIezaeHMcReYFYYQW/W2UlFdhcwfkw==
   dependencies:
-    "@babel/runtime" "^7.13.10"
+    "@babel/runtime" "^7.9.6"
     "@loadable/babel-plugin" "^5.13.2"
-    "@loadable/server" "^5.14.2"
-    "@loadable/webpack-plugin" "^5.14.2"
+    "@loadable/component" "^5.15.0"
+    "@loadable/server" "^5.15.0"
+    "@loadable/webpack-plugin" "^5.15.0"
 
 gatsby-plugin-manifest@^3.1.0:
   version "3.1.0"

@@ -27,7 +27,7 @@
     "gatsby-plugin-draft": "^0.1.0",
     "gatsby-plugin-feed": "^3.1.0",
     "gatsby-plugin-image": "^1.1.0",
-    "gatsby-plugin-loadable-components-ssr": "workstory/gatsby-plugin-loadable-components-ssr#gatsby-3.0-ssr-fix",
+    "gatsby-plugin-loadable-components-ssr": "next",
     "gatsby-plugin-manifest": "^3.1.0",
     "gatsby-plugin-mdx": "^2.1.0",
     "gatsby-plugin-next-seo": "^1.7.0",
