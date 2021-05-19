@@ -14,17 +14,17 @@ export interface MouseData<T> {
   cursorRef: MutableRefObject<T>
 }
 
-const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseData<T> => {
+const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): MouseData<T> => {
   const cursorRef = useRef<T>(null!)
   const currentMouse = useRef<Mouse>({
     x: 0,
     y: 0,
-    scale: 3.5,
+    scale: 1.0,
   })
   const previousMouse = useRef<Mouse>({
     x: 0,
     y: 0,
-    scale: 3.5,
+    scale: 1.0,
   })
 
   const render = () => {
@@ -46,13 +46,14 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
 
   const firstMoveHandler = (event: MouseEvent) => {
     const newMouse = getMousePos(event)
-    currentMouse.current = {scale: 3.5, ...newMouse}
-    previousMouse.current = {scale: 3.5, ...newMouse}
+    currentMouse.current = {scale: 1.0, ...newMouse}
+    previousMouse.current = {scale: 1.0, ...newMouse}
 
     gsap.to(cursorRef.current, {
       duration: 2,
       ease: 'Power3.easeOut',
-      opacity: 1,
+      opacity: 0.75,
+      force3D: false,
     })
 
     requestAnimationFrame(() => render())
@@ -61,16 +62,16 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   }
 
   const enter = () => {
-    currentMouse.current.scale = 1.5
+    currentMouse.current.scale = 0.4
   }
 
   const leave = () => {
-    currentMouse.current.scale = 3.5
+    currentMouse.current.scale = 1.0
   }
 
   useLayoutEffect(() => {
     cursorRef.current.style.opacity = '0'
-  }, [transitionFinished])
+  }, [])
 
   // addEventListener to scale up cursor for new pages
   useEffect(() => {
@@ -96,7 +97,7 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
           if(globalHistory.transitioning) {
             setTimeout(waitTransitioningFinished, 200)
           } else {
-            document.querySelectorAll('a, button, .gatsby-resp-image-image').forEach(link => {
+            document.querySelectorAll('a, button, input, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
               link.addEventListener('mouseenter', enter)
               link.addEventListener('mouseleave', leave)
             })
@@ -110,18 +111,26 @@ const useMouse =  <T extends HTMLElement>(transitionFinished: boolean): MouseDat
   useEffect(() => {
     document.addEventListener('mousemove', firstMoveHandler)
     document.addEventListener('mousemove', moveHandler)
-
-    if(transitionFinished) {
-      document.querySelectorAll('a, button, .gatsby-resp-image-image').forEach(link => {
-        link.addEventListener('mouseenter', enter)
-        link.addEventListener('mouseleave', leave)
-      })
-    }
+    document.querySelectorAll('a, button, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
+      link.addEventListener('mouseenter', enter)
+      link.addEventListener('mouseleave', leave)
+    })
 
     return () => {
       document.removeEventListener('mousemove', moveHandler)
     }
-  }, [transitionFinished])
+  }, [])
+
+  useEffect(() => {
+    for (var i = 0; i < addEventTriggers.length; i++) {
+      if (addEventTriggers[i]) {
+        document.querySelectorAll('a, button, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
+          link.addEventListener('mouseenter', enter)
+          link.addEventListener('mouseleave', leave)
+        })
+      }
+    }
+  }, [...addEventTriggers])
 
   return { cursorRef }
 }

@@ -42,17 +42,18 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-preact`,
+    `gatsby-plugin-loadable-components-ssr`, //https://github.com/hector-del-rio/gatsby-plugin-loadable-components-ssr
     `gatsby-plugin-root-import`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-sentry`,
+      resolve: `@sentry/gatsby`,
       options: {
         dsn: process.env.SENTRY_DSN,
         environment: process.env.NODE_ENV,
-        enabled: (() => ["production", "preview"].indexOf(process.env.NODE_ENV) !== -1)()
+        tracesSampleRate: 1,
       },
     },
     {
@@ -60,20 +61,6 @@ module.exports = {
       options: {
         includeInDevelopment: false,
         delayTimeout: 0
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/articles`,
-        name: `articles`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/artworks`,
-        name: `artworks`,
       },
     },
     {
@@ -205,7 +192,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-offline`,
       options: {
-        precachePages: [`/articles/*`],
+        precachePages: [`/articles/*`, `/playlist/*`],
       },
     },
     `gatsby-plugin-typegen`,

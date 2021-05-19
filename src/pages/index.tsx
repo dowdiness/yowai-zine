@@ -2,13 +2,14 @@ import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
 //Hooks
-import useSkew from 'src/hooks/useSkew'
 import useCircularText from 'src/hooks/useCircularText'
 import { useAtom } from "jotai"
-import { windowSize, windowSizeAtom } from "src/store"
+import { windowSize, windowSizeAtom } from "src/atoms"
 
 //Components
 import { ArticleLists } from 'src/components/Article'
+import AudioLists from 'src/components/AudioPlayer/AudioLists'
+import SectionHeader from 'src/components/Element/SectionHeader'
 import { SplitTextWrap } from 'src/components/SplitText/SplitTextWrap'
 import Div100vh from 'react-div-100vh'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
@@ -20,6 +21,8 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
 }) => {
   const home = data.home
   const posts = data.posts.nodes
+  //@ts-ignore
+  const playlists = data.playlists.edges
   // @ts-ignore
   const genkiData = getImage(data.genki)
   // @ts-ignore
@@ -46,7 +49,6 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
   const catchphrase = circle?.repeat(Math.ceil(ratio)).slice(0, circle?.length * ratio)
 
   const { circleTextRef } = useCircularText<HTMLHeadingElement>(radius, catchphrase!)
-  useSkew('[data-skew]')
 
   const text = `小さいチームで
     弱いzineという名前の
@@ -113,11 +115,25 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             {text}
           </p>
         </section>
-        {/* 記事 */}
+        <div data-skew className="flex justify-center mx-auto">
+          <GatsbyImage
+            image={zineDate!}
+            loading="eager"
+            alt="Zine"
+            className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
+          />
+        </div>
+        {/* プレイリスト */}
+        <SectionHeader title="Playlist" author="プレイリスト" />
+        <AudioLists
+          playlists={playlists}
+        />
+        {/* ギャラリー */}
+        <SectionHeader title="Gallery" author="ギャラリー" />
         <ArticleLists
           //@ts-ignore
           posts={posts}
-          image={zineDate!}
+          className="pb-12 -mt-12"
         />
       </div>
     </>
@@ -135,12 +151,12 @@ export const pageQuery = graphql`
     }
     genki: file(relativePath: { eq: "genki.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
       }
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
       }
     }
     posts: allContentfulMarkdownArticle(sort: {fields: publishedAt, order: DESC}) {
@@ -157,6 +173,22 @@ export const pageQuery = graphql`
         }
         author {
           name
+        }
+      }
+    }
+    playlists: allContentfulPlaylist(sort: {order: DESC, fields: updatedAt}) {
+      edges {
+        node {
+          id
+          title
+          slug
+          artists {
+            name
+          }
+          coverart {
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
+          }
+          albumPath: gatsbyPath(filePath: "/playlist/{ContentfulPlaylist.slug}")
         }
       }
     }

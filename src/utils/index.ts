@@ -1,3 +1,4 @@
+import { stopBodyScrolling, restartBodyScrolling } from './bodyScrolling'
 import convertRemToPx from './convertRemToPx'
 import lerp from './lerp'
 import getMousePos from './getMousePos'
@@ -13,5 +14,7 @@ export {
   getSiblings,
   isClient,
   isNewArticle,
-  isWhiteSpace
+  isWhiteSpace,
+  stopBodyScrolling,
+  restartBodyScrolling,
 }

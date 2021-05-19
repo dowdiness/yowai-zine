@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLocation } from '@reach/router'
 
 const useSkew = (skewElementSelectors: string) => {
   const proxy = { skew: 0 },
     clamp = gsap.utils.clamp(-30, 30) // don't let the skew go beyond 20 degrees.
-
+  const location = useLocation()
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     const skewSetter = gsap.quickSetter(skewElementSelectors, 'skewY', 'deg') // fast
@@ -31,7 +32,7 @@ const useSkew = (skewElementSelectors: string) => {
     gsap.set(skewElementSelectors, { transformOrigin: 'right center', force3D: true })
 
     return (() => ScrollTriggerInstance.kill())
-  }, [])
+  }, [location.pathname])
 }
 
 export default useSkew
