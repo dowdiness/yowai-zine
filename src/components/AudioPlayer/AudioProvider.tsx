@@ -2,7 +2,7 @@ import React, { ReactNode, createContext, useEffect, useRef } from 'react'
 import useAudioPlayer from './useAudioPlayer'
 import { useAtom } from "jotai"
 import { isLoadingAtom } from 'src/atoms/track'
-import NProgress from "accessible-nprogress"
+import NProgress from "nprogress"
 
 export const AudioContext = createContext<React.MutableRefObject<HTMLAudioElement|null>>(null!)
 
