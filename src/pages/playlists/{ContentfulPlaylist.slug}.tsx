@@ -154,7 +154,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             image={cover}
             loading="eager"
             alt="Zine"
-            className="object-scale-down h-full mb-12"
+            className="object-scale-down w-full h-full mb-12 md:w-64"
           />
           <div className="flex flex-col justify-start mb-8 space-y-4 md:ml-12">
             {playlist?.artists?.map((artist, _) => {
