@@ -1,4 +1,4 @@
-import { emitter, LoadingFinishedEvent } from 'src/utils/emitter'
+import { emitter } from 'src/utils/emitter'
 
 /* eslint-disable */
 export default () => {
@@ -28,7 +28,7 @@ export default () => {
     html.removeEventListener("ontouchend", preventScroll)
       setTimeout(function() {
       loader.style.display = "none"
-      emitter.emit(LoadingFinishedEvent)
+      emitter.emit('loading-finished-event')
     }, 1200)
   }, 2000)
 }

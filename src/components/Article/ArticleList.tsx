@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 import { m as motion } from 'framer-motion'
 import { isClient } from 'src/utils'
 const transition = { duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }
-import { emitter, InViewPayload, InViewEvent } from 'src/utils/emitter'
+import { emitter } from 'src/utils/emitter'
 
 export type ArticleListProps = {
     index: number
@@ -27,7 +27,7 @@ const ArticleList: React.FCX<ArticleListProps> = ({ index, to, text, linkText, c
   useEffect(() => {
     // not working in ssr https://github.com/gatsbyjs/gatsby/issues/15001
     if (isClient && useCursor && zoomRef) {
-      emitter.emit<InViewPayload>(InViewEvent, {ref: zoomRef })
+      emitter.emit('in-view-event', {ref: zoomRef })
     }
   }, [inView, zoomRef])
 

@@ -1,11 +1,10 @@
-import mitt from 'mitt'
+import mitt, { Emitter } from 'mitt'
 import React from 'react'
 
-export type InViewPayload = { ref: React.MutableRefObject<HTMLElement> }
-export type CursorPayload = { ref: React.MutableRefObject<HTMLElement> }
+export type MittEvents = {
+  'in-view-event': { ref: React.MutableRefObject<HTMLElement> },
+  'cursor-event': { ref: React.MutableRefObject<HTMLElement> },
+  'loading-finished-event'?: never,
+}
 
-export const InViewEvent = Symbol('in-view-event')
-export const CursorEvent = Symbol('cursor-event')
-export const LoadingFinishedEvent = Symbol('loading-finished-event')
-
-export const emitter = mitt()
+export const emitter: Emitter<MittEvents> = mitt<MittEvents>()

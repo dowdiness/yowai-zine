@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { m as motion } from 'framer-motion'
-import { emitter, LoadingFinishedEvent } from 'src/utils/emitter'
+import { emitter } from 'src/utils/emitter'
 
 import { SplitTextLine } from './SplitTextLine'
 import Scroll from 'src/components/Element/Scroll'
@@ -34,11 +34,11 @@ export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => 
       setIsStarted(true)
     }
 
-    emitter.on(LoadingFinishedEvent, () => {
+    emitter.on('loading-finished-event', () => {
       setIsStarted(true)
     })
     return (
-      emitter.off('LoadingFinishedEvent', () => {
+      emitter.off('loading-finished-event', () => {
         setIsStarted(true)
       })
     )

@@ -2,7 +2,7 @@ import { useRef, useLayoutEffect, useEffect, MutableRefObject } from 'react'
 import { gsap } from 'gsap'
 import { lerp, getMousePos } from 'src/utils'
 import { globalHistory } from '@reach/router'
-import { emitter, InViewPayload, CursorPayload, InViewEvent, CursorEvent } from 'src/utils/emitter'
+import { emitter } from 'src/utils/emitter'
 
 export interface Mouse {
   x: number
@@ -75,14 +75,14 @@ const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): Mouse
 
   // addEventListener to scale up cursor for new pages
   useEffect(() => {
-    emitter.on<CursorPayload>(CursorEvent, (ev) => {
+    emitter.on('cursor-event', (ev) => {
       if (ev && ev.ref.current) {
         ev.ref.current.addEventListener('mouseenter', enter)
         ev.ref.current.addEventListener('mouseleave', leave)
       }
     })
 
-    emitter.on<InViewPayload>(InViewEvent, (ev) => {
+    emitter.on('in-view-event', (ev) => {
       if (ev && ev.ref.current) {
         ev.ref.current.addEventListener('mouseenter', enter)
         ev.ref.current.addEventListener('mouseleave', leave)

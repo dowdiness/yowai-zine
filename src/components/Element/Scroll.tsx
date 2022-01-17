@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import './scroll.css'
 
 import { m as motion } from 'framer-motion'
-import { emitter, CursorPayload, CursorEvent } from 'src/utils/emitter'
+import { emitter } from 'src/utils/emitter'
 
 const smoothScroll = (scrollTarget: string) => {
   const targetElement = document.querySelector(scrollTarget)!
@@ -43,7 +43,7 @@ export const Scroll: React.FCX<ScrollProps> = ({ isScrollVisible }) => {
       animate={isScrollVisible ? "show" : "hidden"}
       variants={scrollVariants}
       onAnimationComplete={() => {
-        emitter.emit<CursorPayload>(CursorEvent, {ref: scrollRef })
+        emitter.emit('cursor-event', {ref: scrollRef })
       }}
     >
       <span id="line"></span>
