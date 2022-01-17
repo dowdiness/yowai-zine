@@ -44,19 +44,19 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
 
   const normarizedSongs = songs?.map((song) => {
     const re = / +(1x,\n|1.5x,\n|2x,\n|3x)/
-    const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((src, index) => {
-      if (index % 2 !== 1 && src !== '') {
-        return true
-      }
-      return false
-    }).map((src, index) => {
-      const size = index === 0 ? 128 : index === 1 ? 128 * 1.5 : index === 2 ? 128 * 2 : 128 * 3
-      return {
-        src: `https:${src}`,
-        sizes: `${size}x${size}`,
-        type: 'image/png',
-      }
-    })
+    // const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((src, index) => {
+    //   if (index % 2 !== 1 && src !== '') {
+    //     return true
+    //   }
+    //   return false
+    // }).map((src, index) => {
+    //   const size = index === 0 ? 128 : index === 1 ? 128 * 1.5 : index === 2 ? 128 * 2 : 128 * 3
+    //   return {
+    //     src: `https:${src}`,
+    //     sizes: `${size}x${size}`,
+    //     type: 'image/png',
+    //   }
+    // })
 
     const coverArt = getImage(song?.coverart?.gatsbyImageData!)
     return {
@@ -67,7 +67,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
       slug: playlist?.slug!,
       duration: song?.duration!,
       cover: coverArt!,
-      artworks: artworksSrc!,
+      // artworks: artworksSrc!,
     }
   })
 
@@ -250,9 +250,6 @@ export const pageQuery = graphql`
         duration
         coverart {
           gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
-          fixed(height: 128, toFormat: PNG) {
-            srcSet
-          }
         }
         sound {
           localFile {

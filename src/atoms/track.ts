@@ -12,7 +12,7 @@ export type Track = {
   slug: string
   duration: number
   cover: IGatsbyImageData
-  artworks: Artwork[]
+  // artworks: Artwork[]
 }
 
 export type Artwork = {
