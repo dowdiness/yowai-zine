@@ -1,7 +1,7 @@
 import { useRef, useEffect, MutableRefObject } from 'react'
 import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 import { isFirefox } from './util'
-import { debounce } from 'lodash'
+import { debounce } from 'src/utils'
 
 export interface Tategaki {
   tategakiRef: MutableRefObject<HTMLElement>

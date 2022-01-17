@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { isClient } from './util'
 import useRafState from './useRafState'
-import { throttle } from 'lodash'
+import { throttle } from 'src/utils'
 export interface State {
   x: number
   y: number

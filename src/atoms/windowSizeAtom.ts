@@ -1,5 +1,4 @@
-import { isClient } from 'src/utils'
-import { debounce } from 'lodash'
+import { isClient, debounce } from 'src/utils'
 import { atom } from "jotai"
 
 export type windowSize = {
