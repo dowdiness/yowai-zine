@@ -8,7 +8,7 @@
     "url": "https://github.com/dowdiness/yowai-zine/issues"
   },
   "dependencies": {
-    "@loadable/component": "^5.14.1",
+    "@loadable/component": "^5.15.2",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@sentry/gatsby": "^6.2.3",
@@ -82,8 +82,8 @@
   "devDependencies": {
     "@dowdiness/eslint-config": "^0.1.5",
     "@loadable/babel-plugin": "^5.13.2",
-    "@loadable/webpack-plugin": "^5.14.2",
-    "@types/loadable__component": "^5.13.3",
+    "@loadable/webpack-plugin": "^5.15.2",
+    "@types/loadable__component": "^5.13.4",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-helmet-async": "^1.0.3",

@@ -2005,10 +2005,10 @@
   dependencies:
     "@babel/plugin-syntax-dynamic-import" "^7.7.4"
 
-"@loadable/component@^5.14.1":
-  version "5.15.0"
-  resolved "https://registry.yarnpkg.com/@loadable/component/-/component-5.15.0.tgz#48b9524237be553f48b158f8c9152593f3f3fded"
-  integrity sha512-g63rQzypPOZi0BeGsK4ST2MYhsFR+i7bhL8k/McUoWDNMDuTTdUlQ2GACKxqh5sI/dNC/6nVoPrycMnSylnAgQ==
+"@loadable/component@^5.15.2":
+  version "5.15.2"
+  resolved "https://registry.yarnpkg.com/@loadable/component/-/component-5.15.2.tgz#b6c418d592e0a64f16b1d614ca9d3b1443d3b498"
+  integrity sha512-ryFAZOX5P2vFkUdzaAtTG88IGnr9qxSdvLRvJySXcUA4B4xVWurUNADu3AnKPksxOZajljqTrDEDcYjeL4lvLw==
   dependencies:
     "@babel/runtime" "^7.7.7"
     hoist-non-react-statics "^3.3.1"
@@ -2021,10 +2021,17 @@
   dependencies:
     lodash "^4.17.15"
 
-"@loadable/webpack-plugin@^5.14.2", "@loadable/webpack-plugin@^5.15.0":
+"@loadable/webpack-plugin@^5.15.0":
   version "5.15.0"
   resolved "https://registry.yarnpkg.com/@loadable/webpack-plugin/-/webpack-plugin-5.15.0.tgz#2e8cb749faef79d958cb72761dbda6f3c25c6ff1"
   integrity sha512-6eKaEqjGiMuMiazzVopbyMHrUflUkTOd29nUHaUmmbdo6FTGo+VqdBZ4Y1dvkEaa/b6NjkPTKbLdVmZvHVx2jg==
+  dependencies:
+    make-dir "^3.0.2"
+
+"@loadable/webpack-plugin@^5.15.2":
+  version "5.15.2"
+  resolved "https://registry.yarnpkg.com/@loadable/webpack-plugin/-/webpack-plugin-5.15.2.tgz#460acf5dc0d56c6aef98c7d5f1c2be033422fa8d"
+  integrity sha512-+o87jPHn3E8sqW0aBA+qwKuG8JyIfMGdz3zECv0t/JF0KHhxXtzIlTiqzlIYc5ZpFs/vKSQfjzGIR5tPJjoXDw==
   dependencies:
     make-dir "^3.0.2"
 
@@ -2461,10 +2468,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/loadable__component@^5.13.3":
-  version "5.13.3"
-  resolved "https://registry.yarnpkg.com/@types/loadable__component/-/loadable__component-5.13.3.tgz#ea620b218fb2b6744ce5b2efd9a6a5c1a525a021"
-  integrity sha512-nkRRYpKxspH9yiYGSvyfM7GX1m57B9AVMrVEWY7Hlv9ueK2XCu39M5QyBTDHXcj5qixdD+MyAmNgoy2dEDxGLQ==
+"@types/loadable__component@^5.13.4":
+  version "5.13.4"
+  resolved "https://registry.yarnpkg.com/@types/loadable__component/-/loadable__component-5.13.4.tgz#a4646b2406b1283efac1a9d9485824a905b33d4a"
+  integrity sha512-YhoCCxyuvP2XeZNbHbi8Wb9EMaUJuA2VGHxJffcQYrJKIKSkymJrhbzsf9y4zpTmr5pExAAEh5hbF628PAZ8Dg==
   dependencies:
     "@types/react" "*"
 
