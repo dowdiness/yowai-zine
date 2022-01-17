@@ -3,9 +3,7 @@
     filter: invert(1);
   }
 
-  hover {
-    .blur {
-      filter: blur(4px);
-    }
+  .blur {
+    filter: blur(4px);
   }
 }
