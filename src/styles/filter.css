@@ -3,7 +3,7 @@
     filter: invert(1);
   }
 
-  @variants hover {
+  hover {
     .blur {
       filter: blur(4px);
     }

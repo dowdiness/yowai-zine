@@ -6,13 +6,7 @@ module.exports = {
   corePlugins: {
     container: false,
   },
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-    defaultLineHeights: true,
-    standardFontWeights: true,
-  },
-  purge: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
+  content: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
     fontFamily: {
       sans: ["'Noto Sans JP'", "Jost", ...defaultTheme.fontFamily.sans],
@@ -116,11 +110,6 @@ module.exports = {
         '-10': '-10',
       },
     },
-  },
-  variants: {
-    extend: {
-      animation: ['hover', 'focus'],
-    }
   },
   plugins: [
     plugin(function ({ addUtilities, addComponents }) {
