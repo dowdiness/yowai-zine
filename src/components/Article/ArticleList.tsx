@@ -65,7 +65,7 @@ const ArticleList: React.FCX<ArticleListProps> = ({ index, to, text, linkText, c
               </span>
             }
             <Link to={to}>
-              <span className="text-4xl outline sm:text-5xl md:text-6xl">
+              <span className="text-4xl outline-text sm:text-5xl md:text-6xl">
                 {linkText}
               </span>
             </Link>
@@ -106,7 +106,7 @@ const ArticleList: React.FCX<ArticleListProps> = ({ index, to, text, linkText, c
               </span>
             }
             <Link to={to}>
-              <span className="text-4xl outline sm:text-5xl md:text-6xl">
+              <span className="text-4xl outline-text sm:text-5xl md:text-6xl">
                 {linkText}
               </span>
             </Link>
