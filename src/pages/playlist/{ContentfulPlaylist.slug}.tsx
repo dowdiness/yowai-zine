@@ -9,6 +9,7 @@ import SectionHeader from 'src/components/Element/SectionHeader'
 import AudioPlayButton from 'src/components/AudioPlayer/AudioPlayButton'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { IoTimeOutline } from "react-icons/io5"
+import Linkify from 'linkify-react'
 
 // Context
 import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
@@ -155,14 +156,14 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             alt="Zine"
             className="object-scale-down w-full h-full mb-12 md:w-64 md:h-64"
           />
-          <div className="mb-8 space-y-4 md:ml-12">
-            <p className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg">
-              {playlist?.artists?.map((artist, index) => {
-                return (
-                  index === 0 ? <span>{artist?.introduction?.introduction}</span> : <span>, {artist?.introduction?.introduction}</span>
-                )
-              })}
-            </p>
+          <div className="flex flex-col justify-start mb-8 space-y-4 md:ml-12">
+            {playlist?.artists?.map((artist, index) => {
+              return (
+                index === 0
+                  ? <Linkify className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg" tagName="p" rel="noopener">{artist?.introduction?.introduction}</Linkify>
+                  : <Linkify className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg" tagName="p" rel="noopener">, {artist?.introduction?.introduction}</Linkify>
+              )
+            })}
           </div>
         </div>
         <ul className="mt-8 space-y-2">
