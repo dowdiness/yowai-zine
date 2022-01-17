@@ -130,7 +130,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
           {
             position: 3,
             name: `${playlist?.title}`,
-            item: `playlist/${playlist?.slug}/`,
+            item: `playlists/${playlist?.slug}/`,
           },
         ]}
       />
@@ -154,14 +154,22 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             image={cover}
             loading="eager"
             alt="Zine"
-            className="object-scale-down w-full h-full mb-12 md:w-64 md:h-64"
+            className="object-scale-down h-full mb-12"
           />
           <div className="flex flex-col justify-start mb-8 space-y-4 md:ml-12">
-            {playlist?.artists?.map((artist, index) => {
+            {playlist?.artists?.map((artist, _) => {
               return (
-                index === 0
-                  ? <Linkify className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg" tagName="p" rel="noopener">{artist?.introduction?.introduction}</Linkify>
-                  : <Linkify className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg" tagName="p" rel="noopener">, {artist?.introduction?.introduction}</Linkify>
+                  <Linkify
+                    className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg"
+                    tagName="p"
+                    options={{
+                      className: "transition-colors hover:text-slate-500",
+                      target: "_blank",
+                      rel: 'noopener'
+                    }}
+                  >
+                    {artist?.introduction?.introduction}
+                  </Linkify>
               )
             })}
           </div>
