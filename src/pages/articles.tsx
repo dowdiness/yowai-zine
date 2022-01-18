@@ -1,13 +1,11 @@
 import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 
-//Hooks
-import useSkew from 'src/hooks/useSkew'
-
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
-import { ArticleLists } from 'src/components/Article'
+import { ArticleLink, ArticleLists } from 'src/components/Article'
+import SectionHeader from 'src/components/Element/SectionHeader'
 import { getImage } from "gatsby-plugin-image"
 
 //Ease
@@ -18,10 +16,8 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
   // @ts-ignore
   const zineDate = getImage(data.zine)
 
-  useSkew('[data-skew]')
-
   return (
-    <>
+    <div className="max-w-3xl py-16 mx-auto">
       <GatsbySeo
         title="ギャラリー"
         openGraph={{
@@ -38,13 +34,18 @@ const ArticlesPage: React.FC<PageProps<GatsbyTypes.ArticlesPageQuery>> = ({ data
           },
         ]}
       />
+      <ArticleLink
+        to={`/`}
+        title='トップページに戻る'
+        className="mt-12 text-left"
+      />
+      <SectionHeader title="Gallery" author="ギャラリー" />
       <ArticleLists
         //@ts-ignore
         posts={posts}
         image={zineDate!}
-        hasBackLink={true}
       />
-    </>
+    </div>
   )
 }
 
@@ -71,7 +72,7 @@ export const pageQuery = graphql`
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG)
+        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
       }
     }
   }

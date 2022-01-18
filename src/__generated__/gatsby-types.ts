@@ -316,6 +316,12 @@ type SitePageContext = {
   readonly id: Maybe<Scalars['String']>;
   readonly previousPostId: Maybe<Scalars['String']>;
   readonly nextPostId: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly _xparams: Maybe<SitePageContext_xparams>;
+};
+
+type SitePageContext_xparams = {
+  readonly slug: Maybe<Scalars['String']>;
 };
 
 enum ImageFormat {
@@ -781,54 +787,6 @@ type ContentfulResize = {
   readonly aspectRatio: Maybe<Scalars['Float']>;
 };
 
-type ContentfulImageWithAiTags = ContentfulReference & ContentfulEntry & Node & {
-  readonly contentful_id: Scalars['String'];
-  readonly id: Scalars['ID'];
-  readonly node_locale: Scalars['String'];
-  readonly title: Maybe<Scalars['String']>;
-  readonly imageTags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly image: Maybe<ContentfulAsset>;
-  readonly spaceId: Maybe<Scalars['String']>;
-  readonly createdAt: Maybe<Scalars['Date']>;
-  readonly updatedAt: Maybe<Scalars['Date']>;
-  readonly sys: Maybe<ContentfulImageWithAiTagsSys>;
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-
-type ContentfulImageWithAiTags_createdAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-
-type ContentfulImageWithAiTags_updatedAtArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
-type ContentfulImageWithAiTagsSys = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly revision: Maybe<Scalars['Int']>;
-  readonly contentType: Maybe<ContentfulImageWithAiTagsSysContentType>;
-};
-
-type ContentfulImageWithAiTagsSysContentType = {
-  readonly sys: Maybe<ContentfulImageWithAiTagsSysContentTypeSys>;
-};
-
-type ContentfulImageWithAiTagsSysContentTypeSys = {
-  readonly type: Maybe<Scalars['String']>;
-  readonly linkType: Maybe<Scalars['String']>;
-  readonly id: Maybe<Scalars['String']>;
-};
-
 type ContentfulAuthor = ContentfulReference & ContentfulEntry & Node & {
   readonly contentful_id: Scalars['String'];
   readonly id: Scalars['ID'];
@@ -843,6 +801,8 @@ type ContentfulAuthor = ContentfulReference & ContentfulEntry & Node & {
   readonly sys: Maybe<ContentfulAuthorSys>;
   readonly twitter: Maybe<Scalars['String']>;
   readonly youtube: Maybe<Scalars['String']>;
+  readonly playlist: Maybe<ReadonlyArray<Maybe<ContentfulPlaylist>>>;
+  readonly song: Maybe<ReadonlyArray<Maybe<ContentfulSong>>>;
   readonly linktree: Maybe<Scalars['String']>;
   readonly minnakikeru: Maybe<Scalars['String']>;
   readonly hatena: Maybe<Scalars['String']>;
@@ -900,12 +860,12 @@ type ContentfulMarkdownArticle = ContentfulReference & ContentfulEntry & Node & 
   readonly align: Maybe<Scalars['Boolean']>;
   readonly author: Maybe<ContentfulAuthor>;
   readonly featuredImage: Maybe<ContentfulAsset>;
-  readonly images: Maybe<ReadonlyArray<Maybe<ContentfulAsset>>>;
   readonly content: Maybe<contentfulMarkdownArticleContentTextNode>;
   readonly spaceId: Maybe<Scalars['String']>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly sys: Maybe<ContentfulMarkdownArticleSys>;
+  readonly images: Maybe<ReadonlyArray<Maybe<ContentfulAsset>>>;
   /** Returns all children nodes filtered by type contentfulMarkdownArticleContentTextNode */
   readonly childrenContentfulMarkdownArticleContentTextNode: Maybe<ReadonlyArray<Maybe<contentfulMarkdownArticleContentTextNode>>>;
   /** Returns the first child node of type contentfulMarkdownArticleContentTextNode or null if there are no children of given type on this node */
@@ -950,6 +910,113 @@ type ContentfulMarkdownArticleSysContentType = {
 };
 
 type ContentfulMarkdownArticleSysContentTypeSys = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly linkType: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+};
+
+type ContentfulPlaylist = ContentfulReference & ContentfulEntry & Node & {
+  readonly contentful_id: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly node_locale: Scalars['String'];
+  readonly title: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly artists: Maybe<ReadonlyArray<Maybe<ContentfulAuthor>>>;
+  readonly songs: Maybe<ReadonlyArray<Maybe<ContentfulSong>>>;
+  readonly coverart: Maybe<ContentfulAsset>;
+  readonly spaceId: Maybe<Scalars['String']>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+  readonly sys: Maybe<ContentfulPlaylistSys>;
+  readonly gatsbyPath: Maybe<Scalars['String']>;
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type ContentfulPlaylist_createdAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type ContentfulPlaylist_updatedAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type ContentfulPlaylist_gatsbyPathArgs = {
+  filePath: Maybe<Scalars['String']>;
+};
+
+type ContentfulPlaylistSys = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly revision: Maybe<Scalars['Int']>;
+  readonly contentType: Maybe<ContentfulPlaylistSysContentType>;
+};
+
+type ContentfulPlaylistSysContentType = {
+  readonly sys: Maybe<ContentfulPlaylistSysContentTypeSys>;
+};
+
+type ContentfulPlaylistSysContentTypeSys = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly linkType: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+};
+
+type ContentfulSong = ContentfulReference & ContentfulEntry & Node & {
+  readonly contentful_id: Scalars['String'];
+  readonly id: Scalars['ID'];
+  readonly node_locale: Scalars['String'];
+  readonly title: Maybe<Scalars['String']>;
+  readonly duration: Maybe<Scalars['Int']>;
+  readonly artist: Maybe<ContentfulAuthor>;
+  readonly sound: Maybe<ContentfulAsset>;
+  readonly coverart: Maybe<ContentfulAsset>;
+  readonly playlist: Maybe<ReadonlyArray<Maybe<ContentfulPlaylist>>>;
+  readonly spaceId: Maybe<Scalars['String']>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+  readonly sys: Maybe<ContentfulSongSys>;
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+};
+
+
+type ContentfulSong_createdAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type ContentfulSong_updatedAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type ContentfulSongSys = {
+  readonly type: Maybe<Scalars['String']>;
+  readonly revision: Maybe<Scalars['Int']>;
+  readonly contentType: Maybe<ContentfulSongSysContentType>;
+};
+
+type ContentfulSongSysContentType = {
+  readonly sys: Maybe<ContentfulSongSysContentTypeSys>;
+};
+
+type ContentfulSongSysContentTypeSys = {
   readonly type: Maybe<Scalars['String']>;
   readonly linkType: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
@@ -1069,11 +1136,11 @@ type PagesJson = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
   readonly path: Maybe<Scalars['String']>;
+  readonly catchphrase: Maybe<Scalars['String']>;
   readonly introduction: Maybe<Scalars['String']>;
   readonly image: Maybe<Scalars['String']>;
   readonly displayTitle: Maybe<Scalars['Boolean']>;
   readonly title: Maybe<Scalars['String']>;
-  readonly catchphrase: Maybe<Scalars['String']>;
 };
 
 type SiteBuildMetadata = Node & {
@@ -1121,7 +1188,7 @@ type SitePluginPluginOptions = {
   readonly defaultQuality: Maybe<Scalars['Int']>;
   readonly failOnError: Maybe<Scalars['Boolean']>;
   readonly environment: Maybe<Scalars['String']>;
-  readonly enabled: Maybe<Scalars['Boolean']>;
+  readonly tracesSampleRate: Maybe<Scalars['Int']>;
   readonly includeInDevelopment: Maybe<Scalars['Boolean']>;
   readonly delayTimeout: Maybe<Scalars['Int']>;
   readonly path: Maybe<Scalars['String']>;
@@ -1250,12 +1317,14 @@ type Query = {
   readonly allContentfulEntry: ContentfulEntryConnection;
   readonly contentfulAsset: Maybe<ContentfulAsset>;
   readonly allContentfulAsset: ContentfulAssetConnection;
-  readonly contentfulImageWithAiTags: Maybe<ContentfulImageWithAiTags>;
-  readonly allContentfulImageWithAiTags: ContentfulImageWithAiTagsConnection;
   readonly contentfulAuthor: Maybe<ContentfulAuthor>;
   readonly allContentfulAuthor: ContentfulAuthorConnection;
   readonly contentfulMarkdownArticle: Maybe<ContentfulMarkdownArticle>;
   readonly allContentfulMarkdownArticle: ContentfulMarkdownArticleConnection;
+  readonly contentfulPlaylist: Maybe<ContentfulPlaylist>;
+  readonly allContentfulPlaylist: ContentfulPlaylistConnection;
+  readonly contentfulSong: Maybe<ContentfulSong>;
+  readonly allContentfulSong: ContentfulSongConnection;
   readonly mdx: Maybe<Mdx>;
   readonly allMdx: MdxConnection;
   readonly contentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNode>;
@@ -1409,6 +1478,11 @@ type Query_sitePageArgs = {
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
+  isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  context: Maybe<SitePageContextFilterInput>;
+  pluginCreator: Maybe<SitePluginFilterInput>;
+  pluginCreatorId: Maybe<StringQueryOperatorInput>;
+  componentPath: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -1489,31 +1563,6 @@ type Query_allContentfulAssetArgs = {
 };
 
 
-type Query_contentfulImageWithAiTagsArgs = {
-  contentful_id: Maybe<StringQueryOperatorInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  node_locale: Maybe<StringQueryOperatorInput>;
-  title: Maybe<StringQueryOperatorInput>;
-  imageTags: Maybe<StringQueryOperatorInput>;
-  image: Maybe<ContentfulAssetFilterInput>;
-  spaceId: Maybe<StringQueryOperatorInput>;
-  createdAt: Maybe<DateQueryOperatorInput>;
-  updatedAt: Maybe<DateQueryOperatorInput>;
-  sys: Maybe<ContentfulImageWithAiTagsSysFilterInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
-};
-
-
-type Query_allContentfulImageWithAiTagsArgs = {
-  filter: Maybe<ContentfulImageWithAiTagsFilterInput>;
-  sort: Maybe<ContentfulImageWithAiTagsSortInput>;
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-};
-
-
 type Query_contentfulAuthorArgs = {
   contentful_id: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
@@ -1528,6 +1577,8 @@ type Query_contentfulAuthorArgs = {
   sys: Maybe<ContentfulAuthorSysFilterInput>;
   twitter: Maybe<StringQueryOperatorInput>;
   youtube: Maybe<StringQueryOperatorInput>;
+  playlist: Maybe<ContentfulPlaylistFilterListInput>;
+  song: Maybe<ContentfulSongFilterListInput>;
   linktree: Maybe<StringQueryOperatorInput>;
   minnakikeru: Maybe<StringQueryOperatorInput>;
   hatena: Maybe<StringQueryOperatorInput>;
@@ -1560,12 +1611,12 @@ type Query_contentfulMarkdownArticleArgs = {
   align: Maybe<BooleanQueryOperatorInput>;
   author: Maybe<ContentfulAuthorFilterInput>;
   featuredImage: Maybe<ContentfulAssetFilterInput>;
-  images: Maybe<ContentfulAssetFilterListInput>;
   content: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   spaceId: Maybe<StringQueryOperatorInput>;
   createdAt: Maybe<DateQueryOperatorInput>;
   updatedAt: Maybe<DateQueryOperatorInput>;
   sys: Maybe<ContentfulMarkdownArticleSysFilterInput>;
+  images: Maybe<ContentfulAssetFilterListInput>;
   childrenContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterListInput>;
   childContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   parent: Maybe<NodeFilterInput>;
@@ -1577,6 +1628,62 @@ type Query_contentfulMarkdownArticleArgs = {
 type Query_allContentfulMarkdownArticleArgs = {
   filter: Maybe<ContentfulMarkdownArticleFilterInput>;
   sort: Maybe<ContentfulMarkdownArticleSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_contentfulPlaylistArgs = {
+  contentful_id: Maybe<StringQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  node_locale: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
+  slug: Maybe<StringQueryOperatorInput>;
+  artists: Maybe<ContentfulAuthorFilterListInput>;
+  songs: Maybe<ContentfulSongFilterListInput>;
+  coverart: Maybe<ContentfulAssetFilterInput>;
+  spaceId: Maybe<StringQueryOperatorInput>;
+  createdAt: Maybe<DateQueryOperatorInput>;
+  updatedAt: Maybe<DateQueryOperatorInput>;
+  sys: Maybe<ContentfulPlaylistSysFilterInput>;
+  gatsbyPath: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allContentfulPlaylistArgs = {
+  filter: Maybe<ContentfulPlaylistFilterInput>;
+  sort: Maybe<ContentfulPlaylistSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_contentfulSongArgs = {
+  contentful_id: Maybe<StringQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  node_locale: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
+  duration: Maybe<IntQueryOperatorInput>;
+  artist: Maybe<ContentfulAuthorFilterInput>;
+  sound: Maybe<ContentfulAssetFilterInput>;
+  coverart: Maybe<ContentfulAssetFilterInput>;
+  playlist: Maybe<ContentfulPlaylistFilterListInput>;
+  spaceId: Maybe<StringQueryOperatorInput>;
+  createdAt: Maybe<DateQueryOperatorInput>;
+  updatedAt: Maybe<DateQueryOperatorInput>;
+  sys: Maybe<ContentfulSongSysFilterInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+};
+
+
+type Query_allContentfulSongArgs = {
+  filter: Maybe<ContentfulSongFilterInput>;
+  sort: Maybe<ContentfulSongSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -1676,11 +1783,11 @@ type Query_pagesJsonArgs = {
   children: Maybe<NodeFilterListInput>;
   internal: Maybe<InternalFilterInput>;
   path: Maybe<StringQueryOperatorInput>;
+  catchphrase: Maybe<StringQueryOperatorInput>;
   introduction: Maybe<StringQueryOperatorInput>;
   image: Maybe<StringQueryOperatorInput>;
   displayTitle: Maybe<BooleanQueryOperatorInput>;
   title: Maybe<StringQueryOperatorInput>;
-  catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 
@@ -1882,11 +1989,11 @@ type PagesJsonFilterInput = {
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
+  readonly catchphrase: Maybe<StringQueryOperatorInput>;
   readonly introduction: Maybe<StringQueryOperatorInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
   readonly displayTitle: Maybe<BooleanQueryOperatorInput>;
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly catchphrase: Maybe<StringQueryOperatorInput>;
 };
 
 type FileConnection = {
@@ -2143,11 +2250,11 @@ enum FileFieldsEnum {
   childrenPagesJson___internal___owner = 'childrenPagesJson.internal.owner',
   childrenPagesJson___internal___type = 'childrenPagesJson.internal.type',
   childrenPagesJson___path = 'childrenPagesJson.path',
+  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childrenPagesJson___introduction = 'childrenPagesJson.introduction',
   childrenPagesJson___image = 'childrenPagesJson.image',
   childrenPagesJson___displayTitle = 'childrenPagesJson.displayTitle',
   childrenPagesJson___title = 'childrenPagesJson.title',
-  childrenPagesJson___catchphrase = 'childrenPagesJson.catchphrase',
   childPagesJson___id = 'childPagesJson.id',
   childPagesJson___parent___id = 'childPagesJson.parent.id',
   childPagesJson___parent___parent___id = 'childPagesJson.parent.parent.id',
@@ -2187,11 +2294,11 @@ enum FileFieldsEnum {
   childPagesJson___internal___owner = 'childPagesJson.internal.owner',
   childPagesJson___internal___type = 'childPagesJson.internal.type',
   childPagesJson___path = 'childPagesJson.path',
+  childPagesJson___catchphrase = 'childPagesJson.catchphrase',
   childPagesJson___introduction = 'childPagesJson.introduction',
   childPagesJson___image = 'childPagesJson.image',
   childPagesJson___displayTitle = 'childPagesJson.displayTitle',
   childPagesJson___title = 'childPagesJson.title',
-  childPagesJson___catchphrase = 'childPagesJson.catchphrase',
   id = 'id',
   parent___id = 'parent.id',
   parent___parent___id = 'parent.parent.id',
@@ -2719,6 +2826,181 @@ type SiteSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type SitePageContextFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly previousPostId: Maybe<StringQueryOperatorInput>;
+  readonly nextPostId: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly _xparams: Maybe<SitePageContext_xparamsFilterInput>;
+};
+
+type SitePageContext_xparamsFilterInput = {
+  readonly slug: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+  readonly resolve: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
+  readonly pluginOptions: Maybe<SitePluginPluginOptionsFilterInput>;
+  readonly nodeAPIs: Maybe<StringQueryOperatorInput>;
+  readonly browserAPIs: Maybe<StringQueryOperatorInput>;
+  readonly ssrAPIs: Maybe<StringQueryOperatorInput>;
+  readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
+  readonly packageJson: Maybe<SitePluginPackageJsonFilterInput>;
+};
+
+type SitePluginPluginOptionsFilterInput = {
+  readonly plugins: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
+  readonly displayName: Maybe<BooleanQueryOperatorInput>;
+  readonly fileName: Maybe<BooleanQueryOperatorInput>;
+  readonly minify: Maybe<BooleanQueryOperatorInput>;
+  readonly namespace: Maybe<StringQueryOperatorInput>;
+  readonly transpileTemplateLiterals: Maybe<BooleanQueryOperatorInput>;
+  readonly pure: Maybe<BooleanQueryOperatorInput>;
+  readonly base64Width: Maybe<IntQueryOperatorInput>;
+  readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
+  readonly defaultQuality: Maybe<IntQueryOperatorInput>;
+  readonly failOnError: Maybe<BooleanQueryOperatorInput>;
+  readonly environment: Maybe<StringQueryOperatorInput>;
+  readonly tracesSampleRate: Maybe<IntQueryOperatorInput>;
+  readonly includeInDevelopment: Maybe<BooleanQueryOperatorInput>;
+  readonly delayTimeout: Maybe<IntQueryOperatorInput>;
+  readonly path: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly spaceId: Maybe<StringQueryOperatorInput>;
+  readonly accessToken: Maybe<StringQueryOperatorInput>;
+  readonly downloadLocal: Maybe<BooleanQueryOperatorInput>;
+  readonly host: Maybe<StringQueryOperatorInput>;
+  readonly forceFullSync: Maybe<BooleanQueryOperatorInput>;
+  readonly pageLimit: Maybe<IntQueryOperatorInput>;
+  readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
+  readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
+  readonly extensions: Maybe<StringQueryOperatorInput>;
+  readonly lessBabel: Maybe<BooleanQueryOperatorInput>;
+  readonly mediaTypes: Maybe<StringQueryOperatorInput>;
+  readonly root: Maybe<StringQueryOperatorInput>;
+  readonly background: Maybe<StringQueryOperatorInput>;
+  readonly output: Maybe<StringQueryOperatorInput>;
+  readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
+  readonly short_name: Maybe<StringQueryOperatorInput>;
+  readonly start_url: Maybe<StringQueryOperatorInput>;
+  readonly background_color: Maybe<StringQueryOperatorInput>;
+  readonly theme_color: Maybe<StringQueryOperatorInput>;
+  readonly display: Maybe<StringQueryOperatorInput>;
+  readonly icon: Maybe<StringQueryOperatorInput>;
+  readonly legacy: Maybe<BooleanQueryOperatorInput>;
+  readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
+  readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
+  readonly crossOrigin: Maybe<StringQueryOperatorInput>;
+  readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
+  readonly cacheDigest: Maybe<StringQueryOperatorInput>;
+  readonly titleTemplate: Maybe<StringQueryOperatorInput>;
+  readonly language: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly openGraph: Maybe<SitePluginPluginOptionsOpenGraphFilterInput>;
+  readonly twitter: Maybe<SitePluginPluginOptionsTwitterFilterInput>;
+  readonly facebook: Maybe<SitePluginPluginOptionsFacebookFilterInput>;
+  readonly color: Maybe<StringQueryOperatorInput>;
+  readonly precachePages: Maybe<StringQueryOperatorInput>;
+  readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
+  readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
+  readonly isTSX: Maybe<BooleanQueryOperatorInput>;
+  readonly jsxPragma: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsPluginsFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsPluginsFilterInput>;
+};
+
+type SitePluginPluginOptionsPluginsFilterInput = {
+  readonly resolve: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
+  readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>;
+  readonly browserAPIs: Maybe<StringQueryOperatorInput>;
+  readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
+  readonly background: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsOpenGraphFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly locale: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly site_name: Maybe<StringQueryOperatorInput>;
+  readonly images: Maybe<SitePluginPluginOptionsOpenGraphImagesFilterListInput>;
+};
+
+type SitePluginPluginOptionsOpenGraphImagesFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPluginOptionsOpenGraphImagesFilterInput>;
+};
+
+type SitePluginPluginOptionsOpenGraphImagesFilterInput = {
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+  readonly alt: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsTwitterFilterInput = {
+  readonly handle: Maybe<StringQueryOperatorInput>;
+  readonly site: Maybe<StringQueryOperatorInput>;
+  readonly cardType: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPluginOptionsFacebookFilterInput = {
+  readonly appId: Maybe<FloatQueryOperatorInput>;
+};
+
+type SitePluginPackageJsonFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
+  readonly main: Maybe<StringQueryOperatorInput>;
+  readonly license: Maybe<StringQueryOperatorInput>;
+  readonly dependencies: Maybe<SitePluginPackageJsonDependenciesFilterListInput>;
+  readonly devDependencies: Maybe<SitePluginPackageJsonDevDependenciesFilterListInput>;
+  readonly peerDependencies: Maybe<SitePluginPackageJsonPeerDependenciesFilterListInput>;
+  readonly keywords: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPackageJsonDependenciesFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPackageJsonDependenciesFilterInput>;
+};
+
+type SitePluginPackageJsonDependenciesFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPackageJsonDevDependenciesFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPackageJsonDevDependenciesFilterInput>;
+};
+
+type SitePluginPackageJsonDevDependenciesFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePluginPackageJsonPeerDependenciesFilterListInput = {
+  readonly elemMatch: Maybe<SitePluginPackageJsonPeerDependenciesFilterInput>;
+};
+
+type SitePluginPackageJsonPeerDependenciesFilterInput = {
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly version: Maybe<StringQueryOperatorInput>;
+};
+
 type SitePageConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePageEdge>;
@@ -2837,7 +3119,145 @@ enum SitePageFieldsEnum {
   internal___ignoreType = 'internal.ignoreType',
   internal___mediaType = 'internal.mediaType',
   internal___owner = 'internal.owner',
-  internal___type = 'internal.type'
+  internal___type = 'internal.type',
+  isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___id = 'context.id',
+  context___previousPostId = 'context.previousPostId',
+  context___nextPostId = 'context.nextPostId',
+  context___slug = 'context.slug',
+  context____xparams___slug = 'context._xparams.slug',
+  pluginCreator___id = 'pluginCreator.id',
+  pluginCreator___parent___id = 'pluginCreator.parent.id',
+  pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
+  pluginCreator___parent___parent___children = 'pluginCreator.parent.parent.children',
+  pluginCreator___parent___children = 'pluginCreator.parent.children',
+  pluginCreator___parent___children___id = 'pluginCreator.parent.children.id',
+  pluginCreator___parent___children___children = 'pluginCreator.parent.children.children',
+  pluginCreator___parent___internal___content = 'pluginCreator.parent.internal.content',
+  pluginCreator___parent___internal___contentDigest = 'pluginCreator.parent.internal.contentDigest',
+  pluginCreator___parent___internal___description = 'pluginCreator.parent.internal.description',
+  pluginCreator___parent___internal___fieldOwners = 'pluginCreator.parent.internal.fieldOwners',
+  pluginCreator___parent___internal___ignoreType = 'pluginCreator.parent.internal.ignoreType',
+  pluginCreator___parent___internal___mediaType = 'pluginCreator.parent.internal.mediaType',
+  pluginCreator___parent___internal___owner = 'pluginCreator.parent.internal.owner',
+  pluginCreator___parent___internal___type = 'pluginCreator.parent.internal.type',
+  pluginCreator___children = 'pluginCreator.children',
+  pluginCreator___children___id = 'pluginCreator.children.id',
+  pluginCreator___children___parent___id = 'pluginCreator.children.parent.id',
+  pluginCreator___children___parent___children = 'pluginCreator.children.parent.children',
+  pluginCreator___children___children = 'pluginCreator.children.children',
+  pluginCreator___children___children___id = 'pluginCreator.children.children.id',
+  pluginCreator___children___children___children = 'pluginCreator.children.children.children',
+  pluginCreator___children___internal___content = 'pluginCreator.children.internal.content',
+  pluginCreator___children___internal___contentDigest = 'pluginCreator.children.internal.contentDigest',
+  pluginCreator___children___internal___description = 'pluginCreator.children.internal.description',
+  pluginCreator___children___internal___fieldOwners = 'pluginCreator.children.internal.fieldOwners',
+  pluginCreator___children___internal___ignoreType = 'pluginCreator.children.internal.ignoreType',
+  pluginCreator___children___internal___mediaType = 'pluginCreator.children.internal.mediaType',
+  pluginCreator___children___internal___owner = 'pluginCreator.children.internal.owner',
+  pluginCreator___children___internal___type = 'pluginCreator.children.internal.type',
+  pluginCreator___internal___content = 'pluginCreator.internal.content',
+  pluginCreator___internal___contentDigest = 'pluginCreator.internal.contentDigest',
+  pluginCreator___internal___description = 'pluginCreator.internal.description',
+  pluginCreator___internal___fieldOwners = 'pluginCreator.internal.fieldOwners',
+  pluginCreator___internal___ignoreType = 'pluginCreator.internal.ignoreType',
+  pluginCreator___internal___mediaType = 'pluginCreator.internal.mediaType',
+  pluginCreator___internal___owner = 'pluginCreator.internal.owner',
+  pluginCreator___internal___type = 'pluginCreator.internal.type',
+  pluginCreator___resolve = 'pluginCreator.resolve',
+  pluginCreator___name = 'pluginCreator.name',
+  pluginCreator___version = 'pluginCreator.version',
+  pluginCreator___pluginOptions___plugins = 'pluginCreator.pluginOptions.plugins',
+  pluginCreator___pluginOptions___plugins___resolve = 'pluginCreator.pluginOptions.plugins.resolve',
+  pluginCreator___pluginOptions___plugins___id = 'pluginCreator.pluginOptions.plugins.id',
+  pluginCreator___pluginOptions___plugins___name = 'pluginCreator.pluginOptions.plugins.name',
+  pluginCreator___pluginOptions___plugins___version = 'pluginCreator.pluginOptions.plugins.version',
+  pluginCreator___pluginOptions___plugins___browserAPIs = 'pluginCreator.pluginOptions.plugins.browserAPIs',
+  pluginCreator___pluginOptions___plugins___pluginFilepath = 'pluginCreator.pluginOptions.plugins.pluginFilepath',
+  pluginCreator___pluginOptions___displayName = 'pluginCreator.pluginOptions.displayName',
+  pluginCreator___pluginOptions___fileName = 'pluginCreator.pluginOptions.fileName',
+  pluginCreator___pluginOptions___minify = 'pluginCreator.pluginOptions.minify',
+  pluginCreator___pluginOptions___namespace = 'pluginCreator.pluginOptions.namespace',
+  pluginCreator___pluginOptions___transpileTemplateLiterals = 'pluginCreator.pluginOptions.transpileTemplateLiterals',
+  pluginCreator___pluginOptions___pure = 'pluginCreator.pluginOptions.pure',
+  pluginCreator___pluginOptions___base64Width = 'pluginCreator.pluginOptions.base64Width',
+  pluginCreator___pluginOptions___stripMetadata = 'pluginCreator.pluginOptions.stripMetadata',
+  pluginCreator___pluginOptions___defaultQuality = 'pluginCreator.pluginOptions.defaultQuality',
+  pluginCreator___pluginOptions___failOnError = 'pluginCreator.pluginOptions.failOnError',
+  pluginCreator___pluginOptions___environment = 'pluginCreator.pluginOptions.environment',
+  pluginCreator___pluginOptions___tracesSampleRate = 'pluginCreator.pluginOptions.tracesSampleRate',
+  pluginCreator___pluginOptions___includeInDevelopment = 'pluginCreator.pluginOptions.includeInDevelopment',
+  pluginCreator___pluginOptions___delayTimeout = 'pluginCreator.pluginOptions.delayTimeout',
+  pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
+  pluginCreator___pluginOptions___name = 'pluginCreator.pluginOptions.name',
+  pluginCreator___pluginOptions___spaceId = 'pluginCreator.pluginOptions.spaceId',
+  pluginCreator___pluginOptions___accessToken = 'pluginCreator.pluginOptions.accessToken',
+  pluginCreator___pluginOptions___downloadLocal = 'pluginCreator.pluginOptions.downloadLocal',
+  pluginCreator___pluginOptions___host = 'pluginCreator.pluginOptions.host',
+  pluginCreator___pluginOptions___forceFullSync = 'pluginCreator.pluginOptions.forceFullSync',
+  pluginCreator___pluginOptions___pageLimit = 'pluginCreator.pluginOptions.pageLimit',
+  pluginCreator___pluginOptions___assetDownloadWorkers = 'pluginCreator.pluginOptions.assetDownloadWorkers',
+  pluginCreator___pluginOptions___useNameForId = 'pluginCreator.pluginOptions.useNameForId',
+  pluginCreator___pluginOptions___extensions = 'pluginCreator.pluginOptions.extensions',
+  pluginCreator___pluginOptions___lessBabel = 'pluginCreator.pluginOptions.lessBabel',
+  pluginCreator___pluginOptions___mediaTypes = 'pluginCreator.pluginOptions.mediaTypes',
+  pluginCreator___pluginOptions___root = 'pluginCreator.pluginOptions.root',
+  pluginCreator___pluginOptions___background = 'pluginCreator.pluginOptions.background',
+  pluginCreator___pluginOptions___output = 'pluginCreator.pluginOptions.output',
+  pluginCreator___pluginOptions___createLinkInHead = 'pluginCreator.pluginOptions.createLinkInHead',
+  pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
+  pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
+  pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
+  pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
+  pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
+  pluginCreator___pluginOptions___icon = 'pluginCreator.pluginOptions.icon',
+  pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
+  pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
+  pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
+  pluginCreator___pluginOptions___crossOrigin = 'pluginCreator.pluginOptions.crossOrigin',
+  pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
+  pluginCreator___pluginOptions___cacheDigest = 'pluginCreator.pluginOptions.cacheDigest',
+  pluginCreator___pluginOptions___titleTemplate = 'pluginCreator.pluginOptions.titleTemplate',
+  pluginCreator___pluginOptions___language = 'pluginCreator.pluginOptions.language',
+  pluginCreator___pluginOptions___description = 'pluginCreator.pluginOptions.description',
+  pluginCreator___pluginOptions___openGraph___title = 'pluginCreator.pluginOptions.openGraph.title',
+  pluginCreator___pluginOptions___openGraph___description = 'pluginCreator.pluginOptions.openGraph.description',
+  pluginCreator___pluginOptions___openGraph___type = 'pluginCreator.pluginOptions.openGraph.type',
+  pluginCreator___pluginOptions___openGraph___locale = 'pluginCreator.pluginOptions.openGraph.locale',
+  pluginCreator___pluginOptions___openGraph___url = 'pluginCreator.pluginOptions.openGraph.url',
+  pluginCreator___pluginOptions___openGraph___site_name = 'pluginCreator.pluginOptions.openGraph.site_name',
+  pluginCreator___pluginOptions___openGraph___images = 'pluginCreator.pluginOptions.openGraph.images',
+  pluginCreator___pluginOptions___twitter___handle = 'pluginCreator.pluginOptions.twitter.handle',
+  pluginCreator___pluginOptions___twitter___site = 'pluginCreator.pluginOptions.twitter.site',
+  pluginCreator___pluginOptions___twitter___cardType = 'pluginCreator.pluginOptions.twitter.cardType',
+  pluginCreator___pluginOptions___facebook___appId = 'pluginCreator.pluginOptions.facebook.appId',
+  pluginCreator___pluginOptions___color = 'pluginCreator.pluginOptions.color',
+  pluginCreator___pluginOptions___precachePages = 'pluginCreator.pluginOptions.precachePages',
+  pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
+  pluginCreator___pluginOptions___allExtensions = 'pluginCreator.pluginOptions.allExtensions',
+  pluginCreator___pluginOptions___isTSX = 'pluginCreator.pluginOptions.isTSX',
+  pluginCreator___pluginOptions___jsxPragma = 'pluginCreator.pluginOptions.jsxPragma',
+  pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
+  pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
+  pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
+  pluginCreator___pluginFilepath = 'pluginCreator.pluginFilepath',
+  pluginCreator___packageJson___name = 'pluginCreator.packageJson.name',
+  pluginCreator___packageJson___description = 'pluginCreator.packageJson.description',
+  pluginCreator___packageJson___version = 'pluginCreator.packageJson.version',
+  pluginCreator___packageJson___main = 'pluginCreator.packageJson.main',
+  pluginCreator___packageJson___license = 'pluginCreator.packageJson.license',
+  pluginCreator___packageJson___dependencies = 'pluginCreator.packageJson.dependencies',
+  pluginCreator___packageJson___dependencies___name = 'pluginCreator.packageJson.dependencies.name',
+  pluginCreator___packageJson___dependencies___version = 'pluginCreator.packageJson.dependencies.version',
+  pluginCreator___packageJson___devDependencies = 'pluginCreator.packageJson.devDependencies',
+  pluginCreator___packageJson___devDependencies___name = 'pluginCreator.packageJson.devDependencies.name',
+  pluginCreator___packageJson___devDependencies___version = 'pluginCreator.packageJson.devDependencies.version',
+  pluginCreator___packageJson___peerDependencies = 'pluginCreator.packageJson.peerDependencies',
+  pluginCreator___packageJson___peerDependencies___name = 'pluginCreator.packageJson.peerDependencies.name',
+  pluginCreator___packageJson___peerDependencies___version = 'pluginCreator.packageJson.peerDependencies.version',
+  pluginCreator___packageJson___keywords = 'pluginCreator.packageJson.keywords',
+  pluginCreatorId = 'pluginCreatorId',
+  componentPath = 'componentPath'
 }
 
 type SitePageGroupConnection = {
@@ -2859,6 +3279,11 @@ type SitePageFilterInput = {
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
+  readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
+  readonly context: Maybe<SitePageContextFilterInput>;
+  readonly pluginCreator: Maybe<SitePluginFilterInput>;
+  readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
+  readonly componentPath: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageSortInput = {
@@ -3411,11 +3836,11 @@ enum ContentfulAssetFieldsEnum {
   localFile___childrenPagesJson___internal___owner = 'localFile.childrenPagesJson.internal.owner',
   localFile___childrenPagesJson___internal___type = 'localFile.childrenPagesJson.internal.type',
   localFile___childrenPagesJson___path = 'localFile.childrenPagesJson.path',
+  localFile___childrenPagesJson___catchphrase = 'localFile.childrenPagesJson.catchphrase',
   localFile___childrenPagesJson___introduction = 'localFile.childrenPagesJson.introduction',
   localFile___childrenPagesJson___image = 'localFile.childrenPagesJson.image',
   localFile___childrenPagesJson___displayTitle = 'localFile.childrenPagesJson.displayTitle',
   localFile___childrenPagesJson___title = 'localFile.childrenPagesJson.title',
-  localFile___childrenPagesJson___catchphrase = 'localFile.childrenPagesJson.catchphrase',
   localFile___childPagesJson___id = 'localFile.childPagesJson.id',
   localFile___childPagesJson___parent___id = 'localFile.childPagesJson.parent.id',
   localFile___childPagesJson___parent___children = 'localFile.childPagesJson.parent.children',
@@ -3431,11 +3856,11 @@ enum ContentfulAssetFieldsEnum {
   localFile___childPagesJson___internal___owner = 'localFile.childPagesJson.internal.owner',
   localFile___childPagesJson___internal___type = 'localFile.childPagesJson.internal.type',
   localFile___childPagesJson___path = 'localFile.childPagesJson.path',
+  localFile___childPagesJson___catchphrase = 'localFile.childPagesJson.catchphrase',
   localFile___childPagesJson___introduction = 'localFile.childPagesJson.introduction',
   localFile___childPagesJson___image = 'localFile.childPagesJson.image',
   localFile___childPagesJson___displayTitle = 'localFile.childPagesJson.displayTitle',
   localFile___childPagesJson___title = 'localFile.childPagesJson.title',
-  localFile___childPagesJson___catchphrase = 'localFile.childPagesJson.catchphrase',
   localFile___id = 'localFile.id',
   localFile___parent___id = 'localFile.parent.id',
   localFile___parent___parent___id = 'localFile.parent.parent.id',
@@ -3620,328 +4045,6 @@ type ContentfulAssetSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type ContentfulImageWithAiTagsSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly revision: Maybe<IntQueryOperatorInput>;
-  readonly contentType: Maybe<ContentfulImageWithAiTagsSysContentTypeFilterInput>;
-};
-
-type ContentfulImageWithAiTagsSysContentTypeFilterInput = {
-  readonly sys: Maybe<ContentfulImageWithAiTagsSysContentTypeSysFilterInput>;
-};
-
-type ContentfulImageWithAiTagsSysContentTypeSysFilterInput = {
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly linkType: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-};
-
-type ContentfulImageWithAiTagsConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<ContentfulImageWithAiTagsEdge>;
-  readonly nodes: ReadonlyArray<ContentfulImageWithAiTags>;
-  readonly pageInfo: PageInfo;
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly group: ReadonlyArray<ContentfulImageWithAiTagsGroupConnection>;
-};
-
-
-type ContentfulImageWithAiTagsConnection_distinctArgs = {
-  field: ContentfulImageWithAiTagsFieldsEnum;
-};
-
-
-type ContentfulImageWithAiTagsConnection_groupArgs = {
-  skip: Maybe<Scalars['Int']>;
-  limit: Maybe<Scalars['Int']>;
-  field: ContentfulImageWithAiTagsFieldsEnum;
-};
-
-type ContentfulImageWithAiTagsEdge = {
-  readonly next: Maybe<ContentfulImageWithAiTags>;
-  readonly node: ContentfulImageWithAiTags;
-  readonly previous: Maybe<ContentfulImageWithAiTags>;
-};
-
-enum ContentfulImageWithAiTagsFieldsEnum {
-  contentful_id = 'contentful_id',
-  id = 'id',
-  node_locale = 'node_locale',
-  title = 'title',
-  imageTags = 'imageTags',
-  image___contentful_id = 'image.contentful_id',
-  image___id = 'image.id',
-  image___spaceId = 'image.spaceId',
-  image___createdAt = 'image.createdAt',
-  image___updatedAt = 'image.updatedAt',
-  image___file___url = 'image.file.url',
-  image___file___details___size = 'image.file.details.size',
-  image___file___fileName = 'image.file.fileName',
-  image___file___contentType = 'image.file.contentType',
-  image___title = 'image.title',
-  image___description = 'image.description',
-  image___node_locale = 'image.node_locale',
-  image___sys___type = 'image.sys.type',
-  image___sys___revision = 'image.sys.revision',
-  image___localFile___sourceInstanceName = 'image.localFile.sourceInstanceName',
-  image___localFile___absolutePath = 'image.localFile.absolutePath',
-  image___localFile___relativePath = 'image.localFile.relativePath',
-  image___localFile___extension = 'image.localFile.extension',
-  image___localFile___size = 'image.localFile.size',
-  image___localFile___prettySize = 'image.localFile.prettySize',
-  image___localFile___modifiedTime = 'image.localFile.modifiedTime',
-  image___localFile___accessTime = 'image.localFile.accessTime',
-  image___localFile___changeTime = 'image.localFile.changeTime',
-  image___localFile___birthTime = 'image.localFile.birthTime',
-  image___localFile___root = 'image.localFile.root',
-  image___localFile___dir = 'image.localFile.dir',
-  image___localFile___base = 'image.localFile.base',
-  image___localFile___ext = 'image.localFile.ext',
-  image___localFile___name = 'image.localFile.name',
-  image___localFile___relativeDirectory = 'image.localFile.relativeDirectory',
-  image___localFile___dev = 'image.localFile.dev',
-  image___localFile___mode = 'image.localFile.mode',
-  image___localFile___nlink = 'image.localFile.nlink',
-  image___localFile___uid = 'image.localFile.uid',
-  image___localFile___gid = 'image.localFile.gid',
-  image___localFile___rdev = 'image.localFile.rdev',
-  image___localFile___ino = 'image.localFile.ino',
-  image___localFile___atimeMs = 'image.localFile.atimeMs',
-  image___localFile___mtimeMs = 'image.localFile.mtimeMs',
-  image___localFile___ctimeMs = 'image.localFile.ctimeMs',
-  image___localFile___atime = 'image.localFile.atime',
-  image___localFile___mtime = 'image.localFile.mtime',
-  image___localFile___ctime = 'image.localFile.ctime',
-  image___localFile___birthtime = 'image.localFile.birthtime',
-  image___localFile___birthtimeMs = 'image.localFile.birthtimeMs',
-  image___localFile___blksize = 'image.localFile.blksize',
-  image___localFile___blocks = 'image.localFile.blocks',
-  image___localFile___url = 'image.localFile.url',
-  image___localFile___publicURL = 'image.localFile.publicURL',
-  image___localFile___childrenImageSharp = 'image.localFile.childrenImageSharp',
-  image___localFile___childrenImageSharp___gatsbyImageData = 'image.localFile.childrenImageSharp.gatsbyImageData',
-  image___localFile___childrenImageSharp___id = 'image.localFile.childrenImageSharp.id',
-  image___localFile___childrenImageSharp___children = 'image.localFile.childrenImageSharp.children',
-  image___localFile___childImageSharp___gatsbyImageData = 'image.localFile.childImageSharp.gatsbyImageData',
-  image___localFile___childImageSharp___id = 'image.localFile.childImageSharp.id',
-  image___localFile___childImageSharp___children = 'image.localFile.childImageSharp.children',
-  image___localFile___childrenPagesJson = 'image.localFile.childrenPagesJson',
-  image___localFile___childrenPagesJson___id = 'image.localFile.childrenPagesJson.id',
-  image___localFile___childrenPagesJson___children = 'image.localFile.childrenPagesJson.children',
-  image___localFile___childrenPagesJson___path = 'image.localFile.childrenPagesJson.path',
-  image___localFile___childrenPagesJson___introduction = 'image.localFile.childrenPagesJson.introduction',
-  image___localFile___childrenPagesJson___image = 'image.localFile.childrenPagesJson.image',
-  image___localFile___childrenPagesJson___displayTitle = 'image.localFile.childrenPagesJson.displayTitle',
-  image___localFile___childrenPagesJson___title = 'image.localFile.childrenPagesJson.title',
-  image___localFile___childrenPagesJson___catchphrase = 'image.localFile.childrenPagesJson.catchphrase',
-  image___localFile___childPagesJson___id = 'image.localFile.childPagesJson.id',
-  image___localFile___childPagesJson___children = 'image.localFile.childPagesJson.children',
-  image___localFile___childPagesJson___path = 'image.localFile.childPagesJson.path',
-  image___localFile___childPagesJson___introduction = 'image.localFile.childPagesJson.introduction',
-  image___localFile___childPagesJson___image = 'image.localFile.childPagesJson.image',
-  image___localFile___childPagesJson___displayTitle = 'image.localFile.childPagesJson.displayTitle',
-  image___localFile___childPagesJson___title = 'image.localFile.childPagesJson.title',
-  image___localFile___childPagesJson___catchphrase = 'image.localFile.childPagesJson.catchphrase',
-  image___localFile___id = 'image.localFile.id',
-  image___localFile___parent___id = 'image.localFile.parent.id',
-  image___localFile___parent___children = 'image.localFile.parent.children',
-  image___localFile___children = 'image.localFile.children',
-  image___localFile___children___id = 'image.localFile.children.id',
-  image___localFile___children___children = 'image.localFile.children.children',
-  image___localFile___internal___content = 'image.localFile.internal.content',
-  image___localFile___internal___contentDigest = 'image.localFile.internal.contentDigest',
-  image___localFile___internal___description = 'image.localFile.internal.description',
-  image___localFile___internal___fieldOwners = 'image.localFile.internal.fieldOwners',
-  image___localFile___internal___ignoreType = 'image.localFile.internal.ignoreType',
-  image___localFile___internal___mediaType = 'image.localFile.internal.mediaType',
-  image___localFile___internal___owner = 'image.localFile.internal.owner',
-  image___localFile___internal___type = 'image.localFile.internal.type',
-  image___fixed___base64 = 'image.fixed.base64',
-  image___fixed___tracedSVG = 'image.fixed.tracedSVG',
-  image___fixed___aspectRatio = 'image.fixed.aspectRatio',
-  image___fixed___width = 'image.fixed.width',
-  image___fixed___height = 'image.fixed.height',
-  image___fixed___src = 'image.fixed.src',
-  image___fixed___srcSet = 'image.fixed.srcSet',
-  image___fixed___srcWebp = 'image.fixed.srcWebp',
-  image___fixed___srcSetWebp = 'image.fixed.srcSetWebp',
-  image___fluid___base64 = 'image.fluid.base64',
-  image___fluid___tracedSVG = 'image.fluid.tracedSVG',
-  image___fluid___aspectRatio = 'image.fluid.aspectRatio',
-  image___fluid___src = 'image.fluid.src',
-  image___fluid___srcSet = 'image.fluid.srcSet',
-  image___fluid___srcWebp = 'image.fluid.srcWebp',
-  image___fluid___srcSetWebp = 'image.fluid.srcSetWebp',
-  image___fluid___sizes = 'image.fluid.sizes',
-  image___gatsbyImageData = 'image.gatsbyImageData',
-  image___resize___base64 = 'image.resize.base64',
-  image___resize___tracedSVG = 'image.resize.tracedSVG',
-  image___resize___src = 'image.resize.src',
-  image___resize___width = 'image.resize.width',
-  image___resize___height = 'image.resize.height',
-  image___resize___aspectRatio = 'image.resize.aspectRatio',
-  image___parent___id = 'image.parent.id',
-  image___parent___parent___id = 'image.parent.parent.id',
-  image___parent___parent___children = 'image.parent.parent.children',
-  image___parent___children = 'image.parent.children',
-  image___parent___children___id = 'image.parent.children.id',
-  image___parent___children___children = 'image.parent.children.children',
-  image___parent___internal___content = 'image.parent.internal.content',
-  image___parent___internal___contentDigest = 'image.parent.internal.contentDigest',
-  image___parent___internal___description = 'image.parent.internal.description',
-  image___parent___internal___fieldOwners = 'image.parent.internal.fieldOwners',
-  image___parent___internal___ignoreType = 'image.parent.internal.ignoreType',
-  image___parent___internal___mediaType = 'image.parent.internal.mediaType',
-  image___parent___internal___owner = 'image.parent.internal.owner',
-  image___parent___internal___type = 'image.parent.internal.type',
-  image___children = 'image.children',
-  image___children___id = 'image.children.id',
-  image___children___parent___id = 'image.children.parent.id',
-  image___children___parent___children = 'image.children.parent.children',
-  image___children___children = 'image.children.children',
-  image___children___children___id = 'image.children.children.id',
-  image___children___children___children = 'image.children.children.children',
-  image___children___internal___content = 'image.children.internal.content',
-  image___children___internal___contentDigest = 'image.children.internal.contentDigest',
-  image___children___internal___description = 'image.children.internal.description',
-  image___children___internal___fieldOwners = 'image.children.internal.fieldOwners',
-  image___children___internal___ignoreType = 'image.children.internal.ignoreType',
-  image___children___internal___mediaType = 'image.children.internal.mediaType',
-  image___children___internal___owner = 'image.children.internal.owner',
-  image___children___internal___type = 'image.children.internal.type',
-  image___internal___content = 'image.internal.content',
-  image___internal___contentDigest = 'image.internal.contentDigest',
-  image___internal___description = 'image.internal.description',
-  image___internal___fieldOwners = 'image.internal.fieldOwners',
-  image___internal___ignoreType = 'image.internal.ignoreType',
-  image___internal___mediaType = 'image.internal.mediaType',
-  image___internal___owner = 'image.internal.owner',
-  image___internal___type = 'image.internal.type',
-  spaceId = 'spaceId',
-  createdAt = 'createdAt',
-  updatedAt = 'updatedAt',
-  sys___type = 'sys.type',
-  sys___revision = 'sys.revision',
-  sys___contentType___sys___type = 'sys.contentType.sys.type',
-  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
-  sys___contentType___sys___id = 'sys.contentType.sys.id',
-  parent___id = 'parent.id',
-  parent___parent___id = 'parent.parent.id',
-  parent___parent___parent___id = 'parent.parent.parent.id',
-  parent___parent___parent___children = 'parent.parent.parent.children',
-  parent___parent___children = 'parent.parent.children',
-  parent___parent___children___id = 'parent.parent.children.id',
-  parent___parent___children___children = 'parent.parent.children.children',
-  parent___parent___internal___content = 'parent.parent.internal.content',
-  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
-  parent___parent___internal___description = 'parent.parent.internal.description',
-  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
-  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
-  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
-  parent___parent___internal___owner = 'parent.parent.internal.owner',
-  parent___parent___internal___type = 'parent.parent.internal.type',
-  parent___children = 'parent.children',
-  parent___children___id = 'parent.children.id',
-  parent___children___parent___id = 'parent.children.parent.id',
-  parent___children___parent___children = 'parent.children.parent.children',
-  parent___children___children = 'parent.children.children',
-  parent___children___children___id = 'parent.children.children.id',
-  parent___children___children___children = 'parent.children.children.children',
-  parent___children___internal___content = 'parent.children.internal.content',
-  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
-  parent___children___internal___description = 'parent.children.internal.description',
-  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
-  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
-  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
-  parent___children___internal___owner = 'parent.children.internal.owner',
-  parent___children___internal___type = 'parent.children.internal.type',
-  parent___internal___content = 'parent.internal.content',
-  parent___internal___contentDigest = 'parent.internal.contentDigest',
-  parent___internal___description = 'parent.internal.description',
-  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
-  parent___internal___ignoreType = 'parent.internal.ignoreType',
-  parent___internal___mediaType = 'parent.internal.mediaType',
-  parent___internal___owner = 'parent.internal.owner',
-  parent___internal___type = 'parent.internal.type',
-  children = 'children',
-  children___id = 'children.id',
-  children___parent___id = 'children.parent.id',
-  children___parent___parent___id = 'children.parent.parent.id',
-  children___parent___parent___children = 'children.parent.parent.children',
-  children___parent___children = 'children.parent.children',
-  children___parent___children___id = 'children.parent.children.id',
-  children___parent___children___children = 'children.parent.children.children',
-  children___parent___internal___content = 'children.parent.internal.content',
-  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
-  children___parent___internal___description = 'children.parent.internal.description',
-  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
-  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
-  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
-  children___parent___internal___owner = 'children.parent.internal.owner',
-  children___parent___internal___type = 'children.parent.internal.type',
-  children___children = 'children.children',
-  children___children___id = 'children.children.id',
-  children___children___parent___id = 'children.children.parent.id',
-  children___children___parent___children = 'children.children.parent.children',
-  children___children___children = 'children.children.children',
-  children___children___children___id = 'children.children.children.id',
-  children___children___children___children = 'children.children.children.children',
-  children___children___internal___content = 'children.children.internal.content',
-  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
-  children___children___internal___description = 'children.children.internal.description',
-  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
-  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
-  children___children___internal___mediaType = 'children.children.internal.mediaType',
-  children___children___internal___owner = 'children.children.internal.owner',
-  children___children___internal___type = 'children.children.internal.type',
-  children___internal___content = 'children.internal.content',
-  children___internal___contentDigest = 'children.internal.contentDigest',
-  children___internal___description = 'children.internal.description',
-  children___internal___fieldOwners = 'children.internal.fieldOwners',
-  children___internal___ignoreType = 'children.internal.ignoreType',
-  children___internal___mediaType = 'children.internal.mediaType',
-  children___internal___owner = 'children.internal.owner',
-  children___internal___type = 'children.internal.type',
-  internal___content = 'internal.content',
-  internal___contentDigest = 'internal.contentDigest',
-  internal___description = 'internal.description',
-  internal___fieldOwners = 'internal.fieldOwners',
-  internal___ignoreType = 'internal.ignoreType',
-  internal___mediaType = 'internal.mediaType',
-  internal___owner = 'internal.owner',
-  internal___type = 'internal.type'
-}
-
-type ContentfulImageWithAiTagsGroupConnection = {
-  readonly totalCount: Scalars['Int'];
-  readonly edges: ReadonlyArray<ContentfulImageWithAiTagsEdge>;
-  readonly nodes: ReadonlyArray<ContentfulImageWithAiTags>;
-  readonly pageInfo: PageInfo;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type ContentfulImageWithAiTagsFilterInput = {
-  readonly contentful_id: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly node_locale: Maybe<StringQueryOperatorInput>;
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly imageTags: Maybe<StringQueryOperatorInput>;
-  readonly image: Maybe<ContentfulAssetFilterInput>;
-  readonly spaceId: Maybe<StringQueryOperatorInput>;
-  readonly createdAt: Maybe<DateQueryOperatorInput>;
-  readonly updatedAt: Maybe<DateQueryOperatorInput>;
-  readonly sys: Maybe<ContentfulImageWithAiTagsSysFilterInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-};
-
-type ContentfulImageWithAiTagsSortInput = {
-  readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulImageWithAiTagsFieldsEnum>>>;
-  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
 type ContentfulMarkdownArticleFilterListInput = {
   readonly elemMatch: Maybe<ContentfulMarkdownArticleFilterInput>;
 };
@@ -3958,12 +4061,12 @@ type ContentfulMarkdownArticleFilterInput = {
   readonly align: Maybe<BooleanQueryOperatorInput>;
   readonly author: Maybe<ContentfulAuthorFilterInput>;
   readonly featuredImage: Maybe<ContentfulAssetFilterInput>;
-  readonly images: Maybe<ContentfulAssetFilterListInput>;
   readonly content: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   readonly spaceId: Maybe<StringQueryOperatorInput>;
   readonly createdAt: Maybe<DateQueryOperatorInput>;
   readonly updatedAt: Maybe<DateQueryOperatorInput>;
   readonly sys: Maybe<ContentfulMarkdownArticleSysFilterInput>;
+  readonly images: Maybe<ContentfulAssetFilterListInput>;
   readonly childrenContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterListInput>;
   readonly childContentfulMarkdownArticleContentTextNode: Maybe<contentfulMarkdownArticleContentTextNodeFilterInput>;
   readonly parent: Maybe<NodeFilterInput>;
@@ -3985,6 +4088,8 @@ type ContentfulAuthorFilterInput = {
   readonly sys: Maybe<ContentfulAuthorSysFilterInput>;
   readonly twitter: Maybe<StringQueryOperatorInput>;
   readonly youtube: Maybe<StringQueryOperatorInput>;
+  readonly playlist: Maybe<ContentfulPlaylistFilterListInput>;
+  readonly song: Maybe<ContentfulSongFilterListInput>;
   readonly linktree: Maybe<StringQueryOperatorInput>;
   readonly minnakikeru: Maybe<StringQueryOperatorInput>;
   readonly hatena: Maybe<StringQueryOperatorInput>;
@@ -4069,12 +4174,90 @@ type ContentfulAuthorSysContentTypeSysFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
 };
 
-type contentfulAuthorIntroductionTextNodeFilterListInput = {
-  readonly elemMatch: Maybe<contentfulAuthorIntroductionTextNodeFilterInput>;
+type ContentfulPlaylistFilterListInput = {
+  readonly elemMatch: Maybe<ContentfulPlaylistFilterInput>;
 };
 
-type ContentfulAssetFilterListInput = {
-  readonly elemMatch: Maybe<ContentfulAssetFilterInput>;
+type ContentfulPlaylistFilterInput = {
+  readonly contentful_id: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly node_locale: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly artists: Maybe<ContentfulAuthorFilterListInput>;
+  readonly songs: Maybe<ContentfulSongFilterListInput>;
+  readonly coverart: Maybe<ContentfulAssetFilterInput>;
+  readonly spaceId: Maybe<StringQueryOperatorInput>;
+  readonly createdAt: Maybe<DateQueryOperatorInput>;
+  readonly updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly sys: Maybe<ContentfulPlaylistSysFilterInput>;
+  readonly gatsbyPath: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type ContentfulAuthorFilterListInput = {
+  readonly elemMatch: Maybe<ContentfulAuthorFilterInput>;
+};
+
+type ContentfulSongFilterListInput = {
+  readonly elemMatch: Maybe<ContentfulSongFilterInput>;
+};
+
+type ContentfulSongFilterInput = {
+  readonly contentful_id: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly node_locale: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly duration: Maybe<IntQueryOperatorInput>;
+  readonly artist: Maybe<ContentfulAuthorFilterInput>;
+  readonly sound: Maybe<ContentfulAssetFilterInput>;
+  readonly coverart: Maybe<ContentfulAssetFilterInput>;
+  readonly playlist: Maybe<ContentfulPlaylistFilterListInput>;
+  readonly spaceId: Maybe<StringQueryOperatorInput>;
+  readonly createdAt: Maybe<DateQueryOperatorInput>;
+  readonly updatedAt: Maybe<DateQueryOperatorInput>;
+  readonly sys: Maybe<ContentfulSongSysFilterInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+};
+
+type ContentfulSongSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
+  readonly contentType: Maybe<ContentfulSongSysContentTypeFilterInput>;
+};
+
+type ContentfulSongSysContentTypeFilterInput = {
+  readonly sys: Maybe<ContentfulSongSysContentTypeSysFilterInput>;
+};
+
+type ContentfulSongSysContentTypeSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly linkType: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+};
+
+type ContentfulPlaylistSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly revision: Maybe<IntQueryOperatorInput>;
+  readonly contentType: Maybe<ContentfulPlaylistSysContentTypeFilterInput>;
+};
+
+type ContentfulPlaylistSysContentTypeFilterInput = {
+  readonly sys: Maybe<ContentfulPlaylistSysContentTypeSysFilterInput>;
+};
+
+type ContentfulPlaylistSysContentTypeSysFilterInput = {
+  readonly type: Maybe<StringQueryOperatorInput>;
+  readonly linkType: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+};
+
+type contentfulAuthorIntroductionTextNodeFilterListInput = {
+  readonly elemMatch: Maybe<contentfulAuthorIntroductionTextNodeFilterInput>;
 };
 
 type contentfulMarkdownArticleContentTextNodeFilterInput = {
@@ -4106,6 +4289,10 @@ type ContentfulMarkdownArticleSysContentTypeSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
   readonly linkType: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
+};
+
+type ContentfulAssetFilterListInput = {
+  readonly elemMatch: Maybe<ContentfulAssetFilterInput>;
 };
 
 type contentfulMarkdownArticleContentTextNodeFilterListInput = {
@@ -4170,10 +4357,10 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___author___markdownarticle___disableSideHeader = 'markdownarticle.author.markdownarticle.disableSideHeader',
   markdownarticle___author___markdownarticle___isVirticalWriting = 'markdownarticle.author.markdownarticle.isVirticalWriting',
   markdownarticle___author___markdownarticle___align = 'markdownarticle.author.markdownarticle.align',
-  markdownarticle___author___markdownarticle___images = 'markdownarticle.author.markdownarticle.images',
   markdownarticle___author___markdownarticle___spaceId = 'markdownarticle.author.markdownarticle.spaceId',
   markdownarticle___author___markdownarticle___createdAt = 'markdownarticle.author.markdownarticle.createdAt',
   markdownarticle___author___markdownarticle___updatedAt = 'markdownarticle.author.markdownarticle.updatedAt',
+  markdownarticle___author___markdownarticle___images = 'markdownarticle.author.markdownarticle.images',
   markdownarticle___author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'markdownarticle.author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   markdownarticle___author___markdownarticle___children = 'markdownarticle.author.markdownarticle.children',
   markdownarticle___author___introduction___id = 'markdownarticle.author.introduction.id',
@@ -4187,6 +4374,30 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___author___sys___revision = 'markdownarticle.author.sys.revision',
   markdownarticle___author___twitter = 'markdownarticle.author.twitter',
   markdownarticle___author___youtube = 'markdownarticle.author.youtube',
+  markdownarticle___author___playlist = 'markdownarticle.author.playlist',
+  markdownarticle___author___playlist___contentful_id = 'markdownarticle.author.playlist.contentful_id',
+  markdownarticle___author___playlist___id = 'markdownarticle.author.playlist.id',
+  markdownarticle___author___playlist___node_locale = 'markdownarticle.author.playlist.node_locale',
+  markdownarticle___author___playlist___title = 'markdownarticle.author.playlist.title',
+  markdownarticle___author___playlist___slug = 'markdownarticle.author.playlist.slug',
+  markdownarticle___author___playlist___artists = 'markdownarticle.author.playlist.artists',
+  markdownarticle___author___playlist___songs = 'markdownarticle.author.playlist.songs',
+  markdownarticle___author___playlist___spaceId = 'markdownarticle.author.playlist.spaceId',
+  markdownarticle___author___playlist___createdAt = 'markdownarticle.author.playlist.createdAt',
+  markdownarticle___author___playlist___updatedAt = 'markdownarticle.author.playlist.updatedAt',
+  markdownarticle___author___playlist___gatsbyPath = 'markdownarticle.author.playlist.gatsbyPath',
+  markdownarticle___author___playlist___children = 'markdownarticle.author.playlist.children',
+  markdownarticle___author___song = 'markdownarticle.author.song',
+  markdownarticle___author___song___contentful_id = 'markdownarticle.author.song.contentful_id',
+  markdownarticle___author___song___id = 'markdownarticle.author.song.id',
+  markdownarticle___author___song___node_locale = 'markdownarticle.author.song.node_locale',
+  markdownarticle___author___song___title = 'markdownarticle.author.song.title',
+  markdownarticle___author___song___duration = 'markdownarticle.author.song.duration',
+  markdownarticle___author___song___playlist = 'markdownarticle.author.song.playlist',
+  markdownarticle___author___song___spaceId = 'markdownarticle.author.song.spaceId',
+  markdownarticle___author___song___createdAt = 'markdownarticle.author.song.createdAt',
+  markdownarticle___author___song___updatedAt = 'markdownarticle.author.song.updatedAt',
+  markdownarticle___author___song___children = 'markdownarticle.author.song.children',
   markdownarticle___author___linktree = 'markdownarticle.author.linktree',
   markdownarticle___author___minnakikeru = 'markdownarticle.author.minnakikeru',
   markdownarticle___author___hatena = 'markdownarticle.author.hatena',
@@ -4302,6 +4513,52 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___featuredImage___internal___mediaType = 'markdownarticle.featuredImage.internal.mediaType',
   markdownarticle___featuredImage___internal___owner = 'markdownarticle.featuredImage.internal.owner',
   markdownarticle___featuredImage___internal___type = 'markdownarticle.featuredImage.internal.type',
+  markdownarticle___content___id = 'markdownarticle.content.id',
+  markdownarticle___content___parent___id = 'markdownarticle.content.parent.id',
+  markdownarticle___content___parent___children = 'markdownarticle.content.parent.children',
+  markdownarticle___content___children = 'markdownarticle.content.children',
+  markdownarticle___content___children___id = 'markdownarticle.content.children.id',
+  markdownarticle___content___children___children = 'markdownarticle.content.children.children',
+  markdownarticle___content___internal___content = 'markdownarticle.content.internal.content',
+  markdownarticle___content___internal___contentDigest = 'markdownarticle.content.internal.contentDigest',
+  markdownarticle___content___internal___description = 'markdownarticle.content.internal.description',
+  markdownarticle___content___internal___fieldOwners = 'markdownarticle.content.internal.fieldOwners',
+  markdownarticle___content___internal___ignoreType = 'markdownarticle.content.internal.ignoreType',
+  markdownarticle___content___internal___mediaType = 'markdownarticle.content.internal.mediaType',
+  markdownarticle___content___internal___owner = 'markdownarticle.content.internal.owner',
+  markdownarticle___content___internal___type = 'markdownarticle.content.internal.type',
+  markdownarticle___content___content = 'markdownarticle.content.content',
+  markdownarticle___content___sys___type = 'markdownarticle.content.sys.type',
+  markdownarticle___content___childrenMdx = 'markdownarticle.content.childrenMdx',
+  markdownarticle___content___childrenMdx___rawBody = 'markdownarticle.content.childrenMdx.rawBody',
+  markdownarticle___content___childrenMdx___fileAbsolutePath = 'markdownarticle.content.childrenMdx.fileAbsolutePath',
+  markdownarticle___content___childrenMdx___slug = 'markdownarticle.content.childrenMdx.slug',
+  markdownarticle___content___childrenMdx___body = 'markdownarticle.content.childrenMdx.body',
+  markdownarticle___content___childrenMdx___excerpt = 'markdownarticle.content.childrenMdx.excerpt',
+  markdownarticle___content___childrenMdx___headings = 'markdownarticle.content.childrenMdx.headings',
+  markdownarticle___content___childrenMdx___html = 'markdownarticle.content.childrenMdx.html',
+  markdownarticle___content___childrenMdx___mdxAST = 'markdownarticle.content.childrenMdx.mdxAST',
+  markdownarticle___content___childrenMdx___tableOfContents = 'markdownarticle.content.childrenMdx.tableOfContents',
+  markdownarticle___content___childrenMdx___timeToRead = 'markdownarticle.content.childrenMdx.timeToRead',
+  markdownarticle___content___childrenMdx___id = 'markdownarticle.content.childrenMdx.id',
+  markdownarticle___content___childrenMdx___children = 'markdownarticle.content.childrenMdx.children',
+  markdownarticle___content___childMdx___rawBody = 'markdownarticle.content.childMdx.rawBody',
+  markdownarticle___content___childMdx___fileAbsolutePath = 'markdownarticle.content.childMdx.fileAbsolutePath',
+  markdownarticle___content___childMdx___slug = 'markdownarticle.content.childMdx.slug',
+  markdownarticle___content___childMdx___body = 'markdownarticle.content.childMdx.body',
+  markdownarticle___content___childMdx___excerpt = 'markdownarticle.content.childMdx.excerpt',
+  markdownarticle___content___childMdx___headings = 'markdownarticle.content.childMdx.headings',
+  markdownarticle___content___childMdx___html = 'markdownarticle.content.childMdx.html',
+  markdownarticle___content___childMdx___mdxAST = 'markdownarticle.content.childMdx.mdxAST',
+  markdownarticle___content___childMdx___tableOfContents = 'markdownarticle.content.childMdx.tableOfContents',
+  markdownarticle___content___childMdx___timeToRead = 'markdownarticle.content.childMdx.timeToRead',
+  markdownarticle___content___childMdx___id = 'markdownarticle.content.childMdx.id',
+  markdownarticle___content___childMdx___children = 'markdownarticle.content.childMdx.children',
+  markdownarticle___spaceId = 'markdownarticle.spaceId',
+  markdownarticle___createdAt = 'markdownarticle.createdAt',
+  markdownarticle___updatedAt = 'markdownarticle.updatedAt',
+  markdownarticle___sys___type = 'markdownarticle.sys.type',
+  markdownarticle___sys___revision = 'markdownarticle.sys.revision',
   markdownarticle___images = 'markdownarticle.images',
   markdownarticle___images___contentful_id = 'markdownarticle.images.contentful_id',
   markdownarticle___images___id = 'markdownarticle.images.id',
@@ -4392,52 +4649,6 @@ enum ContentfulAuthorFieldsEnum {
   markdownarticle___images___internal___mediaType = 'markdownarticle.images.internal.mediaType',
   markdownarticle___images___internal___owner = 'markdownarticle.images.internal.owner',
   markdownarticle___images___internal___type = 'markdownarticle.images.internal.type',
-  markdownarticle___content___id = 'markdownarticle.content.id',
-  markdownarticle___content___parent___id = 'markdownarticle.content.parent.id',
-  markdownarticle___content___parent___children = 'markdownarticle.content.parent.children',
-  markdownarticle___content___children = 'markdownarticle.content.children',
-  markdownarticle___content___children___id = 'markdownarticle.content.children.id',
-  markdownarticle___content___children___children = 'markdownarticle.content.children.children',
-  markdownarticle___content___internal___content = 'markdownarticle.content.internal.content',
-  markdownarticle___content___internal___contentDigest = 'markdownarticle.content.internal.contentDigest',
-  markdownarticle___content___internal___description = 'markdownarticle.content.internal.description',
-  markdownarticle___content___internal___fieldOwners = 'markdownarticle.content.internal.fieldOwners',
-  markdownarticle___content___internal___ignoreType = 'markdownarticle.content.internal.ignoreType',
-  markdownarticle___content___internal___mediaType = 'markdownarticle.content.internal.mediaType',
-  markdownarticle___content___internal___owner = 'markdownarticle.content.internal.owner',
-  markdownarticle___content___internal___type = 'markdownarticle.content.internal.type',
-  markdownarticle___content___content = 'markdownarticle.content.content',
-  markdownarticle___content___sys___type = 'markdownarticle.content.sys.type',
-  markdownarticle___content___childrenMdx = 'markdownarticle.content.childrenMdx',
-  markdownarticle___content___childrenMdx___rawBody = 'markdownarticle.content.childrenMdx.rawBody',
-  markdownarticle___content___childrenMdx___fileAbsolutePath = 'markdownarticle.content.childrenMdx.fileAbsolutePath',
-  markdownarticle___content___childrenMdx___slug = 'markdownarticle.content.childrenMdx.slug',
-  markdownarticle___content___childrenMdx___body = 'markdownarticle.content.childrenMdx.body',
-  markdownarticle___content___childrenMdx___excerpt = 'markdownarticle.content.childrenMdx.excerpt',
-  markdownarticle___content___childrenMdx___headings = 'markdownarticle.content.childrenMdx.headings',
-  markdownarticle___content___childrenMdx___html = 'markdownarticle.content.childrenMdx.html',
-  markdownarticle___content___childrenMdx___mdxAST = 'markdownarticle.content.childrenMdx.mdxAST',
-  markdownarticle___content___childrenMdx___tableOfContents = 'markdownarticle.content.childrenMdx.tableOfContents',
-  markdownarticle___content___childrenMdx___timeToRead = 'markdownarticle.content.childrenMdx.timeToRead',
-  markdownarticle___content___childrenMdx___id = 'markdownarticle.content.childrenMdx.id',
-  markdownarticle___content___childrenMdx___children = 'markdownarticle.content.childrenMdx.children',
-  markdownarticle___content___childMdx___rawBody = 'markdownarticle.content.childMdx.rawBody',
-  markdownarticle___content___childMdx___fileAbsolutePath = 'markdownarticle.content.childMdx.fileAbsolutePath',
-  markdownarticle___content___childMdx___slug = 'markdownarticle.content.childMdx.slug',
-  markdownarticle___content___childMdx___body = 'markdownarticle.content.childMdx.body',
-  markdownarticle___content___childMdx___excerpt = 'markdownarticle.content.childMdx.excerpt',
-  markdownarticle___content___childMdx___headings = 'markdownarticle.content.childMdx.headings',
-  markdownarticle___content___childMdx___html = 'markdownarticle.content.childMdx.html',
-  markdownarticle___content___childMdx___mdxAST = 'markdownarticle.content.childMdx.mdxAST',
-  markdownarticle___content___childMdx___tableOfContents = 'markdownarticle.content.childMdx.tableOfContents',
-  markdownarticle___content___childMdx___timeToRead = 'markdownarticle.content.childMdx.timeToRead',
-  markdownarticle___content___childMdx___id = 'markdownarticle.content.childMdx.id',
-  markdownarticle___content___childMdx___children = 'markdownarticle.content.childMdx.children',
-  markdownarticle___spaceId = 'markdownarticle.spaceId',
-  markdownarticle___createdAt = 'markdownarticle.createdAt',
-  markdownarticle___updatedAt = 'markdownarticle.updatedAt',
-  markdownarticle___sys___type = 'markdownarticle.sys.type',
-  markdownarticle___sys___revision = 'markdownarticle.sys.revision',
   markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
   markdownarticle___childrenContentfulMarkdownArticleContentTextNode___parent___id = 'markdownarticle.childrenContentfulMarkdownArticleContentTextNode.parent.id',
@@ -4669,6 +4880,677 @@ enum ContentfulAuthorFieldsEnum {
   sys___contentType___sys___id = 'sys.contentType.sys.id',
   twitter = 'twitter',
   youtube = 'youtube',
+  playlist = 'playlist',
+  playlist___contentful_id = 'playlist.contentful_id',
+  playlist___id = 'playlist.id',
+  playlist___node_locale = 'playlist.node_locale',
+  playlist___title = 'playlist.title',
+  playlist___slug = 'playlist.slug',
+  playlist___artists = 'playlist.artists',
+  playlist___artists___contentful_id = 'playlist.artists.contentful_id',
+  playlist___artists___id = 'playlist.artists.id',
+  playlist___artists___node_locale = 'playlist.artists.node_locale',
+  playlist___artists___name = 'playlist.artists.name',
+  playlist___artists___instagram = 'playlist.artists.instagram',
+  playlist___artists___markdownarticle = 'playlist.artists.markdownarticle',
+  playlist___artists___markdownarticle___contentful_id = 'playlist.artists.markdownarticle.contentful_id',
+  playlist___artists___markdownarticle___id = 'playlist.artists.markdownarticle.id',
+  playlist___artists___markdownarticle___node_locale = 'playlist.artists.markdownarticle.node_locale',
+  playlist___artists___markdownarticle___title = 'playlist.artists.markdownarticle.title',
+  playlist___artists___markdownarticle___slug = 'playlist.artists.markdownarticle.slug',
+  playlist___artists___markdownarticle___publishedAt = 'playlist.artists.markdownarticle.publishedAt',
+  playlist___artists___markdownarticle___disableSideHeader = 'playlist.artists.markdownarticle.disableSideHeader',
+  playlist___artists___markdownarticle___isVirticalWriting = 'playlist.artists.markdownarticle.isVirticalWriting',
+  playlist___artists___markdownarticle___align = 'playlist.artists.markdownarticle.align',
+  playlist___artists___markdownarticle___spaceId = 'playlist.artists.markdownarticle.spaceId',
+  playlist___artists___markdownarticle___createdAt = 'playlist.artists.markdownarticle.createdAt',
+  playlist___artists___markdownarticle___updatedAt = 'playlist.artists.markdownarticle.updatedAt',
+  playlist___artists___markdownarticle___images = 'playlist.artists.markdownarticle.images',
+  playlist___artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'playlist.artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
+  playlist___artists___markdownarticle___children = 'playlist.artists.markdownarticle.children',
+  playlist___artists___introduction___id = 'playlist.artists.introduction.id',
+  playlist___artists___introduction___children = 'playlist.artists.introduction.children',
+  playlist___artists___introduction___introduction = 'playlist.artists.introduction.introduction',
+  playlist___artists___introduction___childrenMdx = 'playlist.artists.introduction.childrenMdx',
+  playlist___artists___spaceId = 'playlist.artists.spaceId',
+  playlist___artists___createdAt = 'playlist.artists.createdAt',
+  playlist___artists___updatedAt = 'playlist.artists.updatedAt',
+  playlist___artists___sys___type = 'playlist.artists.sys.type',
+  playlist___artists___sys___revision = 'playlist.artists.sys.revision',
+  playlist___artists___twitter = 'playlist.artists.twitter',
+  playlist___artists___youtube = 'playlist.artists.youtube',
+  playlist___artists___playlist = 'playlist.artists.playlist',
+  playlist___artists___playlist___contentful_id = 'playlist.artists.playlist.contentful_id',
+  playlist___artists___playlist___id = 'playlist.artists.playlist.id',
+  playlist___artists___playlist___node_locale = 'playlist.artists.playlist.node_locale',
+  playlist___artists___playlist___title = 'playlist.artists.playlist.title',
+  playlist___artists___playlist___slug = 'playlist.artists.playlist.slug',
+  playlist___artists___playlist___artists = 'playlist.artists.playlist.artists',
+  playlist___artists___playlist___songs = 'playlist.artists.playlist.songs',
+  playlist___artists___playlist___spaceId = 'playlist.artists.playlist.spaceId',
+  playlist___artists___playlist___createdAt = 'playlist.artists.playlist.createdAt',
+  playlist___artists___playlist___updatedAt = 'playlist.artists.playlist.updatedAt',
+  playlist___artists___playlist___gatsbyPath = 'playlist.artists.playlist.gatsbyPath',
+  playlist___artists___playlist___children = 'playlist.artists.playlist.children',
+  playlist___artists___song = 'playlist.artists.song',
+  playlist___artists___song___contentful_id = 'playlist.artists.song.contentful_id',
+  playlist___artists___song___id = 'playlist.artists.song.id',
+  playlist___artists___song___node_locale = 'playlist.artists.song.node_locale',
+  playlist___artists___song___title = 'playlist.artists.song.title',
+  playlist___artists___song___duration = 'playlist.artists.song.duration',
+  playlist___artists___song___playlist = 'playlist.artists.song.playlist',
+  playlist___artists___song___spaceId = 'playlist.artists.song.spaceId',
+  playlist___artists___song___createdAt = 'playlist.artists.song.createdAt',
+  playlist___artists___song___updatedAt = 'playlist.artists.song.updatedAt',
+  playlist___artists___song___children = 'playlist.artists.song.children',
+  playlist___artists___linktree = 'playlist.artists.linktree',
+  playlist___artists___minnakikeru = 'playlist.artists.minnakikeru',
+  playlist___artists___hatena = 'playlist.artists.hatena',
+  playlist___artists___bandcamp = 'playlist.artists.bandcamp',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___id = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.id',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___children = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.children',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___introduction = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.introduction',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___id = 'playlist.artists.childContentfulAuthorIntroductionTextNode.id',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___children = 'playlist.artists.childContentfulAuthorIntroductionTextNode.children',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___introduction = 'playlist.artists.childContentfulAuthorIntroductionTextNode.introduction',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___childrenMdx = 'playlist.artists.childContentfulAuthorIntroductionTextNode.childrenMdx',
+  playlist___artists___parent___id = 'playlist.artists.parent.id',
+  playlist___artists___parent___children = 'playlist.artists.parent.children',
+  playlist___artists___children = 'playlist.artists.children',
+  playlist___artists___children___id = 'playlist.artists.children.id',
+  playlist___artists___children___children = 'playlist.artists.children.children',
+  playlist___artists___internal___content = 'playlist.artists.internal.content',
+  playlist___artists___internal___contentDigest = 'playlist.artists.internal.contentDigest',
+  playlist___artists___internal___description = 'playlist.artists.internal.description',
+  playlist___artists___internal___fieldOwners = 'playlist.artists.internal.fieldOwners',
+  playlist___artists___internal___ignoreType = 'playlist.artists.internal.ignoreType',
+  playlist___artists___internal___mediaType = 'playlist.artists.internal.mediaType',
+  playlist___artists___internal___owner = 'playlist.artists.internal.owner',
+  playlist___artists___internal___type = 'playlist.artists.internal.type',
+  playlist___songs = 'playlist.songs',
+  playlist___songs___contentful_id = 'playlist.songs.contentful_id',
+  playlist___songs___id = 'playlist.songs.id',
+  playlist___songs___node_locale = 'playlist.songs.node_locale',
+  playlist___songs___title = 'playlist.songs.title',
+  playlist___songs___duration = 'playlist.songs.duration',
+  playlist___songs___artist___contentful_id = 'playlist.songs.artist.contentful_id',
+  playlist___songs___artist___id = 'playlist.songs.artist.id',
+  playlist___songs___artist___node_locale = 'playlist.songs.artist.node_locale',
+  playlist___songs___artist___name = 'playlist.songs.artist.name',
+  playlist___songs___artist___instagram = 'playlist.songs.artist.instagram',
+  playlist___songs___artist___markdownarticle = 'playlist.songs.artist.markdownarticle',
+  playlist___songs___artist___spaceId = 'playlist.songs.artist.spaceId',
+  playlist___songs___artist___createdAt = 'playlist.songs.artist.createdAt',
+  playlist___songs___artist___updatedAt = 'playlist.songs.artist.updatedAt',
+  playlist___songs___artist___twitter = 'playlist.songs.artist.twitter',
+  playlist___songs___artist___youtube = 'playlist.songs.artist.youtube',
+  playlist___songs___artist___playlist = 'playlist.songs.artist.playlist',
+  playlist___songs___artist___song = 'playlist.songs.artist.song',
+  playlist___songs___artist___linktree = 'playlist.songs.artist.linktree',
+  playlist___songs___artist___minnakikeru = 'playlist.songs.artist.minnakikeru',
+  playlist___songs___artist___hatena = 'playlist.songs.artist.hatena',
+  playlist___songs___artist___bandcamp = 'playlist.songs.artist.bandcamp',
+  playlist___songs___artist___childrenContentfulAuthorIntroductionTextNode = 'playlist.songs.artist.childrenContentfulAuthorIntroductionTextNode',
+  playlist___songs___artist___children = 'playlist.songs.artist.children',
+  playlist___songs___sound___contentful_id = 'playlist.songs.sound.contentful_id',
+  playlist___songs___sound___id = 'playlist.songs.sound.id',
+  playlist___songs___sound___spaceId = 'playlist.songs.sound.spaceId',
+  playlist___songs___sound___createdAt = 'playlist.songs.sound.createdAt',
+  playlist___songs___sound___updatedAt = 'playlist.songs.sound.updatedAt',
+  playlist___songs___sound___title = 'playlist.songs.sound.title',
+  playlist___songs___sound___description = 'playlist.songs.sound.description',
+  playlist___songs___sound___node_locale = 'playlist.songs.sound.node_locale',
+  playlist___songs___sound___gatsbyImageData = 'playlist.songs.sound.gatsbyImageData',
+  playlist___songs___sound___children = 'playlist.songs.sound.children',
+  playlist___songs___coverart___contentful_id = 'playlist.songs.coverart.contentful_id',
+  playlist___songs___coverart___id = 'playlist.songs.coverart.id',
+  playlist___songs___coverart___spaceId = 'playlist.songs.coverart.spaceId',
+  playlist___songs___coverart___createdAt = 'playlist.songs.coverart.createdAt',
+  playlist___songs___coverart___updatedAt = 'playlist.songs.coverart.updatedAt',
+  playlist___songs___coverart___title = 'playlist.songs.coverart.title',
+  playlist___songs___coverart___description = 'playlist.songs.coverart.description',
+  playlist___songs___coverart___node_locale = 'playlist.songs.coverart.node_locale',
+  playlist___songs___coverart___gatsbyImageData = 'playlist.songs.coverart.gatsbyImageData',
+  playlist___songs___coverart___children = 'playlist.songs.coverart.children',
+  playlist___songs___playlist = 'playlist.songs.playlist',
+  playlist___songs___playlist___contentful_id = 'playlist.songs.playlist.contentful_id',
+  playlist___songs___playlist___id = 'playlist.songs.playlist.id',
+  playlist___songs___playlist___node_locale = 'playlist.songs.playlist.node_locale',
+  playlist___songs___playlist___title = 'playlist.songs.playlist.title',
+  playlist___songs___playlist___slug = 'playlist.songs.playlist.slug',
+  playlist___songs___playlist___artists = 'playlist.songs.playlist.artists',
+  playlist___songs___playlist___songs = 'playlist.songs.playlist.songs',
+  playlist___songs___playlist___spaceId = 'playlist.songs.playlist.spaceId',
+  playlist___songs___playlist___createdAt = 'playlist.songs.playlist.createdAt',
+  playlist___songs___playlist___updatedAt = 'playlist.songs.playlist.updatedAt',
+  playlist___songs___playlist___gatsbyPath = 'playlist.songs.playlist.gatsbyPath',
+  playlist___songs___playlist___children = 'playlist.songs.playlist.children',
+  playlist___songs___spaceId = 'playlist.songs.spaceId',
+  playlist___songs___createdAt = 'playlist.songs.createdAt',
+  playlist___songs___updatedAt = 'playlist.songs.updatedAt',
+  playlist___songs___sys___type = 'playlist.songs.sys.type',
+  playlist___songs___sys___revision = 'playlist.songs.sys.revision',
+  playlist___songs___parent___id = 'playlist.songs.parent.id',
+  playlist___songs___parent___children = 'playlist.songs.parent.children',
+  playlist___songs___children = 'playlist.songs.children',
+  playlist___songs___children___id = 'playlist.songs.children.id',
+  playlist___songs___children___children = 'playlist.songs.children.children',
+  playlist___songs___internal___content = 'playlist.songs.internal.content',
+  playlist___songs___internal___contentDigest = 'playlist.songs.internal.contentDigest',
+  playlist___songs___internal___description = 'playlist.songs.internal.description',
+  playlist___songs___internal___fieldOwners = 'playlist.songs.internal.fieldOwners',
+  playlist___songs___internal___ignoreType = 'playlist.songs.internal.ignoreType',
+  playlist___songs___internal___mediaType = 'playlist.songs.internal.mediaType',
+  playlist___songs___internal___owner = 'playlist.songs.internal.owner',
+  playlist___songs___internal___type = 'playlist.songs.internal.type',
+  playlist___coverart___contentful_id = 'playlist.coverart.contentful_id',
+  playlist___coverart___id = 'playlist.coverart.id',
+  playlist___coverart___spaceId = 'playlist.coverart.spaceId',
+  playlist___coverart___createdAt = 'playlist.coverart.createdAt',
+  playlist___coverart___updatedAt = 'playlist.coverart.updatedAt',
+  playlist___coverart___file___url = 'playlist.coverart.file.url',
+  playlist___coverart___file___fileName = 'playlist.coverart.file.fileName',
+  playlist___coverart___file___contentType = 'playlist.coverart.file.contentType',
+  playlist___coverart___title = 'playlist.coverart.title',
+  playlist___coverart___description = 'playlist.coverart.description',
+  playlist___coverart___node_locale = 'playlist.coverart.node_locale',
+  playlist___coverart___sys___type = 'playlist.coverart.sys.type',
+  playlist___coverart___sys___revision = 'playlist.coverart.sys.revision',
+  playlist___coverart___localFile___sourceInstanceName = 'playlist.coverart.localFile.sourceInstanceName',
+  playlist___coverart___localFile___absolutePath = 'playlist.coverart.localFile.absolutePath',
+  playlist___coverart___localFile___relativePath = 'playlist.coverart.localFile.relativePath',
+  playlist___coverart___localFile___extension = 'playlist.coverart.localFile.extension',
+  playlist___coverart___localFile___size = 'playlist.coverart.localFile.size',
+  playlist___coverart___localFile___prettySize = 'playlist.coverart.localFile.prettySize',
+  playlist___coverart___localFile___modifiedTime = 'playlist.coverart.localFile.modifiedTime',
+  playlist___coverart___localFile___accessTime = 'playlist.coverart.localFile.accessTime',
+  playlist___coverart___localFile___changeTime = 'playlist.coverart.localFile.changeTime',
+  playlist___coverart___localFile___birthTime = 'playlist.coverart.localFile.birthTime',
+  playlist___coverart___localFile___root = 'playlist.coverart.localFile.root',
+  playlist___coverart___localFile___dir = 'playlist.coverart.localFile.dir',
+  playlist___coverart___localFile___base = 'playlist.coverart.localFile.base',
+  playlist___coverart___localFile___ext = 'playlist.coverart.localFile.ext',
+  playlist___coverart___localFile___name = 'playlist.coverart.localFile.name',
+  playlist___coverart___localFile___relativeDirectory = 'playlist.coverart.localFile.relativeDirectory',
+  playlist___coverart___localFile___dev = 'playlist.coverart.localFile.dev',
+  playlist___coverart___localFile___mode = 'playlist.coverart.localFile.mode',
+  playlist___coverart___localFile___nlink = 'playlist.coverart.localFile.nlink',
+  playlist___coverart___localFile___uid = 'playlist.coverart.localFile.uid',
+  playlist___coverart___localFile___gid = 'playlist.coverart.localFile.gid',
+  playlist___coverart___localFile___rdev = 'playlist.coverart.localFile.rdev',
+  playlist___coverart___localFile___ino = 'playlist.coverart.localFile.ino',
+  playlist___coverart___localFile___atimeMs = 'playlist.coverart.localFile.atimeMs',
+  playlist___coverart___localFile___mtimeMs = 'playlist.coverart.localFile.mtimeMs',
+  playlist___coverart___localFile___ctimeMs = 'playlist.coverart.localFile.ctimeMs',
+  playlist___coverart___localFile___atime = 'playlist.coverart.localFile.atime',
+  playlist___coverart___localFile___mtime = 'playlist.coverart.localFile.mtime',
+  playlist___coverart___localFile___ctime = 'playlist.coverart.localFile.ctime',
+  playlist___coverart___localFile___birthtime = 'playlist.coverart.localFile.birthtime',
+  playlist___coverart___localFile___birthtimeMs = 'playlist.coverart.localFile.birthtimeMs',
+  playlist___coverart___localFile___blksize = 'playlist.coverart.localFile.blksize',
+  playlist___coverart___localFile___blocks = 'playlist.coverart.localFile.blocks',
+  playlist___coverart___localFile___url = 'playlist.coverart.localFile.url',
+  playlist___coverart___localFile___publicURL = 'playlist.coverart.localFile.publicURL',
+  playlist___coverart___localFile___childrenImageSharp = 'playlist.coverart.localFile.childrenImageSharp',
+  playlist___coverart___localFile___childrenPagesJson = 'playlist.coverart.localFile.childrenPagesJson',
+  playlist___coverart___localFile___id = 'playlist.coverart.localFile.id',
+  playlist___coverart___localFile___children = 'playlist.coverart.localFile.children',
+  playlist___coverart___fixed___base64 = 'playlist.coverart.fixed.base64',
+  playlist___coverart___fixed___tracedSVG = 'playlist.coverart.fixed.tracedSVG',
+  playlist___coverart___fixed___aspectRatio = 'playlist.coverart.fixed.aspectRatio',
+  playlist___coverart___fixed___width = 'playlist.coverart.fixed.width',
+  playlist___coverart___fixed___height = 'playlist.coverart.fixed.height',
+  playlist___coverart___fixed___src = 'playlist.coverart.fixed.src',
+  playlist___coverart___fixed___srcSet = 'playlist.coverart.fixed.srcSet',
+  playlist___coverart___fixed___srcWebp = 'playlist.coverart.fixed.srcWebp',
+  playlist___coverart___fixed___srcSetWebp = 'playlist.coverart.fixed.srcSetWebp',
+  playlist___coverart___fluid___base64 = 'playlist.coverart.fluid.base64',
+  playlist___coverart___fluid___tracedSVG = 'playlist.coverart.fluid.tracedSVG',
+  playlist___coverart___fluid___aspectRatio = 'playlist.coverart.fluid.aspectRatio',
+  playlist___coverart___fluid___src = 'playlist.coverart.fluid.src',
+  playlist___coverart___fluid___srcSet = 'playlist.coverart.fluid.srcSet',
+  playlist___coverart___fluid___srcWebp = 'playlist.coverart.fluid.srcWebp',
+  playlist___coverart___fluid___srcSetWebp = 'playlist.coverart.fluid.srcSetWebp',
+  playlist___coverart___fluid___sizes = 'playlist.coverart.fluid.sizes',
+  playlist___coverart___gatsbyImageData = 'playlist.coverart.gatsbyImageData',
+  playlist___coverart___resize___base64 = 'playlist.coverart.resize.base64',
+  playlist___coverart___resize___tracedSVG = 'playlist.coverart.resize.tracedSVG',
+  playlist___coverart___resize___src = 'playlist.coverart.resize.src',
+  playlist___coverart___resize___width = 'playlist.coverart.resize.width',
+  playlist___coverart___resize___height = 'playlist.coverart.resize.height',
+  playlist___coverart___resize___aspectRatio = 'playlist.coverart.resize.aspectRatio',
+  playlist___coverart___parent___id = 'playlist.coverart.parent.id',
+  playlist___coverart___parent___children = 'playlist.coverart.parent.children',
+  playlist___coverart___children = 'playlist.coverart.children',
+  playlist___coverart___children___id = 'playlist.coverart.children.id',
+  playlist___coverart___children___children = 'playlist.coverart.children.children',
+  playlist___coverart___internal___content = 'playlist.coverart.internal.content',
+  playlist___coverart___internal___contentDigest = 'playlist.coverart.internal.contentDigest',
+  playlist___coverart___internal___description = 'playlist.coverart.internal.description',
+  playlist___coverart___internal___fieldOwners = 'playlist.coverart.internal.fieldOwners',
+  playlist___coverart___internal___ignoreType = 'playlist.coverart.internal.ignoreType',
+  playlist___coverart___internal___mediaType = 'playlist.coverart.internal.mediaType',
+  playlist___coverart___internal___owner = 'playlist.coverart.internal.owner',
+  playlist___coverart___internal___type = 'playlist.coverart.internal.type',
+  playlist___spaceId = 'playlist.spaceId',
+  playlist___createdAt = 'playlist.createdAt',
+  playlist___updatedAt = 'playlist.updatedAt',
+  playlist___sys___type = 'playlist.sys.type',
+  playlist___sys___revision = 'playlist.sys.revision',
+  playlist___gatsbyPath = 'playlist.gatsbyPath',
+  playlist___parent___id = 'playlist.parent.id',
+  playlist___parent___parent___id = 'playlist.parent.parent.id',
+  playlist___parent___parent___children = 'playlist.parent.parent.children',
+  playlist___parent___children = 'playlist.parent.children',
+  playlist___parent___children___id = 'playlist.parent.children.id',
+  playlist___parent___children___children = 'playlist.parent.children.children',
+  playlist___parent___internal___content = 'playlist.parent.internal.content',
+  playlist___parent___internal___contentDigest = 'playlist.parent.internal.contentDigest',
+  playlist___parent___internal___description = 'playlist.parent.internal.description',
+  playlist___parent___internal___fieldOwners = 'playlist.parent.internal.fieldOwners',
+  playlist___parent___internal___ignoreType = 'playlist.parent.internal.ignoreType',
+  playlist___parent___internal___mediaType = 'playlist.parent.internal.mediaType',
+  playlist___parent___internal___owner = 'playlist.parent.internal.owner',
+  playlist___parent___internal___type = 'playlist.parent.internal.type',
+  playlist___children = 'playlist.children',
+  playlist___children___id = 'playlist.children.id',
+  playlist___children___parent___id = 'playlist.children.parent.id',
+  playlist___children___parent___children = 'playlist.children.parent.children',
+  playlist___children___children = 'playlist.children.children',
+  playlist___children___children___id = 'playlist.children.children.id',
+  playlist___children___children___children = 'playlist.children.children.children',
+  playlist___children___internal___content = 'playlist.children.internal.content',
+  playlist___children___internal___contentDigest = 'playlist.children.internal.contentDigest',
+  playlist___children___internal___description = 'playlist.children.internal.description',
+  playlist___children___internal___fieldOwners = 'playlist.children.internal.fieldOwners',
+  playlist___children___internal___ignoreType = 'playlist.children.internal.ignoreType',
+  playlist___children___internal___mediaType = 'playlist.children.internal.mediaType',
+  playlist___children___internal___owner = 'playlist.children.internal.owner',
+  playlist___children___internal___type = 'playlist.children.internal.type',
+  playlist___internal___content = 'playlist.internal.content',
+  playlist___internal___contentDigest = 'playlist.internal.contentDigest',
+  playlist___internal___description = 'playlist.internal.description',
+  playlist___internal___fieldOwners = 'playlist.internal.fieldOwners',
+  playlist___internal___ignoreType = 'playlist.internal.ignoreType',
+  playlist___internal___mediaType = 'playlist.internal.mediaType',
+  playlist___internal___owner = 'playlist.internal.owner',
+  playlist___internal___type = 'playlist.internal.type',
+  song = 'song',
+  song___contentful_id = 'song.contentful_id',
+  song___id = 'song.id',
+  song___node_locale = 'song.node_locale',
+  song___title = 'song.title',
+  song___duration = 'song.duration',
+  song___artist___contentful_id = 'song.artist.contentful_id',
+  song___artist___id = 'song.artist.id',
+  song___artist___node_locale = 'song.artist.node_locale',
+  song___artist___name = 'song.artist.name',
+  song___artist___instagram = 'song.artist.instagram',
+  song___artist___markdownarticle = 'song.artist.markdownarticle',
+  song___artist___markdownarticle___contentful_id = 'song.artist.markdownarticle.contentful_id',
+  song___artist___markdownarticle___id = 'song.artist.markdownarticle.id',
+  song___artist___markdownarticle___node_locale = 'song.artist.markdownarticle.node_locale',
+  song___artist___markdownarticle___title = 'song.artist.markdownarticle.title',
+  song___artist___markdownarticle___slug = 'song.artist.markdownarticle.slug',
+  song___artist___markdownarticle___publishedAt = 'song.artist.markdownarticle.publishedAt',
+  song___artist___markdownarticle___disableSideHeader = 'song.artist.markdownarticle.disableSideHeader',
+  song___artist___markdownarticle___isVirticalWriting = 'song.artist.markdownarticle.isVirticalWriting',
+  song___artist___markdownarticle___align = 'song.artist.markdownarticle.align',
+  song___artist___markdownarticle___spaceId = 'song.artist.markdownarticle.spaceId',
+  song___artist___markdownarticle___createdAt = 'song.artist.markdownarticle.createdAt',
+  song___artist___markdownarticle___updatedAt = 'song.artist.markdownarticle.updatedAt',
+  song___artist___markdownarticle___images = 'song.artist.markdownarticle.images',
+  song___artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'song.artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
+  song___artist___markdownarticle___children = 'song.artist.markdownarticle.children',
+  song___artist___introduction___id = 'song.artist.introduction.id',
+  song___artist___introduction___children = 'song.artist.introduction.children',
+  song___artist___introduction___introduction = 'song.artist.introduction.introduction',
+  song___artist___introduction___childrenMdx = 'song.artist.introduction.childrenMdx',
+  song___artist___spaceId = 'song.artist.spaceId',
+  song___artist___createdAt = 'song.artist.createdAt',
+  song___artist___updatedAt = 'song.artist.updatedAt',
+  song___artist___sys___type = 'song.artist.sys.type',
+  song___artist___sys___revision = 'song.artist.sys.revision',
+  song___artist___twitter = 'song.artist.twitter',
+  song___artist___youtube = 'song.artist.youtube',
+  song___artist___playlist = 'song.artist.playlist',
+  song___artist___playlist___contentful_id = 'song.artist.playlist.contentful_id',
+  song___artist___playlist___id = 'song.artist.playlist.id',
+  song___artist___playlist___node_locale = 'song.artist.playlist.node_locale',
+  song___artist___playlist___title = 'song.artist.playlist.title',
+  song___artist___playlist___slug = 'song.artist.playlist.slug',
+  song___artist___playlist___artists = 'song.artist.playlist.artists',
+  song___artist___playlist___songs = 'song.artist.playlist.songs',
+  song___artist___playlist___spaceId = 'song.artist.playlist.spaceId',
+  song___artist___playlist___createdAt = 'song.artist.playlist.createdAt',
+  song___artist___playlist___updatedAt = 'song.artist.playlist.updatedAt',
+  song___artist___playlist___gatsbyPath = 'song.artist.playlist.gatsbyPath',
+  song___artist___playlist___children = 'song.artist.playlist.children',
+  song___artist___song = 'song.artist.song',
+  song___artist___song___contentful_id = 'song.artist.song.contentful_id',
+  song___artist___song___id = 'song.artist.song.id',
+  song___artist___song___node_locale = 'song.artist.song.node_locale',
+  song___artist___song___title = 'song.artist.song.title',
+  song___artist___song___duration = 'song.artist.song.duration',
+  song___artist___song___playlist = 'song.artist.song.playlist',
+  song___artist___song___spaceId = 'song.artist.song.spaceId',
+  song___artist___song___createdAt = 'song.artist.song.createdAt',
+  song___artist___song___updatedAt = 'song.artist.song.updatedAt',
+  song___artist___song___children = 'song.artist.song.children',
+  song___artist___linktree = 'song.artist.linktree',
+  song___artist___minnakikeru = 'song.artist.minnakikeru',
+  song___artist___hatena = 'song.artist.hatena',
+  song___artist___bandcamp = 'song.artist.bandcamp',
+  song___artist___childrenContentfulAuthorIntroductionTextNode = 'song.artist.childrenContentfulAuthorIntroductionTextNode',
+  song___artist___childrenContentfulAuthorIntroductionTextNode___id = 'song.artist.childrenContentfulAuthorIntroductionTextNode.id',
+  song___artist___childrenContentfulAuthorIntroductionTextNode___children = 'song.artist.childrenContentfulAuthorIntroductionTextNode.children',
+  song___artist___childrenContentfulAuthorIntroductionTextNode___introduction = 'song.artist.childrenContentfulAuthorIntroductionTextNode.introduction',
+  song___artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx = 'song.artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx',
+  song___artist___childContentfulAuthorIntroductionTextNode___id = 'song.artist.childContentfulAuthorIntroductionTextNode.id',
+  song___artist___childContentfulAuthorIntroductionTextNode___children = 'song.artist.childContentfulAuthorIntroductionTextNode.children',
+  song___artist___childContentfulAuthorIntroductionTextNode___introduction = 'song.artist.childContentfulAuthorIntroductionTextNode.introduction',
+  song___artist___childContentfulAuthorIntroductionTextNode___childrenMdx = 'song.artist.childContentfulAuthorIntroductionTextNode.childrenMdx',
+  song___artist___parent___id = 'song.artist.parent.id',
+  song___artist___parent___children = 'song.artist.parent.children',
+  song___artist___children = 'song.artist.children',
+  song___artist___children___id = 'song.artist.children.id',
+  song___artist___children___children = 'song.artist.children.children',
+  song___artist___internal___content = 'song.artist.internal.content',
+  song___artist___internal___contentDigest = 'song.artist.internal.contentDigest',
+  song___artist___internal___description = 'song.artist.internal.description',
+  song___artist___internal___fieldOwners = 'song.artist.internal.fieldOwners',
+  song___artist___internal___ignoreType = 'song.artist.internal.ignoreType',
+  song___artist___internal___mediaType = 'song.artist.internal.mediaType',
+  song___artist___internal___owner = 'song.artist.internal.owner',
+  song___artist___internal___type = 'song.artist.internal.type',
+  song___sound___contentful_id = 'song.sound.contentful_id',
+  song___sound___id = 'song.sound.id',
+  song___sound___spaceId = 'song.sound.spaceId',
+  song___sound___createdAt = 'song.sound.createdAt',
+  song___sound___updatedAt = 'song.sound.updatedAt',
+  song___sound___file___url = 'song.sound.file.url',
+  song___sound___file___fileName = 'song.sound.file.fileName',
+  song___sound___file___contentType = 'song.sound.file.contentType',
+  song___sound___title = 'song.sound.title',
+  song___sound___description = 'song.sound.description',
+  song___sound___node_locale = 'song.sound.node_locale',
+  song___sound___sys___type = 'song.sound.sys.type',
+  song___sound___sys___revision = 'song.sound.sys.revision',
+  song___sound___localFile___sourceInstanceName = 'song.sound.localFile.sourceInstanceName',
+  song___sound___localFile___absolutePath = 'song.sound.localFile.absolutePath',
+  song___sound___localFile___relativePath = 'song.sound.localFile.relativePath',
+  song___sound___localFile___extension = 'song.sound.localFile.extension',
+  song___sound___localFile___size = 'song.sound.localFile.size',
+  song___sound___localFile___prettySize = 'song.sound.localFile.prettySize',
+  song___sound___localFile___modifiedTime = 'song.sound.localFile.modifiedTime',
+  song___sound___localFile___accessTime = 'song.sound.localFile.accessTime',
+  song___sound___localFile___changeTime = 'song.sound.localFile.changeTime',
+  song___sound___localFile___birthTime = 'song.sound.localFile.birthTime',
+  song___sound___localFile___root = 'song.sound.localFile.root',
+  song___sound___localFile___dir = 'song.sound.localFile.dir',
+  song___sound___localFile___base = 'song.sound.localFile.base',
+  song___sound___localFile___ext = 'song.sound.localFile.ext',
+  song___sound___localFile___name = 'song.sound.localFile.name',
+  song___sound___localFile___relativeDirectory = 'song.sound.localFile.relativeDirectory',
+  song___sound___localFile___dev = 'song.sound.localFile.dev',
+  song___sound___localFile___mode = 'song.sound.localFile.mode',
+  song___sound___localFile___nlink = 'song.sound.localFile.nlink',
+  song___sound___localFile___uid = 'song.sound.localFile.uid',
+  song___sound___localFile___gid = 'song.sound.localFile.gid',
+  song___sound___localFile___rdev = 'song.sound.localFile.rdev',
+  song___sound___localFile___ino = 'song.sound.localFile.ino',
+  song___sound___localFile___atimeMs = 'song.sound.localFile.atimeMs',
+  song___sound___localFile___mtimeMs = 'song.sound.localFile.mtimeMs',
+  song___sound___localFile___ctimeMs = 'song.sound.localFile.ctimeMs',
+  song___sound___localFile___atime = 'song.sound.localFile.atime',
+  song___sound___localFile___mtime = 'song.sound.localFile.mtime',
+  song___sound___localFile___ctime = 'song.sound.localFile.ctime',
+  song___sound___localFile___birthtime = 'song.sound.localFile.birthtime',
+  song___sound___localFile___birthtimeMs = 'song.sound.localFile.birthtimeMs',
+  song___sound___localFile___blksize = 'song.sound.localFile.blksize',
+  song___sound___localFile___blocks = 'song.sound.localFile.blocks',
+  song___sound___localFile___url = 'song.sound.localFile.url',
+  song___sound___localFile___publicURL = 'song.sound.localFile.publicURL',
+  song___sound___localFile___childrenImageSharp = 'song.sound.localFile.childrenImageSharp',
+  song___sound___localFile___childrenPagesJson = 'song.sound.localFile.childrenPagesJson',
+  song___sound___localFile___id = 'song.sound.localFile.id',
+  song___sound___localFile___children = 'song.sound.localFile.children',
+  song___sound___fixed___base64 = 'song.sound.fixed.base64',
+  song___sound___fixed___tracedSVG = 'song.sound.fixed.tracedSVG',
+  song___sound___fixed___aspectRatio = 'song.sound.fixed.aspectRatio',
+  song___sound___fixed___width = 'song.sound.fixed.width',
+  song___sound___fixed___height = 'song.sound.fixed.height',
+  song___sound___fixed___src = 'song.sound.fixed.src',
+  song___sound___fixed___srcSet = 'song.sound.fixed.srcSet',
+  song___sound___fixed___srcWebp = 'song.sound.fixed.srcWebp',
+  song___sound___fixed___srcSetWebp = 'song.sound.fixed.srcSetWebp',
+  song___sound___fluid___base64 = 'song.sound.fluid.base64',
+  song___sound___fluid___tracedSVG = 'song.sound.fluid.tracedSVG',
+  song___sound___fluid___aspectRatio = 'song.sound.fluid.aspectRatio',
+  song___sound___fluid___src = 'song.sound.fluid.src',
+  song___sound___fluid___srcSet = 'song.sound.fluid.srcSet',
+  song___sound___fluid___srcWebp = 'song.sound.fluid.srcWebp',
+  song___sound___fluid___srcSetWebp = 'song.sound.fluid.srcSetWebp',
+  song___sound___fluid___sizes = 'song.sound.fluid.sizes',
+  song___sound___gatsbyImageData = 'song.sound.gatsbyImageData',
+  song___sound___resize___base64 = 'song.sound.resize.base64',
+  song___sound___resize___tracedSVG = 'song.sound.resize.tracedSVG',
+  song___sound___resize___src = 'song.sound.resize.src',
+  song___sound___resize___width = 'song.sound.resize.width',
+  song___sound___resize___height = 'song.sound.resize.height',
+  song___sound___resize___aspectRatio = 'song.sound.resize.aspectRatio',
+  song___sound___parent___id = 'song.sound.parent.id',
+  song___sound___parent___children = 'song.sound.parent.children',
+  song___sound___children = 'song.sound.children',
+  song___sound___children___id = 'song.sound.children.id',
+  song___sound___children___children = 'song.sound.children.children',
+  song___sound___internal___content = 'song.sound.internal.content',
+  song___sound___internal___contentDigest = 'song.sound.internal.contentDigest',
+  song___sound___internal___description = 'song.sound.internal.description',
+  song___sound___internal___fieldOwners = 'song.sound.internal.fieldOwners',
+  song___sound___internal___ignoreType = 'song.sound.internal.ignoreType',
+  song___sound___internal___mediaType = 'song.sound.internal.mediaType',
+  song___sound___internal___owner = 'song.sound.internal.owner',
+  song___sound___internal___type = 'song.sound.internal.type',
+  song___coverart___contentful_id = 'song.coverart.contentful_id',
+  song___coverart___id = 'song.coverart.id',
+  song___coverart___spaceId = 'song.coverart.spaceId',
+  song___coverart___createdAt = 'song.coverart.createdAt',
+  song___coverart___updatedAt = 'song.coverart.updatedAt',
+  song___coverart___file___url = 'song.coverart.file.url',
+  song___coverart___file___fileName = 'song.coverart.file.fileName',
+  song___coverart___file___contentType = 'song.coverart.file.contentType',
+  song___coverart___title = 'song.coverart.title',
+  song___coverart___description = 'song.coverart.description',
+  song___coverart___node_locale = 'song.coverart.node_locale',
+  song___coverart___sys___type = 'song.coverart.sys.type',
+  song___coverart___sys___revision = 'song.coverart.sys.revision',
+  song___coverart___localFile___sourceInstanceName = 'song.coverart.localFile.sourceInstanceName',
+  song___coverart___localFile___absolutePath = 'song.coverart.localFile.absolutePath',
+  song___coverart___localFile___relativePath = 'song.coverart.localFile.relativePath',
+  song___coverart___localFile___extension = 'song.coverart.localFile.extension',
+  song___coverart___localFile___size = 'song.coverart.localFile.size',
+  song___coverart___localFile___prettySize = 'song.coverart.localFile.prettySize',
+  song___coverart___localFile___modifiedTime = 'song.coverart.localFile.modifiedTime',
+  song___coverart___localFile___accessTime = 'song.coverart.localFile.accessTime',
+  song___coverart___localFile___changeTime = 'song.coverart.localFile.changeTime',
+  song___coverart___localFile___birthTime = 'song.coverart.localFile.birthTime',
+  song___coverart___localFile___root = 'song.coverart.localFile.root',
+  song___coverart___localFile___dir = 'song.coverart.localFile.dir',
+  song___coverart___localFile___base = 'song.coverart.localFile.base',
+  song___coverart___localFile___ext = 'song.coverart.localFile.ext',
+  song___coverart___localFile___name = 'song.coverart.localFile.name',
+  song___coverart___localFile___relativeDirectory = 'song.coverart.localFile.relativeDirectory',
+  song___coverart___localFile___dev = 'song.coverart.localFile.dev',
+  song___coverart___localFile___mode = 'song.coverart.localFile.mode',
+  song___coverart___localFile___nlink = 'song.coverart.localFile.nlink',
+  song___coverart___localFile___uid = 'song.coverart.localFile.uid',
+  song___coverart___localFile___gid = 'song.coverart.localFile.gid',
+  song___coverart___localFile___rdev = 'song.coverart.localFile.rdev',
+  song___coverart___localFile___ino = 'song.coverart.localFile.ino',
+  song___coverart___localFile___atimeMs = 'song.coverart.localFile.atimeMs',
+  song___coverart___localFile___mtimeMs = 'song.coverart.localFile.mtimeMs',
+  song___coverart___localFile___ctimeMs = 'song.coverart.localFile.ctimeMs',
+  song___coverart___localFile___atime = 'song.coverart.localFile.atime',
+  song___coverart___localFile___mtime = 'song.coverart.localFile.mtime',
+  song___coverart___localFile___ctime = 'song.coverart.localFile.ctime',
+  song___coverart___localFile___birthtime = 'song.coverart.localFile.birthtime',
+  song___coverart___localFile___birthtimeMs = 'song.coverart.localFile.birthtimeMs',
+  song___coverart___localFile___blksize = 'song.coverart.localFile.blksize',
+  song___coverart___localFile___blocks = 'song.coverart.localFile.blocks',
+  song___coverart___localFile___url = 'song.coverart.localFile.url',
+  song___coverart___localFile___publicURL = 'song.coverart.localFile.publicURL',
+  song___coverart___localFile___childrenImageSharp = 'song.coverart.localFile.childrenImageSharp',
+  song___coverart___localFile___childrenPagesJson = 'song.coverart.localFile.childrenPagesJson',
+  song___coverart___localFile___id = 'song.coverart.localFile.id',
+  song___coverart___localFile___children = 'song.coverart.localFile.children',
+  song___coverart___fixed___base64 = 'song.coverart.fixed.base64',
+  song___coverart___fixed___tracedSVG = 'song.coverart.fixed.tracedSVG',
+  song___coverart___fixed___aspectRatio = 'song.coverart.fixed.aspectRatio',
+  song___coverart___fixed___width = 'song.coverart.fixed.width',
+  song___coverart___fixed___height = 'song.coverart.fixed.height',
+  song___coverart___fixed___src = 'song.coverart.fixed.src',
+  song___coverart___fixed___srcSet = 'song.coverart.fixed.srcSet',
+  song___coverart___fixed___srcWebp = 'song.coverart.fixed.srcWebp',
+  song___coverart___fixed___srcSetWebp = 'song.coverart.fixed.srcSetWebp',
+  song___coverart___fluid___base64 = 'song.coverart.fluid.base64',
+  song___coverart___fluid___tracedSVG = 'song.coverart.fluid.tracedSVG',
+  song___coverart___fluid___aspectRatio = 'song.coverart.fluid.aspectRatio',
+  song___coverart___fluid___src = 'song.coverart.fluid.src',
+  song___coverart___fluid___srcSet = 'song.coverart.fluid.srcSet',
+  song___coverart___fluid___srcWebp = 'song.coverart.fluid.srcWebp',
+  song___coverart___fluid___srcSetWebp = 'song.coverart.fluid.srcSetWebp',
+  song___coverart___fluid___sizes = 'song.coverart.fluid.sizes',
+  song___coverart___gatsbyImageData = 'song.coverart.gatsbyImageData',
+  song___coverart___resize___base64 = 'song.coverart.resize.base64',
+  song___coverart___resize___tracedSVG = 'song.coverart.resize.tracedSVG',
+  song___coverart___resize___src = 'song.coverart.resize.src',
+  song___coverart___resize___width = 'song.coverart.resize.width',
+  song___coverart___resize___height = 'song.coverart.resize.height',
+  song___coverart___resize___aspectRatio = 'song.coverart.resize.aspectRatio',
+  song___coverart___parent___id = 'song.coverart.parent.id',
+  song___coverart___parent___children = 'song.coverart.parent.children',
+  song___coverart___children = 'song.coverart.children',
+  song___coverart___children___id = 'song.coverart.children.id',
+  song___coverart___children___children = 'song.coverart.children.children',
+  song___coverart___internal___content = 'song.coverart.internal.content',
+  song___coverart___internal___contentDigest = 'song.coverart.internal.contentDigest',
+  song___coverart___internal___description = 'song.coverart.internal.description',
+  song___coverart___internal___fieldOwners = 'song.coverart.internal.fieldOwners',
+  song___coverart___internal___ignoreType = 'song.coverart.internal.ignoreType',
+  song___coverart___internal___mediaType = 'song.coverart.internal.mediaType',
+  song___coverart___internal___owner = 'song.coverart.internal.owner',
+  song___coverart___internal___type = 'song.coverart.internal.type',
+  song___playlist = 'song.playlist',
+  song___playlist___contentful_id = 'song.playlist.contentful_id',
+  song___playlist___id = 'song.playlist.id',
+  song___playlist___node_locale = 'song.playlist.node_locale',
+  song___playlist___title = 'song.playlist.title',
+  song___playlist___slug = 'song.playlist.slug',
+  song___playlist___artists = 'song.playlist.artists',
+  song___playlist___artists___contentful_id = 'song.playlist.artists.contentful_id',
+  song___playlist___artists___id = 'song.playlist.artists.id',
+  song___playlist___artists___node_locale = 'song.playlist.artists.node_locale',
+  song___playlist___artists___name = 'song.playlist.artists.name',
+  song___playlist___artists___instagram = 'song.playlist.artists.instagram',
+  song___playlist___artists___markdownarticle = 'song.playlist.artists.markdownarticle',
+  song___playlist___artists___spaceId = 'song.playlist.artists.spaceId',
+  song___playlist___artists___createdAt = 'song.playlist.artists.createdAt',
+  song___playlist___artists___updatedAt = 'song.playlist.artists.updatedAt',
+  song___playlist___artists___twitter = 'song.playlist.artists.twitter',
+  song___playlist___artists___youtube = 'song.playlist.artists.youtube',
+  song___playlist___artists___playlist = 'song.playlist.artists.playlist',
+  song___playlist___artists___song = 'song.playlist.artists.song',
+  song___playlist___artists___linktree = 'song.playlist.artists.linktree',
+  song___playlist___artists___minnakikeru = 'song.playlist.artists.minnakikeru',
+  song___playlist___artists___hatena = 'song.playlist.artists.hatena',
+  song___playlist___artists___bandcamp = 'song.playlist.artists.bandcamp',
+  song___playlist___artists___childrenContentfulAuthorIntroductionTextNode = 'song.playlist.artists.childrenContentfulAuthorIntroductionTextNode',
+  song___playlist___artists___children = 'song.playlist.artists.children',
+  song___playlist___songs = 'song.playlist.songs',
+  song___playlist___songs___contentful_id = 'song.playlist.songs.contentful_id',
+  song___playlist___songs___id = 'song.playlist.songs.id',
+  song___playlist___songs___node_locale = 'song.playlist.songs.node_locale',
+  song___playlist___songs___title = 'song.playlist.songs.title',
+  song___playlist___songs___duration = 'song.playlist.songs.duration',
+  song___playlist___songs___playlist = 'song.playlist.songs.playlist',
+  song___playlist___songs___spaceId = 'song.playlist.songs.spaceId',
+  song___playlist___songs___createdAt = 'song.playlist.songs.createdAt',
+  song___playlist___songs___updatedAt = 'song.playlist.songs.updatedAt',
+  song___playlist___songs___children = 'song.playlist.songs.children',
+  song___playlist___coverart___contentful_id = 'song.playlist.coverart.contentful_id',
+  song___playlist___coverart___id = 'song.playlist.coverart.id',
+  song___playlist___coverart___spaceId = 'song.playlist.coverart.spaceId',
+  song___playlist___coverart___createdAt = 'song.playlist.coverart.createdAt',
+  song___playlist___coverart___updatedAt = 'song.playlist.coverart.updatedAt',
+  song___playlist___coverart___title = 'song.playlist.coverart.title',
+  song___playlist___coverart___description = 'song.playlist.coverart.description',
+  song___playlist___coverart___node_locale = 'song.playlist.coverart.node_locale',
+  song___playlist___coverart___gatsbyImageData = 'song.playlist.coverart.gatsbyImageData',
+  song___playlist___coverart___children = 'song.playlist.coverart.children',
+  song___playlist___spaceId = 'song.playlist.spaceId',
+  song___playlist___createdAt = 'song.playlist.createdAt',
+  song___playlist___updatedAt = 'song.playlist.updatedAt',
+  song___playlist___sys___type = 'song.playlist.sys.type',
+  song___playlist___sys___revision = 'song.playlist.sys.revision',
+  song___playlist___gatsbyPath = 'song.playlist.gatsbyPath',
+  song___playlist___parent___id = 'song.playlist.parent.id',
+  song___playlist___parent___children = 'song.playlist.parent.children',
+  song___playlist___children = 'song.playlist.children',
+  song___playlist___children___id = 'song.playlist.children.id',
+  song___playlist___children___children = 'song.playlist.children.children',
+  song___playlist___internal___content = 'song.playlist.internal.content',
+  song___playlist___internal___contentDigest = 'song.playlist.internal.contentDigest',
+  song___playlist___internal___description = 'song.playlist.internal.description',
+  song___playlist___internal___fieldOwners = 'song.playlist.internal.fieldOwners',
+  song___playlist___internal___ignoreType = 'song.playlist.internal.ignoreType',
+  song___playlist___internal___mediaType = 'song.playlist.internal.mediaType',
+  song___playlist___internal___owner = 'song.playlist.internal.owner',
+  song___playlist___internal___type = 'song.playlist.internal.type',
+  song___spaceId = 'song.spaceId',
+  song___createdAt = 'song.createdAt',
+  song___updatedAt = 'song.updatedAt',
+  song___sys___type = 'song.sys.type',
+  song___sys___revision = 'song.sys.revision',
+  song___parent___id = 'song.parent.id',
+  song___parent___parent___id = 'song.parent.parent.id',
+  song___parent___parent___children = 'song.parent.parent.children',
+  song___parent___children = 'song.parent.children',
+  song___parent___children___id = 'song.parent.children.id',
+  song___parent___children___children = 'song.parent.children.children',
+  song___parent___internal___content = 'song.parent.internal.content',
+  song___parent___internal___contentDigest = 'song.parent.internal.contentDigest',
+  song___parent___internal___description = 'song.parent.internal.description',
+  song___parent___internal___fieldOwners = 'song.parent.internal.fieldOwners',
+  song___parent___internal___ignoreType = 'song.parent.internal.ignoreType',
+  song___parent___internal___mediaType = 'song.parent.internal.mediaType',
+  song___parent___internal___owner = 'song.parent.internal.owner',
+  song___parent___internal___type = 'song.parent.internal.type',
+  song___children = 'song.children',
+  song___children___id = 'song.children.id',
+  song___children___parent___id = 'song.children.parent.id',
+  song___children___parent___children = 'song.children.parent.children',
+  song___children___children = 'song.children.children',
+  song___children___children___id = 'song.children.children.id',
+  song___children___children___children = 'song.children.children.children',
+  song___children___internal___content = 'song.children.internal.content',
+  song___children___internal___contentDigest = 'song.children.internal.contentDigest',
+  song___children___internal___description = 'song.children.internal.description',
+  song___children___internal___fieldOwners = 'song.children.internal.fieldOwners',
+  song___children___internal___ignoreType = 'song.children.internal.ignoreType',
+  song___children___internal___mediaType = 'song.children.internal.mediaType',
+  song___children___internal___owner = 'song.children.internal.owner',
+  song___children___internal___type = 'song.children.internal.type',
+  song___internal___content = 'song.internal.content',
+  song___internal___contentDigest = 'song.internal.contentDigest',
+  song___internal___description = 'song.internal.description',
+  song___internal___fieldOwners = 'song.internal.fieldOwners',
+  song___internal___ignoreType = 'song.internal.ignoreType',
+  song___internal___mediaType = 'song.internal.mediaType',
+  song___internal___owner = 'song.internal.owner',
+  song___internal___type = 'song.internal.type',
   linktree = 'linktree',
   minnakikeru = 'minnakikeru',
   hatena = 'hatena',
@@ -5040,6 +5922,8 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___markdownarticle___author___updatedAt = 'author.markdownarticle.author.updatedAt',
   author___markdownarticle___author___twitter = 'author.markdownarticle.author.twitter',
   author___markdownarticle___author___youtube = 'author.markdownarticle.author.youtube',
+  author___markdownarticle___author___playlist = 'author.markdownarticle.author.playlist',
+  author___markdownarticle___author___song = 'author.markdownarticle.author.song',
   author___markdownarticle___author___linktree = 'author.markdownarticle.author.linktree',
   author___markdownarticle___author___minnakikeru = 'author.markdownarticle.author.minnakikeru',
   author___markdownarticle___author___hatena = 'author.markdownarticle.author.hatena',
@@ -5056,6 +5940,15 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___markdownarticle___featuredImage___node_locale = 'author.markdownarticle.featuredImage.node_locale',
   author___markdownarticle___featuredImage___gatsbyImageData = 'author.markdownarticle.featuredImage.gatsbyImageData',
   author___markdownarticle___featuredImage___children = 'author.markdownarticle.featuredImage.children',
+  author___markdownarticle___content___id = 'author.markdownarticle.content.id',
+  author___markdownarticle___content___children = 'author.markdownarticle.content.children',
+  author___markdownarticle___content___content = 'author.markdownarticle.content.content',
+  author___markdownarticle___content___childrenMdx = 'author.markdownarticle.content.childrenMdx',
+  author___markdownarticle___spaceId = 'author.markdownarticle.spaceId',
+  author___markdownarticle___createdAt = 'author.markdownarticle.createdAt',
+  author___markdownarticle___updatedAt = 'author.markdownarticle.updatedAt',
+  author___markdownarticle___sys___type = 'author.markdownarticle.sys.type',
+  author___markdownarticle___sys___revision = 'author.markdownarticle.sys.revision',
   author___markdownarticle___images = 'author.markdownarticle.images',
   author___markdownarticle___images___contentful_id = 'author.markdownarticle.images.contentful_id',
   author___markdownarticle___images___id = 'author.markdownarticle.images.id',
@@ -5067,15 +5960,6 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___markdownarticle___images___node_locale = 'author.markdownarticle.images.node_locale',
   author___markdownarticle___images___gatsbyImageData = 'author.markdownarticle.images.gatsbyImageData',
   author___markdownarticle___images___children = 'author.markdownarticle.images.children',
-  author___markdownarticle___content___id = 'author.markdownarticle.content.id',
-  author___markdownarticle___content___children = 'author.markdownarticle.content.children',
-  author___markdownarticle___content___content = 'author.markdownarticle.content.content',
-  author___markdownarticle___content___childrenMdx = 'author.markdownarticle.content.childrenMdx',
-  author___markdownarticle___spaceId = 'author.markdownarticle.spaceId',
-  author___markdownarticle___createdAt = 'author.markdownarticle.createdAt',
-  author___markdownarticle___updatedAt = 'author.markdownarticle.updatedAt',
-  author___markdownarticle___sys___type = 'author.markdownarticle.sys.type',
-  author___markdownarticle___sys___revision = 'author.markdownarticle.sys.revision',
   author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
   author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
   author___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___children = 'author.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.children',
@@ -5146,6 +6030,148 @@ enum ContentfulMarkdownArticleFieldsEnum {
   author___sys___revision = 'author.sys.revision',
   author___twitter = 'author.twitter',
   author___youtube = 'author.youtube',
+  author___playlist = 'author.playlist',
+  author___playlist___contentful_id = 'author.playlist.contentful_id',
+  author___playlist___id = 'author.playlist.id',
+  author___playlist___node_locale = 'author.playlist.node_locale',
+  author___playlist___title = 'author.playlist.title',
+  author___playlist___slug = 'author.playlist.slug',
+  author___playlist___artists = 'author.playlist.artists',
+  author___playlist___artists___contentful_id = 'author.playlist.artists.contentful_id',
+  author___playlist___artists___id = 'author.playlist.artists.id',
+  author___playlist___artists___node_locale = 'author.playlist.artists.node_locale',
+  author___playlist___artists___name = 'author.playlist.artists.name',
+  author___playlist___artists___instagram = 'author.playlist.artists.instagram',
+  author___playlist___artists___markdownarticle = 'author.playlist.artists.markdownarticle',
+  author___playlist___artists___spaceId = 'author.playlist.artists.spaceId',
+  author___playlist___artists___createdAt = 'author.playlist.artists.createdAt',
+  author___playlist___artists___updatedAt = 'author.playlist.artists.updatedAt',
+  author___playlist___artists___twitter = 'author.playlist.artists.twitter',
+  author___playlist___artists___youtube = 'author.playlist.artists.youtube',
+  author___playlist___artists___playlist = 'author.playlist.artists.playlist',
+  author___playlist___artists___song = 'author.playlist.artists.song',
+  author___playlist___artists___linktree = 'author.playlist.artists.linktree',
+  author___playlist___artists___minnakikeru = 'author.playlist.artists.minnakikeru',
+  author___playlist___artists___hatena = 'author.playlist.artists.hatena',
+  author___playlist___artists___bandcamp = 'author.playlist.artists.bandcamp',
+  author___playlist___artists___childrenContentfulAuthorIntroductionTextNode = 'author.playlist.artists.childrenContentfulAuthorIntroductionTextNode',
+  author___playlist___artists___children = 'author.playlist.artists.children',
+  author___playlist___songs = 'author.playlist.songs',
+  author___playlist___songs___contentful_id = 'author.playlist.songs.contentful_id',
+  author___playlist___songs___id = 'author.playlist.songs.id',
+  author___playlist___songs___node_locale = 'author.playlist.songs.node_locale',
+  author___playlist___songs___title = 'author.playlist.songs.title',
+  author___playlist___songs___duration = 'author.playlist.songs.duration',
+  author___playlist___songs___playlist = 'author.playlist.songs.playlist',
+  author___playlist___songs___spaceId = 'author.playlist.songs.spaceId',
+  author___playlist___songs___createdAt = 'author.playlist.songs.createdAt',
+  author___playlist___songs___updatedAt = 'author.playlist.songs.updatedAt',
+  author___playlist___songs___children = 'author.playlist.songs.children',
+  author___playlist___coverart___contentful_id = 'author.playlist.coverart.contentful_id',
+  author___playlist___coverart___id = 'author.playlist.coverart.id',
+  author___playlist___coverart___spaceId = 'author.playlist.coverart.spaceId',
+  author___playlist___coverart___createdAt = 'author.playlist.coverart.createdAt',
+  author___playlist___coverart___updatedAt = 'author.playlist.coverart.updatedAt',
+  author___playlist___coverart___title = 'author.playlist.coverart.title',
+  author___playlist___coverart___description = 'author.playlist.coverart.description',
+  author___playlist___coverart___node_locale = 'author.playlist.coverart.node_locale',
+  author___playlist___coverart___gatsbyImageData = 'author.playlist.coverart.gatsbyImageData',
+  author___playlist___coverart___children = 'author.playlist.coverart.children',
+  author___playlist___spaceId = 'author.playlist.spaceId',
+  author___playlist___createdAt = 'author.playlist.createdAt',
+  author___playlist___updatedAt = 'author.playlist.updatedAt',
+  author___playlist___sys___type = 'author.playlist.sys.type',
+  author___playlist___sys___revision = 'author.playlist.sys.revision',
+  author___playlist___gatsbyPath = 'author.playlist.gatsbyPath',
+  author___playlist___parent___id = 'author.playlist.parent.id',
+  author___playlist___parent___children = 'author.playlist.parent.children',
+  author___playlist___children = 'author.playlist.children',
+  author___playlist___children___id = 'author.playlist.children.id',
+  author___playlist___children___children = 'author.playlist.children.children',
+  author___playlist___internal___content = 'author.playlist.internal.content',
+  author___playlist___internal___contentDigest = 'author.playlist.internal.contentDigest',
+  author___playlist___internal___description = 'author.playlist.internal.description',
+  author___playlist___internal___fieldOwners = 'author.playlist.internal.fieldOwners',
+  author___playlist___internal___ignoreType = 'author.playlist.internal.ignoreType',
+  author___playlist___internal___mediaType = 'author.playlist.internal.mediaType',
+  author___playlist___internal___owner = 'author.playlist.internal.owner',
+  author___playlist___internal___type = 'author.playlist.internal.type',
+  author___song = 'author.song',
+  author___song___contentful_id = 'author.song.contentful_id',
+  author___song___id = 'author.song.id',
+  author___song___node_locale = 'author.song.node_locale',
+  author___song___title = 'author.song.title',
+  author___song___duration = 'author.song.duration',
+  author___song___artist___contentful_id = 'author.song.artist.contentful_id',
+  author___song___artist___id = 'author.song.artist.id',
+  author___song___artist___node_locale = 'author.song.artist.node_locale',
+  author___song___artist___name = 'author.song.artist.name',
+  author___song___artist___instagram = 'author.song.artist.instagram',
+  author___song___artist___markdownarticle = 'author.song.artist.markdownarticle',
+  author___song___artist___spaceId = 'author.song.artist.spaceId',
+  author___song___artist___createdAt = 'author.song.artist.createdAt',
+  author___song___artist___updatedAt = 'author.song.artist.updatedAt',
+  author___song___artist___twitter = 'author.song.artist.twitter',
+  author___song___artist___youtube = 'author.song.artist.youtube',
+  author___song___artist___playlist = 'author.song.artist.playlist',
+  author___song___artist___song = 'author.song.artist.song',
+  author___song___artist___linktree = 'author.song.artist.linktree',
+  author___song___artist___minnakikeru = 'author.song.artist.minnakikeru',
+  author___song___artist___hatena = 'author.song.artist.hatena',
+  author___song___artist___bandcamp = 'author.song.artist.bandcamp',
+  author___song___artist___childrenContentfulAuthorIntroductionTextNode = 'author.song.artist.childrenContentfulAuthorIntroductionTextNode',
+  author___song___artist___children = 'author.song.artist.children',
+  author___song___sound___contentful_id = 'author.song.sound.contentful_id',
+  author___song___sound___id = 'author.song.sound.id',
+  author___song___sound___spaceId = 'author.song.sound.spaceId',
+  author___song___sound___createdAt = 'author.song.sound.createdAt',
+  author___song___sound___updatedAt = 'author.song.sound.updatedAt',
+  author___song___sound___title = 'author.song.sound.title',
+  author___song___sound___description = 'author.song.sound.description',
+  author___song___sound___node_locale = 'author.song.sound.node_locale',
+  author___song___sound___gatsbyImageData = 'author.song.sound.gatsbyImageData',
+  author___song___sound___children = 'author.song.sound.children',
+  author___song___coverart___contentful_id = 'author.song.coverart.contentful_id',
+  author___song___coverart___id = 'author.song.coverart.id',
+  author___song___coverart___spaceId = 'author.song.coverart.spaceId',
+  author___song___coverart___createdAt = 'author.song.coverart.createdAt',
+  author___song___coverart___updatedAt = 'author.song.coverart.updatedAt',
+  author___song___coverart___title = 'author.song.coverart.title',
+  author___song___coverart___description = 'author.song.coverart.description',
+  author___song___coverart___node_locale = 'author.song.coverart.node_locale',
+  author___song___coverart___gatsbyImageData = 'author.song.coverart.gatsbyImageData',
+  author___song___coverart___children = 'author.song.coverart.children',
+  author___song___playlist = 'author.song.playlist',
+  author___song___playlist___contentful_id = 'author.song.playlist.contentful_id',
+  author___song___playlist___id = 'author.song.playlist.id',
+  author___song___playlist___node_locale = 'author.song.playlist.node_locale',
+  author___song___playlist___title = 'author.song.playlist.title',
+  author___song___playlist___slug = 'author.song.playlist.slug',
+  author___song___playlist___artists = 'author.song.playlist.artists',
+  author___song___playlist___songs = 'author.song.playlist.songs',
+  author___song___playlist___spaceId = 'author.song.playlist.spaceId',
+  author___song___playlist___createdAt = 'author.song.playlist.createdAt',
+  author___song___playlist___updatedAt = 'author.song.playlist.updatedAt',
+  author___song___playlist___gatsbyPath = 'author.song.playlist.gatsbyPath',
+  author___song___playlist___children = 'author.song.playlist.children',
+  author___song___spaceId = 'author.song.spaceId',
+  author___song___createdAt = 'author.song.createdAt',
+  author___song___updatedAt = 'author.song.updatedAt',
+  author___song___sys___type = 'author.song.sys.type',
+  author___song___sys___revision = 'author.song.sys.revision',
+  author___song___parent___id = 'author.song.parent.id',
+  author___song___parent___children = 'author.song.parent.children',
+  author___song___children = 'author.song.children',
+  author___song___children___id = 'author.song.children.id',
+  author___song___children___children = 'author.song.children.children',
+  author___song___internal___content = 'author.song.internal.content',
+  author___song___internal___contentDigest = 'author.song.internal.contentDigest',
+  author___song___internal___description = 'author.song.internal.description',
+  author___song___internal___fieldOwners = 'author.song.internal.fieldOwners',
+  author___song___internal___ignoreType = 'author.song.internal.ignoreType',
+  author___song___internal___mediaType = 'author.song.internal.mediaType',
+  author___song___internal___owner = 'author.song.internal.owner',
+  author___song___internal___type = 'author.song.internal.type',
   author___linktree = 'author.linktree',
   author___minnakikeru = 'author.minnakikeru',
   author___hatena = 'author.hatena',
@@ -5330,19 +6356,19 @@ enum ContentfulMarkdownArticleFieldsEnum {
   featuredImage___localFile___childrenPagesJson___id = 'featuredImage.localFile.childrenPagesJson.id',
   featuredImage___localFile___childrenPagesJson___children = 'featuredImage.localFile.childrenPagesJson.children',
   featuredImage___localFile___childrenPagesJson___path = 'featuredImage.localFile.childrenPagesJson.path',
+  featuredImage___localFile___childrenPagesJson___catchphrase = 'featuredImage.localFile.childrenPagesJson.catchphrase',
   featuredImage___localFile___childrenPagesJson___introduction = 'featuredImage.localFile.childrenPagesJson.introduction',
   featuredImage___localFile___childrenPagesJson___image = 'featuredImage.localFile.childrenPagesJson.image',
   featuredImage___localFile___childrenPagesJson___displayTitle = 'featuredImage.localFile.childrenPagesJson.displayTitle',
   featuredImage___localFile___childrenPagesJson___title = 'featuredImage.localFile.childrenPagesJson.title',
-  featuredImage___localFile___childrenPagesJson___catchphrase = 'featuredImage.localFile.childrenPagesJson.catchphrase',
   featuredImage___localFile___childPagesJson___id = 'featuredImage.localFile.childPagesJson.id',
   featuredImage___localFile___childPagesJson___children = 'featuredImage.localFile.childPagesJson.children',
   featuredImage___localFile___childPagesJson___path = 'featuredImage.localFile.childPagesJson.path',
+  featuredImage___localFile___childPagesJson___catchphrase = 'featuredImage.localFile.childPagesJson.catchphrase',
   featuredImage___localFile___childPagesJson___introduction = 'featuredImage.localFile.childPagesJson.introduction',
   featuredImage___localFile___childPagesJson___image = 'featuredImage.localFile.childPagesJson.image',
   featuredImage___localFile___childPagesJson___displayTitle = 'featuredImage.localFile.childPagesJson.displayTitle',
   featuredImage___localFile___childPagesJson___title = 'featuredImage.localFile.childPagesJson.title',
-  featuredImage___localFile___childPagesJson___catchphrase = 'featuredImage.localFile.childPagesJson.catchphrase',
   featuredImage___localFile___id = 'featuredImage.localFile.id',
   featuredImage___localFile___parent___id = 'featuredImage.localFile.parent.id',
   featuredImage___localFile___parent___children = 'featuredImage.localFile.parent.children',
@@ -5418,155 +6444,6 @@ enum ContentfulMarkdownArticleFieldsEnum {
   featuredImage___internal___mediaType = 'featuredImage.internal.mediaType',
   featuredImage___internal___owner = 'featuredImage.internal.owner',
   featuredImage___internal___type = 'featuredImage.internal.type',
-  images = 'images',
-  images___contentful_id = 'images.contentful_id',
-  images___id = 'images.id',
-  images___spaceId = 'images.spaceId',
-  images___createdAt = 'images.createdAt',
-  images___updatedAt = 'images.updatedAt',
-  images___file___url = 'images.file.url',
-  images___file___details___size = 'images.file.details.size',
-  images___file___fileName = 'images.file.fileName',
-  images___file___contentType = 'images.file.contentType',
-  images___title = 'images.title',
-  images___description = 'images.description',
-  images___node_locale = 'images.node_locale',
-  images___sys___type = 'images.sys.type',
-  images___sys___revision = 'images.sys.revision',
-  images___localFile___sourceInstanceName = 'images.localFile.sourceInstanceName',
-  images___localFile___absolutePath = 'images.localFile.absolutePath',
-  images___localFile___relativePath = 'images.localFile.relativePath',
-  images___localFile___extension = 'images.localFile.extension',
-  images___localFile___size = 'images.localFile.size',
-  images___localFile___prettySize = 'images.localFile.prettySize',
-  images___localFile___modifiedTime = 'images.localFile.modifiedTime',
-  images___localFile___accessTime = 'images.localFile.accessTime',
-  images___localFile___changeTime = 'images.localFile.changeTime',
-  images___localFile___birthTime = 'images.localFile.birthTime',
-  images___localFile___root = 'images.localFile.root',
-  images___localFile___dir = 'images.localFile.dir',
-  images___localFile___base = 'images.localFile.base',
-  images___localFile___ext = 'images.localFile.ext',
-  images___localFile___name = 'images.localFile.name',
-  images___localFile___relativeDirectory = 'images.localFile.relativeDirectory',
-  images___localFile___dev = 'images.localFile.dev',
-  images___localFile___mode = 'images.localFile.mode',
-  images___localFile___nlink = 'images.localFile.nlink',
-  images___localFile___uid = 'images.localFile.uid',
-  images___localFile___gid = 'images.localFile.gid',
-  images___localFile___rdev = 'images.localFile.rdev',
-  images___localFile___ino = 'images.localFile.ino',
-  images___localFile___atimeMs = 'images.localFile.atimeMs',
-  images___localFile___mtimeMs = 'images.localFile.mtimeMs',
-  images___localFile___ctimeMs = 'images.localFile.ctimeMs',
-  images___localFile___atime = 'images.localFile.atime',
-  images___localFile___mtime = 'images.localFile.mtime',
-  images___localFile___ctime = 'images.localFile.ctime',
-  images___localFile___birthtime = 'images.localFile.birthtime',
-  images___localFile___birthtimeMs = 'images.localFile.birthtimeMs',
-  images___localFile___blksize = 'images.localFile.blksize',
-  images___localFile___blocks = 'images.localFile.blocks',
-  images___localFile___url = 'images.localFile.url',
-  images___localFile___publicURL = 'images.localFile.publicURL',
-  images___localFile___childrenImageSharp = 'images.localFile.childrenImageSharp',
-  images___localFile___childrenImageSharp___gatsbyImageData = 'images.localFile.childrenImageSharp.gatsbyImageData',
-  images___localFile___childrenImageSharp___id = 'images.localFile.childrenImageSharp.id',
-  images___localFile___childrenImageSharp___children = 'images.localFile.childrenImageSharp.children',
-  images___localFile___childImageSharp___gatsbyImageData = 'images.localFile.childImageSharp.gatsbyImageData',
-  images___localFile___childImageSharp___id = 'images.localFile.childImageSharp.id',
-  images___localFile___childImageSharp___children = 'images.localFile.childImageSharp.children',
-  images___localFile___childrenPagesJson = 'images.localFile.childrenPagesJson',
-  images___localFile___childrenPagesJson___id = 'images.localFile.childrenPagesJson.id',
-  images___localFile___childrenPagesJson___children = 'images.localFile.childrenPagesJson.children',
-  images___localFile___childrenPagesJson___path = 'images.localFile.childrenPagesJson.path',
-  images___localFile___childrenPagesJson___introduction = 'images.localFile.childrenPagesJson.introduction',
-  images___localFile___childrenPagesJson___image = 'images.localFile.childrenPagesJson.image',
-  images___localFile___childrenPagesJson___displayTitle = 'images.localFile.childrenPagesJson.displayTitle',
-  images___localFile___childrenPagesJson___title = 'images.localFile.childrenPagesJson.title',
-  images___localFile___childrenPagesJson___catchphrase = 'images.localFile.childrenPagesJson.catchphrase',
-  images___localFile___childPagesJson___id = 'images.localFile.childPagesJson.id',
-  images___localFile___childPagesJson___children = 'images.localFile.childPagesJson.children',
-  images___localFile___childPagesJson___path = 'images.localFile.childPagesJson.path',
-  images___localFile___childPagesJson___introduction = 'images.localFile.childPagesJson.introduction',
-  images___localFile___childPagesJson___image = 'images.localFile.childPagesJson.image',
-  images___localFile___childPagesJson___displayTitle = 'images.localFile.childPagesJson.displayTitle',
-  images___localFile___childPagesJson___title = 'images.localFile.childPagesJson.title',
-  images___localFile___childPagesJson___catchphrase = 'images.localFile.childPagesJson.catchphrase',
-  images___localFile___id = 'images.localFile.id',
-  images___localFile___parent___id = 'images.localFile.parent.id',
-  images___localFile___parent___children = 'images.localFile.parent.children',
-  images___localFile___children = 'images.localFile.children',
-  images___localFile___children___id = 'images.localFile.children.id',
-  images___localFile___children___children = 'images.localFile.children.children',
-  images___localFile___internal___content = 'images.localFile.internal.content',
-  images___localFile___internal___contentDigest = 'images.localFile.internal.contentDigest',
-  images___localFile___internal___description = 'images.localFile.internal.description',
-  images___localFile___internal___fieldOwners = 'images.localFile.internal.fieldOwners',
-  images___localFile___internal___ignoreType = 'images.localFile.internal.ignoreType',
-  images___localFile___internal___mediaType = 'images.localFile.internal.mediaType',
-  images___localFile___internal___owner = 'images.localFile.internal.owner',
-  images___localFile___internal___type = 'images.localFile.internal.type',
-  images___fixed___base64 = 'images.fixed.base64',
-  images___fixed___tracedSVG = 'images.fixed.tracedSVG',
-  images___fixed___aspectRatio = 'images.fixed.aspectRatio',
-  images___fixed___width = 'images.fixed.width',
-  images___fixed___height = 'images.fixed.height',
-  images___fixed___src = 'images.fixed.src',
-  images___fixed___srcSet = 'images.fixed.srcSet',
-  images___fixed___srcWebp = 'images.fixed.srcWebp',
-  images___fixed___srcSetWebp = 'images.fixed.srcSetWebp',
-  images___fluid___base64 = 'images.fluid.base64',
-  images___fluid___tracedSVG = 'images.fluid.tracedSVG',
-  images___fluid___aspectRatio = 'images.fluid.aspectRatio',
-  images___fluid___src = 'images.fluid.src',
-  images___fluid___srcSet = 'images.fluid.srcSet',
-  images___fluid___srcWebp = 'images.fluid.srcWebp',
-  images___fluid___srcSetWebp = 'images.fluid.srcSetWebp',
-  images___fluid___sizes = 'images.fluid.sizes',
-  images___gatsbyImageData = 'images.gatsbyImageData',
-  images___resize___base64 = 'images.resize.base64',
-  images___resize___tracedSVG = 'images.resize.tracedSVG',
-  images___resize___src = 'images.resize.src',
-  images___resize___width = 'images.resize.width',
-  images___resize___height = 'images.resize.height',
-  images___resize___aspectRatio = 'images.resize.aspectRatio',
-  images___parent___id = 'images.parent.id',
-  images___parent___parent___id = 'images.parent.parent.id',
-  images___parent___parent___children = 'images.parent.parent.children',
-  images___parent___children = 'images.parent.children',
-  images___parent___children___id = 'images.parent.children.id',
-  images___parent___children___children = 'images.parent.children.children',
-  images___parent___internal___content = 'images.parent.internal.content',
-  images___parent___internal___contentDigest = 'images.parent.internal.contentDigest',
-  images___parent___internal___description = 'images.parent.internal.description',
-  images___parent___internal___fieldOwners = 'images.parent.internal.fieldOwners',
-  images___parent___internal___ignoreType = 'images.parent.internal.ignoreType',
-  images___parent___internal___mediaType = 'images.parent.internal.mediaType',
-  images___parent___internal___owner = 'images.parent.internal.owner',
-  images___parent___internal___type = 'images.parent.internal.type',
-  images___children = 'images.children',
-  images___children___id = 'images.children.id',
-  images___children___parent___id = 'images.children.parent.id',
-  images___children___parent___children = 'images.children.parent.children',
-  images___children___children = 'images.children.children',
-  images___children___children___id = 'images.children.children.id',
-  images___children___children___children = 'images.children.children.children',
-  images___children___internal___content = 'images.children.internal.content',
-  images___children___internal___contentDigest = 'images.children.internal.contentDigest',
-  images___children___internal___description = 'images.children.internal.description',
-  images___children___internal___fieldOwners = 'images.children.internal.fieldOwners',
-  images___children___internal___ignoreType = 'images.children.internal.ignoreType',
-  images___children___internal___mediaType = 'images.children.internal.mediaType',
-  images___children___internal___owner = 'images.children.internal.owner',
-  images___children___internal___type = 'images.children.internal.type',
-  images___internal___content = 'images.internal.content',
-  images___internal___contentDigest = 'images.internal.contentDigest',
-  images___internal___description = 'images.internal.description',
-  images___internal___fieldOwners = 'images.internal.fieldOwners',
-  images___internal___ignoreType = 'images.internal.ignoreType',
-  images___internal___mediaType = 'images.internal.mediaType',
-  images___internal___owner = 'images.internal.owner',
-  images___internal___type = 'images.internal.type',
   content___id = 'content.id',
   content___parent___id = 'content.parent.id',
   content___parent___parent___id = 'content.parent.parent.id',
@@ -5676,6 +6553,155 @@ enum ContentfulMarkdownArticleFieldsEnum {
   sys___contentType___sys___type = 'sys.contentType.sys.type',
   sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
   sys___contentType___sys___id = 'sys.contentType.sys.id',
+  images = 'images',
+  images___contentful_id = 'images.contentful_id',
+  images___id = 'images.id',
+  images___spaceId = 'images.spaceId',
+  images___createdAt = 'images.createdAt',
+  images___updatedAt = 'images.updatedAt',
+  images___file___url = 'images.file.url',
+  images___file___details___size = 'images.file.details.size',
+  images___file___fileName = 'images.file.fileName',
+  images___file___contentType = 'images.file.contentType',
+  images___title = 'images.title',
+  images___description = 'images.description',
+  images___node_locale = 'images.node_locale',
+  images___sys___type = 'images.sys.type',
+  images___sys___revision = 'images.sys.revision',
+  images___localFile___sourceInstanceName = 'images.localFile.sourceInstanceName',
+  images___localFile___absolutePath = 'images.localFile.absolutePath',
+  images___localFile___relativePath = 'images.localFile.relativePath',
+  images___localFile___extension = 'images.localFile.extension',
+  images___localFile___size = 'images.localFile.size',
+  images___localFile___prettySize = 'images.localFile.prettySize',
+  images___localFile___modifiedTime = 'images.localFile.modifiedTime',
+  images___localFile___accessTime = 'images.localFile.accessTime',
+  images___localFile___changeTime = 'images.localFile.changeTime',
+  images___localFile___birthTime = 'images.localFile.birthTime',
+  images___localFile___root = 'images.localFile.root',
+  images___localFile___dir = 'images.localFile.dir',
+  images___localFile___base = 'images.localFile.base',
+  images___localFile___ext = 'images.localFile.ext',
+  images___localFile___name = 'images.localFile.name',
+  images___localFile___relativeDirectory = 'images.localFile.relativeDirectory',
+  images___localFile___dev = 'images.localFile.dev',
+  images___localFile___mode = 'images.localFile.mode',
+  images___localFile___nlink = 'images.localFile.nlink',
+  images___localFile___uid = 'images.localFile.uid',
+  images___localFile___gid = 'images.localFile.gid',
+  images___localFile___rdev = 'images.localFile.rdev',
+  images___localFile___ino = 'images.localFile.ino',
+  images___localFile___atimeMs = 'images.localFile.atimeMs',
+  images___localFile___mtimeMs = 'images.localFile.mtimeMs',
+  images___localFile___ctimeMs = 'images.localFile.ctimeMs',
+  images___localFile___atime = 'images.localFile.atime',
+  images___localFile___mtime = 'images.localFile.mtime',
+  images___localFile___ctime = 'images.localFile.ctime',
+  images___localFile___birthtime = 'images.localFile.birthtime',
+  images___localFile___birthtimeMs = 'images.localFile.birthtimeMs',
+  images___localFile___blksize = 'images.localFile.blksize',
+  images___localFile___blocks = 'images.localFile.blocks',
+  images___localFile___url = 'images.localFile.url',
+  images___localFile___publicURL = 'images.localFile.publicURL',
+  images___localFile___childrenImageSharp = 'images.localFile.childrenImageSharp',
+  images___localFile___childrenImageSharp___gatsbyImageData = 'images.localFile.childrenImageSharp.gatsbyImageData',
+  images___localFile___childrenImageSharp___id = 'images.localFile.childrenImageSharp.id',
+  images___localFile___childrenImageSharp___children = 'images.localFile.childrenImageSharp.children',
+  images___localFile___childImageSharp___gatsbyImageData = 'images.localFile.childImageSharp.gatsbyImageData',
+  images___localFile___childImageSharp___id = 'images.localFile.childImageSharp.id',
+  images___localFile___childImageSharp___children = 'images.localFile.childImageSharp.children',
+  images___localFile___childrenPagesJson = 'images.localFile.childrenPagesJson',
+  images___localFile___childrenPagesJson___id = 'images.localFile.childrenPagesJson.id',
+  images___localFile___childrenPagesJson___children = 'images.localFile.childrenPagesJson.children',
+  images___localFile___childrenPagesJson___path = 'images.localFile.childrenPagesJson.path',
+  images___localFile___childrenPagesJson___catchphrase = 'images.localFile.childrenPagesJson.catchphrase',
+  images___localFile___childrenPagesJson___introduction = 'images.localFile.childrenPagesJson.introduction',
+  images___localFile___childrenPagesJson___image = 'images.localFile.childrenPagesJson.image',
+  images___localFile___childrenPagesJson___displayTitle = 'images.localFile.childrenPagesJson.displayTitle',
+  images___localFile___childrenPagesJson___title = 'images.localFile.childrenPagesJson.title',
+  images___localFile___childPagesJson___id = 'images.localFile.childPagesJson.id',
+  images___localFile___childPagesJson___children = 'images.localFile.childPagesJson.children',
+  images___localFile___childPagesJson___path = 'images.localFile.childPagesJson.path',
+  images___localFile___childPagesJson___catchphrase = 'images.localFile.childPagesJson.catchphrase',
+  images___localFile___childPagesJson___introduction = 'images.localFile.childPagesJson.introduction',
+  images___localFile___childPagesJson___image = 'images.localFile.childPagesJson.image',
+  images___localFile___childPagesJson___displayTitle = 'images.localFile.childPagesJson.displayTitle',
+  images___localFile___childPagesJson___title = 'images.localFile.childPagesJson.title',
+  images___localFile___id = 'images.localFile.id',
+  images___localFile___parent___id = 'images.localFile.parent.id',
+  images___localFile___parent___children = 'images.localFile.parent.children',
+  images___localFile___children = 'images.localFile.children',
+  images___localFile___children___id = 'images.localFile.children.id',
+  images___localFile___children___children = 'images.localFile.children.children',
+  images___localFile___internal___content = 'images.localFile.internal.content',
+  images___localFile___internal___contentDigest = 'images.localFile.internal.contentDigest',
+  images___localFile___internal___description = 'images.localFile.internal.description',
+  images___localFile___internal___fieldOwners = 'images.localFile.internal.fieldOwners',
+  images___localFile___internal___ignoreType = 'images.localFile.internal.ignoreType',
+  images___localFile___internal___mediaType = 'images.localFile.internal.mediaType',
+  images___localFile___internal___owner = 'images.localFile.internal.owner',
+  images___localFile___internal___type = 'images.localFile.internal.type',
+  images___fixed___base64 = 'images.fixed.base64',
+  images___fixed___tracedSVG = 'images.fixed.tracedSVG',
+  images___fixed___aspectRatio = 'images.fixed.aspectRatio',
+  images___fixed___width = 'images.fixed.width',
+  images___fixed___height = 'images.fixed.height',
+  images___fixed___src = 'images.fixed.src',
+  images___fixed___srcSet = 'images.fixed.srcSet',
+  images___fixed___srcWebp = 'images.fixed.srcWebp',
+  images___fixed___srcSetWebp = 'images.fixed.srcSetWebp',
+  images___fluid___base64 = 'images.fluid.base64',
+  images___fluid___tracedSVG = 'images.fluid.tracedSVG',
+  images___fluid___aspectRatio = 'images.fluid.aspectRatio',
+  images___fluid___src = 'images.fluid.src',
+  images___fluid___srcSet = 'images.fluid.srcSet',
+  images___fluid___srcWebp = 'images.fluid.srcWebp',
+  images___fluid___srcSetWebp = 'images.fluid.srcSetWebp',
+  images___fluid___sizes = 'images.fluid.sizes',
+  images___gatsbyImageData = 'images.gatsbyImageData',
+  images___resize___base64 = 'images.resize.base64',
+  images___resize___tracedSVG = 'images.resize.tracedSVG',
+  images___resize___src = 'images.resize.src',
+  images___resize___width = 'images.resize.width',
+  images___resize___height = 'images.resize.height',
+  images___resize___aspectRatio = 'images.resize.aspectRatio',
+  images___parent___id = 'images.parent.id',
+  images___parent___parent___id = 'images.parent.parent.id',
+  images___parent___parent___children = 'images.parent.parent.children',
+  images___parent___children = 'images.parent.children',
+  images___parent___children___id = 'images.parent.children.id',
+  images___parent___children___children = 'images.parent.children.children',
+  images___parent___internal___content = 'images.parent.internal.content',
+  images___parent___internal___contentDigest = 'images.parent.internal.contentDigest',
+  images___parent___internal___description = 'images.parent.internal.description',
+  images___parent___internal___fieldOwners = 'images.parent.internal.fieldOwners',
+  images___parent___internal___ignoreType = 'images.parent.internal.ignoreType',
+  images___parent___internal___mediaType = 'images.parent.internal.mediaType',
+  images___parent___internal___owner = 'images.parent.internal.owner',
+  images___parent___internal___type = 'images.parent.internal.type',
+  images___children = 'images.children',
+  images___children___id = 'images.children.id',
+  images___children___parent___id = 'images.children.parent.id',
+  images___children___parent___children = 'images.children.parent.children',
+  images___children___children = 'images.children.children',
+  images___children___children___id = 'images.children.children.id',
+  images___children___children___children = 'images.children.children.children',
+  images___children___internal___content = 'images.children.internal.content',
+  images___children___internal___contentDigest = 'images.children.internal.contentDigest',
+  images___children___internal___description = 'images.children.internal.description',
+  images___children___internal___fieldOwners = 'images.children.internal.fieldOwners',
+  images___children___internal___ignoreType = 'images.children.internal.ignoreType',
+  images___children___internal___mediaType = 'images.children.internal.mediaType',
+  images___children___internal___owner = 'images.children.internal.owner',
+  images___children___internal___type = 'images.children.internal.type',
+  images___internal___content = 'images.internal.content',
+  images___internal___contentDigest = 'images.internal.contentDigest',
+  images___internal___description = 'images.internal.description',
+  images___internal___fieldOwners = 'images.internal.fieldOwners',
+  images___internal___ignoreType = 'images.internal.ignoreType',
+  images___internal___mediaType = 'images.internal.mediaType',
+  images___internal___owner = 'images.internal.owner',
+  images___internal___type = 'images.internal.type',
   childrenContentfulMarkdownArticleContentTextNode = 'childrenContentfulMarkdownArticleContentTextNode',
   childrenContentfulMarkdownArticleContentTextNode___id = 'childrenContentfulMarkdownArticleContentTextNode.id',
   childrenContentfulMarkdownArticleContentTextNode___parent___id = 'childrenContentfulMarkdownArticleContentTextNode.parent.id',
@@ -5977,6 +7003,2207 @@ type ContentfulMarkdownArticleGroupConnection = {
 
 type ContentfulMarkdownArticleSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulMarkdownArticleFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type ContentfulPlaylistConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<ContentfulPlaylistEdge>;
+  readonly nodes: ReadonlyArray<ContentfulPlaylist>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<ContentfulPlaylistGroupConnection>;
+};
+
+
+type ContentfulPlaylistConnection_distinctArgs = {
+  field: ContentfulPlaylistFieldsEnum;
+};
+
+
+type ContentfulPlaylistConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: ContentfulPlaylistFieldsEnum;
+};
+
+type ContentfulPlaylistEdge = {
+  readonly next: Maybe<ContentfulPlaylist>;
+  readonly node: ContentfulPlaylist;
+  readonly previous: Maybe<ContentfulPlaylist>;
+};
+
+enum ContentfulPlaylistFieldsEnum {
+  contentful_id = 'contentful_id',
+  id = 'id',
+  node_locale = 'node_locale',
+  title = 'title',
+  slug = 'slug',
+  artists = 'artists',
+  artists___contentful_id = 'artists.contentful_id',
+  artists___id = 'artists.id',
+  artists___node_locale = 'artists.node_locale',
+  artists___name = 'artists.name',
+  artists___instagram = 'artists.instagram',
+  artists___markdownarticle = 'artists.markdownarticle',
+  artists___markdownarticle___contentful_id = 'artists.markdownarticle.contentful_id',
+  artists___markdownarticle___id = 'artists.markdownarticle.id',
+  artists___markdownarticle___node_locale = 'artists.markdownarticle.node_locale',
+  artists___markdownarticle___title = 'artists.markdownarticle.title',
+  artists___markdownarticle___slug = 'artists.markdownarticle.slug',
+  artists___markdownarticle___publishedAt = 'artists.markdownarticle.publishedAt',
+  artists___markdownarticle___disableSideHeader = 'artists.markdownarticle.disableSideHeader',
+  artists___markdownarticle___isVirticalWriting = 'artists.markdownarticle.isVirticalWriting',
+  artists___markdownarticle___align = 'artists.markdownarticle.align',
+  artists___markdownarticle___author___contentful_id = 'artists.markdownarticle.author.contentful_id',
+  artists___markdownarticle___author___id = 'artists.markdownarticle.author.id',
+  artists___markdownarticle___author___node_locale = 'artists.markdownarticle.author.node_locale',
+  artists___markdownarticle___author___name = 'artists.markdownarticle.author.name',
+  artists___markdownarticle___author___instagram = 'artists.markdownarticle.author.instagram',
+  artists___markdownarticle___author___markdownarticle = 'artists.markdownarticle.author.markdownarticle',
+  artists___markdownarticle___author___spaceId = 'artists.markdownarticle.author.spaceId',
+  artists___markdownarticle___author___createdAt = 'artists.markdownarticle.author.createdAt',
+  artists___markdownarticle___author___updatedAt = 'artists.markdownarticle.author.updatedAt',
+  artists___markdownarticle___author___twitter = 'artists.markdownarticle.author.twitter',
+  artists___markdownarticle___author___youtube = 'artists.markdownarticle.author.youtube',
+  artists___markdownarticle___author___playlist = 'artists.markdownarticle.author.playlist',
+  artists___markdownarticle___author___song = 'artists.markdownarticle.author.song',
+  artists___markdownarticle___author___linktree = 'artists.markdownarticle.author.linktree',
+  artists___markdownarticle___author___minnakikeru = 'artists.markdownarticle.author.minnakikeru',
+  artists___markdownarticle___author___hatena = 'artists.markdownarticle.author.hatena',
+  artists___markdownarticle___author___bandcamp = 'artists.markdownarticle.author.bandcamp',
+  artists___markdownarticle___author___childrenContentfulAuthorIntroductionTextNode = 'artists.markdownarticle.author.childrenContentfulAuthorIntroductionTextNode',
+  artists___markdownarticle___author___children = 'artists.markdownarticle.author.children',
+  artists___markdownarticle___featuredImage___contentful_id = 'artists.markdownarticle.featuredImage.contentful_id',
+  artists___markdownarticle___featuredImage___id = 'artists.markdownarticle.featuredImage.id',
+  artists___markdownarticle___featuredImage___spaceId = 'artists.markdownarticle.featuredImage.spaceId',
+  artists___markdownarticle___featuredImage___createdAt = 'artists.markdownarticle.featuredImage.createdAt',
+  artists___markdownarticle___featuredImage___updatedAt = 'artists.markdownarticle.featuredImage.updatedAt',
+  artists___markdownarticle___featuredImage___title = 'artists.markdownarticle.featuredImage.title',
+  artists___markdownarticle___featuredImage___description = 'artists.markdownarticle.featuredImage.description',
+  artists___markdownarticle___featuredImage___node_locale = 'artists.markdownarticle.featuredImage.node_locale',
+  artists___markdownarticle___featuredImage___gatsbyImageData = 'artists.markdownarticle.featuredImage.gatsbyImageData',
+  artists___markdownarticle___featuredImage___children = 'artists.markdownarticle.featuredImage.children',
+  artists___markdownarticle___content___id = 'artists.markdownarticle.content.id',
+  artists___markdownarticle___content___children = 'artists.markdownarticle.content.children',
+  artists___markdownarticle___content___content = 'artists.markdownarticle.content.content',
+  artists___markdownarticle___content___childrenMdx = 'artists.markdownarticle.content.childrenMdx',
+  artists___markdownarticle___spaceId = 'artists.markdownarticle.spaceId',
+  artists___markdownarticle___createdAt = 'artists.markdownarticle.createdAt',
+  artists___markdownarticle___updatedAt = 'artists.markdownarticle.updatedAt',
+  artists___markdownarticle___sys___type = 'artists.markdownarticle.sys.type',
+  artists___markdownarticle___sys___revision = 'artists.markdownarticle.sys.revision',
+  artists___markdownarticle___images = 'artists.markdownarticle.images',
+  artists___markdownarticle___images___contentful_id = 'artists.markdownarticle.images.contentful_id',
+  artists___markdownarticle___images___id = 'artists.markdownarticle.images.id',
+  artists___markdownarticle___images___spaceId = 'artists.markdownarticle.images.spaceId',
+  artists___markdownarticle___images___createdAt = 'artists.markdownarticle.images.createdAt',
+  artists___markdownarticle___images___updatedAt = 'artists.markdownarticle.images.updatedAt',
+  artists___markdownarticle___images___title = 'artists.markdownarticle.images.title',
+  artists___markdownarticle___images___description = 'artists.markdownarticle.images.description',
+  artists___markdownarticle___images___node_locale = 'artists.markdownarticle.images.node_locale',
+  artists___markdownarticle___images___gatsbyImageData = 'artists.markdownarticle.images.gatsbyImageData',
+  artists___markdownarticle___images___children = 'artists.markdownarticle.images.children',
+  artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
+  artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
+  artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___children = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.children',
+  artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___content = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.content',
+  artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___childrenMdx = 'artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.childrenMdx',
+  artists___markdownarticle___childContentfulMarkdownArticleContentTextNode___id = 'artists.markdownarticle.childContentfulMarkdownArticleContentTextNode.id',
+  artists___markdownarticle___childContentfulMarkdownArticleContentTextNode___children = 'artists.markdownarticle.childContentfulMarkdownArticleContentTextNode.children',
+  artists___markdownarticle___childContentfulMarkdownArticleContentTextNode___content = 'artists.markdownarticle.childContentfulMarkdownArticleContentTextNode.content',
+  artists___markdownarticle___childContentfulMarkdownArticleContentTextNode___childrenMdx = 'artists.markdownarticle.childContentfulMarkdownArticleContentTextNode.childrenMdx',
+  artists___markdownarticle___parent___id = 'artists.markdownarticle.parent.id',
+  artists___markdownarticle___parent___children = 'artists.markdownarticle.parent.children',
+  artists___markdownarticle___children = 'artists.markdownarticle.children',
+  artists___markdownarticle___children___id = 'artists.markdownarticle.children.id',
+  artists___markdownarticle___children___children = 'artists.markdownarticle.children.children',
+  artists___markdownarticle___internal___content = 'artists.markdownarticle.internal.content',
+  artists___markdownarticle___internal___contentDigest = 'artists.markdownarticle.internal.contentDigest',
+  artists___markdownarticle___internal___description = 'artists.markdownarticle.internal.description',
+  artists___markdownarticle___internal___fieldOwners = 'artists.markdownarticle.internal.fieldOwners',
+  artists___markdownarticle___internal___ignoreType = 'artists.markdownarticle.internal.ignoreType',
+  artists___markdownarticle___internal___mediaType = 'artists.markdownarticle.internal.mediaType',
+  artists___markdownarticle___internal___owner = 'artists.markdownarticle.internal.owner',
+  artists___markdownarticle___internal___type = 'artists.markdownarticle.internal.type',
+  artists___introduction___id = 'artists.introduction.id',
+  artists___introduction___parent___id = 'artists.introduction.parent.id',
+  artists___introduction___parent___children = 'artists.introduction.parent.children',
+  artists___introduction___children = 'artists.introduction.children',
+  artists___introduction___children___id = 'artists.introduction.children.id',
+  artists___introduction___children___children = 'artists.introduction.children.children',
+  artists___introduction___internal___content = 'artists.introduction.internal.content',
+  artists___introduction___internal___contentDigest = 'artists.introduction.internal.contentDigest',
+  artists___introduction___internal___description = 'artists.introduction.internal.description',
+  artists___introduction___internal___fieldOwners = 'artists.introduction.internal.fieldOwners',
+  artists___introduction___internal___ignoreType = 'artists.introduction.internal.ignoreType',
+  artists___introduction___internal___mediaType = 'artists.introduction.internal.mediaType',
+  artists___introduction___internal___owner = 'artists.introduction.internal.owner',
+  artists___introduction___internal___type = 'artists.introduction.internal.type',
+  artists___introduction___introduction = 'artists.introduction.introduction',
+  artists___introduction___sys___type = 'artists.introduction.sys.type',
+  artists___introduction___childrenMdx = 'artists.introduction.childrenMdx',
+  artists___introduction___childrenMdx___rawBody = 'artists.introduction.childrenMdx.rawBody',
+  artists___introduction___childrenMdx___fileAbsolutePath = 'artists.introduction.childrenMdx.fileAbsolutePath',
+  artists___introduction___childrenMdx___slug = 'artists.introduction.childrenMdx.slug',
+  artists___introduction___childrenMdx___body = 'artists.introduction.childrenMdx.body',
+  artists___introduction___childrenMdx___excerpt = 'artists.introduction.childrenMdx.excerpt',
+  artists___introduction___childrenMdx___headings = 'artists.introduction.childrenMdx.headings',
+  artists___introduction___childrenMdx___html = 'artists.introduction.childrenMdx.html',
+  artists___introduction___childrenMdx___mdxAST = 'artists.introduction.childrenMdx.mdxAST',
+  artists___introduction___childrenMdx___tableOfContents = 'artists.introduction.childrenMdx.tableOfContents',
+  artists___introduction___childrenMdx___timeToRead = 'artists.introduction.childrenMdx.timeToRead',
+  artists___introduction___childrenMdx___id = 'artists.introduction.childrenMdx.id',
+  artists___introduction___childrenMdx___children = 'artists.introduction.childrenMdx.children',
+  artists___introduction___childMdx___rawBody = 'artists.introduction.childMdx.rawBody',
+  artists___introduction___childMdx___fileAbsolutePath = 'artists.introduction.childMdx.fileAbsolutePath',
+  artists___introduction___childMdx___slug = 'artists.introduction.childMdx.slug',
+  artists___introduction___childMdx___body = 'artists.introduction.childMdx.body',
+  artists___introduction___childMdx___excerpt = 'artists.introduction.childMdx.excerpt',
+  artists___introduction___childMdx___headings = 'artists.introduction.childMdx.headings',
+  artists___introduction___childMdx___html = 'artists.introduction.childMdx.html',
+  artists___introduction___childMdx___mdxAST = 'artists.introduction.childMdx.mdxAST',
+  artists___introduction___childMdx___tableOfContents = 'artists.introduction.childMdx.tableOfContents',
+  artists___introduction___childMdx___timeToRead = 'artists.introduction.childMdx.timeToRead',
+  artists___introduction___childMdx___id = 'artists.introduction.childMdx.id',
+  artists___introduction___childMdx___children = 'artists.introduction.childMdx.children',
+  artists___spaceId = 'artists.spaceId',
+  artists___createdAt = 'artists.createdAt',
+  artists___updatedAt = 'artists.updatedAt',
+  artists___sys___type = 'artists.sys.type',
+  artists___sys___revision = 'artists.sys.revision',
+  artists___twitter = 'artists.twitter',
+  artists___youtube = 'artists.youtube',
+  artists___playlist = 'artists.playlist',
+  artists___playlist___contentful_id = 'artists.playlist.contentful_id',
+  artists___playlist___id = 'artists.playlist.id',
+  artists___playlist___node_locale = 'artists.playlist.node_locale',
+  artists___playlist___title = 'artists.playlist.title',
+  artists___playlist___slug = 'artists.playlist.slug',
+  artists___playlist___artists = 'artists.playlist.artists',
+  artists___playlist___artists___contentful_id = 'artists.playlist.artists.contentful_id',
+  artists___playlist___artists___id = 'artists.playlist.artists.id',
+  artists___playlist___artists___node_locale = 'artists.playlist.artists.node_locale',
+  artists___playlist___artists___name = 'artists.playlist.artists.name',
+  artists___playlist___artists___instagram = 'artists.playlist.artists.instagram',
+  artists___playlist___artists___markdownarticle = 'artists.playlist.artists.markdownarticle',
+  artists___playlist___artists___spaceId = 'artists.playlist.artists.spaceId',
+  artists___playlist___artists___createdAt = 'artists.playlist.artists.createdAt',
+  artists___playlist___artists___updatedAt = 'artists.playlist.artists.updatedAt',
+  artists___playlist___artists___twitter = 'artists.playlist.artists.twitter',
+  artists___playlist___artists___youtube = 'artists.playlist.artists.youtube',
+  artists___playlist___artists___playlist = 'artists.playlist.artists.playlist',
+  artists___playlist___artists___song = 'artists.playlist.artists.song',
+  artists___playlist___artists___linktree = 'artists.playlist.artists.linktree',
+  artists___playlist___artists___minnakikeru = 'artists.playlist.artists.minnakikeru',
+  artists___playlist___artists___hatena = 'artists.playlist.artists.hatena',
+  artists___playlist___artists___bandcamp = 'artists.playlist.artists.bandcamp',
+  artists___playlist___artists___childrenContentfulAuthorIntroductionTextNode = 'artists.playlist.artists.childrenContentfulAuthorIntroductionTextNode',
+  artists___playlist___artists___children = 'artists.playlist.artists.children',
+  artists___playlist___songs = 'artists.playlist.songs',
+  artists___playlist___songs___contentful_id = 'artists.playlist.songs.contentful_id',
+  artists___playlist___songs___id = 'artists.playlist.songs.id',
+  artists___playlist___songs___node_locale = 'artists.playlist.songs.node_locale',
+  artists___playlist___songs___title = 'artists.playlist.songs.title',
+  artists___playlist___songs___duration = 'artists.playlist.songs.duration',
+  artists___playlist___songs___playlist = 'artists.playlist.songs.playlist',
+  artists___playlist___songs___spaceId = 'artists.playlist.songs.spaceId',
+  artists___playlist___songs___createdAt = 'artists.playlist.songs.createdAt',
+  artists___playlist___songs___updatedAt = 'artists.playlist.songs.updatedAt',
+  artists___playlist___songs___children = 'artists.playlist.songs.children',
+  artists___playlist___coverart___contentful_id = 'artists.playlist.coverart.contentful_id',
+  artists___playlist___coverart___id = 'artists.playlist.coverart.id',
+  artists___playlist___coverart___spaceId = 'artists.playlist.coverart.spaceId',
+  artists___playlist___coverart___createdAt = 'artists.playlist.coverart.createdAt',
+  artists___playlist___coverart___updatedAt = 'artists.playlist.coverart.updatedAt',
+  artists___playlist___coverart___title = 'artists.playlist.coverart.title',
+  artists___playlist___coverart___description = 'artists.playlist.coverart.description',
+  artists___playlist___coverart___node_locale = 'artists.playlist.coverart.node_locale',
+  artists___playlist___coverart___gatsbyImageData = 'artists.playlist.coverart.gatsbyImageData',
+  artists___playlist___coverart___children = 'artists.playlist.coverart.children',
+  artists___playlist___spaceId = 'artists.playlist.spaceId',
+  artists___playlist___createdAt = 'artists.playlist.createdAt',
+  artists___playlist___updatedAt = 'artists.playlist.updatedAt',
+  artists___playlist___sys___type = 'artists.playlist.sys.type',
+  artists___playlist___sys___revision = 'artists.playlist.sys.revision',
+  artists___playlist___gatsbyPath = 'artists.playlist.gatsbyPath',
+  artists___playlist___parent___id = 'artists.playlist.parent.id',
+  artists___playlist___parent___children = 'artists.playlist.parent.children',
+  artists___playlist___children = 'artists.playlist.children',
+  artists___playlist___children___id = 'artists.playlist.children.id',
+  artists___playlist___children___children = 'artists.playlist.children.children',
+  artists___playlist___internal___content = 'artists.playlist.internal.content',
+  artists___playlist___internal___contentDigest = 'artists.playlist.internal.contentDigest',
+  artists___playlist___internal___description = 'artists.playlist.internal.description',
+  artists___playlist___internal___fieldOwners = 'artists.playlist.internal.fieldOwners',
+  artists___playlist___internal___ignoreType = 'artists.playlist.internal.ignoreType',
+  artists___playlist___internal___mediaType = 'artists.playlist.internal.mediaType',
+  artists___playlist___internal___owner = 'artists.playlist.internal.owner',
+  artists___playlist___internal___type = 'artists.playlist.internal.type',
+  artists___song = 'artists.song',
+  artists___song___contentful_id = 'artists.song.contentful_id',
+  artists___song___id = 'artists.song.id',
+  artists___song___node_locale = 'artists.song.node_locale',
+  artists___song___title = 'artists.song.title',
+  artists___song___duration = 'artists.song.duration',
+  artists___song___artist___contentful_id = 'artists.song.artist.contentful_id',
+  artists___song___artist___id = 'artists.song.artist.id',
+  artists___song___artist___node_locale = 'artists.song.artist.node_locale',
+  artists___song___artist___name = 'artists.song.artist.name',
+  artists___song___artist___instagram = 'artists.song.artist.instagram',
+  artists___song___artist___markdownarticle = 'artists.song.artist.markdownarticle',
+  artists___song___artist___spaceId = 'artists.song.artist.spaceId',
+  artists___song___artist___createdAt = 'artists.song.artist.createdAt',
+  artists___song___artist___updatedAt = 'artists.song.artist.updatedAt',
+  artists___song___artist___twitter = 'artists.song.artist.twitter',
+  artists___song___artist___youtube = 'artists.song.artist.youtube',
+  artists___song___artist___playlist = 'artists.song.artist.playlist',
+  artists___song___artist___song = 'artists.song.artist.song',
+  artists___song___artist___linktree = 'artists.song.artist.linktree',
+  artists___song___artist___minnakikeru = 'artists.song.artist.minnakikeru',
+  artists___song___artist___hatena = 'artists.song.artist.hatena',
+  artists___song___artist___bandcamp = 'artists.song.artist.bandcamp',
+  artists___song___artist___childrenContentfulAuthorIntroductionTextNode = 'artists.song.artist.childrenContentfulAuthorIntroductionTextNode',
+  artists___song___artist___children = 'artists.song.artist.children',
+  artists___song___sound___contentful_id = 'artists.song.sound.contentful_id',
+  artists___song___sound___id = 'artists.song.sound.id',
+  artists___song___sound___spaceId = 'artists.song.sound.spaceId',
+  artists___song___sound___createdAt = 'artists.song.sound.createdAt',
+  artists___song___sound___updatedAt = 'artists.song.sound.updatedAt',
+  artists___song___sound___title = 'artists.song.sound.title',
+  artists___song___sound___description = 'artists.song.sound.description',
+  artists___song___sound___node_locale = 'artists.song.sound.node_locale',
+  artists___song___sound___gatsbyImageData = 'artists.song.sound.gatsbyImageData',
+  artists___song___sound___children = 'artists.song.sound.children',
+  artists___song___coverart___contentful_id = 'artists.song.coverart.contentful_id',
+  artists___song___coverart___id = 'artists.song.coverart.id',
+  artists___song___coverart___spaceId = 'artists.song.coverart.spaceId',
+  artists___song___coverart___createdAt = 'artists.song.coverart.createdAt',
+  artists___song___coverart___updatedAt = 'artists.song.coverart.updatedAt',
+  artists___song___coverart___title = 'artists.song.coverart.title',
+  artists___song___coverart___description = 'artists.song.coverart.description',
+  artists___song___coverart___node_locale = 'artists.song.coverart.node_locale',
+  artists___song___coverart___gatsbyImageData = 'artists.song.coverart.gatsbyImageData',
+  artists___song___coverart___children = 'artists.song.coverart.children',
+  artists___song___playlist = 'artists.song.playlist',
+  artists___song___playlist___contentful_id = 'artists.song.playlist.contentful_id',
+  artists___song___playlist___id = 'artists.song.playlist.id',
+  artists___song___playlist___node_locale = 'artists.song.playlist.node_locale',
+  artists___song___playlist___title = 'artists.song.playlist.title',
+  artists___song___playlist___slug = 'artists.song.playlist.slug',
+  artists___song___playlist___artists = 'artists.song.playlist.artists',
+  artists___song___playlist___songs = 'artists.song.playlist.songs',
+  artists___song___playlist___spaceId = 'artists.song.playlist.spaceId',
+  artists___song___playlist___createdAt = 'artists.song.playlist.createdAt',
+  artists___song___playlist___updatedAt = 'artists.song.playlist.updatedAt',
+  artists___song___playlist___gatsbyPath = 'artists.song.playlist.gatsbyPath',
+  artists___song___playlist___children = 'artists.song.playlist.children',
+  artists___song___spaceId = 'artists.song.spaceId',
+  artists___song___createdAt = 'artists.song.createdAt',
+  artists___song___updatedAt = 'artists.song.updatedAt',
+  artists___song___sys___type = 'artists.song.sys.type',
+  artists___song___sys___revision = 'artists.song.sys.revision',
+  artists___song___parent___id = 'artists.song.parent.id',
+  artists___song___parent___children = 'artists.song.parent.children',
+  artists___song___children = 'artists.song.children',
+  artists___song___children___id = 'artists.song.children.id',
+  artists___song___children___children = 'artists.song.children.children',
+  artists___song___internal___content = 'artists.song.internal.content',
+  artists___song___internal___contentDigest = 'artists.song.internal.contentDigest',
+  artists___song___internal___description = 'artists.song.internal.description',
+  artists___song___internal___fieldOwners = 'artists.song.internal.fieldOwners',
+  artists___song___internal___ignoreType = 'artists.song.internal.ignoreType',
+  artists___song___internal___mediaType = 'artists.song.internal.mediaType',
+  artists___song___internal___owner = 'artists.song.internal.owner',
+  artists___song___internal___type = 'artists.song.internal.type',
+  artists___linktree = 'artists.linktree',
+  artists___minnakikeru = 'artists.minnakikeru',
+  artists___hatena = 'artists.hatena',
+  artists___bandcamp = 'artists.bandcamp',
+  artists___childrenContentfulAuthorIntroductionTextNode = 'artists.childrenContentfulAuthorIntroductionTextNode',
+  artists___childrenContentfulAuthorIntroductionTextNode___id = 'artists.childrenContentfulAuthorIntroductionTextNode.id',
+  artists___childrenContentfulAuthorIntroductionTextNode___parent___id = 'artists.childrenContentfulAuthorIntroductionTextNode.parent.id',
+  artists___childrenContentfulAuthorIntroductionTextNode___parent___children = 'artists.childrenContentfulAuthorIntroductionTextNode.parent.children',
+  artists___childrenContentfulAuthorIntroductionTextNode___children = 'artists.childrenContentfulAuthorIntroductionTextNode.children',
+  artists___childrenContentfulAuthorIntroductionTextNode___children___id = 'artists.childrenContentfulAuthorIntroductionTextNode.children.id',
+  artists___childrenContentfulAuthorIntroductionTextNode___children___children = 'artists.childrenContentfulAuthorIntroductionTextNode.children.children',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___content = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.content',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___contentDigest = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.contentDigest',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___description = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.description',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___fieldOwners = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.fieldOwners',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___ignoreType = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.ignoreType',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___mediaType = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.mediaType',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___owner = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.owner',
+  artists___childrenContentfulAuthorIntroductionTextNode___internal___type = 'artists.childrenContentfulAuthorIntroductionTextNode.internal.type',
+  artists___childrenContentfulAuthorIntroductionTextNode___introduction = 'artists.childrenContentfulAuthorIntroductionTextNode.introduction',
+  artists___childrenContentfulAuthorIntroductionTextNode___sys___type = 'artists.childrenContentfulAuthorIntroductionTextNode.sys.type',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___rawBody = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.rawBody',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___fileAbsolutePath = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.fileAbsolutePath',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___slug = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.slug',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___body = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.body',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___excerpt = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.excerpt',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___headings = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.headings',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___html = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.html',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___mdxAST = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.mdxAST',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___tableOfContents = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.tableOfContents',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___timeToRead = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.timeToRead',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___id = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.id',
+  artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx___children = 'artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx.children',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___rawBody = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.rawBody',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___fileAbsolutePath = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.fileAbsolutePath',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___slug = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.slug',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___body = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.body',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___excerpt = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.excerpt',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___headings = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.headings',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___html = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.html',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___mdxAST = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.mdxAST',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___tableOfContents = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.tableOfContents',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___timeToRead = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.timeToRead',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___id = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.id',
+  artists___childrenContentfulAuthorIntroductionTextNode___childMdx___children = 'artists.childrenContentfulAuthorIntroductionTextNode.childMdx.children',
+  artists___childContentfulAuthorIntroductionTextNode___id = 'artists.childContentfulAuthorIntroductionTextNode.id',
+  artists___childContentfulAuthorIntroductionTextNode___parent___id = 'artists.childContentfulAuthorIntroductionTextNode.parent.id',
+  artists___childContentfulAuthorIntroductionTextNode___parent___children = 'artists.childContentfulAuthorIntroductionTextNode.parent.children',
+  artists___childContentfulAuthorIntroductionTextNode___children = 'artists.childContentfulAuthorIntroductionTextNode.children',
+  artists___childContentfulAuthorIntroductionTextNode___children___id = 'artists.childContentfulAuthorIntroductionTextNode.children.id',
+  artists___childContentfulAuthorIntroductionTextNode___children___children = 'artists.childContentfulAuthorIntroductionTextNode.children.children',
+  artists___childContentfulAuthorIntroductionTextNode___internal___content = 'artists.childContentfulAuthorIntroductionTextNode.internal.content',
+  artists___childContentfulAuthorIntroductionTextNode___internal___contentDigest = 'artists.childContentfulAuthorIntroductionTextNode.internal.contentDigest',
+  artists___childContentfulAuthorIntroductionTextNode___internal___description = 'artists.childContentfulAuthorIntroductionTextNode.internal.description',
+  artists___childContentfulAuthorIntroductionTextNode___internal___fieldOwners = 'artists.childContentfulAuthorIntroductionTextNode.internal.fieldOwners',
+  artists___childContentfulAuthorIntroductionTextNode___internal___ignoreType = 'artists.childContentfulAuthorIntroductionTextNode.internal.ignoreType',
+  artists___childContentfulAuthorIntroductionTextNode___internal___mediaType = 'artists.childContentfulAuthorIntroductionTextNode.internal.mediaType',
+  artists___childContentfulAuthorIntroductionTextNode___internal___owner = 'artists.childContentfulAuthorIntroductionTextNode.internal.owner',
+  artists___childContentfulAuthorIntroductionTextNode___internal___type = 'artists.childContentfulAuthorIntroductionTextNode.internal.type',
+  artists___childContentfulAuthorIntroductionTextNode___introduction = 'artists.childContentfulAuthorIntroductionTextNode.introduction',
+  artists___childContentfulAuthorIntroductionTextNode___sys___type = 'artists.childContentfulAuthorIntroductionTextNode.sys.type',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___rawBody = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.rawBody',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___fileAbsolutePath = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.fileAbsolutePath',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___slug = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.slug',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___body = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.body',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___excerpt = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.excerpt',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___headings = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.headings',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___html = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.html',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___mdxAST = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.mdxAST',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___tableOfContents = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.tableOfContents',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___timeToRead = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.timeToRead',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___id = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.id',
+  artists___childContentfulAuthorIntroductionTextNode___childrenMdx___children = 'artists.childContentfulAuthorIntroductionTextNode.childrenMdx.children',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___rawBody = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.rawBody',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___fileAbsolutePath = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.fileAbsolutePath',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___slug = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.slug',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___body = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.body',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___excerpt = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.excerpt',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___headings = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.headings',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___html = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.html',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___mdxAST = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.mdxAST',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___tableOfContents = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.tableOfContents',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___timeToRead = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.timeToRead',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___id = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.id',
+  artists___childContentfulAuthorIntroductionTextNode___childMdx___children = 'artists.childContentfulAuthorIntroductionTextNode.childMdx.children',
+  artists___parent___id = 'artists.parent.id',
+  artists___parent___parent___id = 'artists.parent.parent.id',
+  artists___parent___parent___children = 'artists.parent.parent.children',
+  artists___parent___children = 'artists.parent.children',
+  artists___parent___children___id = 'artists.parent.children.id',
+  artists___parent___children___children = 'artists.parent.children.children',
+  artists___parent___internal___content = 'artists.parent.internal.content',
+  artists___parent___internal___contentDigest = 'artists.parent.internal.contentDigest',
+  artists___parent___internal___description = 'artists.parent.internal.description',
+  artists___parent___internal___fieldOwners = 'artists.parent.internal.fieldOwners',
+  artists___parent___internal___ignoreType = 'artists.parent.internal.ignoreType',
+  artists___parent___internal___mediaType = 'artists.parent.internal.mediaType',
+  artists___parent___internal___owner = 'artists.parent.internal.owner',
+  artists___parent___internal___type = 'artists.parent.internal.type',
+  artists___children = 'artists.children',
+  artists___children___id = 'artists.children.id',
+  artists___children___parent___id = 'artists.children.parent.id',
+  artists___children___parent___children = 'artists.children.parent.children',
+  artists___children___children = 'artists.children.children',
+  artists___children___children___id = 'artists.children.children.id',
+  artists___children___children___children = 'artists.children.children.children',
+  artists___children___internal___content = 'artists.children.internal.content',
+  artists___children___internal___contentDigest = 'artists.children.internal.contentDigest',
+  artists___children___internal___description = 'artists.children.internal.description',
+  artists___children___internal___fieldOwners = 'artists.children.internal.fieldOwners',
+  artists___children___internal___ignoreType = 'artists.children.internal.ignoreType',
+  artists___children___internal___mediaType = 'artists.children.internal.mediaType',
+  artists___children___internal___owner = 'artists.children.internal.owner',
+  artists___children___internal___type = 'artists.children.internal.type',
+  artists___internal___content = 'artists.internal.content',
+  artists___internal___contentDigest = 'artists.internal.contentDigest',
+  artists___internal___description = 'artists.internal.description',
+  artists___internal___fieldOwners = 'artists.internal.fieldOwners',
+  artists___internal___ignoreType = 'artists.internal.ignoreType',
+  artists___internal___mediaType = 'artists.internal.mediaType',
+  artists___internal___owner = 'artists.internal.owner',
+  artists___internal___type = 'artists.internal.type',
+  songs = 'songs',
+  songs___contentful_id = 'songs.contentful_id',
+  songs___id = 'songs.id',
+  songs___node_locale = 'songs.node_locale',
+  songs___title = 'songs.title',
+  songs___duration = 'songs.duration',
+  songs___artist___contentful_id = 'songs.artist.contentful_id',
+  songs___artist___id = 'songs.artist.id',
+  songs___artist___node_locale = 'songs.artist.node_locale',
+  songs___artist___name = 'songs.artist.name',
+  songs___artist___instagram = 'songs.artist.instagram',
+  songs___artist___markdownarticle = 'songs.artist.markdownarticle',
+  songs___artist___markdownarticle___contentful_id = 'songs.artist.markdownarticle.contentful_id',
+  songs___artist___markdownarticle___id = 'songs.artist.markdownarticle.id',
+  songs___artist___markdownarticle___node_locale = 'songs.artist.markdownarticle.node_locale',
+  songs___artist___markdownarticle___title = 'songs.artist.markdownarticle.title',
+  songs___artist___markdownarticle___slug = 'songs.artist.markdownarticle.slug',
+  songs___artist___markdownarticle___publishedAt = 'songs.artist.markdownarticle.publishedAt',
+  songs___artist___markdownarticle___disableSideHeader = 'songs.artist.markdownarticle.disableSideHeader',
+  songs___artist___markdownarticle___isVirticalWriting = 'songs.artist.markdownarticle.isVirticalWriting',
+  songs___artist___markdownarticle___align = 'songs.artist.markdownarticle.align',
+  songs___artist___markdownarticle___spaceId = 'songs.artist.markdownarticle.spaceId',
+  songs___artist___markdownarticle___createdAt = 'songs.artist.markdownarticle.createdAt',
+  songs___artist___markdownarticle___updatedAt = 'songs.artist.markdownarticle.updatedAt',
+  songs___artist___markdownarticle___images = 'songs.artist.markdownarticle.images',
+  songs___artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'songs.artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
+  songs___artist___markdownarticle___children = 'songs.artist.markdownarticle.children',
+  songs___artist___introduction___id = 'songs.artist.introduction.id',
+  songs___artist___introduction___children = 'songs.artist.introduction.children',
+  songs___artist___introduction___introduction = 'songs.artist.introduction.introduction',
+  songs___artist___introduction___childrenMdx = 'songs.artist.introduction.childrenMdx',
+  songs___artist___spaceId = 'songs.artist.spaceId',
+  songs___artist___createdAt = 'songs.artist.createdAt',
+  songs___artist___updatedAt = 'songs.artist.updatedAt',
+  songs___artist___sys___type = 'songs.artist.sys.type',
+  songs___artist___sys___revision = 'songs.artist.sys.revision',
+  songs___artist___twitter = 'songs.artist.twitter',
+  songs___artist___youtube = 'songs.artist.youtube',
+  songs___artist___playlist = 'songs.artist.playlist',
+  songs___artist___playlist___contentful_id = 'songs.artist.playlist.contentful_id',
+  songs___artist___playlist___id = 'songs.artist.playlist.id',
+  songs___artist___playlist___node_locale = 'songs.artist.playlist.node_locale',
+  songs___artist___playlist___title = 'songs.artist.playlist.title',
+  songs___artist___playlist___slug = 'songs.artist.playlist.slug',
+  songs___artist___playlist___artists = 'songs.artist.playlist.artists',
+  songs___artist___playlist___songs = 'songs.artist.playlist.songs',
+  songs___artist___playlist___spaceId = 'songs.artist.playlist.spaceId',
+  songs___artist___playlist___createdAt = 'songs.artist.playlist.createdAt',
+  songs___artist___playlist___updatedAt = 'songs.artist.playlist.updatedAt',
+  songs___artist___playlist___gatsbyPath = 'songs.artist.playlist.gatsbyPath',
+  songs___artist___playlist___children = 'songs.artist.playlist.children',
+  songs___artist___song = 'songs.artist.song',
+  songs___artist___song___contentful_id = 'songs.artist.song.contentful_id',
+  songs___artist___song___id = 'songs.artist.song.id',
+  songs___artist___song___node_locale = 'songs.artist.song.node_locale',
+  songs___artist___song___title = 'songs.artist.song.title',
+  songs___artist___song___duration = 'songs.artist.song.duration',
+  songs___artist___song___playlist = 'songs.artist.song.playlist',
+  songs___artist___song___spaceId = 'songs.artist.song.spaceId',
+  songs___artist___song___createdAt = 'songs.artist.song.createdAt',
+  songs___artist___song___updatedAt = 'songs.artist.song.updatedAt',
+  songs___artist___song___children = 'songs.artist.song.children',
+  songs___artist___linktree = 'songs.artist.linktree',
+  songs___artist___minnakikeru = 'songs.artist.minnakikeru',
+  songs___artist___hatena = 'songs.artist.hatena',
+  songs___artist___bandcamp = 'songs.artist.bandcamp',
+  songs___artist___childrenContentfulAuthorIntroductionTextNode = 'songs.artist.childrenContentfulAuthorIntroductionTextNode',
+  songs___artist___childrenContentfulAuthorIntroductionTextNode___id = 'songs.artist.childrenContentfulAuthorIntroductionTextNode.id',
+  songs___artist___childrenContentfulAuthorIntroductionTextNode___children = 'songs.artist.childrenContentfulAuthorIntroductionTextNode.children',
+  songs___artist___childrenContentfulAuthorIntroductionTextNode___introduction = 'songs.artist.childrenContentfulAuthorIntroductionTextNode.introduction',
+  songs___artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx = 'songs.artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx',
+  songs___artist___childContentfulAuthorIntroductionTextNode___id = 'songs.artist.childContentfulAuthorIntroductionTextNode.id',
+  songs___artist___childContentfulAuthorIntroductionTextNode___children = 'songs.artist.childContentfulAuthorIntroductionTextNode.children',
+  songs___artist___childContentfulAuthorIntroductionTextNode___introduction = 'songs.artist.childContentfulAuthorIntroductionTextNode.introduction',
+  songs___artist___childContentfulAuthorIntroductionTextNode___childrenMdx = 'songs.artist.childContentfulAuthorIntroductionTextNode.childrenMdx',
+  songs___artist___parent___id = 'songs.artist.parent.id',
+  songs___artist___parent___children = 'songs.artist.parent.children',
+  songs___artist___children = 'songs.artist.children',
+  songs___artist___children___id = 'songs.artist.children.id',
+  songs___artist___children___children = 'songs.artist.children.children',
+  songs___artist___internal___content = 'songs.artist.internal.content',
+  songs___artist___internal___contentDigest = 'songs.artist.internal.contentDigest',
+  songs___artist___internal___description = 'songs.artist.internal.description',
+  songs___artist___internal___fieldOwners = 'songs.artist.internal.fieldOwners',
+  songs___artist___internal___ignoreType = 'songs.artist.internal.ignoreType',
+  songs___artist___internal___mediaType = 'songs.artist.internal.mediaType',
+  songs___artist___internal___owner = 'songs.artist.internal.owner',
+  songs___artist___internal___type = 'songs.artist.internal.type',
+  songs___sound___contentful_id = 'songs.sound.contentful_id',
+  songs___sound___id = 'songs.sound.id',
+  songs___sound___spaceId = 'songs.sound.spaceId',
+  songs___sound___createdAt = 'songs.sound.createdAt',
+  songs___sound___updatedAt = 'songs.sound.updatedAt',
+  songs___sound___file___url = 'songs.sound.file.url',
+  songs___sound___file___fileName = 'songs.sound.file.fileName',
+  songs___sound___file___contentType = 'songs.sound.file.contentType',
+  songs___sound___title = 'songs.sound.title',
+  songs___sound___description = 'songs.sound.description',
+  songs___sound___node_locale = 'songs.sound.node_locale',
+  songs___sound___sys___type = 'songs.sound.sys.type',
+  songs___sound___sys___revision = 'songs.sound.sys.revision',
+  songs___sound___localFile___sourceInstanceName = 'songs.sound.localFile.sourceInstanceName',
+  songs___sound___localFile___absolutePath = 'songs.sound.localFile.absolutePath',
+  songs___sound___localFile___relativePath = 'songs.sound.localFile.relativePath',
+  songs___sound___localFile___extension = 'songs.sound.localFile.extension',
+  songs___sound___localFile___size = 'songs.sound.localFile.size',
+  songs___sound___localFile___prettySize = 'songs.sound.localFile.prettySize',
+  songs___sound___localFile___modifiedTime = 'songs.sound.localFile.modifiedTime',
+  songs___sound___localFile___accessTime = 'songs.sound.localFile.accessTime',
+  songs___sound___localFile___changeTime = 'songs.sound.localFile.changeTime',
+  songs___sound___localFile___birthTime = 'songs.sound.localFile.birthTime',
+  songs___sound___localFile___root = 'songs.sound.localFile.root',
+  songs___sound___localFile___dir = 'songs.sound.localFile.dir',
+  songs___sound___localFile___base = 'songs.sound.localFile.base',
+  songs___sound___localFile___ext = 'songs.sound.localFile.ext',
+  songs___sound___localFile___name = 'songs.sound.localFile.name',
+  songs___sound___localFile___relativeDirectory = 'songs.sound.localFile.relativeDirectory',
+  songs___sound___localFile___dev = 'songs.sound.localFile.dev',
+  songs___sound___localFile___mode = 'songs.sound.localFile.mode',
+  songs___sound___localFile___nlink = 'songs.sound.localFile.nlink',
+  songs___sound___localFile___uid = 'songs.sound.localFile.uid',
+  songs___sound___localFile___gid = 'songs.sound.localFile.gid',
+  songs___sound___localFile___rdev = 'songs.sound.localFile.rdev',
+  songs___sound___localFile___ino = 'songs.sound.localFile.ino',
+  songs___sound___localFile___atimeMs = 'songs.sound.localFile.atimeMs',
+  songs___sound___localFile___mtimeMs = 'songs.sound.localFile.mtimeMs',
+  songs___sound___localFile___ctimeMs = 'songs.sound.localFile.ctimeMs',
+  songs___sound___localFile___atime = 'songs.sound.localFile.atime',
+  songs___sound___localFile___mtime = 'songs.sound.localFile.mtime',
+  songs___sound___localFile___ctime = 'songs.sound.localFile.ctime',
+  songs___sound___localFile___birthtime = 'songs.sound.localFile.birthtime',
+  songs___sound___localFile___birthtimeMs = 'songs.sound.localFile.birthtimeMs',
+  songs___sound___localFile___blksize = 'songs.sound.localFile.blksize',
+  songs___sound___localFile___blocks = 'songs.sound.localFile.blocks',
+  songs___sound___localFile___url = 'songs.sound.localFile.url',
+  songs___sound___localFile___publicURL = 'songs.sound.localFile.publicURL',
+  songs___sound___localFile___childrenImageSharp = 'songs.sound.localFile.childrenImageSharp',
+  songs___sound___localFile___childrenPagesJson = 'songs.sound.localFile.childrenPagesJson',
+  songs___sound___localFile___id = 'songs.sound.localFile.id',
+  songs___sound___localFile___children = 'songs.sound.localFile.children',
+  songs___sound___fixed___base64 = 'songs.sound.fixed.base64',
+  songs___sound___fixed___tracedSVG = 'songs.sound.fixed.tracedSVG',
+  songs___sound___fixed___aspectRatio = 'songs.sound.fixed.aspectRatio',
+  songs___sound___fixed___width = 'songs.sound.fixed.width',
+  songs___sound___fixed___height = 'songs.sound.fixed.height',
+  songs___sound___fixed___src = 'songs.sound.fixed.src',
+  songs___sound___fixed___srcSet = 'songs.sound.fixed.srcSet',
+  songs___sound___fixed___srcWebp = 'songs.sound.fixed.srcWebp',
+  songs___sound___fixed___srcSetWebp = 'songs.sound.fixed.srcSetWebp',
+  songs___sound___fluid___base64 = 'songs.sound.fluid.base64',
+  songs___sound___fluid___tracedSVG = 'songs.sound.fluid.tracedSVG',
+  songs___sound___fluid___aspectRatio = 'songs.sound.fluid.aspectRatio',
+  songs___sound___fluid___src = 'songs.sound.fluid.src',
+  songs___sound___fluid___srcSet = 'songs.sound.fluid.srcSet',
+  songs___sound___fluid___srcWebp = 'songs.sound.fluid.srcWebp',
+  songs___sound___fluid___srcSetWebp = 'songs.sound.fluid.srcSetWebp',
+  songs___sound___fluid___sizes = 'songs.sound.fluid.sizes',
+  songs___sound___gatsbyImageData = 'songs.sound.gatsbyImageData',
+  songs___sound___resize___base64 = 'songs.sound.resize.base64',
+  songs___sound___resize___tracedSVG = 'songs.sound.resize.tracedSVG',
+  songs___sound___resize___src = 'songs.sound.resize.src',
+  songs___sound___resize___width = 'songs.sound.resize.width',
+  songs___sound___resize___height = 'songs.sound.resize.height',
+  songs___sound___resize___aspectRatio = 'songs.sound.resize.aspectRatio',
+  songs___sound___parent___id = 'songs.sound.parent.id',
+  songs___sound___parent___children = 'songs.sound.parent.children',
+  songs___sound___children = 'songs.sound.children',
+  songs___sound___children___id = 'songs.sound.children.id',
+  songs___sound___children___children = 'songs.sound.children.children',
+  songs___sound___internal___content = 'songs.sound.internal.content',
+  songs___sound___internal___contentDigest = 'songs.sound.internal.contentDigest',
+  songs___sound___internal___description = 'songs.sound.internal.description',
+  songs___sound___internal___fieldOwners = 'songs.sound.internal.fieldOwners',
+  songs___sound___internal___ignoreType = 'songs.sound.internal.ignoreType',
+  songs___sound___internal___mediaType = 'songs.sound.internal.mediaType',
+  songs___sound___internal___owner = 'songs.sound.internal.owner',
+  songs___sound___internal___type = 'songs.sound.internal.type',
+  songs___coverart___contentful_id = 'songs.coverart.contentful_id',
+  songs___coverart___id = 'songs.coverart.id',
+  songs___coverart___spaceId = 'songs.coverart.spaceId',
+  songs___coverart___createdAt = 'songs.coverart.createdAt',
+  songs___coverart___updatedAt = 'songs.coverart.updatedAt',
+  songs___coverart___file___url = 'songs.coverart.file.url',
+  songs___coverart___file___fileName = 'songs.coverart.file.fileName',
+  songs___coverart___file___contentType = 'songs.coverart.file.contentType',
+  songs___coverart___title = 'songs.coverart.title',
+  songs___coverart___description = 'songs.coverart.description',
+  songs___coverart___node_locale = 'songs.coverart.node_locale',
+  songs___coverart___sys___type = 'songs.coverart.sys.type',
+  songs___coverart___sys___revision = 'songs.coverart.sys.revision',
+  songs___coverart___localFile___sourceInstanceName = 'songs.coverart.localFile.sourceInstanceName',
+  songs___coverart___localFile___absolutePath = 'songs.coverart.localFile.absolutePath',
+  songs___coverart___localFile___relativePath = 'songs.coverart.localFile.relativePath',
+  songs___coverart___localFile___extension = 'songs.coverart.localFile.extension',
+  songs___coverart___localFile___size = 'songs.coverart.localFile.size',
+  songs___coverart___localFile___prettySize = 'songs.coverart.localFile.prettySize',
+  songs___coverart___localFile___modifiedTime = 'songs.coverart.localFile.modifiedTime',
+  songs___coverart___localFile___accessTime = 'songs.coverart.localFile.accessTime',
+  songs___coverart___localFile___changeTime = 'songs.coverart.localFile.changeTime',
+  songs___coverart___localFile___birthTime = 'songs.coverart.localFile.birthTime',
+  songs___coverart___localFile___root = 'songs.coverart.localFile.root',
+  songs___coverart___localFile___dir = 'songs.coverart.localFile.dir',
+  songs___coverart___localFile___base = 'songs.coverart.localFile.base',
+  songs___coverart___localFile___ext = 'songs.coverart.localFile.ext',
+  songs___coverart___localFile___name = 'songs.coverart.localFile.name',
+  songs___coverart___localFile___relativeDirectory = 'songs.coverart.localFile.relativeDirectory',
+  songs___coverart___localFile___dev = 'songs.coverart.localFile.dev',
+  songs___coverart___localFile___mode = 'songs.coverart.localFile.mode',
+  songs___coverart___localFile___nlink = 'songs.coverart.localFile.nlink',
+  songs___coverart___localFile___uid = 'songs.coverart.localFile.uid',
+  songs___coverart___localFile___gid = 'songs.coverart.localFile.gid',
+  songs___coverart___localFile___rdev = 'songs.coverart.localFile.rdev',
+  songs___coverart___localFile___ino = 'songs.coverart.localFile.ino',
+  songs___coverart___localFile___atimeMs = 'songs.coverart.localFile.atimeMs',
+  songs___coverart___localFile___mtimeMs = 'songs.coverart.localFile.mtimeMs',
+  songs___coverart___localFile___ctimeMs = 'songs.coverart.localFile.ctimeMs',
+  songs___coverart___localFile___atime = 'songs.coverart.localFile.atime',
+  songs___coverart___localFile___mtime = 'songs.coverart.localFile.mtime',
+  songs___coverart___localFile___ctime = 'songs.coverart.localFile.ctime',
+  songs___coverart___localFile___birthtime = 'songs.coverart.localFile.birthtime',
+  songs___coverart___localFile___birthtimeMs = 'songs.coverart.localFile.birthtimeMs',
+  songs___coverart___localFile___blksize = 'songs.coverart.localFile.blksize',
+  songs___coverart___localFile___blocks = 'songs.coverart.localFile.blocks',
+  songs___coverart___localFile___url = 'songs.coverart.localFile.url',
+  songs___coverart___localFile___publicURL = 'songs.coverart.localFile.publicURL',
+  songs___coverart___localFile___childrenImageSharp = 'songs.coverart.localFile.childrenImageSharp',
+  songs___coverart___localFile___childrenPagesJson = 'songs.coverart.localFile.childrenPagesJson',
+  songs___coverart___localFile___id = 'songs.coverart.localFile.id',
+  songs___coverart___localFile___children = 'songs.coverart.localFile.children',
+  songs___coverart___fixed___base64 = 'songs.coverart.fixed.base64',
+  songs___coverart___fixed___tracedSVG = 'songs.coverart.fixed.tracedSVG',
+  songs___coverart___fixed___aspectRatio = 'songs.coverart.fixed.aspectRatio',
+  songs___coverart___fixed___width = 'songs.coverart.fixed.width',
+  songs___coverart___fixed___height = 'songs.coverart.fixed.height',
+  songs___coverart___fixed___src = 'songs.coverart.fixed.src',
+  songs___coverart___fixed___srcSet = 'songs.coverart.fixed.srcSet',
+  songs___coverart___fixed___srcWebp = 'songs.coverart.fixed.srcWebp',
+  songs___coverart___fixed___srcSetWebp = 'songs.coverart.fixed.srcSetWebp',
+  songs___coverart___fluid___base64 = 'songs.coverart.fluid.base64',
+  songs___coverart___fluid___tracedSVG = 'songs.coverart.fluid.tracedSVG',
+  songs___coverart___fluid___aspectRatio = 'songs.coverart.fluid.aspectRatio',
+  songs___coverart___fluid___src = 'songs.coverart.fluid.src',
+  songs___coverart___fluid___srcSet = 'songs.coverart.fluid.srcSet',
+  songs___coverart___fluid___srcWebp = 'songs.coverart.fluid.srcWebp',
+  songs___coverart___fluid___srcSetWebp = 'songs.coverart.fluid.srcSetWebp',
+  songs___coverart___fluid___sizes = 'songs.coverart.fluid.sizes',
+  songs___coverart___gatsbyImageData = 'songs.coverart.gatsbyImageData',
+  songs___coverart___resize___base64 = 'songs.coverart.resize.base64',
+  songs___coverart___resize___tracedSVG = 'songs.coverart.resize.tracedSVG',
+  songs___coverart___resize___src = 'songs.coverart.resize.src',
+  songs___coverart___resize___width = 'songs.coverart.resize.width',
+  songs___coverart___resize___height = 'songs.coverart.resize.height',
+  songs___coverart___resize___aspectRatio = 'songs.coverart.resize.aspectRatio',
+  songs___coverart___parent___id = 'songs.coverart.parent.id',
+  songs___coverart___parent___children = 'songs.coverart.parent.children',
+  songs___coverart___children = 'songs.coverart.children',
+  songs___coverart___children___id = 'songs.coverart.children.id',
+  songs___coverart___children___children = 'songs.coverart.children.children',
+  songs___coverart___internal___content = 'songs.coverart.internal.content',
+  songs___coverart___internal___contentDigest = 'songs.coverart.internal.contentDigest',
+  songs___coverart___internal___description = 'songs.coverart.internal.description',
+  songs___coverart___internal___fieldOwners = 'songs.coverart.internal.fieldOwners',
+  songs___coverart___internal___ignoreType = 'songs.coverart.internal.ignoreType',
+  songs___coverart___internal___mediaType = 'songs.coverart.internal.mediaType',
+  songs___coverart___internal___owner = 'songs.coverart.internal.owner',
+  songs___coverart___internal___type = 'songs.coverart.internal.type',
+  songs___playlist = 'songs.playlist',
+  songs___playlist___contentful_id = 'songs.playlist.contentful_id',
+  songs___playlist___id = 'songs.playlist.id',
+  songs___playlist___node_locale = 'songs.playlist.node_locale',
+  songs___playlist___title = 'songs.playlist.title',
+  songs___playlist___slug = 'songs.playlist.slug',
+  songs___playlist___artists = 'songs.playlist.artists',
+  songs___playlist___artists___contentful_id = 'songs.playlist.artists.contentful_id',
+  songs___playlist___artists___id = 'songs.playlist.artists.id',
+  songs___playlist___artists___node_locale = 'songs.playlist.artists.node_locale',
+  songs___playlist___artists___name = 'songs.playlist.artists.name',
+  songs___playlist___artists___instagram = 'songs.playlist.artists.instagram',
+  songs___playlist___artists___markdownarticle = 'songs.playlist.artists.markdownarticle',
+  songs___playlist___artists___spaceId = 'songs.playlist.artists.spaceId',
+  songs___playlist___artists___createdAt = 'songs.playlist.artists.createdAt',
+  songs___playlist___artists___updatedAt = 'songs.playlist.artists.updatedAt',
+  songs___playlist___artists___twitter = 'songs.playlist.artists.twitter',
+  songs___playlist___artists___youtube = 'songs.playlist.artists.youtube',
+  songs___playlist___artists___playlist = 'songs.playlist.artists.playlist',
+  songs___playlist___artists___song = 'songs.playlist.artists.song',
+  songs___playlist___artists___linktree = 'songs.playlist.artists.linktree',
+  songs___playlist___artists___minnakikeru = 'songs.playlist.artists.minnakikeru',
+  songs___playlist___artists___hatena = 'songs.playlist.artists.hatena',
+  songs___playlist___artists___bandcamp = 'songs.playlist.artists.bandcamp',
+  songs___playlist___artists___childrenContentfulAuthorIntroductionTextNode = 'songs.playlist.artists.childrenContentfulAuthorIntroductionTextNode',
+  songs___playlist___artists___children = 'songs.playlist.artists.children',
+  songs___playlist___songs = 'songs.playlist.songs',
+  songs___playlist___songs___contentful_id = 'songs.playlist.songs.contentful_id',
+  songs___playlist___songs___id = 'songs.playlist.songs.id',
+  songs___playlist___songs___node_locale = 'songs.playlist.songs.node_locale',
+  songs___playlist___songs___title = 'songs.playlist.songs.title',
+  songs___playlist___songs___duration = 'songs.playlist.songs.duration',
+  songs___playlist___songs___playlist = 'songs.playlist.songs.playlist',
+  songs___playlist___songs___spaceId = 'songs.playlist.songs.spaceId',
+  songs___playlist___songs___createdAt = 'songs.playlist.songs.createdAt',
+  songs___playlist___songs___updatedAt = 'songs.playlist.songs.updatedAt',
+  songs___playlist___songs___children = 'songs.playlist.songs.children',
+  songs___playlist___coverart___contentful_id = 'songs.playlist.coverart.contentful_id',
+  songs___playlist___coverart___id = 'songs.playlist.coverart.id',
+  songs___playlist___coverart___spaceId = 'songs.playlist.coverart.spaceId',
+  songs___playlist___coverart___createdAt = 'songs.playlist.coverart.createdAt',
+  songs___playlist___coverart___updatedAt = 'songs.playlist.coverart.updatedAt',
+  songs___playlist___coverart___title = 'songs.playlist.coverart.title',
+  songs___playlist___coverart___description = 'songs.playlist.coverart.description',
+  songs___playlist___coverart___node_locale = 'songs.playlist.coverart.node_locale',
+  songs___playlist___coverart___gatsbyImageData = 'songs.playlist.coverart.gatsbyImageData',
+  songs___playlist___coverart___children = 'songs.playlist.coverart.children',
+  songs___playlist___spaceId = 'songs.playlist.spaceId',
+  songs___playlist___createdAt = 'songs.playlist.createdAt',
+  songs___playlist___updatedAt = 'songs.playlist.updatedAt',
+  songs___playlist___sys___type = 'songs.playlist.sys.type',
+  songs___playlist___sys___revision = 'songs.playlist.sys.revision',
+  songs___playlist___gatsbyPath = 'songs.playlist.gatsbyPath',
+  songs___playlist___parent___id = 'songs.playlist.parent.id',
+  songs___playlist___parent___children = 'songs.playlist.parent.children',
+  songs___playlist___children = 'songs.playlist.children',
+  songs___playlist___children___id = 'songs.playlist.children.id',
+  songs___playlist___children___children = 'songs.playlist.children.children',
+  songs___playlist___internal___content = 'songs.playlist.internal.content',
+  songs___playlist___internal___contentDigest = 'songs.playlist.internal.contentDigest',
+  songs___playlist___internal___description = 'songs.playlist.internal.description',
+  songs___playlist___internal___fieldOwners = 'songs.playlist.internal.fieldOwners',
+  songs___playlist___internal___ignoreType = 'songs.playlist.internal.ignoreType',
+  songs___playlist___internal___mediaType = 'songs.playlist.internal.mediaType',
+  songs___playlist___internal___owner = 'songs.playlist.internal.owner',
+  songs___playlist___internal___type = 'songs.playlist.internal.type',
+  songs___spaceId = 'songs.spaceId',
+  songs___createdAt = 'songs.createdAt',
+  songs___updatedAt = 'songs.updatedAt',
+  songs___sys___type = 'songs.sys.type',
+  songs___sys___revision = 'songs.sys.revision',
+  songs___parent___id = 'songs.parent.id',
+  songs___parent___parent___id = 'songs.parent.parent.id',
+  songs___parent___parent___children = 'songs.parent.parent.children',
+  songs___parent___children = 'songs.parent.children',
+  songs___parent___children___id = 'songs.parent.children.id',
+  songs___parent___children___children = 'songs.parent.children.children',
+  songs___parent___internal___content = 'songs.parent.internal.content',
+  songs___parent___internal___contentDigest = 'songs.parent.internal.contentDigest',
+  songs___parent___internal___description = 'songs.parent.internal.description',
+  songs___parent___internal___fieldOwners = 'songs.parent.internal.fieldOwners',
+  songs___parent___internal___ignoreType = 'songs.parent.internal.ignoreType',
+  songs___parent___internal___mediaType = 'songs.parent.internal.mediaType',
+  songs___parent___internal___owner = 'songs.parent.internal.owner',
+  songs___parent___internal___type = 'songs.parent.internal.type',
+  songs___children = 'songs.children',
+  songs___children___id = 'songs.children.id',
+  songs___children___parent___id = 'songs.children.parent.id',
+  songs___children___parent___children = 'songs.children.parent.children',
+  songs___children___children = 'songs.children.children',
+  songs___children___children___id = 'songs.children.children.id',
+  songs___children___children___children = 'songs.children.children.children',
+  songs___children___internal___content = 'songs.children.internal.content',
+  songs___children___internal___contentDigest = 'songs.children.internal.contentDigest',
+  songs___children___internal___description = 'songs.children.internal.description',
+  songs___children___internal___fieldOwners = 'songs.children.internal.fieldOwners',
+  songs___children___internal___ignoreType = 'songs.children.internal.ignoreType',
+  songs___children___internal___mediaType = 'songs.children.internal.mediaType',
+  songs___children___internal___owner = 'songs.children.internal.owner',
+  songs___children___internal___type = 'songs.children.internal.type',
+  songs___internal___content = 'songs.internal.content',
+  songs___internal___contentDigest = 'songs.internal.contentDigest',
+  songs___internal___description = 'songs.internal.description',
+  songs___internal___fieldOwners = 'songs.internal.fieldOwners',
+  songs___internal___ignoreType = 'songs.internal.ignoreType',
+  songs___internal___mediaType = 'songs.internal.mediaType',
+  songs___internal___owner = 'songs.internal.owner',
+  songs___internal___type = 'songs.internal.type',
+  coverart___contentful_id = 'coverart.contentful_id',
+  coverart___id = 'coverart.id',
+  coverart___spaceId = 'coverart.spaceId',
+  coverart___createdAt = 'coverart.createdAt',
+  coverart___updatedAt = 'coverart.updatedAt',
+  coverart___file___url = 'coverart.file.url',
+  coverart___file___details___size = 'coverart.file.details.size',
+  coverart___file___fileName = 'coverart.file.fileName',
+  coverart___file___contentType = 'coverart.file.contentType',
+  coverart___title = 'coverart.title',
+  coverart___description = 'coverart.description',
+  coverart___node_locale = 'coverart.node_locale',
+  coverart___sys___type = 'coverart.sys.type',
+  coverart___sys___revision = 'coverart.sys.revision',
+  coverart___localFile___sourceInstanceName = 'coverart.localFile.sourceInstanceName',
+  coverart___localFile___absolutePath = 'coverart.localFile.absolutePath',
+  coverart___localFile___relativePath = 'coverart.localFile.relativePath',
+  coverart___localFile___extension = 'coverart.localFile.extension',
+  coverart___localFile___size = 'coverart.localFile.size',
+  coverart___localFile___prettySize = 'coverart.localFile.prettySize',
+  coverart___localFile___modifiedTime = 'coverart.localFile.modifiedTime',
+  coverart___localFile___accessTime = 'coverart.localFile.accessTime',
+  coverart___localFile___changeTime = 'coverart.localFile.changeTime',
+  coverart___localFile___birthTime = 'coverart.localFile.birthTime',
+  coverart___localFile___root = 'coverart.localFile.root',
+  coverart___localFile___dir = 'coverart.localFile.dir',
+  coverart___localFile___base = 'coverart.localFile.base',
+  coverart___localFile___ext = 'coverart.localFile.ext',
+  coverart___localFile___name = 'coverart.localFile.name',
+  coverart___localFile___relativeDirectory = 'coverart.localFile.relativeDirectory',
+  coverart___localFile___dev = 'coverart.localFile.dev',
+  coverart___localFile___mode = 'coverart.localFile.mode',
+  coverart___localFile___nlink = 'coverart.localFile.nlink',
+  coverart___localFile___uid = 'coverart.localFile.uid',
+  coverart___localFile___gid = 'coverart.localFile.gid',
+  coverart___localFile___rdev = 'coverart.localFile.rdev',
+  coverart___localFile___ino = 'coverart.localFile.ino',
+  coverart___localFile___atimeMs = 'coverart.localFile.atimeMs',
+  coverart___localFile___mtimeMs = 'coverart.localFile.mtimeMs',
+  coverart___localFile___ctimeMs = 'coverart.localFile.ctimeMs',
+  coverart___localFile___atime = 'coverart.localFile.atime',
+  coverart___localFile___mtime = 'coverart.localFile.mtime',
+  coverart___localFile___ctime = 'coverart.localFile.ctime',
+  coverart___localFile___birthtime = 'coverart.localFile.birthtime',
+  coverart___localFile___birthtimeMs = 'coverart.localFile.birthtimeMs',
+  coverart___localFile___blksize = 'coverart.localFile.blksize',
+  coverart___localFile___blocks = 'coverart.localFile.blocks',
+  coverart___localFile___url = 'coverart.localFile.url',
+  coverart___localFile___publicURL = 'coverart.localFile.publicURL',
+  coverart___localFile___childrenImageSharp = 'coverart.localFile.childrenImageSharp',
+  coverart___localFile___childrenImageSharp___gatsbyImageData = 'coverart.localFile.childrenImageSharp.gatsbyImageData',
+  coverart___localFile___childrenImageSharp___id = 'coverart.localFile.childrenImageSharp.id',
+  coverart___localFile___childrenImageSharp___children = 'coverart.localFile.childrenImageSharp.children',
+  coverart___localFile___childImageSharp___gatsbyImageData = 'coverart.localFile.childImageSharp.gatsbyImageData',
+  coverart___localFile___childImageSharp___id = 'coverart.localFile.childImageSharp.id',
+  coverart___localFile___childImageSharp___children = 'coverart.localFile.childImageSharp.children',
+  coverart___localFile___childrenPagesJson = 'coverart.localFile.childrenPagesJson',
+  coverart___localFile___childrenPagesJson___id = 'coverart.localFile.childrenPagesJson.id',
+  coverart___localFile___childrenPagesJson___children = 'coverart.localFile.childrenPagesJson.children',
+  coverart___localFile___childrenPagesJson___path = 'coverart.localFile.childrenPagesJson.path',
+  coverart___localFile___childrenPagesJson___catchphrase = 'coverart.localFile.childrenPagesJson.catchphrase',
+  coverart___localFile___childrenPagesJson___introduction = 'coverart.localFile.childrenPagesJson.introduction',
+  coverart___localFile___childrenPagesJson___image = 'coverart.localFile.childrenPagesJson.image',
+  coverart___localFile___childrenPagesJson___displayTitle = 'coverart.localFile.childrenPagesJson.displayTitle',
+  coverart___localFile___childrenPagesJson___title = 'coverart.localFile.childrenPagesJson.title',
+  coverart___localFile___childPagesJson___id = 'coverart.localFile.childPagesJson.id',
+  coverart___localFile___childPagesJson___children = 'coverart.localFile.childPagesJson.children',
+  coverart___localFile___childPagesJson___path = 'coverart.localFile.childPagesJson.path',
+  coverart___localFile___childPagesJson___catchphrase = 'coverart.localFile.childPagesJson.catchphrase',
+  coverart___localFile___childPagesJson___introduction = 'coverart.localFile.childPagesJson.introduction',
+  coverart___localFile___childPagesJson___image = 'coverart.localFile.childPagesJson.image',
+  coverart___localFile___childPagesJson___displayTitle = 'coverart.localFile.childPagesJson.displayTitle',
+  coverart___localFile___childPagesJson___title = 'coverart.localFile.childPagesJson.title',
+  coverart___localFile___id = 'coverart.localFile.id',
+  coverart___localFile___parent___id = 'coverart.localFile.parent.id',
+  coverart___localFile___parent___children = 'coverart.localFile.parent.children',
+  coverart___localFile___children = 'coverart.localFile.children',
+  coverart___localFile___children___id = 'coverart.localFile.children.id',
+  coverart___localFile___children___children = 'coverart.localFile.children.children',
+  coverart___localFile___internal___content = 'coverart.localFile.internal.content',
+  coverart___localFile___internal___contentDigest = 'coverart.localFile.internal.contentDigest',
+  coverart___localFile___internal___description = 'coverart.localFile.internal.description',
+  coverart___localFile___internal___fieldOwners = 'coverart.localFile.internal.fieldOwners',
+  coverart___localFile___internal___ignoreType = 'coverart.localFile.internal.ignoreType',
+  coverart___localFile___internal___mediaType = 'coverart.localFile.internal.mediaType',
+  coverart___localFile___internal___owner = 'coverart.localFile.internal.owner',
+  coverart___localFile___internal___type = 'coverart.localFile.internal.type',
+  coverart___fixed___base64 = 'coverart.fixed.base64',
+  coverart___fixed___tracedSVG = 'coverart.fixed.tracedSVG',
+  coverart___fixed___aspectRatio = 'coverart.fixed.aspectRatio',
+  coverart___fixed___width = 'coverart.fixed.width',
+  coverart___fixed___height = 'coverart.fixed.height',
+  coverart___fixed___src = 'coverart.fixed.src',
+  coverart___fixed___srcSet = 'coverart.fixed.srcSet',
+  coverart___fixed___srcWebp = 'coverart.fixed.srcWebp',
+  coverart___fixed___srcSetWebp = 'coverart.fixed.srcSetWebp',
+  coverart___fluid___base64 = 'coverart.fluid.base64',
+  coverart___fluid___tracedSVG = 'coverart.fluid.tracedSVG',
+  coverart___fluid___aspectRatio = 'coverart.fluid.aspectRatio',
+  coverart___fluid___src = 'coverart.fluid.src',
+  coverart___fluid___srcSet = 'coverart.fluid.srcSet',
+  coverart___fluid___srcWebp = 'coverart.fluid.srcWebp',
+  coverart___fluid___srcSetWebp = 'coverart.fluid.srcSetWebp',
+  coverart___fluid___sizes = 'coverart.fluid.sizes',
+  coverart___gatsbyImageData = 'coverart.gatsbyImageData',
+  coverart___resize___base64 = 'coverart.resize.base64',
+  coverart___resize___tracedSVG = 'coverart.resize.tracedSVG',
+  coverart___resize___src = 'coverart.resize.src',
+  coverart___resize___width = 'coverart.resize.width',
+  coverart___resize___height = 'coverart.resize.height',
+  coverart___resize___aspectRatio = 'coverart.resize.aspectRatio',
+  coverart___parent___id = 'coverart.parent.id',
+  coverart___parent___parent___id = 'coverart.parent.parent.id',
+  coverart___parent___parent___children = 'coverart.parent.parent.children',
+  coverart___parent___children = 'coverart.parent.children',
+  coverart___parent___children___id = 'coverart.parent.children.id',
+  coverart___parent___children___children = 'coverart.parent.children.children',
+  coverart___parent___internal___content = 'coverart.parent.internal.content',
+  coverart___parent___internal___contentDigest = 'coverart.parent.internal.contentDigest',
+  coverart___parent___internal___description = 'coverart.parent.internal.description',
+  coverart___parent___internal___fieldOwners = 'coverart.parent.internal.fieldOwners',
+  coverart___parent___internal___ignoreType = 'coverart.parent.internal.ignoreType',
+  coverart___parent___internal___mediaType = 'coverart.parent.internal.mediaType',
+  coverart___parent___internal___owner = 'coverart.parent.internal.owner',
+  coverart___parent___internal___type = 'coverart.parent.internal.type',
+  coverart___children = 'coverart.children',
+  coverart___children___id = 'coverart.children.id',
+  coverart___children___parent___id = 'coverart.children.parent.id',
+  coverart___children___parent___children = 'coverart.children.parent.children',
+  coverart___children___children = 'coverart.children.children',
+  coverart___children___children___id = 'coverart.children.children.id',
+  coverart___children___children___children = 'coverart.children.children.children',
+  coverart___children___internal___content = 'coverart.children.internal.content',
+  coverart___children___internal___contentDigest = 'coverart.children.internal.contentDigest',
+  coverart___children___internal___description = 'coverart.children.internal.description',
+  coverart___children___internal___fieldOwners = 'coverart.children.internal.fieldOwners',
+  coverart___children___internal___ignoreType = 'coverart.children.internal.ignoreType',
+  coverart___children___internal___mediaType = 'coverart.children.internal.mediaType',
+  coverart___children___internal___owner = 'coverart.children.internal.owner',
+  coverart___children___internal___type = 'coverart.children.internal.type',
+  coverart___internal___content = 'coverart.internal.content',
+  coverart___internal___contentDigest = 'coverart.internal.contentDigest',
+  coverart___internal___description = 'coverart.internal.description',
+  coverart___internal___fieldOwners = 'coverart.internal.fieldOwners',
+  coverart___internal___ignoreType = 'coverart.internal.ignoreType',
+  coverart___internal___mediaType = 'coverart.internal.mediaType',
+  coverart___internal___owner = 'coverart.internal.owner',
+  coverart___internal___type = 'coverart.internal.type',
+  spaceId = 'spaceId',
+  createdAt = 'createdAt',
+  updatedAt = 'updatedAt',
+  sys___type = 'sys.type',
+  sys___revision = 'sys.revision',
+  sys___contentType___sys___type = 'sys.contentType.sys.type',
+  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
+  sys___contentType___sys___id = 'sys.contentType.sys.id',
+  gatsbyPath = 'gatsbyPath',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type'
+}
+
+type ContentfulPlaylistGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<ContentfulPlaylistEdge>;
+  readonly nodes: ReadonlyArray<ContentfulPlaylist>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type ContentfulPlaylistSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulPlaylistFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
+type ContentfulSongConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<ContentfulSongEdge>;
+  readonly nodes: ReadonlyArray<ContentfulSong>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly group: ReadonlyArray<ContentfulSongGroupConnection>;
+};
+
+
+type ContentfulSongConnection_distinctArgs = {
+  field: ContentfulSongFieldsEnum;
+};
+
+
+type ContentfulSongConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: ContentfulSongFieldsEnum;
+};
+
+type ContentfulSongEdge = {
+  readonly next: Maybe<ContentfulSong>;
+  readonly node: ContentfulSong;
+  readonly previous: Maybe<ContentfulSong>;
+};
+
+enum ContentfulSongFieldsEnum {
+  contentful_id = 'contentful_id',
+  id = 'id',
+  node_locale = 'node_locale',
+  title = 'title',
+  duration = 'duration',
+  artist___contentful_id = 'artist.contentful_id',
+  artist___id = 'artist.id',
+  artist___node_locale = 'artist.node_locale',
+  artist___name = 'artist.name',
+  artist___instagram = 'artist.instagram',
+  artist___markdownarticle = 'artist.markdownarticle',
+  artist___markdownarticle___contentful_id = 'artist.markdownarticle.contentful_id',
+  artist___markdownarticle___id = 'artist.markdownarticle.id',
+  artist___markdownarticle___node_locale = 'artist.markdownarticle.node_locale',
+  artist___markdownarticle___title = 'artist.markdownarticle.title',
+  artist___markdownarticle___slug = 'artist.markdownarticle.slug',
+  artist___markdownarticle___publishedAt = 'artist.markdownarticle.publishedAt',
+  artist___markdownarticle___disableSideHeader = 'artist.markdownarticle.disableSideHeader',
+  artist___markdownarticle___isVirticalWriting = 'artist.markdownarticle.isVirticalWriting',
+  artist___markdownarticle___align = 'artist.markdownarticle.align',
+  artist___markdownarticle___author___contentful_id = 'artist.markdownarticle.author.contentful_id',
+  artist___markdownarticle___author___id = 'artist.markdownarticle.author.id',
+  artist___markdownarticle___author___node_locale = 'artist.markdownarticle.author.node_locale',
+  artist___markdownarticle___author___name = 'artist.markdownarticle.author.name',
+  artist___markdownarticle___author___instagram = 'artist.markdownarticle.author.instagram',
+  artist___markdownarticle___author___markdownarticle = 'artist.markdownarticle.author.markdownarticle',
+  artist___markdownarticle___author___spaceId = 'artist.markdownarticle.author.spaceId',
+  artist___markdownarticle___author___createdAt = 'artist.markdownarticle.author.createdAt',
+  artist___markdownarticle___author___updatedAt = 'artist.markdownarticle.author.updatedAt',
+  artist___markdownarticle___author___twitter = 'artist.markdownarticle.author.twitter',
+  artist___markdownarticle___author___youtube = 'artist.markdownarticle.author.youtube',
+  artist___markdownarticle___author___playlist = 'artist.markdownarticle.author.playlist',
+  artist___markdownarticle___author___song = 'artist.markdownarticle.author.song',
+  artist___markdownarticle___author___linktree = 'artist.markdownarticle.author.linktree',
+  artist___markdownarticle___author___minnakikeru = 'artist.markdownarticle.author.minnakikeru',
+  artist___markdownarticle___author___hatena = 'artist.markdownarticle.author.hatena',
+  artist___markdownarticle___author___bandcamp = 'artist.markdownarticle.author.bandcamp',
+  artist___markdownarticle___author___childrenContentfulAuthorIntroductionTextNode = 'artist.markdownarticle.author.childrenContentfulAuthorIntroductionTextNode',
+  artist___markdownarticle___author___children = 'artist.markdownarticle.author.children',
+  artist___markdownarticle___featuredImage___contentful_id = 'artist.markdownarticle.featuredImage.contentful_id',
+  artist___markdownarticle___featuredImage___id = 'artist.markdownarticle.featuredImage.id',
+  artist___markdownarticle___featuredImage___spaceId = 'artist.markdownarticle.featuredImage.spaceId',
+  artist___markdownarticle___featuredImage___createdAt = 'artist.markdownarticle.featuredImage.createdAt',
+  artist___markdownarticle___featuredImage___updatedAt = 'artist.markdownarticle.featuredImage.updatedAt',
+  artist___markdownarticle___featuredImage___title = 'artist.markdownarticle.featuredImage.title',
+  artist___markdownarticle___featuredImage___description = 'artist.markdownarticle.featuredImage.description',
+  artist___markdownarticle___featuredImage___node_locale = 'artist.markdownarticle.featuredImage.node_locale',
+  artist___markdownarticle___featuredImage___gatsbyImageData = 'artist.markdownarticle.featuredImage.gatsbyImageData',
+  artist___markdownarticle___featuredImage___children = 'artist.markdownarticle.featuredImage.children',
+  artist___markdownarticle___content___id = 'artist.markdownarticle.content.id',
+  artist___markdownarticle___content___children = 'artist.markdownarticle.content.children',
+  artist___markdownarticle___content___content = 'artist.markdownarticle.content.content',
+  artist___markdownarticle___content___childrenMdx = 'artist.markdownarticle.content.childrenMdx',
+  artist___markdownarticle___spaceId = 'artist.markdownarticle.spaceId',
+  artist___markdownarticle___createdAt = 'artist.markdownarticle.createdAt',
+  artist___markdownarticle___updatedAt = 'artist.markdownarticle.updatedAt',
+  artist___markdownarticle___sys___type = 'artist.markdownarticle.sys.type',
+  artist___markdownarticle___sys___revision = 'artist.markdownarticle.sys.revision',
+  artist___markdownarticle___images = 'artist.markdownarticle.images',
+  artist___markdownarticle___images___contentful_id = 'artist.markdownarticle.images.contentful_id',
+  artist___markdownarticle___images___id = 'artist.markdownarticle.images.id',
+  artist___markdownarticle___images___spaceId = 'artist.markdownarticle.images.spaceId',
+  artist___markdownarticle___images___createdAt = 'artist.markdownarticle.images.createdAt',
+  artist___markdownarticle___images___updatedAt = 'artist.markdownarticle.images.updatedAt',
+  artist___markdownarticle___images___title = 'artist.markdownarticle.images.title',
+  artist___markdownarticle___images___description = 'artist.markdownarticle.images.description',
+  artist___markdownarticle___images___node_locale = 'artist.markdownarticle.images.node_locale',
+  artist___markdownarticle___images___gatsbyImageData = 'artist.markdownarticle.images.gatsbyImageData',
+  artist___markdownarticle___images___children = 'artist.markdownarticle.images.children',
+  artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
+  artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___id = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.id',
+  artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___children = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.children',
+  artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___content = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.content',
+  artist___markdownarticle___childrenContentfulMarkdownArticleContentTextNode___childrenMdx = 'artist.markdownarticle.childrenContentfulMarkdownArticleContentTextNode.childrenMdx',
+  artist___markdownarticle___childContentfulMarkdownArticleContentTextNode___id = 'artist.markdownarticle.childContentfulMarkdownArticleContentTextNode.id',
+  artist___markdownarticle___childContentfulMarkdownArticleContentTextNode___children = 'artist.markdownarticle.childContentfulMarkdownArticleContentTextNode.children',
+  artist___markdownarticle___childContentfulMarkdownArticleContentTextNode___content = 'artist.markdownarticle.childContentfulMarkdownArticleContentTextNode.content',
+  artist___markdownarticle___childContentfulMarkdownArticleContentTextNode___childrenMdx = 'artist.markdownarticle.childContentfulMarkdownArticleContentTextNode.childrenMdx',
+  artist___markdownarticle___parent___id = 'artist.markdownarticle.parent.id',
+  artist___markdownarticle___parent___children = 'artist.markdownarticle.parent.children',
+  artist___markdownarticle___children = 'artist.markdownarticle.children',
+  artist___markdownarticle___children___id = 'artist.markdownarticle.children.id',
+  artist___markdownarticle___children___children = 'artist.markdownarticle.children.children',
+  artist___markdownarticle___internal___content = 'artist.markdownarticle.internal.content',
+  artist___markdownarticle___internal___contentDigest = 'artist.markdownarticle.internal.contentDigest',
+  artist___markdownarticle___internal___description = 'artist.markdownarticle.internal.description',
+  artist___markdownarticle___internal___fieldOwners = 'artist.markdownarticle.internal.fieldOwners',
+  artist___markdownarticle___internal___ignoreType = 'artist.markdownarticle.internal.ignoreType',
+  artist___markdownarticle___internal___mediaType = 'artist.markdownarticle.internal.mediaType',
+  artist___markdownarticle___internal___owner = 'artist.markdownarticle.internal.owner',
+  artist___markdownarticle___internal___type = 'artist.markdownarticle.internal.type',
+  artist___introduction___id = 'artist.introduction.id',
+  artist___introduction___parent___id = 'artist.introduction.parent.id',
+  artist___introduction___parent___children = 'artist.introduction.parent.children',
+  artist___introduction___children = 'artist.introduction.children',
+  artist___introduction___children___id = 'artist.introduction.children.id',
+  artist___introduction___children___children = 'artist.introduction.children.children',
+  artist___introduction___internal___content = 'artist.introduction.internal.content',
+  artist___introduction___internal___contentDigest = 'artist.introduction.internal.contentDigest',
+  artist___introduction___internal___description = 'artist.introduction.internal.description',
+  artist___introduction___internal___fieldOwners = 'artist.introduction.internal.fieldOwners',
+  artist___introduction___internal___ignoreType = 'artist.introduction.internal.ignoreType',
+  artist___introduction___internal___mediaType = 'artist.introduction.internal.mediaType',
+  artist___introduction___internal___owner = 'artist.introduction.internal.owner',
+  artist___introduction___internal___type = 'artist.introduction.internal.type',
+  artist___introduction___introduction = 'artist.introduction.introduction',
+  artist___introduction___sys___type = 'artist.introduction.sys.type',
+  artist___introduction___childrenMdx = 'artist.introduction.childrenMdx',
+  artist___introduction___childrenMdx___rawBody = 'artist.introduction.childrenMdx.rawBody',
+  artist___introduction___childrenMdx___fileAbsolutePath = 'artist.introduction.childrenMdx.fileAbsolutePath',
+  artist___introduction___childrenMdx___slug = 'artist.introduction.childrenMdx.slug',
+  artist___introduction___childrenMdx___body = 'artist.introduction.childrenMdx.body',
+  artist___introduction___childrenMdx___excerpt = 'artist.introduction.childrenMdx.excerpt',
+  artist___introduction___childrenMdx___headings = 'artist.introduction.childrenMdx.headings',
+  artist___introduction___childrenMdx___html = 'artist.introduction.childrenMdx.html',
+  artist___introduction___childrenMdx___mdxAST = 'artist.introduction.childrenMdx.mdxAST',
+  artist___introduction___childrenMdx___tableOfContents = 'artist.introduction.childrenMdx.tableOfContents',
+  artist___introduction___childrenMdx___timeToRead = 'artist.introduction.childrenMdx.timeToRead',
+  artist___introduction___childrenMdx___id = 'artist.introduction.childrenMdx.id',
+  artist___introduction___childrenMdx___children = 'artist.introduction.childrenMdx.children',
+  artist___introduction___childMdx___rawBody = 'artist.introduction.childMdx.rawBody',
+  artist___introduction___childMdx___fileAbsolutePath = 'artist.introduction.childMdx.fileAbsolutePath',
+  artist___introduction___childMdx___slug = 'artist.introduction.childMdx.slug',
+  artist___introduction___childMdx___body = 'artist.introduction.childMdx.body',
+  artist___introduction___childMdx___excerpt = 'artist.introduction.childMdx.excerpt',
+  artist___introduction___childMdx___headings = 'artist.introduction.childMdx.headings',
+  artist___introduction___childMdx___html = 'artist.introduction.childMdx.html',
+  artist___introduction___childMdx___mdxAST = 'artist.introduction.childMdx.mdxAST',
+  artist___introduction___childMdx___tableOfContents = 'artist.introduction.childMdx.tableOfContents',
+  artist___introduction___childMdx___timeToRead = 'artist.introduction.childMdx.timeToRead',
+  artist___introduction___childMdx___id = 'artist.introduction.childMdx.id',
+  artist___introduction___childMdx___children = 'artist.introduction.childMdx.children',
+  artist___spaceId = 'artist.spaceId',
+  artist___createdAt = 'artist.createdAt',
+  artist___updatedAt = 'artist.updatedAt',
+  artist___sys___type = 'artist.sys.type',
+  artist___sys___revision = 'artist.sys.revision',
+  artist___twitter = 'artist.twitter',
+  artist___youtube = 'artist.youtube',
+  artist___playlist = 'artist.playlist',
+  artist___playlist___contentful_id = 'artist.playlist.contentful_id',
+  artist___playlist___id = 'artist.playlist.id',
+  artist___playlist___node_locale = 'artist.playlist.node_locale',
+  artist___playlist___title = 'artist.playlist.title',
+  artist___playlist___slug = 'artist.playlist.slug',
+  artist___playlist___artists = 'artist.playlist.artists',
+  artist___playlist___artists___contentful_id = 'artist.playlist.artists.contentful_id',
+  artist___playlist___artists___id = 'artist.playlist.artists.id',
+  artist___playlist___artists___node_locale = 'artist.playlist.artists.node_locale',
+  artist___playlist___artists___name = 'artist.playlist.artists.name',
+  artist___playlist___artists___instagram = 'artist.playlist.artists.instagram',
+  artist___playlist___artists___markdownarticle = 'artist.playlist.artists.markdownarticle',
+  artist___playlist___artists___spaceId = 'artist.playlist.artists.spaceId',
+  artist___playlist___artists___createdAt = 'artist.playlist.artists.createdAt',
+  artist___playlist___artists___updatedAt = 'artist.playlist.artists.updatedAt',
+  artist___playlist___artists___twitter = 'artist.playlist.artists.twitter',
+  artist___playlist___artists___youtube = 'artist.playlist.artists.youtube',
+  artist___playlist___artists___playlist = 'artist.playlist.artists.playlist',
+  artist___playlist___artists___song = 'artist.playlist.artists.song',
+  artist___playlist___artists___linktree = 'artist.playlist.artists.linktree',
+  artist___playlist___artists___minnakikeru = 'artist.playlist.artists.minnakikeru',
+  artist___playlist___artists___hatena = 'artist.playlist.artists.hatena',
+  artist___playlist___artists___bandcamp = 'artist.playlist.artists.bandcamp',
+  artist___playlist___artists___childrenContentfulAuthorIntroductionTextNode = 'artist.playlist.artists.childrenContentfulAuthorIntroductionTextNode',
+  artist___playlist___artists___children = 'artist.playlist.artists.children',
+  artist___playlist___songs = 'artist.playlist.songs',
+  artist___playlist___songs___contentful_id = 'artist.playlist.songs.contentful_id',
+  artist___playlist___songs___id = 'artist.playlist.songs.id',
+  artist___playlist___songs___node_locale = 'artist.playlist.songs.node_locale',
+  artist___playlist___songs___title = 'artist.playlist.songs.title',
+  artist___playlist___songs___duration = 'artist.playlist.songs.duration',
+  artist___playlist___songs___playlist = 'artist.playlist.songs.playlist',
+  artist___playlist___songs___spaceId = 'artist.playlist.songs.spaceId',
+  artist___playlist___songs___createdAt = 'artist.playlist.songs.createdAt',
+  artist___playlist___songs___updatedAt = 'artist.playlist.songs.updatedAt',
+  artist___playlist___songs___children = 'artist.playlist.songs.children',
+  artist___playlist___coverart___contentful_id = 'artist.playlist.coverart.contentful_id',
+  artist___playlist___coverart___id = 'artist.playlist.coverart.id',
+  artist___playlist___coverart___spaceId = 'artist.playlist.coverart.spaceId',
+  artist___playlist___coverart___createdAt = 'artist.playlist.coverart.createdAt',
+  artist___playlist___coverart___updatedAt = 'artist.playlist.coverart.updatedAt',
+  artist___playlist___coverart___title = 'artist.playlist.coverart.title',
+  artist___playlist___coverart___description = 'artist.playlist.coverart.description',
+  artist___playlist___coverart___node_locale = 'artist.playlist.coverart.node_locale',
+  artist___playlist___coverart___gatsbyImageData = 'artist.playlist.coverart.gatsbyImageData',
+  artist___playlist___coverart___children = 'artist.playlist.coverart.children',
+  artist___playlist___spaceId = 'artist.playlist.spaceId',
+  artist___playlist___createdAt = 'artist.playlist.createdAt',
+  artist___playlist___updatedAt = 'artist.playlist.updatedAt',
+  artist___playlist___sys___type = 'artist.playlist.sys.type',
+  artist___playlist___sys___revision = 'artist.playlist.sys.revision',
+  artist___playlist___gatsbyPath = 'artist.playlist.gatsbyPath',
+  artist___playlist___parent___id = 'artist.playlist.parent.id',
+  artist___playlist___parent___children = 'artist.playlist.parent.children',
+  artist___playlist___children = 'artist.playlist.children',
+  artist___playlist___children___id = 'artist.playlist.children.id',
+  artist___playlist___children___children = 'artist.playlist.children.children',
+  artist___playlist___internal___content = 'artist.playlist.internal.content',
+  artist___playlist___internal___contentDigest = 'artist.playlist.internal.contentDigest',
+  artist___playlist___internal___description = 'artist.playlist.internal.description',
+  artist___playlist___internal___fieldOwners = 'artist.playlist.internal.fieldOwners',
+  artist___playlist___internal___ignoreType = 'artist.playlist.internal.ignoreType',
+  artist___playlist___internal___mediaType = 'artist.playlist.internal.mediaType',
+  artist___playlist___internal___owner = 'artist.playlist.internal.owner',
+  artist___playlist___internal___type = 'artist.playlist.internal.type',
+  artist___song = 'artist.song',
+  artist___song___contentful_id = 'artist.song.contentful_id',
+  artist___song___id = 'artist.song.id',
+  artist___song___node_locale = 'artist.song.node_locale',
+  artist___song___title = 'artist.song.title',
+  artist___song___duration = 'artist.song.duration',
+  artist___song___artist___contentful_id = 'artist.song.artist.contentful_id',
+  artist___song___artist___id = 'artist.song.artist.id',
+  artist___song___artist___node_locale = 'artist.song.artist.node_locale',
+  artist___song___artist___name = 'artist.song.artist.name',
+  artist___song___artist___instagram = 'artist.song.artist.instagram',
+  artist___song___artist___markdownarticle = 'artist.song.artist.markdownarticle',
+  artist___song___artist___spaceId = 'artist.song.artist.spaceId',
+  artist___song___artist___createdAt = 'artist.song.artist.createdAt',
+  artist___song___artist___updatedAt = 'artist.song.artist.updatedAt',
+  artist___song___artist___twitter = 'artist.song.artist.twitter',
+  artist___song___artist___youtube = 'artist.song.artist.youtube',
+  artist___song___artist___playlist = 'artist.song.artist.playlist',
+  artist___song___artist___song = 'artist.song.artist.song',
+  artist___song___artist___linktree = 'artist.song.artist.linktree',
+  artist___song___artist___minnakikeru = 'artist.song.artist.minnakikeru',
+  artist___song___artist___hatena = 'artist.song.artist.hatena',
+  artist___song___artist___bandcamp = 'artist.song.artist.bandcamp',
+  artist___song___artist___childrenContentfulAuthorIntroductionTextNode = 'artist.song.artist.childrenContentfulAuthorIntroductionTextNode',
+  artist___song___artist___children = 'artist.song.artist.children',
+  artist___song___sound___contentful_id = 'artist.song.sound.contentful_id',
+  artist___song___sound___id = 'artist.song.sound.id',
+  artist___song___sound___spaceId = 'artist.song.sound.spaceId',
+  artist___song___sound___createdAt = 'artist.song.sound.createdAt',
+  artist___song___sound___updatedAt = 'artist.song.sound.updatedAt',
+  artist___song___sound___title = 'artist.song.sound.title',
+  artist___song___sound___description = 'artist.song.sound.description',
+  artist___song___sound___node_locale = 'artist.song.sound.node_locale',
+  artist___song___sound___gatsbyImageData = 'artist.song.sound.gatsbyImageData',
+  artist___song___sound___children = 'artist.song.sound.children',
+  artist___song___coverart___contentful_id = 'artist.song.coverart.contentful_id',
+  artist___song___coverart___id = 'artist.song.coverart.id',
+  artist___song___coverart___spaceId = 'artist.song.coverart.spaceId',
+  artist___song___coverart___createdAt = 'artist.song.coverart.createdAt',
+  artist___song___coverart___updatedAt = 'artist.song.coverart.updatedAt',
+  artist___song___coverart___title = 'artist.song.coverart.title',
+  artist___song___coverart___description = 'artist.song.coverart.description',
+  artist___song___coverart___node_locale = 'artist.song.coverart.node_locale',
+  artist___song___coverart___gatsbyImageData = 'artist.song.coverart.gatsbyImageData',
+  artist___song___coverart___children = 'artist.song.coverart.children',
+  artist___song___playlist = 'artist.song.playlist',
+  artist___song___playlist___contentful_id = 'artist.song.playlist.contentful_id',
+  artist___song___playlist___id = 'artist.song.playlist.id',
+  artist___song___playlist___node_locale = 'artist.song.playlist.node_locale',
+  artist___song___playlist___title = 'artist.song.playlist.title',
+  artist___song___playlist___slug = 'artist.song.playlist.slug',
+  artist___song___playlist___artists = 'artist.song.playlist.artists',
+  artist___song___playlist___songs = 'artist.song.playlist.songs',
+  artist___song___playlist___spaceId = 'artist.song.playlist.spaceId',
+  artist___song___playlist___createdAt = 'artist.song.playlist.createdAt',
+  artist___song___playlist___updatedAt = 'artist.song.playlist.updatedAt',
+  artist___song___playlist___gatsbyPath = 'artist.song.playlist.gatsbyPath',
+  artist___song___playlist___children = 'artist.song.playlist.children',
+  artist___song___spaceId = 'artist.song.spaceId',
+  artist___song___createdAt = 'artist.song.createdAt',
+  artist___song___updatedAt = 'artist.song.updatedAt',
+  artist___song___sys___type = 'artist.song.sys.type',
+  artist___song___sys___revision = 'artist.song.sys.revision',
+  artist___song___parent___id = 'artist.song.parent.id',
+  artist___song___parent___children = 'artist.song.parent.children',
+  artist___song___children = 'artist.song.children',
+  artist___song___children___id = 'artist.song.children.id',
+  artist___song___children___children = 'artist.song.children.children',
+  artist___song___internal___content = 'artist.song.internal.content',
+  artist___song___internal___contentDigest = 'artist.song.internal.contentDigest',
+  artist___song___internal___description = 'artist.song.internal.description',
+  artist___song___internal___fieldOwners = 'artist.song.internal.fieldOwners',
+  artist___song___internal___ignoreType = 'artist.song.internal.ignoreType',
+  artist___song___internal___mediaType = 'artist.song.internal.mediaType',
+  artist___song___internal___owner = 'artist.song.internal.owner',
+  artist___song___internal___type = 'artist.song.internal.type',
+  artist___linktree = 'artist.linktree',
+  artist___minnakikeru = 'artist.minnakikeru',
+  artist___hatena = 'artist.hatena',
+  artist___bandcamp = 'artist.bandcamp',
+  artist___childrenContentfulAuthorIntroductionTextNode = 'artist.childrenContentfulAuthorIntroductionTextNode',
+  artist___childrenContentfulAuthorIntroductionTextNode___id = 'artist.childrenContentfulAuthorIntroductionTextNode.id',
+  artist___childrenContentfulAuthorIntroductionTextNode___parent___id = 'artist.childrenContentfulAuthorIntroductionTextNode.parent.id',
+  artist___childrenContentfulAuthorIntroductionTextNode___parent___children = 'artist.childrenContentfulAuthorIntroductionTextNode.parent.children',
+  artist___childrenContentfulAuthorIntroductionTextNode___children = 'artist.childrenContentfulAuthorIntroductionTextNode.children',
+  artist___childrenContentfulAuthorIntroductionTextNode___children___id = 'artist.childrenContentfulAuthorIntroductionTextNode.children.id',
+  artist___childrenContentfulAuthorIntroductionTextNode___children___children = 'artist.childrenContentfulAuthorIntroductionTextNode.children.children',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___content = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.content',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___contentDigest = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.contentDigest',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___description = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.description',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___fieldOwners = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.fieldOwners',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___ignoreType = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.ignoreType',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___mediaType = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.mediaType',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___owner = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.owner',
+  artist___childrenContentfulAuthorIntroductionTextNode___internal___type = 'artist.childrenContentfulAuthorIntroductionTextNode.internal.type',
+  artist___childrenContentfulAuthorIntroductionTextNode___introduction = 'artist.childrenContentfulAuthorIntroductionTextNode.introduction',
+  artist___childrenContentfulAuthorIntroductionTextNode___sys___type = 'artist.childrenContentfulAuthorIntroductionTextNode.sys.type',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___rawBody = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.rawBody',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___fileAbsolutePath = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.fileAbsolutePath',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___slug = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.slug',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___body = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.body',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___excerpt = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.excerpt',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___headings = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.headings',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___html = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.html',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___mdxAST = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.mdxAST',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___tableOfContents = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.tableOfContents',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___timeToRead = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.timeToRead',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___id = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.id',
+  artist___childrenContentfulAuthorIntroductionTextNode___childrenMdx___children = 'artist.childrenContentfulAuthorIntroductionTextNode.childrenMdx.children',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___rawBody = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.rawBody',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___fileAbsolutePath = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.fileAbsolutePath',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___slug = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.slug',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___body = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.body',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___excerpt = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.excerpt',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___headings = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.headings',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___html = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.html',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___mdxAST = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.mdxAST',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___tableOfContents = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.tableOfContents',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___timeToRead = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.timeToRead',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___id = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.id',
+  artist___childrenContentfulAuthorIntroductionTextNode___childMdx___children = 'artist.childrenContentfulAuthorIntroductionTextNode.childMdx.children',
+  artist___childContentfulAuthorIntroductionTextNode___id = 'artist.childContentfulAuthorIntroductionTextNode.id',
+  artist___childContentfulAuthorIntroductionTextNode___parent___id = 'artist.childContentfulAuthorIntroductionTextNode.parent.id',
+  artist___childContentfulAuthorIntroductionTextNode___parent___children = 'artist.childContentfulAuthorIntroductionTextNode.parent.children',
+  artist___childContentfulAuthorIntroductionTextNode___children = 'artist.childContentfulAuthorIntroductionTextNode.children',
+  artist___childContentfulAuthorIntroductionTextNode___children___id = 'artist.childContentfulAuthorIntroductionTextNode.children.id',
+  artist___childContentfulAuthorIntroductionTextNode___children___children = 'artist.childContentfulAuthorIntroductionTextNode.children.children',
+  artist___childContentfulAuthorIntroductionTextNode___internal___content = 'artist.childContentfulAuthorIntroductionTextNode.internal.content',
+  artist___childContentfulAuthorIntroductionTextNode___internal___contentDigest = 'artist.childContentfulAuthorIntroductionTextNode.internal.contentDigest',
+  artist___childContentfulAuthorIntroductionTextNode___internal___description = 'artist.childContentfulAuthorIntroductionTextNode.internal.description',
+  artist___childContentfulAuthorIntroductionTextNode___internal___fieldOwners = 'artist.childContentfulAuthorIntroductionTextNode.internal.fieldOwners',
+  artist___childContentfulAuthorIntroductionTextNode___internal___ignoreType = 'artist.childContentfulAuthorIntroductionTextNode.internal.ignoreType',
+  artist___childContentfulAuthorIntroductionTextNode___internal___mediaType = 'artist.childContentfulAuthorIntroductionTextNode.internal.mediaType',
+  artist___childContentfulAuthorIntroductionTextNode___internal___owner = 'artist.childContentfulAuthorIntroductionTextNode.internal.owner',
+  artist___childContentfulAuthorIntroductionTextNode___internal___type = 'artist.childContentfulAuthorIntroductionTextNode.internal.type',
+  artist___childContentfulAuthorIntroductionTextNode___introduction = 'artist.childContentfulAuthorIntroductionTextNode.introduction',
+  artist___childContentfulAuthorIntroductionTextNode___sys___type = 'artist.childContentfulAuthorIntroductionTextNode.sys.type',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___rawBody = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.rawBody',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___fileAbsolutePath = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.fileAbsolutePath',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___slug = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.slug',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___body = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.body',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___excerpt = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.excerpt',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___headings = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.headings',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___html = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.html',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___mdxAST = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.mdxAST',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___tableOfContents = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.tableOfContents',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___timeToRead = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.timeToRead',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___id = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.id',
+  artist___childContentfulAuthorIntroductionTextNode___childrenMdx___children = 'artist.childContentfulAuthorIntroductionTextNode.childrenMdx.children',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___rawBody = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.rawBody',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___fileAbsolutePath = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.fileAbsolutePath',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___slug = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.slug',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___body = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.body',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___excerpt = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.excerpt',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___headings = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.headings',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___html = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.html',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___mdxAST = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.mdxAST',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___tableOfContents = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.tableOfContents',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___timeToRead = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.timeToRead',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___id = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.id',
+  artist___childContentfulAuthorIntroductionTextNode___childMdx___children = 'artist.childContentfulAuthorIntroductionTextNode.childMdx.children',
+  artist___parent___id = 'artist.parent.id',
+  artist___parent___parent___id = 'artist.parent.parent.id',
+  artist___parent___parent___children = 'artist.parent.parent.children',
+  artist___parent___children = 'artist.parent.children',
+  artist___parent___children___id = 'artist.parent.children.id',
+  artist___parent___children___children = 'artist.parent.children.children',
+  artist___parent___internal___content = 'artist.parent.internal.content',
+  artist___parent___internal___contentDigest = 'artist.parent.internal.contentDigest',
+  artist___parent___internal___description = 'artist.parent.internal.description',
+  artist___parent___internal___fieldOwners = 'artist.parent.internal.fieldOwners',
+  artist___parent___internal___ignoreType = 'artist.parent.internal.ignoreType',
+  artist___parent___internal___mediaType = 'artist.parent.internal.mediaType',
+  artist___parent___internal___owner = 'artist.parent.internal.owner',
+  artist___parent___internal___type = 'artist.parent.internal.type',
+  artist___children = 'artist.children',
+  artist___children___id = 'artist.children.id',
+  artist___children___parent___id = 'artist.children.parent.id',
+  artist___children___parent___children = 'artist.children.parent.children',
+  artist___children___children = 'artist.children.children',
+  artist___children___children___id = 'artist.children.children.id',
+  artist___children___children___children = 'artist.children.children.children',
+  artist___children___internal___content = 'artist.children.internal.content',
+  artist___children___internal___contentDigest = 'artist.children.internal.contentDigest',
+  artist___children___internal___description = 'artist.children.internal.description',
+  artist___children___internal___fieldOwners = 'artist.children.internal.fieldOwners',
+  artist___children___internal___ignoreType = 'artist.children.internal.ignoreType',
+  artist___children___internal___mediaType = 'artist.children.internal.mediaType',
+  artist___children___internal___owner = 'artist.children.internal.owner',
+  artist___children___internal___type = 'artist.children.internal.type',
+  artist___internal___content = 'artist.internal.content',
+  artist___internal___contentDigest = 'artist.internal.contentDigest',
+  artist___internal___description = 'artist.internal.description',
+  artist___internal___fieldOwners = 'artist.internal.fieldOwners',
+  artist___internal___ignoreType = 'artist.internal.ignoreType',
+  artist___internal___mediaType = 'artist.internal.mediaType',
+  artist___internal___owner = 'artist.internal.owner',
+  artist___internal___type = 'artist.internal.type',
+  sound___contentful_id = 'sound.contentful_id',
+  sound___id = 'sound.id',
+  sound___spaceId = 'sound.spaceId',
+  sound___createdAt = 'sound.createdAt',
+  sound___updatedAt = 'sound.updatedAt',
+  sound___file___url = 'sound.file.url',
+  sound___file___details___size = 'sound.file.details.size',
+  sound___file___fileName = 'sound.file.fileName',
+  sound___file___contentType = 'sound.file.contentType',
+  sound___title = 'sound.title',
+  sound___description = 'sound.description',
+  sound___node_locale = 'sound.node_locale',
+  sound___sys___type = 'sound.sys.type',
+  sound___sys___revision = 'sound.sys.revision',
+  sound___localFile___sourceInstanceName = 'sound.localFile.sourceInstanceName',
+  sound___localFile___absolutePath = 'sound.localFile.absolutePath',
+  sound___localFile___relativePath = 'sound.localFile.relativePath',
+  sound___localFile___extension = 'sound.localFile.extension',
+  sound___localFile___size = 'sound.localFile.size',
+  sound___localFile___prettySize = 'sound.localFile.prettySize',
+  sound___localFile___modifiedTime = 'sound.localFile.modifiedTime',
+  sound___localFile___accessTime = 'sound.localFile.accessTime',
+  sound___localFile___changeTime = 'sound.localFile.changeTime',
+  sound___localFile___birthTime = 'sound.localFile.birthTime',
+  sound___localFile___root = 'sound.localFile.root',
+  sound___localFile___dir = 'sound.localFile.dir',
+  sound___localFile___base = 'sound.localFile.base',
+  sound___localFile___ext = 'sound.localFile.ext',
+  sound___localFile___name = 'sound.localFile.name',
+  sound___localFile___relativeDirectory = 'sound.localFile.relativeDirectory',
+  sound___localFile___dev = 'sound.localFile.dev',
+  sound___localFile___mode = 'sound.localFile.mode',
+  sound___localFile___nlink = 'sound.localFile.nlink',
+  sound___localFile___uid = 'sound.localFile.uid',
+  sound___localFile___gid = 'sound.localFile.gid',
+  sound___localFile___rdev = 'sound.localFile.rdev',
+  sound___localFile___ino = 'sound.localFile.ino',
+  sound___localFile___atimeMs = 'sound.localFile.atimeMs',
+  sound___localFile___mtimeMs = 'sound.localFile.mtimeMs',
+  sound___localFile___ctimeMs = 'sound.localFile.ctimeMs',
+  sound___localFile___atime = 'sound.localFile.atime',
+  sound___localFile___mtime = 'sound.localFile.mtime',
+  sound___localFile___ctime = 'sound.localFile.ctime',
+  sound___localFile___birthtime = 'sound.localFile.birthtime',
+  sound___localFile___birthtimeMs = 'sound.localFile.birthtimeMs',
+  sound___localFile___blksize = 'sound.localFile.blksize',
+  sound___localFile___blocks = 'sound.localFile.blocks',
+  sound___localFile___url = 'sound.localFile.url',
+  sound___localFile___publicURL = 'sound.localFile.publicURL',
+  sound___localFile___childrenImageSharp = 'sound.localFile.childrenImageSharp',
+  sound___localFile___childrenImageSharp___gatsbyImageData = 'sound.localFile.childrenImageSharp.gatsbyImageData',
+  sound___localFile___childrenImageSharp___id = 'sound.localFile.childrenImageSharp.id',
+  sound___localFile___childrenImageSharp___children = 'sound.localFile.childrenImageSharp.children',
+  sound___localFile___childImageSharp___gatsbyImageData = 'sound.localFile.childImageSharp.gatsbyImageData',
+  sound___localFile___childImageSharp___id = 'sound.localFile.childImageSharp.id',
+  sound___localFile___childImageSharp___children = 'sound.localFile.childImageSharp.children',
+  sound___localFile___childrenPagesJson = 'sound.localFile.childrenPagesJson',
+  sound___localFile___childrenPagesJson___id = 'sound.localFile.childrenPagesJson.id',
+  sound___localFile___childrenPagesJson___children = 'sound.localFile.childrenPagesJson.children',
+  sound___localFile___childrenPagesJson___path = 'sound.localFile.childrenPagesJson.path',
+  sound___localFile___childrenPagesJson___catchphrase = 'sound.localFile.childrenPagesJson.catchphrase',
+  sound___localFile___childrenPagesJson___introduction = 'sound.localFile.childrenPagesJson.introduction',
+  sound___localFile___childrenPagesJson___image = 'sound.localFile.childrenPagesJson.image',
+  sound___localFile___childrenPagesJson___displayTitle = 'sound.localFile.childrenPagesJson.displayTitle',
+  sound___localFile___childrenPagesJson___title = 'sound.localFile.childrenPagesJson.title',
+  sound___localFile___childPagesJson___id = 'sound.localFile.childPagesJson.id',
+  sound___localFile___childPagesJson___children = 'sound.localFile.childPagesJson.children',
+  sound___localFile___childPagesJson___path = 'sound.localFile.childPagesJson.path',
+  sound___localFile___childPagesJson___catchphrase = 'sound.localFile.childPagesJson.catchphrase',
+  sound___localFile___childPagesJson___introduction = 'sound.localFile.childPagesJson.introduction',
+  sound___localFile___childPagesJson___image = 'sound.localFile.childPagesJson.image',
+  sound___localFile___childPagesJson___displayTitle = 'sound.localFile.childPagesJson.displayTitle',
+  sound___localFile___childPagesJson___title = 'sound.localFile.childPagesJson.title',
+  sound___localFile___id = 'sound.localFile.id',
+  sound___localFile___parent___id = 'sound.localFile.parent.id',
+  sound___localFile___parent___children = 'sound.localFile.parent.children',
+  sound___localFile___children = 'sound.localFile.children',
+  sound___localFile___children___id = 'sound.localFile.children.id',
+  sound___localFile___children___children = 'sound.localFile.children.children',
+  sound___localFile___internal___content = 'sound.localFile.internal.content',
+  sound___localFile___internal___contentDigest = 'sound.localFile.internal.contentDigest',
+  sound___localFile___internal___description = 'sound.localFile.internal.description',
+  sound___localFile___internal___fieldOwners = 'sound.localFile.internal.fieldOwners',
+  sound___localFile___internal___ignoreType = 'sound.localFile.internal.ignoreType',
+  sound___localFile___internal___mediaType = 'sound.localFile.internal.mediaType',
+  sound___localFile___internal___owner = 'sound.localFile.internal.owner',
+  sound___localFile___internal___type = 'sound.localFile.internal.type',
+  sound___fixed___base64 = 'sound.fixed.base64',
+  sound___fixed___tracedSVG = 'sound.fixed.tracedSVG',
+  sound___fixed___aspectRatio = 'sound.fixed.aspectRatio',
+  sound___fixed___width = 'sound.fixed.width',
+  sound___fixed___height = 'sound.fixed.height',
+  sound___fixed___src = 'sound.fixed.src',
+  sound___fixed___srcSet = 'sound.fixed.srcSet',
+  sound___fixed___srcWebp = 'sound.fixed.srcWebp',
+  sound___fixed___srcSetWebp = 'sound.fixed.srcSetWebp',
+  sound___fluid___base64 = 'sound.fluid.base64',
+  sound___fluid___tracedSVG = 'sound.fluid.tracedSVG',
+  sound___fluid___aspectRatio = 'sound.fluid.aspectRatio',
+  sound___fluid___src = 'sound.fluid.src',
+  sound___fluid___srcSet = 'sound.fluid.srcSet',
+  sound___fluid___srcWebp = 'sound.fluid.srcWebp',
+  sound___fluid___srcSetWebp = 'sound.fluid.srcSetWebp',
+  sound___fluid___sizes = 'sound.fluid.sizes',
+  sound___gatsbyImageData = 'sound.gatsbyImageData',
+  sound___resize___base64 = 'sound.resize.base64',
+  sound___resize___tracedSVG = 'sound.resize.tracedSVG',
+  sound___resize___src = 'sound.resize.src',
+  sound___resize___width = 'sound.resize.width',
+  sound___resize___height = 'sound.resize.height',
+  sound___resize___aspectRatio = 'sound.resize.aspectRatio',
+  sound___parent___id = 'sound.parent.id',
+  sound___parent___parent___id = 'sound.parent.parent.id',
+  sound___parent___parent___children = 'sound.parent.parent.children',
+  sound___parent___children = 'sound.parent.children',
+  sound___parent___children___id = 'sound.parent.children.id',
+  sound___parent___children___children = 'sound.parent.children.children',
+  sound___parent___internal___content = 'sound.parent.internal.content',
+  sound___parent___internal___contentDigest = 'sound.parent.internal.contentDigest',
+  sound___parent___internal___description = 'sound.parent.internal.description',
+  sound___parent___internal___fieldOwners = 'sound.parent.internal.fieldOwners',
+  sound___parent___internal___ignoreType = 'sound.parent.internal.ignoreType',
+  sound___parent___internal___mediaType = 'sound.parent.internal.mediaType',
+  sound___parent___internal___owner = 'sound.parent.internal.owner',
+  sound___parent___internal___type = 'sound.parent.internal.type',
+  sound___children = 'sound.children',
+  sound___children___id = 'sound.children.id',
+  sound___children___parent___id = 'sound.children.parent.id',
+  sound___children___parent___children = 'sound.children.parent.children',
+  sound___children___children = 'sound.children.children',
+  sound___children___children___id = 'sound.children.children.id',
+  sound___children___children___children = 'sound.children.children.children',
+  sound___children___internal___content = 'sound.children.internal.content',
+  sound___children___internal___contentDigest = 'sound.children.internal.contentDigest',
+  sound___children___internal___description = 'sound.children.internal.description',
+  sound___children___internal___fieldOwners = 'sound.children.internal.fieldOwners',
+  sound___children___internal___ignoreType = 'sound.children.internal.ignoreType',
+  sound___children___internal___mediaType = 'sound.children.internal.mediaType',
+  sound___children___internal___owner = 'sound.children.internal.owner',
+  sound___children___internal___type = 'sound.children.internal.type',
+  sound___internal___content = 'sound.internal.content',
+  sound___internal___contentDigest = 'sound.internal.contentDigest',
+  sound___internal___description = 'sound.internal.description',
+  sound___internal___fieldOwners = 'sound.internal.fieldOwners',
+  sound___internal___ignoreType = 'sound.internal.ignoreType',
+  sound___internal___mediaType = 'sound.internal.mediaType',
+  sound___internal___owner = 'sound.internal.owner',
+  sound___internal___type = 'sound.internal.type',
+  coverart___contentful_id = 'coverart.contentful_id',
+  coverart___id = 'coverart.id',
+  coverart___spaceId = 'coverart.spaceId',
+  coverart___createdAt = 'coverart.createdAt',
+  coverart___updatedAt = 'coverart.updatedAt',
+  coverart___file___url = 'coverart.file.url',
+  coverart___file___details___size = 'coverart.file.details.size',
+  coverart___file___fileName = 'coverart.file.fileName',
+  coverart___file___contentType = 'coverart.file.contentType',
+  coverart___title = 'coverart.title',
+  coverart___description = 'coverart.description',
+  coverart___node_locale = 'coverart.node_locale',
+  coverart___sys___type = 'coverart.sys.type',
+  coverart___sys___revision = 'coverart.sys.revision',
+  coverart___localFile___sourceInstanceName = 'coverart.localFile.sourceInstanceName',
+  coverart___localFile___absolutePath = 'coverart.localFile.absolutePath',
+  coverart___localFile___relativePath = 'coverart.localFile.relativePath',
+  coverart___localFile___extension = 'coverart.localFile.extension',
+  coverart___localFile___size = 'coverart.localFile.size',
+  coverart___localFile___prettySize = 'coverart.localFile.prettySize',
+  coverart___localFile___modifiedTime = 'coverart.localFile.modifiedTime',
+  coverart___localFile___accessTime = 'coverart.localFile.accessTime',
+  coverart___localFile___changeTime = 'coverart.localFile.changeTime',
+  coverart___localFile___birthTime = 'coverart.localFile.birthTime',
+  coverart___localFile___root = 'coverart.localFile.root',
+  coverart___localFile___dir = 'coverart.localFile.dir',
+  coverart___localFile___base = 'coverart.localFile.base',
+  coverart___localFile___ext = 'coverart.localFile.ext',
+  coverart___localFile___name = 'coverart.localFile.name',
+  coverart___localFile___relativeDirectory = 'coverart.localFile.relativeDirectory',
+  coverart___localFile___dev = 'coverart.localFile.dev',
+  coverart___localFile___mode = 'coverart.localFile.mode',
+  coverart___localFile___nlink = 'coverart.localFile.nlink',
+  coverart___localFile___uid = 'coverart.localFile.uid',
+  coverart___localFile___gid = 'coverart.localFile.gid',
+  coverart___localFile___rdev = 'coverart.localFile.rdev',
+  coverart___localFile___ino = 'coverart.localFile.ino',
+  coverart___localFile___atimeMs = 'coverart.localFile.atimeMs',
+  coverart___localFile___mtimeMs = 'coverart.localFile.mtimeMs',
+  coverart___localFile___ctimeMs = 'coverart.localFile.ctimeMs',
+  coverart___localFile___atime = 'coverart.localFile.atime',
+  coverart___localFile___mtime = 'coverart.localFile.mtime',
+  coverart___localFile___ctime = 'coverart.localFile.ctime',
+  coverart___localFile___birthtime = 'coverart.localFile.birthtime',
+  coverart___localFile___birthtimeMs = 'coverart.localFile.birthtimeMs',
+  coverart___localFile___blksize = 'coverart.localFile.blksize',
+  coverart___localFile___blocks = 'coverart.localFile.blocks',
+  coverart___localFile___url = 'coverart.localFile.url',
+  coverart___localFile___publicURL = 'coverart.localFile.publicURL',
+  coverart___localFile___childrenImageSharp = 'coverart.localFile.childrenImageSharp',
+  coverart___localFile___childrenImageSharp___gatsbyImageData = 'coverart.localFile.childrenImageSharp.gatsbyImageData',
+  coverart___localFile___childrenImageSharp___id = 'coverart.localFile.childrenImageSharp.id',
+  coverart___localFile___childrenImageSharp___children = 'coverart.localFile.childrenImageSharp.children',
+  coverart___localFile___childImageSharp___gatsbyImageData = 'coverart.localFile.childImageSharp.gatsbyImageData',
+  coverart___localFile___childImageSharp___id = 'coverart.localFile.childImageSharp.id',
+  coverart___localFile___childImageSharp___children = 'coverart.localFile.childImageSharp.children',
+  coverart___localFile___childrenPagesJson = 'coverart.localFile.childrenPagesJson',
+  coverart___localFile___childrenPagesJson___id = 'coverart.localFile.childrenPagesJson.id',
+  coverart___localFile___childrenPagesJson___children = 'coverart.localFile.childrenPagesJson.children',
+  coverart___localFile___childrenPagesJson___path = 'coverart.localFile.childrenPagesJson.path',
+  coverart___localFile___childrenPagesJson___catchphrase = 'coverart.localFile.childrenPagesJson.catchphrase',
+  coverart___localFile___childrenPagesJson___introduction = 'coverart.localFile.childrenPagesJson.introduction',
+  coverart___localFile___childrenPagesJson___image = 'coverart.localFile.childrenPagesJson.image',
+  coverart___localFile___childrenPagesJson___displayTitle = 'coverart.localFile.childrenPagesJson.displayTitle',
+  coverart___localFile___childrenPagesJson___title = 'coverart.localFile.childrenPagesJson.title',
+  coverart___localFile___childPagesJson___id = 'coverart.localFile.childPagesJson.id',
+  coverart___localFile___childPagesJson___children = 'coverart.localFile.childPagesJson.children',
+  coverart___localFile___childPagesJson___path = 'coverart.localFile.childPagesJson.path',
+  coverart___localFile___childPagesJson___catchphrase = 'coverart.localFile.childPagesJson.catchphrase',
+  coverart___localFile___childPagesJson___introduction = 'coverart.localFile.childPagesJson.introduction',
+  coverart___localFile___childPagesJson___image = 'coverart.localFile.childPagesJson.image',
+  coverart___localFile___childPagesJson___displayTitle = 'coverart.localFile.childPagesJson.displayTitle',
+  coverart___localFile___childPagesJson___title = 'coverart.localFile.childPagesJson.title',
+  coverart___localFile___id = 'coverart.localFile.id',
+  coverart___localFile___parent___id = 'coverart.localFile.parent.id',
+  coverart___localFile___parent___children = 'coverart.localFile.parent.children',
+  coverart___localFile___children = 'coverart.localFile.children',
+  coverart___localFile___children___id = 'coverart.localFile.children.id',
+  coverart___localFile___children___children = 'coverart.localFile.children.children',
+  coverart___localFile___internal___content = 'coverart.localFile.internal.content',
+  coverart___localFile___internal___contentDigest = 'coverart.localFile.internal.contentDigest',
+  coverart___localFile___internal___description = 'coverart.localFile.internal.description',
+  coverart___localFile___internal___fieldOwners = 'coverart.localFile.internal.fieldOwners',
+  coverart___localFile___internal___ignoreType = 'coverart.localFile.internal.ignoreType',
+  coverart___localFile___internal___mediaType = 'coverart.localFile.internal.mediaType',
+  coverart___localFile___internal___owner = 'coverart.localFile.internal.owner',
+  coverart___localFile___internal___type = 'coverart.localFile.internal.type',
+  coverart___fixed___base64 = 'coverart.fixed.base64',
+  coverart___fixed___tracedSVG = 'coverart.fixed.tracedSVG',
+  coverart___fixed___aspectRatio = 'coverart.fixed.aspectRatio',
+  coverart___fixed___width = 'coverart.fixed.width',
+  coverart___fixed___height = 'coverart.fixed.height',
+  coverart___fixed___src = 'coverart.fixed.src',
+  coverart___fixed___srcSet = 'coverart.fixed.srcSet',
+  coverart___fixed___srcWebp = 'coverart.fixed.srcWebp',
+  coverart___fixed___srcSetWebp = 'coverart.fixed.srcSetWebp',
+  coverart___fluid___base64 = 'coverart.fluid.base64',
+  coverart___fluid___tracedSVG = 'coverart.fluid.tracedSVG',
+  coverart___fluid___aspectRatio = 'coverart.fluid.aspectRatio',
+  coverart___fluid___src = 'coverart.fluid.src',
+  coverart___fluid___srcSet = 'coverart.fluid.srcSet',
+  coverart___fluid___srcWebp = 'coverart.fluid.srcWebp',
+  coverart___fluid___srcSetWebp = 'coverart.fluid.srcSetWebp',
+  coverart___fluid___sizes = 'coverart.fluid.sizes',
+  coverart___gatsbyImageData = 'coverart.gatsbyImageData',
+  coverart___resize___base64 = 'coverart.resize.base64',
+  coverart___resize___tracedSVG = 'coverart.resize.tracedSVG',
+  coverart___resize___src = 'coverart.resize.src',
+  coverart___resize___width = 'coverart.resize.width',
+  coverart___resize___height = 'coverart.resize.height',
+  coverart___resize___aspectRatio = 'coverart.resize.aspectRatio',
+  coverart___parent___id = 'coverart.parent.id',
+  coverart___parent___parent___id = 'coverart.parent.parent.id',
+  coverart___parent___parent___children = 'coverart.parent.parent.children',
+  coverart___parent___children = 'coverart.parent.children',
+  coverart___parent___children___id = 'coverart.parent.children.id',
+  coverart___parent___children___children = 'coverart.parent.children.children',
+  coverart___parent___internal___content = 'coverart.parent.internal.content',
+  coverart___parent___internal___contentDigest = 'coverart.parent.internal.contentDigest',
+  coverart___parent___internal___description = 'coverart.parent.internal.description',
+  coverart___parent___internal___fieldOwners = 'coverart.parent.internal.fieldOwners',
+  coverart___parent___internal___ignoreType = 'coverart.parent.internal.ignoreType',
+  coverart___parent___internal___mediaType = 'coverart.parent.internal.mediaType',
+  coverart___parent___internal___owner = 'coverart.parent.internal.owner',
+  coverart___parent___internal___type = 'coverart.parent.internal.type',
+  coverart___children = 'coverart.children',
+  coverart___children___id = 'coverart.children.id',
+  coverart___children___parent___id = 'coverart.children.parent.id',
+  coverart___children___parent___children = 'coverart.children.parent.children',
+  coverart___children___children = 'coverart.children.children',
+  coverart___children___children___id = 'coverart.children.children.id',
+  coverart___children___children___children = 'coverart.children.children.children',
+  coverart___children___internal___content = 'coverart.children.internal.content',
+  coverart___children___internal___contentDigest = 'coverart.children.internal.contentDigest',
+  coverart___children___internal___description = 'coverart.children.internal.description',
+  coverart___children___internal___fieldOwners = 'coverart.children.internal.fieldOwners',
+  coverart___children___internal___ignoreType = 'coverart.children.internal.ignoreType',
+  coverart___children___internal___mediaType = 'coverart.children.internal.mediaType',
+  coverart___children___internal___owner = 'coverart.children.internal.owner',
+  coverart___children___internal___type = 'coverart.children.internal.type',
+  coverart___internal___content = 'coverart.internal.content',
+  coverart___internal___contentDigest = 'coverart.internal.contentDigest',
+  coverart___internal___description = 'coverart.internal.description',
+  coverart___internal___fieldOwners = 'coverart.internal.fieldOwners',
+  coverart___internal___ignoreType = 'coverart.internal.ignoreType',
+  coverart___internal___mediaType = 'coverart.internal.mediaType',
+  coverart___internal___owner = 'coverart.internal.owner',
+  coverart___internal___type = 'coverart.internal.type',
+  playlist = 'playlist',
+  playlist___contentful_id = 'playlist.contentful_id',
+  playlist___id = 'playlist.id',
+  playlist___node_locale = 'playlist.node_locale',
+  playlist___title = 'playlist.title',
+  playlist___slug = 'playlist.slug',
+  playlist___artists = 'playlist.artists',
+  playlist___artists___contentful_id = 'playlist.artists.contentful_id',
+  playlist___artists___id = 'playlist.artists.id',
+  playlist___artists___node_locale = 'playlist.artists.node_locale',
+  playlist___artists___name = 'playlist.artists.name',
+  playlist___artists___instagram = 'playlist.artists.instagram',
+  playlist___artists___markdownarticle = 'playlist.artists.markdownarticle',
+  playlist___artists___markdownarticle___contentful_id = 'playlist.artists.markdownarticle.contentful_id',
+  playlist___artists___markdownarticle___id = 'playlist.artists.markdownarticle.id',
+  playlist___artists___markdownarticle___node_locale = 'playlist.artists.markdownarticle.node_locale',
+  playlist___artists___markdownarticle___title = 'playlist.artists.markdownarticle.title',
+  playlist___artists___markdownarticle___slug = 'playlist.artists.markdownarticle.slug',
+  playlist___artists___markdownarticle___publishedAt = 'playlist.artists.markdownarticle.publishedAt',
+  playlist___artists___markdownarticle___disableSideHeader = 'playlist.artists.markdownarticle.disableSideHeader',
+  playlist___artists___markdownarticle___isVirticalWriting = 'playlist.artists.markdownarticle.isVirticalWriting',
+  playlist___artists___markdownarticle___align = 'playlist.artists.markdownarticle.align',
+  playlist___artists___markdownarticle___spaceId = 'playlist.artists.markdownarticle.spaceId',
+  playlist___artists___markdownarticle___createdAt = 'playlist.artists.markdownarticle.createdAt',
+  playlist___artists___markdownarticle___updatedAt = 'playlist.artists.markdownarticle.updatedAt',
+  playlist___artists___markdownarticle___images = 'playlist.artists.markdownarticle.images',
+  playlist___artists___markdownarticle___childrenContentfulMarkdownArticleContentTextNode = 'playlist.artists.markdownarticle.childrenContentfulMarkdownArticleContentTextNode',
+  playlist___artists___markdownarticle___children = 'playlist.artists.markdownarticle.children',
+  playlist___artists___introduction___id = 'playlist.artists.introduction.id',
+  playlist___artists___introduction___children = 'playlist.artists.introduction.children',
+  playlist___artists___introduction___introduction = 'playlist.artists.introduction.introduction',
+  playlist___artists___introduction___childrenMdx = 'playlist.artists.introduction.childrenMdx',
+  playlist___artists___spaceId = 'playlist.artists.spaceId',
+  playlist___artists___createdAt = 'playlist.artists.createdAt',
+  playlist___artists___updatedAt = 'playlist.artists.updatedAt',
+  playlist___artists___sys___type = 'playlist.artists.sys.type',
+  playlist___artists___sys___revision = 'playlist.artists.sys.revision',
+  playlist___artists___twitter = 'playlist.artists.twitter',
+  playlist___artists___youtube = 'playlist.artists.youtube',
+  playlist___artists___playlist = 'playlist.artists.playlist',
+  playlist___artists___playlist___contentful_id = 'playlist.artists.playlist.contentful_id',
+  playlist___artists___playlist___id = 'playlist.artists.playlist.id',
+  playlist___artists___playlist___node_locale = 'playlist.artists.playlist.node_locale',
+  playlist___artists___playlist___title = 'playlist.artists.playlist.title',
+  playlist___artists___playlist___slug = 'playlist.artists.playlist.slug',
+  playlist___artists___playlist___artists = 'playlist.artists.playlist.artists',
+  playlist___artists___playlist___songs = 'playlist.artists.playlist.songs',
+  playlist___artists___playlist___spaceId = 'playlist.artists.playlist.spaceId',
+  playlist___artists___playlist___createdAt = 'playlist.artists.playlist.createdAt',
+  playlist___artists___playlist___updatedAt = 'playlist.artists.playlist.updatedAt',
+  playlist___artists___playlist___gatsbyPath = 'playlist.artists.playlist.gatsbyPath',
+  playlist___artists___playlist___children = 'playlist.artists.playlist.children',
+  playlist___artists___song = 'playlist.artists.song',
+  playlist___artists___song___contentful_id = 'playlist.artists.song.contentful_id',
+  playlist___artists___song___id = 'playlist.artists.song.id',
+  playlist___artists___song___node_locale = 'playlist.artists.song.node_locale',
+  playlist___artists___song___title = 'playlist.artists.song.title',
+  playlist___artists___song___duration = 'playlist.artists.song.duration',
+  playlist___artists___song___playlist = 'playlist.artists.song.playlist',
+  playlist___artists___song___spaceId = 'playlist.artists.song.spaceId',
+  playlist___artists___song___createdAt = 'playlist.artists.song.createdAt',
+  playlist___artists___song___updatedAt = 'playlist.artists.song.updatedAt',
+  playlist___artists___song___children = 'playlist.artists.song.children',
+  playlist___artists___linktree = 'playlist.artists.linktree',
+  playlist___artists___minnakikeru = 'playlist.artists.minnakikeru',
+  playlist___artists___hatena = 'playlist.artists.hatena',
+  playlist___artists___bandcamp = 'playlist.artists.bandcamp',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___id = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.id',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___children = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.children',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___introduction = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.introduction',
+  playlist___artists___childrenContentfulAuthorIntroductionTextNode___childrenMdx = 'playlist.artists.childrenContentfulAuthorIntroductionTextNode.childrenMdx',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___id = 'playlist.artists.childContentfulAuthorIntroductionTextNode.id',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___children = 'playlist.artists.childContentfulAuthorIntroductionTextNode.children',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___introduction = 'playlist.artists.childContentfulAuthorIntroductionTextNode.introduction',
+  playlist___artists___childContentfulAuthorIntroductionTextNode___childrenMdx = 'playlist.artists.childContentfulAuthorIntroductionTextNode.childrenMdx',
+  playlist___artists___parent___id = 'playlist.artists.parent.id',
+  playlist___artists___parent___children = 'playlist.artists.parent.children',
+  playlist___artists___children = 'playlist.artists.children',
+  playlist___artists___children___id = 'playlist.artists.children.id',
+  playlist___artists___children___children = 'playlist.artists.children.children',
+  playlist___artists___internal___content = 'playlist.artists.internal.content',
+  playlist___artists___internal___contentDigest = 'playlist.artists.internal.contentDigest',
+  playlist___artists___internal___description = 'playlist.artists.internal.description',
+  playlist___artists___internal___fieldOwners = 'playlist.artists.internal.fieldOwners',
+  playlist___artists___internal___ignoreType = 'playlist.artists.internal.ignoreType',
+  playlist___artists___internal___mediaType = 'playlist.artists.internal.mediaType',
+  playlist___artists___internal___owner = 'playlist.artists.internal.owner',
+  playlist___artists___internal___type = 'playlist.artists.internal.type',
+  playlist___songs = 'playlist.songs',
+  playlist___songs___contentful_id = 'playlist.songs.contentful_id',
+  playlist___songs___id = 'playlist.songs.id',
+  playlist___songs___node_locale = 'playlist.songs.node_locale',
+  playlist___songs___title = 'playlist.songs.title',
+  playlist___songs___duration = 'playlist.songs.duration',
+  playlist___songs___artist___contentful_id = 'playlist.songs.artist.contentful_id',
+  playlist___songs___artist___id = 'playlist.songs.artist.id',
+  playlist___songs___artist___node_locale = 'playlist.songs.artist.node_locale',
+  playlist___songs___artist___name = 'playlist.songs.artist.name',
+  playlist___songs___artist___instagram = 'playlist.songs.artist.instagram',
+  playlist___songs___artist___markdownarticle = 'playlist.songs.artist.markdownarticle',
+  playlist___songs___artist___spaceId = 'playlist.songs.artist.spaceId',
+  playlist___songs___artist___createdAt = 'playlist.songs.artist.createdAt',
+  playlist___songs___artist___updatedAt = 'playlist.songs.artist.updatedAt',
+  playlist___songs___artist___twitter = 'playlist.songs.artist.twitter',
+  playlist___songs___artist___youtube = 'playlist.songs.artist.youtube',
+  playlist___songs___artist___playlist = 'playlist.songs.artist.playlist',
+  playlist___songs___artist___song = 'playlist.songs.artist.song',
+  playlist___songs___artist___linktree = 'playlist.songs.artist.linktree',
+  playlist___songs___artist___minnakikeru = 'playlist.songs.artist.minnakikeru',
+  playlist___songs___artist___hatena = 'playlist.songs.artist.hatena',
+  playlist___songs___artist___bandcamp = 'playlist.songs.artist.bandcamp',
+  playlist___songs___artist___childrenContentfulAuthorIntroductionTextNode = 'playlist.songs.artist.childrenContentfulAuthorIntroductionTextNode',
+  playlist___songs___artist___children = 'playlist.songs.artist.children',
+  playlist___songs___sound___contentful_id = 'playlist.songs.sound.contentful_id',
+  playlist___songs___sound___id = 'playlist.songs.sound.id',
+  playlist___songs___sound___spaceId = 'playlist.songs.sound.spaceId',
+  playlist___songs___sound___createdAt = 'playlist.songs.sound.createdAt',
+  playlist___songs___sound___updatedAt = 'playlist.songs.sound.updatedAt',
+  playlist___songs___sound___title = 'playlist.songs.sound.title',
+  playlist___songs___sound___description = 'playlist.songs.sound.description',
+  playlist___songs___sound___node_locale = 'playlist.songs.sound.node_locale',
+  playlist___songs___sound___gatsbyImageData = 'playlist.songs.sound.gatsbyImageData',
+  playlist___songs___sound___children = 'playlist.songs.sound.children',
+  playlist___songs___coverart___contentful_id = 'playlist.songs.coverart.contentful_id',
+  playlist___songs___coverart___id = 'playlist.songs.coverart.id',
+  playlist___songs___coverart___spaceId = 'playlist.songs.coverart.spaceId',
+  playlist___songs___coverart___createdAt = 'playlist.songs.coverart.createdAt',
+  playlist___songs___coverart___updatedAt = 'playlist.songs.coverart.updatedAt',
+  playlist___songs___coverart___title = 'playlist.songs.coverart.title',
+  playlist___songs___coverart___description = 'playlist.songs.coverart.description',
+  playlist___songs___coverart___node_locale = 'playlist.songs.coverart.node_locale',
+  playlist___songs___coverart___gatsbyImageData = 'playlist.songs.coverart.gatsbyImageData',
+  playlist___songs___coverart___children = 'playlist.songs.coverart.children',
+  playlist___songs___playlist = 'playlist.songs.playlist',
+  playlist___songs___playlist___contentful_id = 'playlist.songs.playlist.contentful_id',
+  playlist___songs___playlist___id = 'playlist.songs.playlist.id',
+  playlist___songs___playlist___node_locale = 'playlist.songs.playlist.node_locale',
+  playlist___songs___playlist___title = 'playlist.songs.playlist.title',
+  playlist___songs___playlist___slug = 'playlist.songs.playlist.slug',
+  playlist___songs___playlist___artists = 'playlist.songs.playlist.artists',
+  playlist___songs___playlist___songs = 'playlist.songs.playlist.songs',
+  playlist___songs___playlist___spaceId = 'playlist.songs.playlist.spaceId',
+  playlist___songs___playlist___createdAt = 'playlist.songs.playlist.createdAt',
+  playlist___songs___playlist___updatedAt = 'playlist.songs.playlist.updatedAt',
+  playlist___songs___playlist___gatsbyPath = 'playlist.songs.playlist.gatsbyPath',
+  playlist___songs___playlist___children = 'playlist.songs.playlist.children',
+  playlist___songs___spaceId = 'playlist.songs.spaceId',
+  playlist___songs___createdAt = 'playlist.songs.createdAt',
+  playlist___songs___updatedAt = 'playlist.songs.updatedAt',
+  playlist___songs___sys___type = 'playlist.songs.sys.type',
+  playlist___songs___sys___revision = 'playlist.songs.sys.revision',
+  playlist___songs___parent___id = 'playlist.songs.parent.id',
+  playlist___songs___parent___children = 'playlist.songs.parent.children',
+  playlist___songs___children = 'playlist.songs.children',
+  playlist___songs___children___id = 'playlist.songs.children.id',
+  playlist___songs___children___children = 'playlist.songs.children.children',
+  playlist___songs___internal___content = 'playlist.songs.internal.content',
+  playlist___songs___internal___contentDigest = 'playlist.songs.internal.contentDigest',
+  playlist___songs___internal___description = 'playlist.songs.internal.description',
+  playlist___songs___internal___fieldOwners = 'playlist.songs.internal.fieldOwners',
+  playlist___songs___internal___ignoreType = 'playlist.songs.internal.ignoreType',
+  playlist___songs___internal___mediaType = 'playlist.songs.internal.mediaType',
+  playlist___songs___internal___owner = 'playlist.songs.internal.owner',
+  playlist___songs___internal___type = 'playlist.songs.internal.type',
+  playlist___coverart___contentful_id = 'playlist.coverart.contentful_id',
+  playlist___coverart___id = 'playlist.coverart.id',
+  playlist___coverart___spaceId = 'playlist.coverart.spaceId',
+  playlist___coverart___createdAt = 'playlist.coverart.createdAt',
+  playlist___coverart___updatedAt = 'playlist.coverart.updatedAt',
+  playlist___coverart___file___url = 'playlist.coverart.file.url',
+  playlist___coverart___file___fileName = 'playlist.coverart.file.fileName',
+  playlist___coverart___file___contentType = 'playlist.coverart.file.contentType',
+  playlist___coverart___title = 'playlist.coverart.title',
+  playlist___coverart___description = 'playlist.coverart.description',
+  playlist___coverart___node_locale = 'playlist.coverart.node_locale',
+  playlist___coverart___sys___type = 'playlist.coverart.sys.type',
+  playlist___coverart___sys___revision = 'playlist.coverart.sys.revision',
+  playlist___coverart___localFile___sourceInstanceName = 'playlist.coverart.localFile.sourceInstanceName',
+  playlist___coverart___localFile___absolutePath = 'playlist.coverart.localFile.absolutePath',
+  playlist___coverart___localFile___relativePath = 'playlist.coverart.localFile.relativePath',
+  playlist___coverart___localFile___extension = 'playlist.coverart.localFile.extension',
+  playlist___coverart___localFile___size = 'playlist.coverart.localFile.size',
+  playlist___coverart___localFile___prettySize = 'playlist.coverart.localFile.prettySize',
+  playlist___coverart___localFile___modifiedTime = 'playlist.coverart.localFile.modifiedTime',
+  playlist___coverart___localFile___accessTime = 'playlist.coverart.localFile.accessTime',
+  playlist___coverart___localFile___changeTime = 'playlist.coverart.localFile.changeTime',
+  playlist___coverart___localFile___birthTime = 'playlist.coverart.localFile.birthTime',
+  playlist___coverart___localFile___root = 'playlist.coverart.localFile.root',
+  playlist___coverart___localFile___dir = 'playlist.coverart.localFile.dir',
+  playlist___coverart___localFile___base = 'playlist.coverart.localFile.base',
+  playlist___coverart___localFile___ext = 'playlist.coverart.localFile.ext',
+  playlist___coverart___localFile___name = 'playlist.coverart.localFile.name',
+  playlist___coverart___localFile___relativeDirectory = 'playlist.coverart.localFile.relativeDirectory',
+  playlist___coverart___localFile___dev = 'playlist.coverart.localFile.dev',
+  playlist___coverart___localFile___mode = 'playlist.coverart.localFile.mode',
+  playlist___coverart___localFile___nlink = 'playlist.coverart.localFile.nlink',
+  playlist___coverart___localFile___uid = 'playlist.coverart.localFile.uid',
+  playlist___coverart___localFile___gid = 'playlist.coverart.localFile.gid',
+  playlist___coverart___localFile___rdev = 'playlist.coverart.localFile.rdev',
+  playlist___coverart___localFile___ino = 'playlist.coverart.localFile.ino',
+  playlist___coverart___localFile___atimeMs = 'playlist.coverart.localFile.atimeMs',
+  playlist___coverart___localFile___mtimeMs = 'playlist.coverart.localFile.mtimeMs',
+  playlist___coverart___localFile___ctimeMs = 'playlist.coverart.localFile.ctimeMs',
+  playlist___coverart___localFile___atime = 'playlist.coverart.localFile.atime',
+  playlist___coverart___localFile___mtime = 'playlist.coverart.localFile.mtime',
+  playlist___coverart___localFile___ctime = 'playlist.coverart.localFile.ctime',
+  playlist___coverart___localFile___birthtime = 'playlist.coverart.localFile.birthtime',
+  playlist___coverart___localFile___birthtimeMs = 'playlist.coverart.localFile.birthtimeMs',
+  playlist___coverart___localFile___blksize = 'playlist.coverart.localFile.blksize',
+  playlist___coverart___localFile___blocks = 'playlist.coverart.localFile.blocks',
+  playlist___coverart___localFile___url = 'playlist.coverart.localFile.url',
+  playlist___coverart___localFile___publicURL = 'playlist.coverart.localFile.publicURL',
+  playlist___coverart___localFile___childrenImageSharp = 'playlist.coverart.localFile.childrenImageSharp',
+  playlist___coverart___localFile___childrenPagesJson = 'playlist.coverart.localFile.childrenPagesJson',
+  playlist___coverart___localFile___id = 'playlist.coverart.localFile.id',
+  playlist___coverart___localFile___children = 'playlist.coverart.localFile.children',
+  playlist___coverart___fixed___base64 = 'playlist.coverart.fixed.base64',
+  playlist___coverart___fixed___tracedSVG = 'playlist.coverart.fixed.tracedSVG',
+  playlist___coverart___fixed___aspectRatio = 'playlist.coverart.fixed.aspectRatio',
+  playlist___coverart___fixed___width = 'playlist.coverart.fixed.width',
+  playlist___coverart___fixed___height = 'playlist.coverart.fixed.height',
+  playlist___coverart___fixed___src = 'playlist.coverart.fixed.src',
+  playlist___coverart___fixed___srcSet = 'playlist.coverart.fixed.srcSet',
+  playlist___coverart___fixed___srcWebp = 'playlist.coverart.fixed.srcWebp',
+  playlist___coverart___fixed___srcSetWebp = 'playlist.coverart.fixed.srcSetWebp',
+  playlist___coverart___fluid___base64 = 'playlist.coverart.fluid.base64',
+  playlist___coverart___fluid___tracedSVG = 'playlist.coverart.fluid.tracedSVG',
+  playlist___coverart___fluid___aspectRatio = 'playlist.coverart.fluid.aspectRatio',
+  playlist___coverart___fluid___src = 'playlist.coverart.fluid.src',
+  playlist___coverart___fluid___srcSet = 'playlist.coverart.fluid.srcSet',
+  playlist___coverart___fluid___srcWebp = 'playlist.coverart.fluid.srcWebp',
+  playlist___coverart___fluid___srcSetWebp = 'playlist.coverart.fluid.srcSetWebp',
+  playlist___coverart___fluid___sizes = 'playlist.coverart.fluid.sizes',
+  playlist___coverart___gatsbyImageData = 'playlist.coverart.gatsbyImageData',
+  playlist___coverart___resize___base64 = 'playlist.coverart.resize.base64',
+  playlist___coverart___resize___tracedSVG = 'playlist.coverart.resize.tracedSVG',
+  playlist___coverart___resize___src = 'playlist.coverart.resize.src',
+  playlist___coverart___resize___width = 'playlist.coverart.resize.width',
+  playlist___coverart___resize___height = 'playlist.coverart.resize.height',
+  playlist___coverart___resize___aspectRatio = 'playlist.coverart.resize.aspectRatio',
+  playlist___coverart___parent___id = 'playlist.coverart.parent.id',
+  playlist___coverart___parent___children = 'playlist.coverart.parent.children',
+  playlist___coverart___children = 'playlist.coverart.children',
+  playlist___coverart___children___id = 'playlist.coverart.children.id',
+  playlist___coverart___children___children = 'playlist.coverart.children.children',
+  playlist___coverart___internal___content = 'playlist.coverart.internal.content',
+  playlist___coverart___internal___contentDigest = 'playlist.coverart.internal.contentDigest',
+  playlist___coverart___internal___description = 'playlist.coverart.internal.description',
+  playlist___coverart___internal___fieldOwners = 'playlist.coverart.internal.fieldOwners',
+  playlist___coverart___internal___ignoreType = 'playlist.coverart.internal.ignoreType',
+  playlist___coverart___internal___mediaType = 'playlist.coverart.internal.mediaType',
+  playlist___coverart___internal___owner = 'playlist.coverart.internal.owner',
+  playlist___coverart___internal___type = 'playlist.coverart.internal.type',
+  playlist___spaceId = 'playlist.spaceId',
+  playlist___createdAt = 'playlist.createdAt',
+  playlist___updatedAt = 'playlist.updatedAt',
+  playlist___sys___type = 'playlist.sys.type',
+  playlist___sys___revision = 'playlist.sys.revision',
+  playlist___gatsbyPath = 'playlist.gatsbyPath',
+  playlist___parent___id = 'playlist.parent.id',
+  playlist___parent___parent___id = 'playlist.parent.parent.id',
+  playlist___parent___parent___children = 'playlist.parent.parent.children',
+  playlist___parent___children = 'playlist.parent.children',
+  playlist___parent___children___id = 'playlist.parent.children.id',
+  playlist___parent___children___children = 'playlist.parent.children.children',
+  playlist___parent___internal___content = 'playlist.parent.internal.content',
+  playlist___parent___internal___contentDigest = 'playlist.parent.internal.contentDigest',
+  playlist___parent___internal___description = 'playlist.parent.internal.description',
+  playlist___parent___internal___fieldOwners = 'playlist.parent.internal.fieldOwners',
+  playlist___parent___internal___ignoreType = 'playlist.parent.internal.ignoreType',
+  playlist___parent___internal___mediaType = 'playlist.parent.internal.mediaType',
+  playlist___parent___internal___owner = 'playlist.parent.internal.owner',
+  playlist___parent___internal___type = 'playlist.parent.internal.type',
+  playlist___children = 'playlist.children',
+  playlist___children___id = 'playlist.children.id',
+  playlist___children___parent___id = 'playlist.children.parent.id',
+  playlist___children___parent___children = 'playlist.children.parent.children',
+  playlist___children___children = 'playlist.children.children',
+  playlist___children___children___id = 'playlist.children.children.id',
+  playlist___children___children___children = 'playlist.children.children.children',
+  playlist___children___internal___content = 'playlist.children.internal.content',
+  playlist___children___internal___contentDigest = 'playlist.children.internal.contentDigest',
+  playlist___children___internal___description = 'playlist.children.internal.description',
+  playlist___children___internal___fieldOwners = 'playlist.children.internal.fieldOwners',
+  playlist___children___internal___ignoreType = 'playlist.children.internal.ignoreType',
+  playlist___children___internal___mediaType = 'playlist.children.internal.mediaType',
+  playlist___children___internal___owner = 'playlist.children.internal.owner',
+  playlist___children___internal___type = 'playlist.children.internal.type',
+  playlist___internal___content = 'playlist.internal.content',
+  playlist___internal___contentDigest = 'playlist.internal.contentDigest',
+  playlist___internal___description = 'playlist.internal.description',
+  playlist___internal___fieldOwners = 'playlist.internal.fieldOwners',
+  playlist___internal___ignoreType = 'playlist.internal.ignoreType',
+  playlist___internal___mediaType = 'playlist.internal.mediaType',
+  playlist___internal___owner = 'playlist.internal.owner',
+  playlist___internal___type = 'playlist.internal.type',
+  spaceId = 'spaceId',
+  createdAt = 'createdAt',
+  updatedAt = 'updatedAt',
+  sys___type = 'sys.type',
+  sys___revision = 'sys.revision',
+  sys___contentType___sys___type = 'sys.contentType.sys.type',
+  sys___contentType___sys___linkType = 'sys.contentType.sys.linkType',
+  sys___contentType___sys___id = 'sys.contentType.sys.id',
+  parent___id = 'parent.id',
+  parent___parent___id = 'parent.parent.id',
+  parent___parent___parent___id = 'parent.parent.parent.id',
+  parent___parent___parent___children = 'parent.parent.parent.children',
+  parent___parent___children = 'parent.parent.children',
+  parent___parent___children___id = 'parent.parent.children.id',
+  parent___parent___children___children = 'parent.parent.children.children',
+  parent___parent___internal___content = 'parent.parent.internal.content',
+  parent___parent___internal___contentDigest = 'parent.parent.internal.contentDigest',
+  parent___parent___internal___description = 'parent.parent.internal.description',
+  parent___parent___internal___fieldOwners = 'parent.parent.internal.fieldOwners',
+  parent___parent___internal___ignoreType = 'parent.parent.internal.ignoreType',
+  parent___parent___internal___mediaType = 'parent.parent.internal.mediaType',
+  parent___parent___internal___owner = 'parent.parent.internal.owner',
+  parent___parent___internal___type = 'parent.parent.internal.type',
+  parent___children = 'parent.children',
+  parent___children___id = 'parent.children.id',
+  parent___children___parent___id = 'parent.children.parent.id',
+  parent___children___parent___children = 'parent.children.parent.children',
+  parent___children___children = 'parent.children.children',
+  parent___children___children___id = 'parent.children.children.id',
+  parent___children___children___children = 'parent.children.children.children',
+  parent___children___internal___content = 'parent.children.internal.content',
+  parent___children___internal___contentDigest = 'parent.children.internal.contentDigest',
+  parent___children___internal___description = 'parent.children.internal.description',
+  parent___children___internal___fieldOwners = 'parent.children.internal.fieldOwners',
+  parent___children___internal___ignoreType = 'parent.children.internal.ignoreType',
+  parent___children___internal___mediaType = 'parent.children.internal.mediaType',
+  parent___children___internal___owner = 'parent.children.internal.owner',
+  parent___children___internal___type = 'parent.children.internal.type',
+  parent___internal___content = 'parent.internal.content',
+  parent___internal___contentDigest = 'parent.internal.contentDigest',
+  parent___internal___description = 'parent.internal.description',
+  parent___internal___fieldOwners = 'parent.internal.fieldOwners',
+  parent___internal___ignoreType = 'parent.internal.ignoreType',
+  parent___internal___mediaType = 'parent.internal.mediaType',
+  parent___internal___owner = 'parent.internal.owner',
+  parent___internal___type = 'parent.internal.type',
+  children = 'children',
+  children___id = 'children.id',
+  children___parent___id = 'children.parent.id',
+  children___parent___parent___id = 'children.parent.parent.id',
+  children___parent___parent___children = 'children.parent.parent.children',
+  children___parent___children = 'children.parent.children',
+  children___parent___children___id = 'children.parent.children.id',
+  children___parent___children___children = 'children.parent.children.children',
+  children___parent___internal___content = 'children.parent.internal.content',
+  children___parent___internal___contentDigest = 'children.parent.internal.contentDigest',
+  children___parent___internal___description = 'children.parent.internal.description',
+  children___parent___internal___fieldOwners = 'children.parent.internal.fieldOwners',
+  children___parent___internal___ignoreType = 'children.parent.internal.ignoreType',
+  children___parent___internal___mediaType = 'children.parent.internal.mediaType',
+  children___parent___internal___owner = 'children.parent.internal.owner',
+  children___parent___internal___type = 'children.parent.internal.type',
+  children___children = 'children.children',
+  children___children___id = 'children.children.id',
+  children___children___parent___id = 'children.children.parent.id',
+  children___children___parent___children = 'children.children.parent.children',
+  children___children___children = 'children.children.children',
+  children___children___children___id = 'children.children.children.id',
+  children___children___children___children = 'children.children.children.children',
+  children___children___internal___content = 'children.children.internal.content',
+  children___children___internal___contentDigest = 'children.children.internal.contentDigest',
+  children___children___internal___description = 'children.children.internal.description',
+  children___children___internal___fieldOwners = 'children.children.internal.fieldOwners',
+  children___children___internal___ignoreType = 'children.children.internal.ignoreType',
+  children___children___internal___mediaType = 'children.children.internal.mediaType',
+  children___children___internal___owner = 'children.children.internal.owner',
+  children___children___internal___type = 'children.children.internal.type',
+  children___internal___content = 'children.internal.content',
+  children___internal___contentDigest = 'children.internal.contentDigest',
+  children___internal___description = 'children.internal.description',
+  children___internal___fieldOwners = 'children.internal.fieldOwners',
+  children___internal___ignoreType = 'children.internal.ignoreType',
+  children___internal___mediaType = 'children.internal.mediaType',
+  children___internal___owner = 'children.internal.owner',
+  children___internal___type = 'children.internal.type',
+  internal___content = 'internal.content',
+  internal___contentDigest = 'internal.contentDigest',
+  internal___description = 'internal.description',
+  internal___fieldOwners = 'internal.fieldOwners',
+  internal___ignoreType = 'internal.ignoreType',
+  internal___mediaType = 'internal.mediaType',
+  internal___owner = 'internal.owner',
+  internal___type = 'internal.type'
+}
+
+type ContentfulSongGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<ContentfulSongEdge>;
+  readonly nodes: ReadonlyArray<ContentfulSong>;
+  readonly pageInfo: PageInfo;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+type ContentfulSongSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<ContentfulSongFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
@@ -6872,11 +10099,11 @@ enum PagesJsonFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   path = 'path',
+  catchphrase = 'catchphrase',
   introduction = 'introduction',
   image = 'image',
   displayTitle = 'displayTitle',
-  title = 'title',
-  catchphrase = 'catchphrase'
+  title = 'title'
 }
 
 type PagesJsonGroupConnection = {
@@ -7032,153 +10259,6 @@ type SiteBuildMetadataSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type SitePluginPluginOptionsFilterInput = {
-  readonly plugins: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
-  readonly displayName: Maybe<BooleanQueryOperatorInput>;
-  readonly fileName: Maybe<BooleanQueryOperatorInput>;
-  readonly minify: Maybe<BooleanQueryOperatorInput>;
-  readonly namespace: Maybe<StringQueryOperatorInput>;
-  readonly transpileTemplateLiterals: Maybe<BooleanQueryOperatorInput>;
-  readonly pure: Maybe<BooleanQueryOperatorInput>;
-  readonly base64Width: Maybe<IntQueryOperatorInput>;
-  readonly stripMetadata: Maybe<BooleanQueryOperatorInput>;
-  readonly defaultQuality: Maybe<IntQueryOperatorInput>;
-  readonly failOnError: Maybe<BooleanQueryOperatorInput>;
-  readonly environment: Maybe<StringQueryOperatorInput>;
-  readonly enabled: Maybe<BooleanQueryOperatorInput>;
-  readonly includeInDevelopment: Maybe<BooleanQueryOperatorInput>;
-  readonly delayTimeout: Maybe<IntQueryOperatorInput>;
-  readonly path: Maybe<StringQueryOperatorInput>;
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly spaceId: Maybe<StringQueryOperatorInput>;
-  readonly accessToken: Maybe<StringQueryOperatorInput>;
-  readonly downloadLocal: Maybe<BooleanQueryOperatorInput>;
-  readonly host: Maybe<StringQueryOperatorInput>;
-  readonly forceFullSync: Maybe<BooleanQueryOperatorInput>;
-  readonly pageLimit: Maybe<IntQueryOperatorInput>;
-  readonly assetDownloadWorkers: Maybe<IntQueryOperatorInput>;
-  readonly useNameForId: Maybe<BooleanQueryOperatorInput>;
-  readonly extensions: Maybe<StringQueryOperatorInput>;
-  readonly lessBabel: Maybe<BooleanQueryOperatorInput>;
-  readonly mediaTypes: Maybe<StringQueryOperatorInput>;
-  readonly root: Maybe<StringQueryOperatorInput>;
-  readonly background: Maybe<StringQueryOperatorInput>;
-  readonly output: Maybe<StringQueryOperatorInput>;
-  readonly createLinkInHead: Maybe<BooleanQueryOperatorInput>;
-  readonly short_name: Maybe<StringQueryOperatorInput>;
-  readonly start_url: Maybe<StringQueryOperatorInput>;
-  readonly background_color: Maybe<StringQueryOperatorInput>;
-  readonly theme_color: Maybe<StringQueryOperatorInput>;
-  readonly display: Maybe<StringQueryOperatorInput>;
-  readonly icon: Maybe<StringQueryOperatorInput>;
-  readonly legacy: Maybe<BooleanQueryOperatorInput>;
-  readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
-  readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
-  readonly crossOrigin: Maybe<StringQueryOperatorInput>;
-  readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
-  readonly cacheDigest: Maybe<StringQueryOperatorInput>;
-  readonly titleTemplate: Maybe<StringQueryOperatorInput>;
-  readonly language: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly openGraph: Maybe<SitePluginPluginOptionsOpenGraphFilterInput>;
-  readonly twitter: Maybe<SitePluginPluginOptionsTwitterFilterInput>;
-  readonly facebook: Maybe<SitePluginPluginOptionsFacebookFilterInput>;
-  readonly color: Maybe<StringQueryOperatorInput>;
-  readonly precachePages: Maybe<StringQueryOperatorInput>;
-  readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
-  readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
-  readonly isTSX: Maybe<BooleanQueryOperatorInput>;
-  readonly jsxPragma: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsPluginsFilterListInput = {
-  readonly elemMatch: Maybe<SitePluginPluginOptionsPluginsFilterInput>;
-};
-
-type SitePluginPluginOptionsPluginsFilterInput = {
-  readonly resolve: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly version: Maybe<StringQueryOperatorInput>;
-  readonly pluginOptions: Maybe<SitePluginPluginOptionsPluginsPluginOptionsFilterInput>;
-  readonly browserAPIs: Maybe<StringQueryOperatorInput>;
-  readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsPluginsPluginOptionsFilterInput = {
-  readonly background: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsOpenGraphFilterInput = {
-  readonly title: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly type: Maybe<StringQueryOperatorInput>;
-  readonly locale: Maybe<StringQueryOperatorInput>;
-  readonly url: Maybe<StringQueryOperatorInput>;
-  readonly site_name: Maybe<StringQueryOperatorInput>;
-  readonly images: Maybe<SitePluginPluginOptionsOpenGraphImagesFilterListInput>;
-};
-
-type SitePluginPluginOptionsOpenGraphImagesFilterListInput = {
-  readonly elemMatch: Maybe<SitePluginPluginOptionsOpenGraphImagesFilterInput>;
-};
-
-type SitePluginPluginOptionsOpenGraphImagesFilterInput = {
-  readonly url: Maybe<StringQueryOperatorInput>;
-  readonly width: Maybe<IntQueryOperatorInput>;
-  readonly height: Maybe<IntQueryOperatorInput>;
-  readonly alt: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsTwitterFilterInput = {
-  readonly handle: Maybe<StringQueryOperatorInput>;
-  readonly site: Maybe<StringQueryOperatorInput>;
-  readonly cardType: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPluginOptionsFacebookFilterInput = {
-  readonly appId: Maybe<FloatQueryOperatorInput>;
-};
-
-type SitePluginPackageJsonFilterInput = {
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
-  readonly version: Maybe<StringQueryOperatorInput>;
-  readonly main: Maybe<StringQueryOperatorInput>;
-  readonly license: Maybe<StringQueryOperatorInput>;
-  readonly dependencies: Maybe<SitePluginPackageJsonDependenciesFilterListInput>;
-  readonly devDependencies: Maybe<SitePluginPackageJsonDevDependenciesFilterListInput>;
-  readonly peerDependencies: Maybe<SitePluginPackageJsonPeerDependenciesFilterListInput>;
-  readonly keywords: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPackageJsonDependenciesFilterListInput = {
-  readonly elemMatch: Maybe<SitePluginPackageJsonDependenciesFilterInput>;
-};
-
-type SitePluginPackageJsonDependenciesFilterInput = {
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly version: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPackageJsonDevDependenciesFilterListInput = {
-  readonly elemMatch: Maybe<SitePluginPackageJsonDevDependenciesFilterInput>;
-};
-
-type SitePluginPackageJsonDevDependenciesFilterInput = {
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly version: Maybe<StringQueryOperatorInput>;
-};
-
-type SitePluginPackageJsonPeerDependenciesFilterListInput = {
-  readonly elemMatch: Maybe<SitePluginPackageJsonPeerDependenciesFilterInput>;
-};
-
-type SitePluginPackageJsonPeerDependenciesFilterInput = {
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly version: Maybe<StringQueryOperatorInput>;
-};
-
 type SitePluginConnection = {
   readonly totalCount: Scalars['Int'];
   readonly edges: ReadonlyArray<SitePluginEdge>;
@@ -7315,7 +10395,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___defaultQuality = 'pluginOptions.defaultQuality',
   pluginOptions___failOnError = 'pluginOptions.failOnError',
   pluginOptions___environment = 'pluginOptions.environment',
-  pluginOptions___enabled = 'pluginOptions.enabled',
+  pluginOptions___tracesSampleRate = 'pluginOptions.tracesSampleRate',
   pluginOptions___includeInDevelopment = 'pluginOptions.includeInDevelopment',
   pluginOptions___delayTimeout = 'pluginOptions.delayTimeout',
   pluginOptions___path = 'pluginOptions.path',
@@ -7401,22 +10481,6 @@ type SitePluginGroupConnection = {
   readonly fieldValue: Maybe<Scalars['String']>;
 };
 
-type SitePluginFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-  readonly resolve: Maybe<StringQueryOperatorInput>;
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly version: Maybe<StringQueryOperatorInput>;
-  readonly pluginOptions: Maybe<SitePluginPluginOptionsFilterInput>;
-  readonly nodeAPIs: Maybe<StringQueryOperatorInput>;
-  readonly browserAPIs: Maybe<StringQueryOperatorInput>;
-  readonly ssrAPIs: Maybe<StringQueryOperatorInput>;
-  readonly pluginFilepath: Maybe<StringQueryOperatorInput>;
-  readonly packageJson: Maybe<SitePluginPackageJsonFilterInput>;
-};
-
 type SitePluginSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<SitePluginFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
@@ -7483,21 +10547,38 @@ type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphrase' | 'introduction'>>, readonly genki: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly posts: { readonly nodes: ReadonlyArray<(
       Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
       & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )> } };
+    )> }, readonly playlists: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
+        & { albumPath: ContentfulPlaylist['gatsbyPath'] }
+        & { readonly artists: Maybe<ReadonlyArray<Maybe<Pick<ContentfulAuthor, 'name'>>>>, readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
+      ) }> } };
 
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+type PlaylistIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type usersKojighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+type PlaylistIndexPageQuery = { readonly playlists: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
+        & { albumPath: ContentfulPlaylist['gatsbyPath'] }
+        & { readonly artists: Maybe<ReadonlyArray<Maybe<Pick<ContentfulAuthor, 'name'>>>>, readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
+      ) }> } };
+
+type PlaylistQueryVariables = Exact<{
+  id: Maybe<Scalars['String']>;
+}>;
+
+
+type PlaylistQuery = { readonly contentfulPlaylist: Maybe<(
+    Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
+    & { readonly songs: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulSong, 'title' | 'duration'>
+      & { readonly coverart: Maybe<(
+        Pick<ContentfulAsset, 'gatsbyImageData'>
+        & { readonly fixed: Maybe<Pick<ContentfulFixed, 'srcSet'>> }
+      )>, readonly sound: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )>>>, readonly artists: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulAuthor, 'name'>
+      & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
+    )>>> }
+  )> };
 
 }

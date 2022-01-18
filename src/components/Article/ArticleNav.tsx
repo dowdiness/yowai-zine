@@ -14,7 +14,7 @@ const ArticleNav: React.FCX<ArticleNavProps> = ({ className, previousLink, previ
       <ul
         className="flex flex-col items-center justify-between space-y-8 list-none md:space-y-0 md:flex-row"
       >
-        <li className="w-full">
+        <li key="prev-link" className="w-full">
           {previousLink && previousTitle && (
             <ArticleLink
               to={previousLink}
@@ -23,7 +23,7 @@ const ArticleNav: React.FCX<ArticleNavProps> = ({ className, previousLink, previ
             />
           )}
         </li>
-        <li className="w-full text-right">
+        <li key="next-link" className="w-full text-right">
           {nextLink && nextTitle && (
             <ArticleLink
               to={nextLink}

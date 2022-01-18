@@ -6,13 +6,13 @@ import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import {
-  ArticleHeader,
   ArticleLink,
   ArticleNav,
   ArticleSideHeader,
   ArticleShareButton,
   ArticleSocialAccounts
 } from 'src/components/Article'
+import SectionHeader from 'src/components/Element/SectionHeader'
 //Hooks
 import useTategaki from 'src/hooks/useTategaki'
 
@@ -92,7 +92,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
             title='目次に戻る'
             className="mt-12"
           />
-          <ArticleHeader title={post?.title} author={author?.name} />
+          <SectionHeader title={post?.title} author={author?.name} />
           <div className="flex p-4 pl-2 sm:p-6 sm:pl-4 md:pl-6 md:p-10 neumorphism-normal rounded-2xl">
             <ArticleSideHeader
               className="sticky w-full h-fit-content top-6"

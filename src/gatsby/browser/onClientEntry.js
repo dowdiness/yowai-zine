@@ -1,13 +1,12 @@
-import smoothscroll from 'smoothscroll-polyfill';
-
 async function loadPolyfills() {
+  const smoothscroll = await import('smoothscroll-polyfill')
+  smoothscroll.polyfill()
   if (typeof window.IntersectionObserver === 'undefined') {
-    await import('intersection-observer');
+    await import('intersection-observer')
   }
 }
 
 const onClientEntry = () => {
-  smoothscroll.polyfill()
   loadPolyfills()
 }
 

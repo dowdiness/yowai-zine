@@ -10,11 +10,11 @@
   &::before {
     content: "";
     position: absolute;
-    top: -24px;
-    left: -24px;
+    top: -96px;
+    left: -96px;
     display: block;
-    width: 48px;
-    height:48px;
+    width: 192px;
+    height: 192px;
     transform: scale(0.2);
     background: theme('colors.yowai');
     border-radius: 50%;
