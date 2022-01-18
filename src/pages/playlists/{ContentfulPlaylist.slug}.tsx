@@ -156,14 +156,14 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             alt="Zine"
             className="object-scale-down w-full h-full mb-12 md:w-64"
           />
-          <div className="flex flex-col justify-start mb-8 space-y-4 md:ml-12">
+          <div className="flex flex-col justify-start w-full mb-8 space-y-4 md:ml-12">
             {playlist?.artists?.map((artist, _) => {
               return (
                   <Linkify
                     className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg"
                     tagName="p"
                     options={{
-                      className: "transition-colors hover:text-slate-500",
+                      className: "transition-colors break-all hover:text-slate-500",
                       target: "_blank",
                       rel: 'noopener'
                     }}
