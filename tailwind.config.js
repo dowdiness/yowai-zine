@@ -6,13 +6,7 @@ module.exports = {
   corePlugins: {
     container: false,
   },
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-    defaultLineHeights: true,
-    standardFontWeights: true,
-  },
-  purge: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
+  content: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
   theme: {
     fontFamily: {
       sans: ["'Noto Sans JP'", "Jost", ...defaultTheme.fontFamily.sans],
@@ -105,7 +99,7 @@ module.exports = {
         screen: '0 calc(50% - 50vw)',
       },
       colors: {
-        gray: colors.trueGray,
+        gray: colors.neutral,
         neumorphism: "#e6e7ee",
         yowai: "#519fed",
       },
@@ -116,11 +110,6 @@ module.exports = {
         '-10': '-10',
       },
     },
-  },
-  variants: {
-    extend: {
-      animation: ['hover', 'focus'],
-    }
   },
   plugins: [
     plugin(function ({ addUtilities, addComponents }) {
@@ -184,7 +173,7 @@ module.exports = {
             fontWeight: '500',
           },
           strong: {
-            color: colors.blueGray[900],
+            color: colors.slate[900],
             fontWeight: '600',
           },
           div: {
@@ -198,7 +187,7 @@ module.exports = {
             width: "100%",
           },
           "> h1": {
-            color: colors.trueGray[900],
+            color: colors.neutral[900],
             fontSize: defaultTheme.fontSize["5xl"],
             fontWeight: '800',
             marginLeft: "2rem",
@@ -206,7 +195,7 @@ module.exports = {
             lineHeight: "1.1",
           },
           "> h2": {
-            color: colors.trueGray[900],
+            color: colors.neutral[900],
             fontSize: defaultTheme.fontSize["4xl"],
             fontWeight: '700',
             marginLeft: "1.75rem",
@@ -214,7 +203,7 @@ module.exports = {
             lineHeight: "2.5rem",
           },
           "> h3": {
-            color: colors.trueGray[800],
+            color: colors.neutral[800],
             fontSize: defaultTheme.fontSize["3xl"],
             fontWeight: '600',
             marginLeft: "1.5rem",
@@ -222,7 +211,7 @@ module.exports = {
             lineHeight: "2.25rem",
           },
           "> h4": {
-            color: colors.trueGray[800],
+            color: colors.neutral[800],
             fontSize: defaultTheme.fontSize["2xl"],
             fontWeight: '600',
             marginLeft: "1.25rem",

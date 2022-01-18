@@ -9,6 +9,7 @@ import SectionHeader from 'src/components/Element/SectionHeader'
 import AudioPlayButton from 'src/components/AudioPlayer/AudioPlayButton'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { IoTimeOutline } from "react-icons/io5"
+import Linkify from 'linkify-react'
 
 // Context
 import { AudioContext } from 'src/components/AudioPlayer/AudioProvider'
@@ -44,19 +45,19 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
 
   const normarizedSongs = songs?.map((song) => {
     const re = / +(1x,\n|1.5x,\n|2x,\n|3x)/
-    const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((src, index) => {
-      if (index % 2 !== 1 && src !== '') {
-        return true
-      }
-      return false
-    }).map((src, index) => {
-      const size = index === 0 ? 128 : index === 1 ? 128 * 1.5 : index === 2 ? 128 * 2 : 128 * 3
-      return {
-        src: `https:${src}`,
-        sizes: `${size}x${size}`,
-        type: 'image/png',
-      }
-    })
+    // const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((src, index) => {
+    //   if (index % 2 !== 1 && src !== '') {
+    //     return true
+    //   }
+    //   return false
+    // }).map((src, index) => {
+    //   const size = index === 0 ? 128 : index === 1 ? 128 * 1.5 : index === 2 ? 128 * 2 : 128 * 3
+    //   return {
+    //     src: `https:${src}`,
+    //     sizes: `${size}x${size}`,
+    //     type: 'image/png',
+    //   }
+    // })
 
     const coverArt = getImage(song?.coverart?.gatsbyImageData!)
     return {
@@ -67,7 +68,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
       slug: playlist?.slug!,
       duration: song?.duration!,
       cover: coverArt!,
-      artworks: artworksSrc!,
+      // artworks: artworksSrc!,
     }
   })
 
@@ -129,7 +130,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
           {
             position: 3,
             name: `${playlist?.title}`,
-            item: `playlist/${playlist?.slug}/`,
+            item: `playlists/${playlist?.slug}/`,
           },
         ]}
       />
@@ -153,16 +154,24 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             image={cover}
             loading="eager"
             alt="Zine"
-            className="object-scale-down w-full h-full mb-12 md:w-64 md:h-64"
+            className="object-scale-down w-full h-full mb-12 md:w-64"
           />
-          <div className="mb-8 space-y-4 md:ml-12">
-            <p className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg">
-              {playlist?.artists?.map((artist, index) => {
-                return (
-                  index === 0 ? <span>{artist?.introduction?.introduction}</span> : <span>, {artist?.introduction?.introduction}</span>
-                )
-              })}
-            </p>
+          <div className="flex flex-col justify-start w-full mb-8 space-y-4 md:ml-12">
+            {playlist?.artists?.map((artist, _) => {
+              return (
+                  <Linkify
+                    className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg"
+                    tagName="p"
+                    options={{
+                      className: "transition-colors break-all hover:text-slate-500",
+                      target: "_blank",
+                      rel: 'noopener'
+                    }}
+                  >
+                    {artist?.introduction?.introduction}
+                  </Linkify>
+              )
+            })}
           </div>
         </div>
         <ul className="mt-8 space-y-2">
@@ -250,9 +259,6 @@ export const pageQuery = graphql`
         duration
         coverart {
           gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
-          fixed(height: 128, toFormat: PNG) {
-            srcSet
-          }
         }
         sound {
           localFile {

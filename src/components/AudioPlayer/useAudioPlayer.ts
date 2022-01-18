@@ -45,7 +45,7 @@ function useAudioPlayer() {
         title: audioTracks[0].title,
         artist: audioTracks[0].artist,
         album: audioTracks[0].album,
-        artwork: audioTracks[0].artworks
+        artwork: [{ src: '' }]
       })
     }
     updatePositionState()

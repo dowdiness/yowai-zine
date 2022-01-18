@@ -29,7 +29,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistIndexPageQuery>> = ({
           {
             position: 2,
             name: 'プレイリスト',
-            item: `playlist`,
+            item: `playlists`,
           },
         ]}
       />
@@ -38,7 +38,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistIndexPageQuery>> = ({
         title='トップページに戻る'
         className="mt-12 text-left"
       />
-      <SectionHeader title="Playlist" author="プレイリスト" />
+      <SectionHeader title="Playlists" author="プレイリスト" />
       <AudioLists
         playlists={playlists}
       />
@@ -62,7 +62,7 @@ export const pageQuery = graphql`
           coverart {
             gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
           }
-          albumPath: gatsbyPath(filePath: "/playlist/{ContentfulPlaylist.slug}")
+          albumPath: gatsbyPath(filePath: "/playlists/{ContentfulPlaylist.slug}")
         }
       }
     }

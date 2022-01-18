@@ -6,7 +6,7 @@ import 'src/styles/button.css'
 const NotFoundPage: React.FC<PageProps> = ({}) => {
   return (
     <Div100vh className="fixed inset-0 z-50 flex flex-col items-center justify-center w-screen space-y-24 cursor-auto bg-neumorphism">
-      <h1 className="text-4xl cursor-auto sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl outline">404: Not Found</h1>
+      <h1 className="text-4xl cursor-auto sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl outline-text">404: Not Found</h1>
       <h2 className="text-lg cursor-auto sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">ここには何もありません。<br className="md:hidden" />トップページに戻るには</h2>
       <Link
         to='/'

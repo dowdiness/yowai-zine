@@ -89,7 +89,7 @@ const AudioModal = () => {
             size={24}
           />
         </button>
-        <Link to={`/playlist/${tracks[0].slug}`}>
+        <Link to={`/playlists/${tracks[0].slug}`}>
           <h2 className="text-lg font-medium line-clamp-1">{tracks[0].album}</h2>
         </Link>
         <div className="w-9 h-9" />

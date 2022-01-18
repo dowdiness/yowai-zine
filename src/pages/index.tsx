@@ -124,7 +124,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           />
         </div>
         {/* プレイリスト */}
-        <SectionHeader title="Playlist" author="プレイリスト" />
+        <SectionHeader title="Playlists" author="プレイリスト" />
         <AudioLists
           playlists={playlists}
         />
@@ -188,7 +188,7 @@ export const pageQuery = graphql`
           coverart {
             gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
           }
-          albumPath: gatsbyPath(filePath: "/playlist/{ContentfulPlaylist.slug}")
+          albumPath: gatsbyPath(filePath: "/playlists/{ContentfulPlaylist.slug}")
         }
       }
     }

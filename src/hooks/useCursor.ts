@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import useIsomorphicLayoutEffect from 'src/hooks/useIsomorphicLayoutEffect'
 import { gsap } from 'gsap'
 import { lerp, getMousePos, getSiblings } from 'src/utils'
-import { emitter, InViewPayload, InViewEvent } from 'src/utils/emitter'
+import { emitter } from 'src/utils/emitter'
 
 let mouse = { x: 0, y: 0 }
 
@@ -41,10 +41,10 @@ class Cursor {
     }
     window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
     window.addEventListener('mousemove', this.onMouseMoveEv)
-    emitter.on<InViewPayload>(InViewEvent, ev => this.onScaleMouse(ev!.ref))
+    emitter.on('in-view-event', ev => this.onScaleMouse(ev!.ref))
   }
 
-  onScaleMouse(ref: React.MutableRefObject<HTMLHeadingElement>) {
+  onScaleMouse(ref: React.MutableRefObject<HTMLElement>) {
     // If I am hovering on the item for on page load I want to scale the cursor media
     if (ref.current) {
       if (ref.current.matches(':hover')) {
