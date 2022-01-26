@@ -1,5 +1,8 @@
 # Change Log
 
+## [2022-01-25](https://twitter.com/yowaizine/status/1485960498478649348?s=20)
+KOME 天空の音源の公開をしました
+
 ## [2022-01-18](https://twitter.com/yowaizine/status/1483417558350897159?s=20)
 
 オーディオ機能を付けてピチピチニートまんじゅうの音源の公開をしました
