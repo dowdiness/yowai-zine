@@ -7,6 +7,16 @@ module.exports = {
     container: false,
   },
   content: ["./content/**/*.md", "./src/**/*.js", "./src/**/*.jsx", "./src/**/*.ts", "./src/**/*.tsx"],
+  safelist: [
+    'horizontal-tb',
+    'vertical-rl',
+    'vertical-lr',
+    'text-character',
+    'text-upright',
+    'text-sideways',
+    'text-tcy',
+    'shape-outside',
+  ],
   theme: {
     fontFamily: {
       sans: ["'Noto Sans JP'", "Jost", ...defaultTheme.fontFamily.sans],
