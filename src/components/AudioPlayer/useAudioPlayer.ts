@@ -105,15 +105,17 @@ function useAudioPlayer() {
         }
       })
       navigator.mediaSession.setActionHandler('seekto', (details) => {
-        if (details.fastSeek && 'fastSeek' in audioRef?.current!) {
-          // Only use fast seek if supported.
-          audioRef?.current?.fastSeek(details.seekTime)
-          setTrackProgress(audioRef?.current?.currentTime!)
-          return
-        } else if (audioRef?.current) {
-          audioRef.current.currentTime = details.seekTime
-          setTrackProgress(audioRef.current.currentTime)
-          updatePositionState()
+        if (details.seekTime) {
+          if (details.fastSeek && 'fastSeek' in audioRef?.current!) {
+            // Only use fast seek if supported.
+            audioRef?.current?.fastSeek(details.seekTime)
+            setTrackProgress(audioRef?.current?.currentTime!)
+            return
+          } else if (audioRef?.current) {
+            audioRef.current.currentTime = details.seekTime
+            setTrackProgress(audioRef.current.currentTime)
+            updatePositionState()
+          }
         }
       })
       navigator.mediaSession.setActionHandler('previoustrack', () => toPrevTrack(audioRef.current))
