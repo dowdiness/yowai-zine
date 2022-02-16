@@ -4,7 +4,8 @@ import { useAtom } from "jotai"
 import { isLoadingAtom } from 'src/atoms/track'
 import NProgress from "nprogress"
 
-export const AudioContext = createContext<React.MutableRefObject<HTMLAudioElement|null>>(null!)
+// @ts-ignore
+export const AudioContext = createContext<React.MutableRefObject<HTMLAudioElement|null>>(null)
 
 export const AudioProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading] = useAtom(isLoadingAtom)
