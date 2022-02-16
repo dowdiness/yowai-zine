@@ -7,7 +7,7 @@ import { useAtom } from "jotai"
 import { windowSize, windowSizeAtom } from "src/atoms"
 
 //Components
-import { ArticleLists } from 'src/components/Article'
+import { ArticleLists, ArticleList } from 'src/components/Article'
 import AudioLists from 'src/components/AudioPlayer/AudioLists'
 import SectionHeader from 'src/components/Element/SectionHeader'
 import { SplitTextWrap } from 'src/components/SplitText/SplitTextWrap'
@@ -123,9 +123,28 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
             className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
           />
         </div>
+        {/* コミュニティ */}
+        <SectionHeader title="Community" author="コミュニティ" />
+        <ArticleList
+          index={-1}
+          to={`/about/`}
+          text="About"
+          linkText="弱いzineについて"
+          useCursor={false}
+          isNew={false}
+        />
+        <ArticleList
+          index={-1}
+          to={`/discord/`}
+          text="Discord"
+          linkText="ディスコード"
+          useCursor={false}
+          isNew={false}
+        />
         {/* プレイリスト */}
         <SectionHeader title="Playlists" author="プレイリスト" />
         <AudioLists
+          //@ts-ignore
           playlists={playlists}
         />
         {/* ギャラリー */}
