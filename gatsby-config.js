@@ -45,7 +45,6 @@ module.exports = {
     `gatsby-plugin-loadable-components-ssr`, //https://github.com/hector-del-rio/gatsby-plugin-loadable-components-ssr
     `gatsby-plugin-root-import`,
     `gatsby-plugin-postcss`,
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     {
