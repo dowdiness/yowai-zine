@@ -129,7 +129,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           index={-1}
           to={`/about/`}
           text="About"
-          linkText="弱いzineについて"
+          linkText="弱いzineって？"
           useCursor={false}
           isNew={false}
         />
@@ -137,7 +137,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           index={-1}
           to={`/discord/`}
           text="Discord"
-          linkText="ディスコード"
+          linkText="ディスコードについて"
           useCursor={false}
           isNew={false}
         />
