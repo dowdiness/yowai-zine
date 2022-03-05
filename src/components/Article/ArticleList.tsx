@@ -29,6 +29,9 @@ const ArticleList: React.FCX<ArticleListProps> = ({ index, to, text, linkText, c
     if (isClient && useCursor && zoomRef) {
       emitter.emit('in-view-event', {ref: zoomRef })
     }
+    if (isClient && !useCursor && zoomRef) {
+      emitter.emit('cursor-event', {ref: zoomRef })
+    }
   }, [inView, zoomRef])
 
   if (useCursor) {
