@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
@@ -22,6 +22,13 @@ const HorizontalArticleTemplate: React.FC<PageProps<
   const { previous, next } = data
   const { content, images, featuredImage, author } = post!
   const articlesIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
+  const articleRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (articleRef.current && content?.childMarkdownRemark?.html) {
+      articleRef.current.innerHTML = content.childMarkdownRemark.html
+    }
+  }, [content?.childMarkdownRemark?.html])
 
   const imageURLs = images?.map((image) => {
     return image?.localFile?.publicURL
@@ -97,17 +104,12 @@ const HorizontalArticleTemplate: React.FC<PageProps<
               author={author?.name}
             />
           )}
-          {content?.childMarkdownRemark?.html
-            ? <section
-                className={`${post?.align ? "text-left" : "text-center"} font-serif prose main-article-width sm:prose-lg md:prose-xl text-character tracking-widest [&_p]:whitespace-pre-line`}
-                dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }}
-              />
-            : <section
-                className={`${post?.align ? "text-left" : "text-center"} font-serif prose main-article-width sm:prose-lg md:prose-xl text-character tracking-widest [&_p]:whitespace-pre-line`}
-              >
-                記事無し
-              </section>
-          }
+          <section
+            ref={articleRef}
+            className={`${post?.align ? "text-left" : "text-center"} font-serif prose whitespace-pre-line main-article-width sm:prose-lg md:prose-xl text-character tracking-widest`}
+          >
+            {!content?.childMarkdownRemark?.html && `記事無し`}
+          </section>
         </div>
         <footer>
           <ArticleShareButton
