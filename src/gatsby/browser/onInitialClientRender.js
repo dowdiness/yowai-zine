@@ -27,8 +27,9 @@ export default () => {
     html.removeEventListener("ontouchstart", preventScroll)
     html.removeEventListener("ontouchend", preventScroll)
       setTimeout(function() {
-      loader.style.display = "none"
+      // Remove from DOM entirely so it never reappears on page transitions
+      loader.remove()
       emitter.emit('loading-finished-event')
-    }, 1200)
-  }, 2000)
+    }, 800)
+  }, 1300)
 }
