@@ -7,7 +7,7 @@ export type FooterProps = unknown
 export const Footer: React.FCX<FooterProps> = ({ className }) => {
   return (
     <footer className={`${className}`}>
-      <div className="flex flex-col items-center space-y-8 overflow-hidden">
+      <div className="flex flex-col items-center space-y-6 sm:space-y-8 overflow-hidden">
         <Link className="" to="/">
           <StaticImage
             src="../../../content/assets/yowai-logo.png"
@@ -20,7 +20,7 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
             className="w-32 h-32 text-center transition-opacity duration-300 ease-out hover:opacity-50"
           />
         </Link>
-        <p className="mt-8 text-base italic leading-6 text-center text-gray-600">
+        <p className="mt-4 sm:mt-6 text-base italic leading-6 text-center text-gray-600">
           Don't kill. Protect your weakness.
         </p>
       </div>

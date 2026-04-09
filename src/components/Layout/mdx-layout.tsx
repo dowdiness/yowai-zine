@@ -67,7 +67,7 @@ const HorizontalArticleTemplate: React.FC<PageProps<object, PageContextProps>> =
         previousTitle={pageContext.frontmatter.prevtitle ? pageContext.frontmatter.prevtitle : undefined}
         nextLink={pageContext.frontmatter.nextlink ? `/${pageContext.frontmatter.nextlink}` : undefined}
         nextTitle={pageContext.frontmatter.nexttitle ? pageContext.frontmatter.nexttitle : undefined}
-        className="mb-12"
+        className="mt-12 mb-16"
       />
     </div>
   )

@@ -116,7 +116,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
               articleUrl={`${siteUrl}/articles/${post?.slug}/` || siteUrl!}
               articleDescription={content?.childMarkdownRemark?.excerpt!}
             />
-            <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
+            <div className="p-4 mt-12 sm:mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
               <Linkify
                 as="p"
                 className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl"
@@ -146,7 +146,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
           previousTitle={previous ? previous.title : undefined}
           nextLink={next ? `/articles/${next.slug}/` : undefined}
           nextTitle={next ? next.title : undefined}
-          className="mb-12"
+          className="mt-12 mb-16"
         />
       </div>
     </div>

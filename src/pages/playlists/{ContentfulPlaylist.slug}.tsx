@@ -171,7 +171,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             ))}
           </div>
         </div>
-        <ul className="mt-8 space-y-2">
+        <ul className="mt-12 space-y-2">
           {normarizedSongs?.map((track, index) => {
             return (
               <React.Fragment key={`track-${track.title}-${index}`}>
