@@ -1,9 +1,6 @@
 import React from 'react'
 import { graphql, PageProps, Link } from 'gatsby'
 
-//Hooks
-// import useSkew from 'src/hooks/useSkew'
-
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"

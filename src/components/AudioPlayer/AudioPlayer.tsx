@@ -19,8 +19,6 @@ import {
   isAudioModalOpenAtom,
 } from 'src/atoms/ui'
 
-// import { RiPlayList2Line } from "react-icons/ri"
-
 // Utils
 import { displayTime } from './utils'
 import { stopBodyScrolling, restartBodyScrolling } from 'src/utils'

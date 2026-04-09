@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useCallback } from 'react'
-import Header from './Header'
 import Footer from './Footer'
 import { AudioProvider } from 'src/components/AudioPlayer/AudioProvider'
 
@@ -67,7 +66,6 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
       <div
         className="container use-cursor-none"
       >
-        {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
         <AudioProvider>
           <main>{children}</main>
           <AudioPlayer />

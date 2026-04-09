@@ -44,21 +44,6 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   const cover = getImage(songs[0].coverart)!
 
   const normarizedSongs = songs?.map((song) => {
-    const re = / +(1x,\n|1.5x,\n|2x,\n|3x)/
-    // const artworksSrc = song?.coverart?.fixed?.srcSet.split(re).filter((src, index) => {
-    //   if (index % 2 !== 1 && src !== '') {
-    //     return true
-    //   }
-    //   return false
-    // }).map((src, index) => {
-    //   const size = index === 0 ? 128 : index === 1 ? 128 * 1.5 : index === 2 ? 128 * 2 : 128 * 3
-    //   return {
-    //     src: `https:${src}`,
-    //     sizes: `${size}x${size}`,
-    //     type: 'image/png',
-    //   }
-    // })
-
     const coverArt = getImage(song?.coverart?.gatsbyImageData!)
     return {
       audioSrc: song?.sound?.localFile?.publicURL!,
