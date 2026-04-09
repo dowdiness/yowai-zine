@@ -19,8 +19,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ["'Noto Sans JP'", "Jost", ...defaultTheme.fontFamily.sans],
-      serif: ["'Noto Serif JP'", "Jost", ...defaultTheme.fontFamily.serif],
+      sans: ["'Hiragino Kaku Gothic ProN'", "'Yu Gothic'", "YuGothic", "'Noto Sans JP'", ...defaultTheme.fontFamily.sans],
+      serif: ["'Hiragino Mincho ProN'", "'Yu Mincho'", "YuMincho", "'Noto Serif JP'", ...defaultTheme.fontFamily.serif],
       mono: [...defaultTheme.fontFamily.mono],
     },
     screens: {

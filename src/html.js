@@ -63,7 +63,7 @@ export default function HTML(props) {
                 flexDirection: "column",
                 alignItems: "center",
                 marginBottom: "1.5rem",
-                fontFamily: "'Noto Sans JP', Jost, sans-serif",
+                fontFamily: "'Hiragino Kaku Gothic ProN', 'Yu Gothic', YuGothic, 'Noto Sans JP', sans-serif",
               }}
             >
               <h3

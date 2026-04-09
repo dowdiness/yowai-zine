@@ -36,7 +36,7 @@
   }
 
   body {
-    font-family: Jost, 'Noto Serif JP', serif;
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, 'Noto Serif JP', serif;
     font-feature-settings: "palt";
     @apply text-gray-900 bg-neumorphism;
   }
