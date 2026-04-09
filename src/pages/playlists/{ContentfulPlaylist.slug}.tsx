@@ -142,11 +142,9 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
       <SectionHeader
         title={playlist?.title}
         author={
-          playlist?.artists?.map((artist, index) => {
-            return (
-              index === 0 ? <span>{artist?.name}</span> : <span>, {artist?.name}</span>
-            )
-          })}
+          playlist?.artists?.map((artist, index) => (
+            <span key={artist?.name}>{index === 0 ? artist?.name : `, ${artist?.name}`}</span>
+          ))}
         />
       <section className="mt-12">
         <div className="flex flex-col items-center md:flex-row md:items-start md:justify-around">
@@ -157,9 +155,9 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             className="object-scale-down w-full h-full mb-12 md:w-64"
           />
           <div className="flex flex-col justify-start w-full mb-8 space-y-4 md:ml-12">
-            {playlist?.artists?.map((artist, _) => {
-              return (
+            {playlist?.artists?.map((artist) => (
                   <Linkify
+                    key={artist?.name}
                     className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg"
                     tagName="p"
                     options={{
@@ -170,23 +168,21 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                   >
                     {artist?.introduction?.introduction}
                   </Linkify>
-              )
-            })}
+            ))}
           </div>
         </div>
         <ul className="mt-8 space-y-2">
           {normarizedSongs?.map((track, index) => {
             return (
-              <>
+              <React.Fragment key={`track-${track.title}-${index}`}>
                 {index === 0 &&
-                  <li key="track-table-head" className="flex items-center justify-start p-2 mb-4 text-gray-600 border-b border-gray-400">
+                  <li className="flex items-center justify-start p-2 mb-4 text-gray-600 border-b border-gray-400">
                     <span className="mr-4 text-center w-7">#</span>
                     <span className="mr-4">タイトル</span>
                     <IoTimeOutline className="ml-auto" size={20}/>
                   </li>
                 }
                 <li
-                  key={`track-${track.title}-${index}`}
                   className={`
                     ${isHovers[index] || (tracks[0] ? tracks[0].audioSrc === track.audioSrc : false)
                       ? `neumorphism-normal` : ``}
@@ -225,7 +221,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                   <h3 className="text-lg font-medium line-clamp-1">{track.title}</h3>
                   <h4 className="ml-auto text-lg">{displayTime(track.duration)}</h4>
                 </li>
-              </>
+              </React.Fragment>
             )
           })}
         </ul>
