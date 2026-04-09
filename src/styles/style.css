@@ -15,9 +15,17 @@
   *,
   ::before,
   ::after {
-    box-sizing: content-box;
-    @screen sm {
-      cursor: none;
+    box-sizing: border-box;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
   }
 
@@ -140,6 +148,13 @@
 
 
   .cursor-none { cursor: none !important; }
+
+  @media (min-width: 480px) and (prefers-reduced-motion: no-preference) {
+    .use-cursor-none,
+    .use-cursor-none *:not(input):not(textarea):not(select) {
+      cursor: none;
+    }
+  }
 
   .xl-text {
     font-size: 1.25rem;

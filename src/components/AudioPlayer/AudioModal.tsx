@@ -43,6 +43,8 @@ const AudioModal = () => {
 
   const location = useLocation()
   const isReady = React.useRef(false)
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null)
+  const modalRef = React.useRef<HTMLElement>(null)
 
   React.useEffect(() => {
     if (isReady.current) {
@@ -51,6 +53,35 @@ const AudioModal = () => {
       isReady.current = true
     }
   }, [location.pathname])
+
+  // Focus management: move focus into modal on open, trap it
+  React.useEffect(() => {
+    closeButtonRef.current?.focus()
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsAudioModalOpen(false)
+        return
+      }
+      if (e.key === 'Tab' && modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last?.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first?.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   let currentPercentage = "0%"
   currentPercentage = duration
@@ -71,6 +102,10 @@ const AudioModal = () => {
 
   return (
     <motion.article
+      ref={modalRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label="オーディオプレイヤー"
       className={`flex flex-col justify-evenly fixed inset-0 z-40 h-full bg-neumorphism px-4 space-y-2`}
       initial="hidden"
       animate="show"
@@ -80,6 +115,7 @@ const AudioModal = () => {
     >
       <header className="flex items-center justify-between w-full h-12">
         <button
+          ref={closeButtonRef}
           type="button"
           className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
           onClick={() => setIsAudioModalOpen(false)}
@@ -114,12 +150,13 @@ const AudioModal = () => {
             step="1"
             min="0"
             max={duration}
+            aria-label="再生位置"
             className={AudioStyle.slider}
             onChange={(e) => setCurrentTime(parseInt(e.target.value, 10))}
             onMouseUp={() => setIsPlaying(true)}
             onKeyUp={() => setIsPlaying(true)}
           />
-          <div id="value" style={{ width: currentPercentage }} className={AudioStyle.value} />
+          <div style={{ width: currentPercentage }} className={AudioStyle.value} />
         </div>
         <div className="flex items-center justify-between w-full">
           <span className="text-sm">{displayTime(trackProgress)}</span>

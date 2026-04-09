@@ -183,12 +183,20 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                   </li>
                 }
                 <li
+                  role="button"
+                  tabIndex={0}
                   className={`
                     ${isHovers[index] || (tracks[0] ? tracks[0].audioSrc === track.audioSrc : false)
                       ? `neumorphism-normal` : ``}
-                    flex items-end justify-start p-2 rounded-3xl transition-shadow use-mouse`}
+                    flex items-end justify-start p-2 rounded-3xl transition-shadow use-mouse focus:outline-2 focus:outline-yowai`}
                   onMouseEnter={() => updateHovers(index, true)}
                   onMouseLeave={() => updateHovers(index, false)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      e.currentTarget.click()
+                    }
+                  }}
                   onClick={() => {
                     if (isLoading) return
                     if (isPlaying !== true && audio.current) {

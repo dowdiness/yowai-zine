@@ -101,8 +101,17 @@ const AudioPlayer: React.FC = () => {
       {isAudioMiniPlayerOpen ? isAudioModalOpen
         ? <AudioModal />
         : <motion.div
+          role={isPc ? undefined : "button"}
+          tabIndex={isPc ? undefined : 0}
+          aria-label={isPc ? undefined : "オーディオプレイヤーを開く"}
           className="fixed bottom-0 left-0 z-30 flex w-screen h-16 py-2 neumorphism-normal md:h-24 bg-neumorphism md:flex"
           onClick={() => isPc ? null : setIsAudioModalOpen(true)}
+          onKeyDown={(e: React.KeyboardEvent) => {
+            if (!isPc && (e.key === 'Enter' || e.key === ' ')) {
+              e.preventDefault()
+              setIsAudioModalOpen(true)
+            }
+          }}
           initial="hidden"
           animate="show"
           exit="hidden"
@@ -119,6 +128,7 @@ const AudioPlayer: React.FC = () => {
                 step="1"
                 min="0"
                 max={duration}
+                aria-label="再生位置"
                 className={AudioStyle.slider}
                 style={{
                   borderRadius: 0,
@@ -136,7 +146,6 @@ const AudioPlayer: React.FC = () => {
                 onKeyUp={() => setIsPlaying(true)}
               />
               <div
-                id="value"
                 style={{
                   width: currentPercentage,
                   borderRadius: 0,
@@ -174,12 +183,13 @@ const AudioPlayer: React.FC = () => {
                     step="1"
                     min="0"
                     max={duration}
+                    aria-label="再生位置"
                     className={AudioStyle.slider}
                     onChange={(e) => setCurrentTime(parseInt(e.target.value, 10))}
                     onMouseUp={() => setIsPlaying(true)}
                     onKeyUp={() => setIsPlaying(true)}
                   />
-                  <div id="value" style={{ width: currentPercentage }} className={AudioStyle.value} />
+                  <div style={{ width: currentPercentage }} className={AudioStyle.value} />
                 </div>
                 <span className="text-sm">{displayTime(duration)}</span>
               </div>

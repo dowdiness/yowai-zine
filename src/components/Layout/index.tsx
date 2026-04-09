@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   return (
     <LazyMotion strict features={loadFeatures}>
       <div
-        className="container"
+        className="container use-cursor-none"
       >
         {/* <Header className="container fixed inset-x-0 top-0 z-40" location={location} /> */}
         <AudioProvider>

@@ -15,7 +15,7 @@ const AudioVolume = () => {
           type="button"
           className="p-2 rounded-full neumorphism-inset active:neumorphism-normal"
           onClick={() => setIsMute(false)}
-          aria-label="MuteOn"
+          aria-label="ミュート解除"
         >
           <IoVolumeMute size={24} />
         </button>
@@ -24,7 +24,7 @@ const AudioVolume = () => {
             type="button"
             className={`p-2 rounded-full active:neumorphism-inset ${volume === 0 ? `neumorphism-inset` : `neumorphism-normal` }`}
             onClick={() => setIsMute(true)}
-            aria-label="MuteOff"
+            aria-label="ミュートにする"
           >
             {
               volume === 0
@@ -43,10 +43,11 @@ const AudioVolume = () => {
           step="0.01"
           min="0"
           max="1"
+          aria-label="音量"
           className={AudioStyle.slider}
           onChange={(e) => setVolume(parseFloat(e.target.value))}
           />
-        <div id="value" style={{ width: `${volume * 98.0}%` }} className={AudioStyle.value} />
+        <div style={{ width: `${volume * 98.0}%` }} className={AudioStyle.value} />
       </div>
     </div>
   )

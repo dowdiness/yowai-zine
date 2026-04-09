@@ -22,7 +22,7 @@ const AudioLists: React.FCX<AudioListsProps> = ({
               <GatsbyImage
                 image={cover!}
                 loading="eager"
-                alt="Zine"
+                alt={node.title || "プレイリストカバー"}
                 className="object-scale-down w-full mb-4 -z-10 hover:animate-huruhuru"
               />
               <div className="z-30">

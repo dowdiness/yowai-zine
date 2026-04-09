@@ -32,12 +32,14 @@ export type ScrollProps = {
 }
 
 export const Scroll: React.FCX<ScrollProps> = ({ isScrollVisible }) => {
-  const scrollRef = useRef<HTMLDivElement>(null!)
+  const scrollRef = useRef<HTMLButtonElement>(null!)
   return (
-    <motion.div
+    <motion.button
       id="scroll"
+      type="button"
       ref={scrollRef}
       onClick={e => smoothScroll('[data-scroll]')}
+      aria-label="下にスクロール"
       data-skew
       initial="hidden"
       animate={isScrollVisible ? "show" : "hidden"}
@@ -47,7 +49,7 @@ export const Scroll: React.FCX<ScrollProps> = ({ isScrollVisible }) => {
       }}
     >
       <span id="line"></span>
-    </motion.div>
+    </motion.button>
   )
 }
 

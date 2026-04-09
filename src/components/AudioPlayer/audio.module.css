@@ -5,6 +5,11 @@
   height: 10px;
   border: none;
   outline: none;
+}
+
+.slider:focus-visible {
+  outline: 2px solid #519fed;
+  outline-offset: 2px;
   border-radius: 5px;
   background: #ECF0F3;
   box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),

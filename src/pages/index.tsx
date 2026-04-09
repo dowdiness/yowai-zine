@@ -103,7 +103,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
                   loading="eager"
                   className="cursor-none hover:animate-huruhuru"
                   image={genkiData!}
-                  alt="Genki"
+                  alt="弱いZINEのマスコットキャラクター"
                 />
               </div>
             </div>
@@ -119,7 +119,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           <GatsbyImage
             image={zineDate!}
             loading="eager"
-            alt="Zine"
+            alt="弱いZINEロゴ"
             className="object-scale-down h-32 hover:animate-huruhuru w-72 sm:w-96 sm:h-40 md:w-120 md:h-56 lg:w-160 lg:h-72 xl:w-240 xl:h-96"
           />
         </div>
