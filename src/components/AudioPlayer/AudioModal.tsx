@@ -54,8 +54,9 @@ const AudioModal = () => {
     }
   }, [location.pathname])
 
-  // Focus management: move focus into modal on open, trap it
+  // Focus management: move focus into modal on open, trap it, restore on close
   React.useEffect(() => {
+    const previouslyFocused = document.activeElement as HTMLElement | null
     closeButtonRef.current?.focus()
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -80,7 +81,10 @@ const AudioModal = () => {
     }
 
     document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      previouslyFocused?.focus()
+    }
   }, [])
 
   let currentPercentage = "0%"
@@ -117,7 +121,7 @@ const AudioModal = () => {
         <button
           ref={closeButtonRef}
           type="button"
-          className="p-2 rounded-full neumorphism-normal active:neumorphism-inset"
+          className="p-3 rounded-full neumorphism-normal active:neumorphism-inset"
           onClick={() => setIsAudioModalOpen(false)}
           aria-label="オーディオプレイヤーを閉じる"
         >

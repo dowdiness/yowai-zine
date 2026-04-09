@@ -144,7 +144,7 @@ const AudioPlayer: React.FC = () => {
             <AudioPlayButton
               className='flex-none px-2 m-auto md:hidden'
               isPlay={isPlaying}
-              size={38}
+              size={32}
               onPlay={(event) => {
                 event.stopPropagation()
                 setIsPlaying(true)
