@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
@@ -23,14 +23,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
   const { previous, next } = data
   const { content, images, featuredImage, author } = post!
   const { tategakiRef } = useTategaki()
-  const articleContentRef = useRef<HTMLDivElement>(null)
   const articlesIndexPath = location?.pathname.split("/").slice(0, 2).join("/")
-
-  useEffect(() => {
-    if (articleContentRef.current && content?.childMarkdownRemark?.html) {
-      articleContentRef.current.innerHTML = content.childMarkdownRemark.html
-    }
-  }, [content?.childMarkdownRemark?.html])
 
   const imageURLs = images?.map((image) => {
     return image?.localFile?.publicURL
@@ -109,9 +102,10 @@ const VerticalArticleTemplate: React.FC<PageProps<
               ref={tategakiRef}
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             >
-              <div ref={articleContentRef} className="multicolumn-content">
-                {!content?.childMarkdownRemark?.html && `記事無し`}
-              </div>
+              {content?.childMarkdownRemark?.html
+                ? <div className="multicolumn-content" dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }} />
+                : <div className="multicolumn-content">記事無し</div>
+              }
             </section>
           </div>
           <footer className="">
