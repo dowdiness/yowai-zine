@@ -196,6 +196,24 @@ module.exports = {
           "> .multicolumn-content > p > span": {
             width: "100%",
           },
+          "> .multicolumn-content > iframe, > .multicolumn-content iframe": {
+            writingMode: "horizontal-tb",
+            width: "100%",
+            maxWidth: "22rem",
+            height: "auto",
+            aspectRatio: "16 / 9",
+            breakInside: "avoid",
+            marginBottom: "1rem",
+          },
+          "> .multicolumn-content img": {
+            writingMode: "horizontal-tb",
+            width: "100%",
+            maxWidth: "22rem",
+            height: "auto",
+            breakInside: "avoid",
+            objectFit: "contain",
+            marginBottom: "1rem",
+          },
           "> .multicolumn-content > h1": {
             color: colors.neutral[900],
             fontSize: defaultTheme.fontSize["5xl"],

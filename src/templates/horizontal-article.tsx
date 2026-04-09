@@ -97,14 +97,17 @@ const HorizontalArticleTemplate: React.FC<PageProps<
               author={author?.name}
             />
           )}
-          <section
-            className={`${post?.align ? "text-left" : "text-center"} font-serif prose whitespace-pre-line main-article-width sm:prose-lg md:prose-xl text-character tracking-widest`}
-          >
-            {content?.childMarkdownRemark?.html
-              ? <div dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }} />
-              : `記事無し`
-            }
-          </section>
+          {content?.childMarkdownRemark?.html
+            ? <section
+                className={`${post?.align ? "text-left" : "text-center"} font-serif prose main-article-width sm:prose-lg md:prose-xl text-character tracking-widest [&_p]:whitespace-pre-line`}
+                dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }}
+              />
+            : <section
+                className={`${post?.align ? "text-left" : "text-center"} font-serif prose main-article-width sm:prose-lg md:prose-xl text-character tracking-widest [&_p]:whitespace-pre-line`}
+              >
+                記事無し
+              </section>
+          }
         </div>
         <footer>
           <ArticleShareButton

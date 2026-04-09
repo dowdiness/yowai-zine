@@ -33,6 +33,7 @@
     "gatsby-plugin-splitbee": "^0.2.0",
     "gatsby-remark-audio": "^1.0.2",
     "gatsby-remark-copy-linked-files": "^6",
+    "gatsby-remark-embedder": "^7",
     "gatsby-remark-external-links": "^0.0.4",
     "gatsby-remark-images": "^7",
     "gatsby-remark-images-contentful": "^6",
