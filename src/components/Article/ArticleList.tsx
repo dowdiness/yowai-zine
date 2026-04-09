@@ -26,98 +26,52 @@ const ArticleList: React.FCX<ArticleListProps> = ({ index, to, text, linkText, c
 
   useEffect(() => {
     // not working in ssr https://github.com/gatsbyjs/gatsby/issues/15001
-    if (isClient && useCursor && zoomRef) {
-      emitter.emit('in-view-event', {ref: zoomRef })
-    }
-    if (isClient && !useCursor && zoomRef) {
-      emitter.emit('cursor-event', {ref: zoomRef })
+    if (isClient && zoomRef) {
+      emitter.emit(useCursor ? 'in-view-event' : 'cursor-event', { ref: zoomRef })
     }
   }, [inView, zoomRef])
 
-  if (useCursor) {
-    return (
-      <div
-        ref={viewRef}
-        data-skew
-        className={`flex flex-col items-center mx-auto h-full space-y-16 text-center ${className}`}
-      >
-        {inView && (
-          <motion.h2
-            key={`title-${index}`}
-            ref={zoomRef}
-            data-cursor-src={linkText}
-            initial={{
-              y: 80,
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              transition,
-            }}
-            className="flex flex-col items-center text-center"
-          >
-            {isNew &&
-              <span className="absolute text-2xl transform left-2 -top-10 sm:text-3xl md:text-4xl">
-              New!
-              </span>
-            }
-            {text &&
-              <span className="text-2xl sm:text-3xl md:text-4xl">
-              { text}
-              </span>
-            }
-            <Link to={to}>
-              <span className="text-4xl outline-text sm:text-5xl md:text-6xl">
-                {linkText}
-              </span>
-            </Link>
-          </motion.h2>
-        )}
-      </div>
-    )
-  } else {
-    return (
-      <div
-        ref={viewRef}
-        data-skew
-        className={`flex flex-col items-center mx-auto h-full space-y-16 text-center ${className}`}
-      >
-        {inView && (
-          <motion.h2
-            key={`title-${index}`}
-            ref={zoomRef}
-            initial={{
-              y: 80,
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              transition,
-            }}
-            className="flex flex-col items-center text-center"
-          >
-            {isNew &&
-              <span className="absolute text-2xl transform left-2 -top-10 sm:text-3xl md:text-4xl">
-              New!
-              </span>
-            }
-            {text &&
-              <span className="text-2xl sm:text-3xl md:text-4xl">
-              { text}
-              </span>
-            }
-            <Link to={to}>
-              <span className="text-4xl outline-text sm:text-5xl md:text-6xl">
-                {linkText}
-              </span>
-            </Link>
-          </motion.h2>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div
+      ref={viewRef}
+      data-skew
+      className={`flex flex-col items-center mx-auto h-full space-y-16 text-center ${className}`}
+    >
+      {inView && (
+        <motion.h2
+          key={`title-${index}`}
+          ref={zoomRef}
+          {...(useCursor ? { 'data-cursor-src': linkText } : {})}
+          initial={{
+            y: 80,
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition,
+          }}
+          className="flex flex-col items-center text-center"
+        >
+          {isNew &&
+            <span className="absolute text-2xl transform left-2 -top-10 sm:text-3xl md:text-4xl">
+            New!
+            </span>
+          }
+          {text &&
+            <span className="text-2xl sm:text-3xl md:text-4xl">
+            { text}
+            </span>
+          }
+          <Link to={to}>
+            <span className="text-4xl outline-text sm:text-5xl md:text-6xl">
+              {linkText}
+            </span>
+          </Link>
+        </motion.h2>
+      )}
+    </div>
+  )
 }
 
 export default ArticleList
