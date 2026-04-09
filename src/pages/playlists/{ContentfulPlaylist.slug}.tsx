@@ -158,8 +158,8 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             {playlist?.artists?.map((artist) => (
                   <Linkify
                     key={artist?.name}
+                    as="p"
                     className="font-serif prose text-left whitespace-pre-line max-w-none sm:prose-lg"
-                    tagName="p"
                     options={{
                       className: "transition-colors break-all hover:text-slate-500",
                       target: "_blank",

@@ -12,6 +12,7 @@ import {
   ArticleSocialAccounts
 } from 'src/components/Article'
 import SectionHeader from 'src/components/Element/SectionHeader'
+import Linkify from 'linkify-react'
 //Hooks
 
 const HorizontalArticleTemplate: React.FC<PageProps<
@@ -119,7 +120,17 @@ const HorizontalArticleTemplate: React.FC<PageProps<
             articleDescription={content?.childMarkdownRemark?.excerpt!}
         />
           <div className="p-4 mt-16 neumorphism-inset rounded-2xl sm:p-6 md:p-10">
-            <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{author?.introduction?.introduction}</p>
+            <Linkify
+              as="p"
+              className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl"
+              options={{
+                className: "transition-colors break-all hover:text-slate-500",
+                target: "_blank",
+                rel: 'noopener'
+              }}
+            >
+              {author?.introduction?.introduction}
+            </Linkify>
             <ArticleSocialAccounts
               className="flex items-center justify-around mx-auto mt-4 md:w-1/2"
               linktree={author?.linktree}
