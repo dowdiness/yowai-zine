@@ -11637,45 +11637,38 @@ type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticl
 
 type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdArticleLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
-type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
-
 type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdLogoLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
-type PlaylistIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PlaylistIndexPageQuery = { readonly playlists: { readonly edges: ReadonlyArray<{ readonly node: (
+type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphrase' | 'introduction'>>, readonly genki: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly posts: { readonly nodes: ReadonlyArray<(
+      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
+      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )> }, readonly playlists: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
         & { albumPath: ContentfulPlaylist['gatsbyPath'] }
         & { readonly artists: Maybe<ReadonlyArray<Maybe<Pick<ContentfulAuthor, 'name'>>>>, readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
       ) }> } };
 
-type HorizontalArticleBySlugQueryVariables = Exact<{
-  id: Scalars['String'];
-  previousPostId: Maybe<Scalars['String']>;
-  nextPostId: Maybe<Scalars['String']>;
+type PlaylistQueryVariables = Exact<{
+  id: Maybe<Scalars['String']>;
 }>;
 
 
-type HorizontalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly post: Maybe<(
-    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
-    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulAsset, 'title'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>>>, readonly featuredImage: Maybe<(
-      Pick<ContentfulAsset, 'title'>
-      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
-    )>, readonly author: Maybe<(
-      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
+type PlaylistQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly contentfulPlaylist: Maybe<(
+    Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
+    & { readonly coverart: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly songs: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulSong, 'title' | 'duration'>
+      & { readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>>, readonly sound: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>> }
+    )>>>, readonly artists: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulAuthor, 'name'>
       & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
-    )> }
-  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
+    )>>> }
+  )> };
 
 type VerticalArticleBySlugQueryVariables = Exact<{
   id: Scalars['String'];
@@ -11706,33 +11699,26 @@ type ArticlesPageQuery = { readonly posts: { readonly nodes: ReadonlyArray<(
       & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
     )> }, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> };
 
-type PlaylistQueryVariables = Exact<{
-  id: Maybe<Scalars['String']>;
+type HorizontalArticleBySlugQueryVariables = Exact<{
+  id: Scalars['String'];
+  previousPostId: Maybe<Scalars['String']>;
+  nextPostId: Maybe<Scalars['String']>;
 }>;
 
 
-type PlaylistQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly contentfulPlaylist: Maybe<(
-    Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
-    & { readonly coverart: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly songs: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulSong, 'title' | 'duration'>
-      & { readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>>, readonly sound: Maybe<{ readonly localFile: Maybe<Pick<File, 'publicURL'>> }>, readonly artist: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )>>>, readonly artists: Maybe<ReadonlyArray<Maybe<(
-      Pick<ContentfulAuthor, 'name'>
+type HorizontalArticleBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }>, readonly post: Maybe<(
+    Pick<ContentfulMarkdownArticle, 'slug' | 'title' | 'disableSideHeader' | 'isVirticalWriting' | 'align' | 'updatedAt' | 'publishedAt'>
+    & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'body' | 'excerpt'>> }>, readonly images: Maybe<ReadonlyArray<Maybe<(
+      Pick<ContentfulAsset, 'title'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>>>, readonly featuredImage: Maybe<(
+      Pick<ContentfulAsset, 'title'>
+      & { readonly localFile: Maybe<Pick<File, 'publicURL'>> }
+    )>, readonly author: Maybe<(
+      Pick<ContentfulAuthor, 'name' | 'bandcamp' | 'instagram' | 'minnakikeru' | 'hatena' | 'linktree' | 'twitter' | 'youtube'>
       & { readonly introduction: Maybe<Pick<contentfulAuthorIntroductionTextNode, 'introduction'>> }
-    )>>> }
-  )> };
-
-type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type IndexPageQuery = { readonly home: Maybe<Pick<PagesJson, 'image' | 'catchphrase' | 'introduction'>>, readonly genki: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly zine: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }>, readonly posts: { readonly nodes: ReadonlyArray<(
-      Pick<ContentfulMarkdownArticle, 'id' | 'title' | 'slug' | 'publishedAt'>
-      & { readonly content: Maybe<{ readonly childMdx: Maybe<Pick<Mdx, 'excerpt'>> }>, readonly author: Maybe<Pick<ContentfulAuthor, 'name'>> }
-    )> }, readonly playlists: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
-        & { albumPath: ContentfulPlaylist['gatsbyPath'] }
-        & { readonly artists: Maybe<ReadonlyArray<Maybe<Pick<ContentfulAuthor, 'name'>>>>, readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
-      ) }> } };
+    )> }
+  )>, readonly previous: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>>, readonly next: Maybe<Pick<ContentfulMarkdownArticle, 'slug' | 'title'>> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -11759,6 +11745,20 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type PlaylistIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PlaylistIndexPageQuery = { readonly playlists: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<ContentfulPlaylist, 'id' | 'title' | 'slug'>
+        & { albumPath: ContentfulPlaylist['gatsbyPath'] }
+        & { readonly artists: Maybe<ReadonlyArray<Maybe<Pick<ContentfulAuthor, 'name'>>>>, readonly coverart: Maybe<Pick<ContentfulAsset, 'gatsbyImageData'>> }
+      ) }> } };
+
+type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type staticHomeantisatorighqgithubComdowdinessyowaiZinesrccomponentsJsonLdBreadcrumbLdTsx1271460761Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

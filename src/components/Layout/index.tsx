@@ -1,15 +1,13 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
-import loadable from '@loadable/component'
-
 import { AudioProvider } from 'src/components/AudioPlayer/AudioProvider'
 
 import { m as motion, useViewportScroll, useTransform, LazyMotion } from 'framer-motion'
 
-const AudioPlayer = loadable(() => import('src/components/AudioPlayer/AudioPlayer'))
-const Mouse = loadable(() => import('src/components/Layout/Mouse'))
-const Skew = loadable(() => import('src/components/Layout/Skew'))
+import AudioPlayer from 'src/components/AudioPlayer/AudioPlayer'
+import Mouse from 'src/components/Layout/Mouse'
+import Skew from 'src/components/Layout/Skew'
 
 const loadFeatures = () => import('./domAnimation').then(res => res.default)
 

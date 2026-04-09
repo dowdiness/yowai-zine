@@ -28,6 +28,8 @@ const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): Mouse
   })
 
   const render = () => {
+    if (!cursorRef.current) return
+
     previousMouse.current = {
       x: lerp(previousMouse.current.x, currentMouse.current.x, 0.2),
       y: lerp(previousMouse.current.y, currentMouse.current.y, 0.2),

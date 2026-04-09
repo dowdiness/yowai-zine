@@ -2,9 +2,7 @@ import React from 'react'
 
 //Components
 import { ArticleLink, ArticleList } from 'src/components/Article'
-import loadable from '@loadable/component'
-
-const ArticleCursor = loadable(() => import('src/components/Article/ArticleCursor'))
+import ArticleCursor from 'src/components/Article/ArticleCursor'
 
 //Utils
 import { parseISO, differenceInDays } from 'date-fns'
@@ -22,6 +20,7 @@ const ArticleLists: React.FCX<ArticleListsProps> = ({ className, posts }) => {
         <div className="flex flex-col justify-center mx-auto space-y-28">
           {posts.map((post, index) => (
             <ArticleList
+              key={post.slug}
               index={index}
               to={`/articles/${post.slug}/`}
               text={post.author?.name}

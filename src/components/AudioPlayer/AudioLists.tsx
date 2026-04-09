@@ -28,11 +28,9 @@ const AudioLists: React.FCX<AudioListsProps> = ({
               <div className="z-30">
                 <h2 className="text-lg font-bold md:text-2xl">{node.title}</h2>
                 <h3 className="text-base text-gray-700 md:text-xl">
-                  {node?.artists?.map((artist, index) => {
-                    return (
-                      index === 0 ? <span>{artist?.name}</span> : <span>, {artist?.name}</span>
-                    )
-                  })}
+                  {node?.artists?.map((artist, index) => (
+                    <span key={artist?.name}>{index === 0 ? artist?.name : `, ${artist?.name}`}</span>
+                  ))}
                 </h3>
               </div>
             </Link>
