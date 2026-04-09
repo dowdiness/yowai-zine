@@ -100,10 +100,9 @@ const HorizontalArticleTemplate: React.FC<PageProps<
           <section
             className={`${post?.align ? "text-left" : "text-center"} font-serif prose whitespace-pre-line main-article-width sm:prose-lg md:prose-xl text-character tracking-widest`}
           >
-            {
-              content?.childMarkdownRemark?.html
-                ? <div dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }} />
-                : `記事無し`
+            {content?.childMarkdownRemark?.html
+              ? <div dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }} />
+              : `記事無し`
             }
           </section>
         </div>

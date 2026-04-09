@@ -186,17 +186,17 @@ module.exports = {
             color: colors.slate[900],
             fontWeight: '600',
           },
-          div: {
+          "> .multicolumn-content": {
             width: "100%",
-            marginRight: "1280px",
+            marginRight: "0",
           },
-          "div > p": {
-            width: "100%",
-          },
-          "div > p > span": {
+          "> .multicolumn-content > p": {
             width: "100%",
           },
-          "> h1": {
+          "> .multicolumn-content > p > span": {
+            width: "100%",
+          },
+          "> .multicolumn-content > h1": {
             color: colors.neutral[900],
             fontSize: defaultTheme.fontSize["5xl"],
             fontWeight: '800',
@@ -204,7 +204,7 @@ module.exports = {
             letterSpacing: "0.1em",
             lineHeight: "1.1",
           },
-          "> h2": {
+          "> .multicolumn-content > h2": {
             color: colors.neutral[900],
             fontSize: defaultTheme.fontSize["4xl"],
             fontWeight: '700',
@@ -212,7 +212,7 @@ module.exports = {
             letterSpacing: "0.09em",
             lineHeight: "2.5rem",
           },
-          "> h3": {
+          "> .multicolumn-content > h3": {
             color: colors.neutral[800],
             fontSize: defaultTheme.fontSize["3xl"],
             fontWeight: '600',
@@ -220,7 +220,7 @@ module.exports = {
             letterSpacing: "0.08em",
             lineHeight: "2.25rem",
           },
-          "> h4": {
+          "> .multicolumn-content > h4": {
             color: colors.neutral[800],
             fontSize: defaultTheme.fontSize["2xl"],
             fontWeight: '600',
@@ -228,7 +228,7 @@ module.exports = {
             letterSpacing: "0.07em",
             lineHeight: "2rem",
           },
-          "> p": {
+          "> .multicolumn-content > p": {
             marginLeft: "1rem",
             textIndent: "1.15em",
             letterSpacing: "0.06em",

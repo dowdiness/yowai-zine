@@ -94,7 +94,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
           <SectionHeader title={post?.title} author={author?.name} />
           <div className="flex p-4 pl-2 sm:p-6 sm:pl-4 md:pl-6 md:p-10 neumorphism-normal rounded-2xl">
             <ArticleSideHeader
-              className="sticky w-full h-fit-content top-6"
+              className="sticky shrink-0 h-fit-content top-6"
               title={post?.title}
               author={author?.name}
             />
@@ -102,10 +102,9 @@ const VerticalArticleTemplate: React.FC<PageProps<
               ref={tategakiRef}
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             >
-              {
-                content?.childMarkdownRemark?.html
-                  ? <div dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }} />
-                  : `記事無し`
+              {content?.childMarkdownRemark?.html
+                ? <div className="multicolumn-content" dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }} />
+                : `記事無し`
               }
             </section>
           </div>
