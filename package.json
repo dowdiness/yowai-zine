@@ -15,12 +15,8 @@
     "@types/nprogress": "^0.2.3",
     "autoprefixer": "^10",
     "date-fns": "^2",
-    "fontsource-jost": "^4.0.0",
-    "fontsource-noto-sans-jp": "^4.0.0",
-    "fontsource-noto-serif-jp": "^4.0.0",
     "framer-motion": "^12",
     "gatsby": "^5",
-    "gatsby-plugin-feed": "^5",
     "gatsby-plugin-image": "^3",
     "gatsby-plugin-manifest": "^5",
     "gatsby-plugin-mdx": "^5",
@@ -47,7 +43,6 @@
     "gatsby-transformer-remark": "^6",
     "gatsby-transformer-sharp": "^5",
     "gsap": "^3",
-    "intersection-observer": "^0.12.2",
     "jotai": "^1",
     "linkify-react": "^4",
     "linkifyjs": "^4",
@@ -65,7 +60,6 @@
     "react-intersection-observer": "^10",
     "react-share": "^5",
     "simplex-noise": "^4",
-    "smoothscroll-polyfill": "^0.4.4",
     "use-context-selector": "^1"
   },
   "devDependencies": {

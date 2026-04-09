@@ -1,13 +1,5 @@
-async function loadPolyfills() {
-  const smoothscroll = await import('smoothscroll-polyfill')
-  smoothscroll.polyfill()
-  if (typeof window.IntersectionObserver === 'undefined') {
-    await import('intersection-observer')
-  }
-}
-
-const onClientEntry = () => {
-  loadPolyfills()
-}
+// Polyfills removed — IntersectionObserver and smooth scroll
+// are natively supported in all modern browsers.
+const onClientEntry = () => {}
 
 export default onClientEntry

@@ -15,7 +15,9 @@ class Cursor {
     y: { previous: number; current: number; amt: number }
   }
   onMouseMoveEv: (this: Window, ev: MouseEvent) => void
+  mouseMoveHandler: (ev: MouseEvent) => void
   rafId: number = 0
+  private listeners: { el: Element; type: string; fn: EventListener }[] = []
 
   constructor(el: HTMLElement, hoverElementSelectors: string) {
     this.Cursor = el
@@ -40,9 +42,15 @@ class Cursor {
       this.rafId = requestAnimationFrame(() => this.render())
       window.removeEventListener('mousemove', this.onMouseMoveEv)
     }
-    window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
+    this.mouseMoveHandler = (ev: MouseEvent) => { mouse = getMousePos(ev) }
+    window.addEventListener('mousemove', this.mouseMoveHandler)
     window.addEventListener('mousemove', this.onMouseMoveEv)
     emitter.on('in-view-event', ev => this.onScaleMouse(ev!.ref))
+  }
+
+  private addTrackedListener(el: Element, type: string, fn: EventListener) {
+    el.addEventListener(type, fn)
+    this.listeners.push({ el, type, fn })
   }
 
   onScaleMouse(ref: React.MutableRefObject<HTMLElement>) {
@@ -52,18 +60,18 @@ class Cursor {
         this.setSource(ref.current)
         this.scaleAnimation(this.Cursor.children[0], 0.4)
       }
-      ref.current.addEventListener('mouseenter', () => {
+      this.addTrackedListener(ref.current, 'mouseenter', () => {
         this.setSource(ref.current)
         this.scaleAnimation(this.Cursor.children[0], 0.4)
       })
-      ref.current.addEventListener('mouseleave', () => {
+      this.addTrackedListener(ref.current, 'mouseleave', () => {
         this.scaleAnimation(this.Cursor.children[0], 0)
       })
-      ref.current.children[1].addEventListener('mouseenter', () => {
+      this.addTrackedListener(ref.current.children[1], 'mouseenter', () => {
         this.Cursor.classList.add('media-blend')
         this.scaleAnimation(this.Cursor.children[0], 1)
       })
-      ref.current.children[1].addEventListener('mouseleave', () => {
+      this.addTrackedListener(ref.current.children[1], 'mouseleave', () => {
         this.Cursor.classList.remove('media-blend')
         this.scaleAnimation(this.Cursor.children[0], 0.4)
       })
@@ -121,6 +129,10 @@ class Cursor {
 
   destroy() {
     cancelAnimationFrame(this.rafId)
+    window.removeEventListener('mousemove', this.mouseMoveHandler)
+    window.removeEventListener('mousemove', this.onMouseMoveEv)
+    this.listeners.forEach(({ el, type, fn }) => el.removeEventListener(type, fn))
+    this.listeners = []
   }
 }
 
