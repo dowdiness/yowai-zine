@@ -175,9 +175,14 @@ module.exports = {
         ".multicolumn": {
           boxSizing: "content-box",
           fontFeatureSettings: "palt",
-          height: "22rem",
-          columnWidth: "22rem",
-          columnGap: "3rem",
+          height: "16rem",
+          columnWidth: "16rem",
+          columnGap: "1.5rem",
+          "@media (min-width: 480px)": {
+            height: "22rem",
+            columnWidth: "22rem",
+            columnGap: "3rem",
+          },
           a: {
             color: colors.cyan[700],
             textDecoration: 'underline',
