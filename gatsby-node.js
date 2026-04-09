@@ -10,7 +10,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const resultContentfulMarkdowns = await graphql(
     `
       {
-        allContentfulMarkdownArticle(sort: {fields: publishedAt, order: DESC}) {
+        allContentfulMarkdownArticle(sort: {publishedAt: DESC}) {
           edges {
             node {
               id

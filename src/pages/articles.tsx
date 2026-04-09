@@ -53,14 +53,14 @@ export default ArticlesPage
 
 export const pageQuery = graphql`
   query ArticlesPage {
-    posts: allContentfulMarkdownArticle(sort: {fields: publishedAt, order: DESC}) {
+    posts: allContentfulMarkdownArticle(sort: {publishedAt: DESC}) {
       nodes {
         id
         title
         slug
         publishedAt
         content {
-          childMdx {
+          childMarkdownRemark {
             # need to truncate for non-laten characters
             excerpt(truncate: true)
           }

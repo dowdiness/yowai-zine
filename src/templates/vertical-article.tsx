@@ -3,7 +3,6 @@ import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import {
   ArticleLink,
@@ -36,10 +35,10 @@ const VerticalArticleTemplate: React.FC<PageProps<
     <div className="max-w-3xl mx-auto">
       <GatsbySeo
         title={`${post?.title} | ${author?.name}`}
-        description={content?.childMdx?.excerpt || author?.introduction?.introduction || ``}
+        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
         openGraph={{
           title: `${post?.title} | ${author?.name} | 弱いZINE`,
-          description: content?.childMdx?.excerpt || author?.introduction?.introduction || ``,
+          description: content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``,
           images: featuredImage ? [
             {
               url: `${siteUrl}${featuredImage?.localFile?.publicURL}`,
@@ -81,7 +80,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
         datePublished={post?.publishedAt!}
         dateModified={post?.updatedAt!}
         authorName={author?.name!}
-        description={content?.childMdx?.excerpt || author?.introduction?.introduction || ``}
+        description={content?.childMarkdownRemark?.excerpt || author?.introduction?.introduction || ``}
       />
       <div>
         <article
@@ -104,8 +103,8 @@ const VerticalArticleTemplate: React.FC<PageProps<
               className="font-serif text-justify text-gray-700 main-article-width sm:text-lg md:text-xl multicolumn text-character vertical-rl"
             >
               {
-                content?.childMdx?.body
-                  ? <MDXRenderer>{content?.childMdx?.body}</MDXRenderer>
+                content?.childMarkdownRemark?.html
+                  ? <div dangerouslySetInnerHTML={{ __html: content.childMarkdownRemark.html }} />
                   : `記事無し`
               }
             </section>
@@ -115,7 +114,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
               className="w-full py-4 mt-16 sm:py-6 md:py-10"
               articleTitle={post?.title!}
               articleUrl={`${siteUrl}/articles/${post?.slug}/` || siteUrl!}
-              articleDescription={content?.childMdx?.excerpt!}
+              articleDescription={content?.childMarkdownRemark?.excerpt!}
             />
             <div className="p-4 mt-16 font-serif prose text-justify text-gray-700 whitespace-pre-line rounded-2xl sm:p-6 md:p-10 max-w-none sm:prose-lg md:prose-xl neumorphism-inset">
               <p className="font-serif prose text-center whitespace-pre-line max-w-none sm:prose-lg md:prose-xl">{author?.introduction?.introduction}</p>
@@ -159,8 +158,8 @@ export const pageQuery = graphql`
     }
     contentfulMarkdownArticle(id: {eq: $id}) {
       content {
-        childMdx {
-          body
+        childMarkdownRemark {
+          html
           excerpt(pruneLength: 120, truncate: true)
         }
       }

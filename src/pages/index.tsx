@@ -178,14 +178,14 @@ export const pageQuery = graphql`
         gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
       }
     }
-    posts: allContentfulMarkdownArticle(sort: {fields: publishedAt, order: DESC}) {
+    posts: allContentfulMarkdownArticle(sort: {publishedAt: DESC}) {
       nodes {
         id
         title
         slug
         publishedAt
         content {
-          childMdx {
+          childMarkdownRemark {
             # need to truncate for non-laten characters
             excerpt(truncate: true)
           }
@@ -195,7 +195,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    playlists: allContentfulPlaylist(sort: {order: DESC, fields: updatedAt}) {
+    playlists: allContentfulPlaylist(sort: {updatedAt: DESC}) {
       edges {
         node {
           id

@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import useIsomorphicLayoutEffect from 'src/hooks/useIsomorphicLayoutEffect'
-import SimplexNoise from 'simplex-noise'
+import { createNoise3D } from 'simplex-noise'
 
 const { PI, cos, sin, abs, random } = Math
 const TAU = 2 * PI
@@ -28,12 +28,12 @@ const backgroundColor = 'hsla(0,0%,5%,1)'
 let canvas: { a: HTMLCanvasElement; b: HTMLCanvasElement; }
 let ctx: { a: CanvasRenderingContext2D; b: CanvasRenderingContext2D; }
 let circleProps: Float32Array
-let simplex: SimplexNoise
+let noise3D: ReturnType<typeof createNoise3D>
 let baseHue: number
 
 function initCircles() {
   circleProps = new Float32Array(circlePropsLength)
-  simplex = new SimplexNoise()
+  noise3D = createNoise3D()
   baseHue = 220
 
   let i
@@ -46,7 +46,7 @@ function initCircles() {
 function initCircle(i: number) {
   const x = rand(canvas.a.width)
   const y = rand(canvas.a.height)
-  const n = simplex.noise3D(x * xOff, y * yOff, baseHue * zOff)
+  const n = noise3D(x * xOff, y * yOff, baseHue * zOff)
   const t = rand(TAU)
   const speed = baseSpeed + rand(rangeSpeed)
   const vx = speed * cos(t)

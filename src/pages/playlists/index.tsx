@@ -50,7 +50,7 @@ export default PlaylistPage
 
 export const pageQuery = graphql`
   query PlaylistIndexPage {
-    playlists: allContentfulPlaylist(sort: {order: DESC, fields: updatedAt}) {
+    playlists: allContentfulPlaylist(sort: {updatedAt: DESC}) {
       edges {
         node {
           id

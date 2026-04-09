@@ -3,7 +3,7 @@ import Header from './Header'
 import Footer from './Footer'
 import { AudioProvider } from 'src/components/AudioPlayer/AudioProvider'
 
-import { m as motion, useViewportScroll, useTransform, LazyMotion } from 'framer-motion'
+import { m as motion, useScroll, useTransform, LazyMotion } from 'framer-motion'
 
 import AudioPlayer from 'src/components/AudioPlayer/AudioPlayer'
 import Mouse from 'src/components/Layout/Mouse'
@@ -16,7 +16,7 @@ type LayoutProps = {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, location }) => {
-  const { scrollYProgress } = useViewportScroll()
+  const { scrollYProgress } = useScroll()
   const multipleScaleY = useTransform(scrollYProgress, value => value * 2)
 
   return (

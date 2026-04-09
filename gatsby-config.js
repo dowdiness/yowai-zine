@@ -88,16 +88,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images-medium-zoom`,
-            options: {
-              background: "#e6e7ee"
-            }
-          },
-        ],
         gatsbyRemarkPlugins: [
-          `gatsby-remark-check-links`,
           `gatsby-remark-external-links`,
           {
             resolve: 'gatsby-remark-audio',
@@ -112,7 +103,6 @@ module.exports = {
           {
             resolve: `gatsby-remark-images-contentful`,
             options: {
-              // max-w-3xlのwidthと同じサイズ
               maxWidth: 768,
               linkImagesToOriginal: false,
               backgroundColor: "transparent",
@@ -125,7 +115,6 @@ module.exports = {
             resolve: `gatsby-remark-images-medium-zoom`,
             options: {}
           },
-          `gatsby-remark-embedder`,
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
@@ -139,6 +128,7 @@ module.exports = {
     },
     `gatsby-transformer-json`,
     `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
     // `gatsby-plugin-feed`,
     `gatsby-plugin-sitemap`,
     {
@@ -199,7 +189,5 @@ module.exports = {
         precachePages: [`/articles/*`, `/playlist/*`],
       },
     },
-    `gatsby-plugin-typegen`,
-    `gatsby-plugin-webpack-bundle-analyser-v2`,
   ],
 }

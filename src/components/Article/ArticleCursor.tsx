@@ -23,7 +23,7 @@ const ArticleCurosr: React.FC<ArticleCurosrProps> = ({ cursorSrc, posts }) => {
             id={post.title}
             className="absolute inset-0 w-64 h-64 text-3xl"
           >
-            {post.content?.childMdx?.excerpt}
+            {post.content?.childMarkdownRemark?.excerpt}
           </p>
         ))}
       </div>
