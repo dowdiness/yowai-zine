@@ -79,7 +79,6 @@
     "use-context-selector": "^1.3.9"
   },
   "devDependencies": {
-    "@dowdiness/eslint-config": "^0.1.5",
     "@loadable/babel-plugin": "^5.13.2",
     "@loadable/webpack-plugin": "^5.15.2",
     "@types/loadable__component": "^5.13.4",

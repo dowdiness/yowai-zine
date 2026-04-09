@@ -1242,11 +1242,6 @@
   resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-14.1.2.tgz#33162fdbf427891122a96030f806ca9a9cf0e844"
   integrity sha512-XbgZ7op5uyYYszipgQg/bYobF4b+llXyTwS8hISRniQY9xKESz544eP2OGmRc4J3MHx29M7Vmx7TVA/IK65giQ==
 
-"@dowdiness/eslint-config@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@dowdiness/eslint-config/-/eslint-config-0.1.5.tgz#7fc226925d28e1c97a5ccd8d0eb7cf54247d6470"
-  integrity sha512-LHSGWVCdyBK+MjxwO1C5E6UHVHmdUA+hjrNm4pE+fuiETrJ17MXGuxnS5rVKyTJx3Eey4CPWvA1azDkn7rWk6g==
-
 "@emotion/is-prop-valid@^0.8.2":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
