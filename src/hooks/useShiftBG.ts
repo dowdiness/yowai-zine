@@ -156,13 +156,15 @@ function render() {
   ctx.b?.restore()
 }
 
+let drawRafId: number = 0
+
 function draw() {
   ctx.a?.clearRect(0, 0, canvas.a.width, canvas.a.height)
   ctx.b.fillStyle = backgroundColor
   ctx.b?.fillRect(0, 0, canvas.b.width, canvas.b.height)
   updateCircles()
   render()
-	requestAnimationFrame(draw)
+	drawRafId = requestAnimationFrame(draw)
 }
 
 const useShiftBG = <T extends HTMLElement>(w: number, h: number) => {
@@ -171,15 +173,14 @@ const useShiftBG = <T extends HTMLElement>(w: number, h: number) => {
   useIsomorphicLayoutEffect(() => {
     const resizeHander = () => resize(w, h)
 
-    console.log('setup starts')
     createCanvas(canvasRef.current)
     resize(w, h)
     initCircles()
     draw()
-    console.log('setup ends')
 
     window.addEventListener('resize', resizeHander)
     return (() => {
+      cancelAnimationFrame(drawRafId)
       window.removeEventListener('resize', resizeHander)
     })
   })

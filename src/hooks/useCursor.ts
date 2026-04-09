@@ -15,6 +15,7 @@ class Cursor {
     y: { previous: number; current: number; amt: number }
   }
   onMouseMoveEv: (this: Window, ev: MouseEvent) => void
+  rafId: number = 0
 
   constructor(el: HTMLElement, hoverElementSelectors: string) {
     this.Cursor = el
@@ -36,7 +37,7 @@ class Cursor {
         opacity: 1,
       })
 
-      requestAnimationFrame(() => this.render())
+      this.rafId = requestAnimationFrame(() => this.render())
       window.removeEventListener('mousemove', this.onMouseMoveEv)
     }
     window.addEventListener('mousemove', ev => (mouse = getMousePos(ev)))
@@ -115,7 +116,11 @@ class Cursor {
 
     this.Cursor.style.transform = `translateX(${this.cursorConfigs.x.previous}px) translateY(${this.cursorConfigs.y.previous}px)`
 
-    requestAnimationFrame(() => this.render())
+    this.rafId = requestAnimationFrame(() => this.render())
+  }
+
+  destroy() {
+    cancelAnimationFrame(this.rafId)
   }
 }
 
@@ -123,7 +128,8 @@ const useCursor = <T extends HTMLElement>(hoverElementSelectors: string) => {
   const cursorRef = useRef<T>(null!)
 
   useIsomorphicLayoutEffect(() => {
-    const _cursor = new Cursor(cursorRef.current, hoverElementSelectors)
+    const cursor = new Cursor(cursorRef.current, hoverElementSelectors)
+    return () => cursor.destroy()
   }, [])
 
   return { cursorRef }

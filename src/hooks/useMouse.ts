@@ -27,6 +27,8 @@ const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): Mouse
     scale: 1.0,
   })
 
+  const rafId = useRef<number>(0)
+
   const render = () => {
     if (!cursorRef.current) return
 
@@ -38,7 +40,7 @@ const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): Mouse
 
     cursorRef.current.style.transform = `translateX(${previousMouse.current.x}px) translateY(${previousMouse.current.y}px) scale(${previousMouse.current.scale})`
 
-    requestAnimationFrame(() => render())
+    rafId.current = requestAnimationFrame(() => render())
   }
 
   const moveHandler = (event: MouseEvent) => {
@@ -58,7 +60,7 @@ const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): Mouse
       force3D: false,
     })
 
-    requestAnimationFrame(() => render())
+    rafId.current = requestAnimationFrame(() => render())
 
     document.removeEventListener('mousemove', firstMoveHandler)
   }
@@ -71,66 +73,76 @@ const useMouse =  <T extends HTMLElement>(...addEventTriggers: boolean[]): Mouse
     currentMouse.current.scale = 1.0
   }
 
+  const hoverTargetsRef = useRef<Set<Element>>(new Set())
+
+  const addHoverListeners = (el: Element) => {
+    if (hoverTargetsRef.current.has(el)) return
+    hoverTargetsRef.current.add(el)
+    el.addEventListener('mouseenter', enter)
+    el.addEventListener('mouseleave', leave)
+  }
+
+  const addHoverToInteractiveElements = () => {
+    document.querySelectorAll('a, button, input, .gatsby-resp-image-image, .use-mouse').forEach(addHoverListeners)
+  }
+
   useLayoutEffect(() => {
     cursorRef.current.style.opacity = '0'
   }, [])
 
   // addEventListener to scale up cursor for new pages
   useEffect(() => {
-    emitter.on('cursor-event', (ev) => {
+    const cursorHandler = (ev: { ref: React.MutableRefObject<HTMLElement> } | undefined) => {
       if (ev && ev.ref.current) {
-        ev.ref.current.addEventListener('mouseenter', enter)
-        ev.ref.current.addEventListener('mouseleave', leave)
+        addHoverListeners(ev.ref.current)
       }
-    })
+    }
 
-    emitter.on('in-view-event', (ev) => {
-      if (ev && ev.ref.current) {
-        ev.ref.current.addEventListener('mouseenter', enter)
-        ev.ref.current.addEventListener('mouseleave', leave)
-      }
-    })
+    emitter.on('cursor-event', cursorHandler)
+    emitter.on('in-view-event', cursorHandler)
 
     // return HistoryUnsubscribe to unsubscribe HistoryListener
-    return globalHistory.listen(({ action, location }) => {
+    const unsubscribeHistory = globalHistory.listen(({ action }) => {
       if (action === 'PUSH') {
         leave()
         const waitTransitioningFinished = () => {
           if(globalHistory.transitioning) {
             setTimeout(waitTransitioningFinished, 200)
           } else {
-            document.querySelectorAll('a, button, input, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
-              link.addEventListener('mouseenter', enter)
-              link.addEventListener('mouseleave', leave)
-            })
+            addHoverToInteractiveElements()
           }
         }
         waitTransitioningFinished()
       }
     })
+
+    return () => {
+      emitter.off('cursor-event', cursorHandler)
+      emitter.off('in-view-event', cursorHandler)
+      unsubscribeHistory()
+    }
   }, [])
 
   useEffect(() => {
     document.addEventListener('mousemove', firstMoveHandler)
     document.addEventListener('mousemove', moveHandler)
-    document.querySelectorAll('a, button, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
-      link.addEventListener('mouseenter', enter)
-      link.addEventListener('mouseleave', leave)
-    })
+    addHoverToInteractiveElements()
 
     return () => {
+      document.removeEventListener('mousemove', firstMoveHandler)
       document.removeEventListener('mousemove', moveHandler)
+      cancelAnimationFrame(rafId.current)
+      hoverTargetsRef.current.forEach(el => {
+        el.removeEventListener('mouseenter', enter)
+        el.removeEventListener('mouseleave', leave)
+      })
+      hoverTargetsRef.current.clear()
     }
   }, [])
 
   useEffect(() => {
-    for (var i = 0; i < addEventTriggers.length; i++) {
-      if (addEventTriggers[i]) {
-        document.querySelectorAll('a, button, input, .gatsby-resp-image-image, .use-mouse').forEach(link => {
-          link.addEventListener('mouseenter', enter)
-          link.addEventListener('mouseleave', leave)
-        })
-      }
+    if (addEventTriggers.some(Boolean)) {
+      addHoverToInteractiveElements()
     }
   }, [...addEventTriggers])
 

@@ -73,27 +73,9 @@ const AudioPlayer: React.FC = () => {
 
   useEffect(() => {
     const mql = matchMedia("(min-width: 768px)")
-    if (mql.matches) {
-      setIsPc(true)
-    } else {
-      setIsPc(false)
-    }
-
-    // Safari 14 以前ではEventTargetを元にしていた為にメソッドの名前が違う
-    if (typeof mql.addEventListener === 'undefined') {
-      // Safari 14 以前への対応
-      // @ts-ignore
-      mql.addListener(changeIsPc)
-      return() => {
-        // @ts-ignore
-        mql.removeListener(changeIsPc)
-      }
-    } else {
-      mql.addEventListener("change", changeIsPc)
-      return() => {
-        mql.removeEventListener("change" , changeIsPc)
-      }
-    }
+    setIsPc(mql.matches)
+    mql.addEventListener("change", changeIsPc)
+    return () => mql.removeEventListener("change", changeIsPc)
   }, [])
 
   return (

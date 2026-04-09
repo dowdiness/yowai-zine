@@ -229,23 +229,23 @@ function useAudioPlayer() {
     }
   }, [tracks])
 
+  const timeUpdateHandler = useRef<((e: Event) => void) | null>(null)
+
   useEffect(() => {
     if (isReady.current) {
-      // remove previous audio eventlisners
-      audioRef.current?.removeEventListener('timeupdate', (_event) => {
+      // remove previous audio event listener
+      if (timeUpdateHandler.current) {
+        audioRef.current?.removeEventListener('timeupdate', timeUpdateHandler.current)
+      }
+      // create named handler so it can be properly removed later
+      timeUpdateHandler.current = () => {
         if (audioRef.current?.ended) {
           toNextTrack()
         } else if (audioRef.current) {
           setTrackProgress(audioRef.current.currentTime)
         }
-      })
-      audioRef.current?.addEventListener('timeupdate', (_event) => {
-        if (audioRef.current?.ended) {
-          toNextTrack()
-        } else if (audioRef.current) {
-          setTrackProgress(audioRef.current.currentTime)
-        }
-      })
+      }
+      audioRef.current?.addEventListener('timeupdate', timeUpdateHandler.current)
     }
   }, [audioRef.current])
 

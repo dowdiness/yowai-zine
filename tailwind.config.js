@@ -173,6 +173,7 @@ module.exports = {
             "-4px -4px 8px rgba(255,255,255,0.5), 4px 4px 8px rgba(0,0,0,0.08)",
         },
         ".multicolumn": {
+          boxSizing: "content-box",
           fontFeatureSettings: "palt",
           height: "22rem",
           columnWidth: "22rem",
