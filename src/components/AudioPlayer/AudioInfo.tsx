@@ -18,13 +18,13 @@ const AudioInfo = ({
   <div className={`${className} flex items-center justify-start`}>
     <GatsbyImage
       loading="eager"
-      className="w-20 h-20 shrink-0 cursor-none"
+      className="w-12 h-12 sm:w-20 sm:h-20 shrink-0 cursor-none"
       image={image}
       alt={title}
     />
-    <div className="flex flex-col items-start flex-1 ml-2">
-      <h2 className="mb-1 font-sans text-base font-bold leading-tight text-black line-clamp-2">{title}</h2>
-      <h3 className="font-sans text-sm text-gray-600 line-clamp-1">{artist}</h3>
+    <div className="flex flex-col items-start flex-1 min-w-0 ml-2">
+      <h2 className="mb-1 font-sans text-sm font-bold leading-tight text-black sm:text-base line-clamp-2">{title}</h2>
+      <h3 className="font-sans text-xs text-gray-600 sm:text-sm line-clamp-1">{artist}</h3>
     </div>
   </div>
 )

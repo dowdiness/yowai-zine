@@ -85,6 +85,7 @@ const AudioPlayer: React.FC = () => {
           tabIndex={isPc ? undefined : 0}
           aria-label={isPc ? undefined : "オーディオプレイヤーを開く"}
           className="fixed bottom-0 left-0 z-30 flex w-screen h-16 py-2 neumorphism-normal md:h-24 bg-neumorphism md:flex"
+          style={{ viewTransitionName: 'audio-player' }}
           onClick={() => isPc ? null : setIsAudioModalOpen(true)}
           onKeyDown={(e: React.KeyboardEvent) => {
             if (!isPc && (e.key === 'Enter' || e.key === ' ')) {

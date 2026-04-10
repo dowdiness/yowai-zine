@@ -137,7 +137,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
             image={cover}
             loading="eager"
             alt="Zine"
-            className="object-scale-down w-full h-full mb-12 md:w-64"
+            className="object-scale-down w-48 h-48 sm:w-64 sm:h-64 mb-8 sm:mb-12 md:w-64 md:h-auto"
           />
           <div className="flex flex-col justify-start w-full mb-8 space-y-4 md:ml-12">
             {playlist?.artists?.map((artist) => (
@@ -211,8 +211,8 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
                     />
                     : <span className="mr-4 text-lg text-center w-7">{index + 1}</span>
                   }
-                  <h3 className="text-lg font-medium line-clamp-1">{track.title}</h3>
-                  <h4 className="ml-auto text-lg">{displayTime(track.duration)}</h4>
+                  <h3 className="min-w-0 text-base font-medium sm:text-lg line-clamp-1">{track.title}</h3>
+                  <h4 className="ml-auto text-base shrink-0 sm:text-lg">{displayTime(track.duration)}</h4>
                 </li>
               </React.Fragment>
             )

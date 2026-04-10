@@ -1,6 +1,23 @@
 /* View Transitions — page navigation animations */
 /* Fallback: instant transition (current behavior) for unsupported browsers */
 
+/* Suppress root transition so fixed elements stay stable */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+/* Audio player stays in place, always on top */
+::view-transition-group(audio-player) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(audio-player),
+::view-transition-new(audio-player) {
+  animation: none;
+}
+
 ::view-transition-old(page-content) {
   animation: 400ms cubic-bezier(0.4, 0, 0.2, 1) both vt-recede;
 }

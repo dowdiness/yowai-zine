@@ -16,8 +16,8 @@ export type ArticleListsProps = {
 const ArticleLists: React.FCX<ArticleListsProps> = ({ className, posts }) => {
   return (
     <div className={`${className} my-16 space-y-16`}>
-      <section className="flex flex-col justify-center mx-auto space-y-32">
-        <div className="flex flex-col justify-center mx-auto space-y-28">
+      <section className="flex flex-col justify-center mx-auto space-y-16 sm:space-y-24 md:space-y-32">
+        <div className="flex flex-col justify-center mx-auto space-y-12 sm:space-y-20 md:space-y-28">
           {posts.map((post, index) => (
             <ArticleList
               key={post.slug}

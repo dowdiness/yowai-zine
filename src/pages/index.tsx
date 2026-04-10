@@ -85,7 +85,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
     <>
       <GatsbySeo title="弱いZINE" titleTemplate="%s" />
       <LogoLd />
-      <div className="space-y-32">
+      <div className="space-y-16 sm:space-y-24 md:space-y-32">
         <section className="w-screen m-screen md:mx-auto md:w-full">
           <Div100vh className="flex items-center justify-center">
             <SplitTextWrap
@@ -110,7 +110,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           </div>
           <p
             data-skew
-            className="tracking-widest text-left whitespace-pre-line sm:text-left leading-loosest text-character sm:text-lg md:text-xl"
+            className="text-base tracking-widest text-left whitespace-pre-line leading-loosest text-character sm:text-lg md:text-xl"
           >
             {text}
           </p>

@@ -129,7 +129,7 @@ const VerticalArticleTemplate: React.FC<PageProps<
                 {author?.introduction?.introduction}
               </Linkify>
               <ArticleSocialAccounts
-                className="flex items-center justify-around mx-auto mt-4 md:w-1/2"
+                className="flex flex-wrap items-center justify-center gap-4 mx-auto mt-4 sm:justify-around md:w-1/2"
                 linktree={author?.linktree}
                 hatena={author?.hatena}
                 bandcamp={author?.bandcamp}
