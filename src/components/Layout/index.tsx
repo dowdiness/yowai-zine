@@ -21,13 +21,13 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   const isDragging = useRef(false)
   const displayChildren = useViewTransition(children, location.pathname)
 
-  const scrollToY = useCallback((clientY: number) => {
+  const scrollToY = useCallback((clientY: number, smooth = false) => {
     const track = trackRef.current
     if (!track) return
     const rect = track.getBoundingClientRect()
     const ratio = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height))
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-    window.scrollTo({ top: ratio * maxScroll })
+    window.scrollTo({ top: ratio * maxScroll, behavior: smooth ? 'smooth' : 'auto' })
   }, [])
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
     const onMouseDown = (e: MouseEvent) => {
       e.preventDefault()
       isDragging.current = true
-      scrollToY(e.clientY)
+      scrollToY(e.clientY, true)
       document.addEventListener('mousemove', onMouseMove)
       document.addEventListener('mouseup', onMouseUp)
     }
