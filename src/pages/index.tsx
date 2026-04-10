@@ -110,7 +110,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           </div>
           <p
             data-skew
-            className="text-base tracking-widest text-left whitespace-pre-line leading-loosest text-character sm:text-lg md:text-xl"
+            className="text-base tracking-widest text-left whitespace-pre-line leading-loosest text-character sm:text-lg md:text-xl lg:text-2xl"
           >
             {text}
           </p>
