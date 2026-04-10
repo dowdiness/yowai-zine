@@ -1,0 +1,33 @@
+/* View Transitions — page navigation animations */
+/* Fallback: instant transition (current behavior) for unsupported browsers */
+
+::view-transition-old(page-content) {
+  animation: 400ms cubic-bezier(0.4, 0, 0.2, 1) both vt-recede;
+}
+
+::view-transition-new(page-content) {
+  animation: 500ms cubic-bezier(0.4, 0, 0.2, 1) 100ms both vt-emerge;
+}
+
+@keyframes vt-recede {
+  to {
+    opacity: 0;
+    transform: scale(0.99);
+    filter: blur(2px);
+  }
+}
+
+@keyframes vt-emerge {
+  from {
+    opacity: 0;
+    filter: blur(1px);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page-content),
+  ::view-transition-new(page-content) {
+    animation: none;
+  }
+}

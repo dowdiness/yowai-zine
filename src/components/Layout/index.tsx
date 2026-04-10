@@ -7,6 +7,7 @@ import { m as motion, useScroll, LazyMotion } from 'framer-motion'
 import AudioPlayer from 'src/components/AudioPlayer/AudioPlayer'
 import Mouse from 'src/components/Layout/Mouse'
 import Skew from 'src/components/Layout/Skew'
+import useViewTransition from 'src/hooks/useViewTransition'
 
 const loadFeatures = () => import('./domAnimation').then(res => res.default)
 
@@ -18,6 +19,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
   const { scrollYProgress } = useScroll()
   const trackRef = useRef<HTMLDivElement>(null)
   const isDragging = useRef(false)
+  const displayChildren = useViewTransition(children, location.pathname)
 
   const scrollToY = useCallback((clientY: number) => {
     const track = trackRef.current
@@ -67,7 +69,7 @@ const Layout: React.FC<LayoutProps> = ({ children, location }) => {
         className="container use-cursor-none"
       >
         <AudioProvider>
-          <main>{children}</main>
+          <main style={{ viewTransitionName: 'page-content' }}>{displayChildren}</main>
           <AudioPlayer />
         </AudioProvider>
         <Footer className="py-16" />
