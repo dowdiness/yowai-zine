@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArticleLink } from 'src/components/Article'
+import ArticleLink from 'src/components/Article/ArticleLink'
 
 export type ArticleNavProps = {
   previousLink?: string

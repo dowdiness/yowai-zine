@@ -4,7 +4,7 @@ import { PageProps, graphql } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
-import { ArticleLink } from 'src/components/Article'
+import ArticleLink from 'src/components/Article/ArticleLink'
 import SectionHeader from 'src/components/Element/SectionHeader'
 import AudioPlayButton from 'src/components/AudioPlayer/AudioPlayButton'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
@@ -38,7 +38,7 @@ const PlaylistPage: React.FC<PageProps<GatsbyTypes.PlaylistQuery>> = ({ data, lo
   const songs = playlist?.songs
   const siteUrl = data.site?.siteMetadata?.siteUrl
 
-  const [isHovers, setHovers] = useState([...Array(songs?.length)].map(() => false))
+  const [isHovers, setHovers] = useState(() => Array(songs?.length).fill(false))
 
   // @ts-ignore
   const cover = getImage(songs[0].coverart)!

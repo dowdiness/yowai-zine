@@ -7,7 +7,8 @@ import { useAtom } from "jotai"
 import { windowSize, windowSizeAtom } from "src/atoms"
 
 //Components
-import { ArticleLists, ArticleList } from 'src/components/Article'
+import ArticleLists from 'src/components/Article/ArticleLists'
+import ArticleList from 'src/components/Article/ArticleList'
 import AudioLists from 'src/components/AudioPlayer/AudioLists'
 import SectionHeader from 'src/components/Element/SectionHeader'
 import { SplitTextWrap } from 'src/components/SplitText/SplitTextWrap'

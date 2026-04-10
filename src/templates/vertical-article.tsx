@@ -4,13 +4,11 @@ import { graphql, PageProps } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
 
-import {
-  ArticleLink,
-  ArticleNav,
-  ArticleSideHeader,
-  ArticleShareButton,
-  ArticleSocialAccounts
-} from 'src/components/Article'
+import ArticleLink from 'src/components/Article/ArticleLink'
+import ArticleNav from 'src/components/Article/ArticleNav'
+import ArticleSideHeader from 'src/components/Article/ArticleSideHeader'
+import ArticleShareButton from 'src/components/Article/ArticleShareButton'
+import ArticleSocialAccounts from 'src/components/Article/ArticleSocialAccounts'
 import SectionHeader from 'src/components/Element/SectionHeader'
 import Linkify from 'linkify-react'
 //Hooks

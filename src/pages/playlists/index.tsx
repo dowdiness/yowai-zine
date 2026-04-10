@@ -4,7 +4,7 @@ import { graphql, PageProps, Link } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
-import { ArticleLink } from 'src/components/Article'
+import ArticleLink from 'src/components/Article/ArticleLink'
 import AudioLists from 'src/components/AudioPlayer/AudioLists'
 import SectionHeader from 'src/components/Element/SectionHeader'
 

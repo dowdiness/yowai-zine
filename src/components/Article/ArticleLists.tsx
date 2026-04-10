@@ -1,7 +1,8 @@
 import React from 'react'
 
 //Components
-import { ArticleLink, ArticleList } from 'src/components/Article'
+import ArticleLink from 'src/components/Article/ArticleLink'
+import ArticleList from 'src/components/Article/ArticleList'
 import ArticleCursor from 'src/components/Article/ArticleCursor'
 
 //Utils

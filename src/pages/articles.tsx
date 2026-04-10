@@ -4,7 +4,8 @@ import { graphql, PageProps } from 'gatsby'
 //Components
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd } from "src/components/JsonLd"
-import { ArticleLink, ArticleLists } from 'src/components/Article'
+import ArticleLink from 'src/components/Article/ArticleLink'
+import ArticleLists from 'src/components/Article/ArticleLists'
 import SectionHeader from 'src/components/Element/SectionHeader'
 import { getImage } from "gatsby-plugin-image"
 

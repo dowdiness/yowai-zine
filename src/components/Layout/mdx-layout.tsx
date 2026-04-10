@@ -4,10 +4,8 @@ import { graphql, PageProps } from 'gatsby'
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd, BreadcrumbLd, ArticleLd } from "src/components/JsonLd"
 
-import {
-  ArticleLink,
-  ArticleNav,
-} from 'src/components/Article'
+import ArticleLink from 'src/components/Article/ArticleLink'
+import ArticleNav from 'src/components/Article/ArticleNav'
 import SectionHeader from 'src/components/Element/SectionHeader'
 //Hooks
 
