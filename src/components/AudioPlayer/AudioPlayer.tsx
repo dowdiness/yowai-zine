@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import AudioControls from 'src/components/AudioPlayer/AudioControls'
 import AudioInfo from 'src/components/AudioPlayer/AudioInfo'
 import AudioVolume from 'src/components/AudioPlayer/AudioVolume'
@@ -22,6 +22,7 @@ import {
 // Utils
 import { displayTime } from './utils'
 import { stopBodyScrolling, restartBodyScrolling } from 'src/utils'
+import useMediaQuery from 'src/hooks/useMediaQuery'
 import * as AudioStyle from "./audio.module.css"
 
 const audioPlaylerVariants = {
@@ -46,20 +47,12 @@ const AudioPlayer: React.FC = () => {
   const [isAudioMiniPlayerOpen] = useAtom(isAudioMiniPlayerOpenAtom)
   const [isAudioModalOpen, setIsAudioModalOpen] = useAtom(isAudioModalOpenAtom)
 
-  const [isPc, setIsPc] = useState(false)
+  const isPc = useMediaQuery("(min-width: 768px)")
 
   let currentPercentage = "0%"
   currentPercentage = duration
     ? `${(trackProgress / duration) * 97 + 2}%`
     : "2%"
-
-  const changeIsPc = (e: MediaQueryListEvent) => {
-    if (e.matches) {
-      setIsPc(true)
-    } else {
-      setIsPc(false)
-    }
-  }
 
   useEffect(() => {
     if (isAudioModalOpen) {
@@ -68,13 +61,6 @@ const AudioPlayer: React.FC = () => {
       restartBodyScrolling()
     }
   }, [isAudioModalOpen])
-
-  useEffect(() => {
-    const mql = matchMedia("(min-width: 768px)")
-    setIsPc(mql.matches)
-    mql.addEventListener("change", changeIsPc)
-    return () => mql.removeEventListener("change", changeIsPc)
-  }, [])
 
   return (
     <AnimatePresence>

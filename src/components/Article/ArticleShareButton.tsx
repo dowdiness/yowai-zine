@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -8,6 +8,7 @@ import {
   LineIcon,
 } from "react-share"
 import { BiShareAlt } from 'react-icons/bi'
+import useMediaQuery from 'src/hooks/useMediaQuery'
 
 export type ArticleShareButtonProps = {
   articleTitle: string
@@ -16,21 +17,8 @@ export type ArticleShareButtonProps = {
 }
 
 const ArticleShareButton: React.FCX<ArticleShareButtonProps> = ({ className, articleTitle, articleUrl, articleDescription }) => {
-  const [iconSize, setIconSize] = useState(48)
-  const changeIconSize = (e: MediaQueryListEvent) => {
-    if (e.matches) {
-      setIconSize(64)
-    } else {
-      setIconSize(48)
-    }
-  }
-
-  useEffect(() => {
-    const mql = matchMedia("(min-width: 992px)")
-    setIconSize(mql.matches ? 64 : 48)
-    mql.addEventListener("change", changeIconSize)
-    return () => mql.removeEventListener("change", changeIconSize)
-  }, [])
+  const isLg = useMediaQuery("(min-width: 992px)")
+  const iconSize = isLg ? 64 : 48
 
   const shareData: Required<ShareData> = {
     title: articleTitle,
