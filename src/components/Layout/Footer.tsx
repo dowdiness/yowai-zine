@@ -17,7 +17,7 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
             layout="fixed"
             placeholder="tracedSVG"
             formats={["auto", "webp", "avif"]}
-            className="w-32 h-32 text-center transition-opacity duration-300 ease-out hover:opacity-50"
+            className="w-32 h-32 text-center transition-all duration-300 ease-out hover:opacity-75 hover:-translate-y-1"
           />
         </Link>
         <p className="mt-4 sm:mt-6 text-base italic leading-6 text-center text-gray-600">
