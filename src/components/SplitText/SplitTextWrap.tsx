@@ -25,7 +25,7 @@ const variants = {
 }
 
 export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => {
-  const [isStarted, setIsStarted] = useState(() => !!localStorage.getItem('previousPath'))
+  const [isStarted, setIsStarted] = useState(() => typeof localStorage !== 'undefined' && !!localStorage.getItem('previousPath'))
   const [isScrollVisible, setIsScrollVisible] = useState(false)
 
   useEffect(() => {
