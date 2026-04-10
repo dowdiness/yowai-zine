@@ -35,7 +35,7 @@ export const ArticleSocialAccounts: React.FCX<Partial<ArticleSocialAccountsProps
             alt="linktree"
             className="rounded-full"
             layout="fixed"
-            placeholder="tracedSVG"
+            placeholder="blurred"
             formats={["auto", "webp", "avif"]}
           />
         </a>
@@ -49,7 +49,7 @@ export const ArticleSocialAccounts: React.FCX<Partial<ArticleSocialAccountsProps
             alt="hatena"
             className="w-16 h-16 rounded-full "
             layout="fixed"
-            placeholder="tracedSVG"
+            placeholder="blurred"
             formats={["auto", "webp", "avif"]}
           />
         </a>
@@ -63,7 +63,7 @@ export const ArticleSocialAccounts: React.FCX<Partial<ArticleSocialAccountsProps
             alt="bandcamp"
             className="w-10 h-10 blend-multiply"
             layout="fixed"
-            placeholder="tracedSVG"
+            placeholder="blurred"
             formats={["auto", "webp", "avif"]}
           />
         </a>
@@ -77,7 +77,7 @@ export const ArticleSocialAccounts: React.FCX<Partial<ArticleSocialAccountsProps
             alt="minnakikeru"
             className="w-full h-full blend-multiply"
             layout="fixed"
-            placeholder="tracedSVG"
+            placeholder="blurred"
             formats={["auto", "webp", "avif"]}
           />
         </a>

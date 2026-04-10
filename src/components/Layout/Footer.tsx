@@ -15,7 +15,7 @@ export const Footer: React.FCX<FooterProps> = ({ className }) => {
             height={128}
             alt="yowai-logo"
             layout="fixed"
-            placeholder="tracedSVG"
+            placeholder="blurred"
             formats={["auto", "webp", "avif"]}
             className="w-32 h-32 text-center transition-all duration-300 ease-out hover:opacity-75 hover:-translate-y-1"
           />

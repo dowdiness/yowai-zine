@@ -73,7 +73,7 @@ export const pageQuery = graphql`
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, formats: [AUTO,WEBP,AVIF])
       }
     }
   }

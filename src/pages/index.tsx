@@ -171,12 +171,12 @@ export const pageQuery = graphql`
     }
     genki: file(relativePath: { eq: "genki.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, formats: [AUTO,WEBP,AVIF])
       }
     }
     zine: file(relativePath: { eq: "yowaizine.png" }) {
       childImageSharp {
-        gatsbyImageData(width: 768, layout: FULL_WIDTH, placeholder: TRACED_SVG, formats: [AUTO,WEBP,AVIF])
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED, formats: [AUTO,WEBP,AVIF])
       }
     }
     posts: allContentfulMarkdownArticle(sort: {publishedAt: DESC}) {
@@ -206,7 +206,7 @@ export const pageQuery = graphql`
             name
           }
           coverart {
-            gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
           }
           albumPath: gatsbyPath(filePath: "/playlists/{ContentfulPlaylist.slug}")
         }

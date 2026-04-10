@@ -247,7 +247,7 @@ export const pageQuery = graphql`
         title
         duration
         coverart {
-          gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
+          gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
         }
         sound {
           localFile {

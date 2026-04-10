@@ -57,7 +57,7 @@ export const pageQuery = graphql`
             name
           }
           coverart {
-            gatsbyImageData(layout: FULL_WIDTH, placeholder: TRACED_SVG)
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
           }
           albumPath: gatsbyPath(filePath: "/playlists/{ContentfulPlaylist.slug}")
         }
