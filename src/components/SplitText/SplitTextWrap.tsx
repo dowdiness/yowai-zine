@@ -25,24 +25,18 @@ const variants = {
 }
 
 export const SplitTextWrap: React.FC<SplitTextProps> = ({ jp, en, ...rest }) => {
-  const [isStarted, setIsStarted] = useState(false)
+  const [isStarted, setIsStarted] = useState(() => !!localStorage.getItem('previousPath'))
   const [isScrollVisible, setIsScrollVisible] = useState(false)
 
   useEffect(() => {
-    if (localStorage.getItem('previousPath')) {
-      setIsScrollVisible(false)
-      setIsStarted(true)
-    }
+    if (isStarted) return
 
-    emitter.on('loading-finished-event', () => {
-      setIsStarted(true)
-    })
-    return (
-      emitter.off('loading-finished-event', () => {
-        setIsStarted(true)
-      })
-    )
-  }, [])
+    const start = () => setIsStarted(true)
+    emitter.on('loading-finished-event', start)
+    return () => {
+      emitter.off('loading-finished-event', start)
+    }
+  }, [isStarted])
 
   return (
     <>

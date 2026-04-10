@@ -58,6 +58,7 @@ export const SplitTextLine: React.FCX<SplitTextLineProps> = ({
 
   return (
     <span
+      role="text"
       aria-label={text}
       id={id}
       className={className}

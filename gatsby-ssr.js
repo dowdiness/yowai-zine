@@ -14,6 +14,7 @@ import { YouTube } from 'mdx-embed'
 const components = {
   YouTube,
 }
+// Note: SSR keeps static import for server rendering; gatsby-browser.js lazy-loads it
 
 const wrapPageElement = ({ element, props }) => {
   return (

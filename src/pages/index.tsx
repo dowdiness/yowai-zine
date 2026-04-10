@@ -12,7 +12,6 @@ import ArticleList from 'src/components/Article/ArticleList'
 import AudioLists from 'src/components/AudioPlayer/AudioLists'
 import SectionHeader from 'src/components/Element/SectionHeader'
 import { SplitTextWrap } from 'src/components/SplitText/SplitTextWrap'
-import Div100vh from 'react-div-100vh'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import { LogoLd } from "src/components/JsonLd"
@@ -88,12 +87,12 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
       <LogoLd />
       <div className="space-y-16 sm:space-y-24 md:space-y-32">
         <section className="w-screen m-screen md:mx-auto md:w-full">
-          <Div100vh className="flex items-center justify-center">
+          <div className="flex items-center justify-center" style={{ height: '100dvh' }}>
             <SplitTextWrap
               jp="ここは君のタイムラインの外側。"
               en="Here is the outside of your timeline."
             />
-          </Div100vh>
+          </div>
         </section>
         <section data-scroll className="flex flex-col items-center justify-center md:flex-row md:justify-around md:items-start">
           <div className="mb-12 md:mb-0 md:mr-12 md:sticky top-24">

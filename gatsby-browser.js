@@ -6,7 +6,14 @@ import * as React from 'react'
 import Layout from 'src/components/Layout'
 import { Provider } from "jotai"
 import { MDXProvider } from "@mdx-js/react"
-import { YouTube } from 'mdx-embed'
+
+const LazyYouTube = React.lazy(() => import('mdx-embed').then(mod => ({ default: mod.YouTube })))
+
+const YouTube = (props) => (
+  <React.Suspense fallback={<div />}>
+    <LazyYouTube {...props} />
+  </React.Suspense>
+)
 
 const components = {
   YouTube,
